@@ -1100,6 +1100,7 @@ GameObject:
   - component: {fileID: 1767953489}
   - component: {fileID: 1767953488}
   - component: {fileID: 1767953487}
+  - component: {fileID: 1767953490}
   m_Layer: 5
   m_Name: Savefile Button
   m_TagString: Untagged
@@ -1222,6 +1223,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1767953485}
   m_CullTransparentMesh: 1
+--- !u!114 &1767953490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767953485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e27b43cb5a676004bb9518bfbda93456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  default_button: {fileID: 1767953487}
 --- !u!1 &1795464267
 GameObject:
   m_ObjectHideFlags: 0
