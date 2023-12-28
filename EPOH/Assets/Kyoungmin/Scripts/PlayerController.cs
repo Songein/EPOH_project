@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -11,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public float playerSpeed = 8f;
     //플레이어 점프 힘
     public float playerJumpForce = 10f;
+    //플레이어 대쉬 이동 속도
+    public float dashSpeed = 20f;
     //플레이어 리지드바디 컴포넌트
     private Rigidbody2D playerRigidbody;
     //플레이어 애니메이터
@@ -19,7 +22,11 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight = true;
     //스프라이트 렌더러 컴포넌트
     private SpriteRenderer sr;
-   
+    //플레이어가 상호작용할 오브젝트
+    private GameObject interactObj;
+    //플레이어가 상호작용 중인지
+    private bool isInteracting = false;
+    
     void Start()
     {
         //게임 오브젝트로부터 Rigidbody2D 컴포넌트를 가져와서 할당하기
@@ -57,6 +64,20 @@ public class PlayerController : MonoBehaviour
         {
             playerAnimator.SetBool("IsRun", true);
         }
+        
+        //대쉬 버튼을 누르면
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Dash();
+        }
+
+        //스페이스를 누르고, 상호작용 할 오브젝트가 존재하고, 상호작용 중이지 않을 경우
+        if (Input.GetKeyDown(KeyCode.Space) && (interactObj != null) && !isInteracting)
+        {
+            Debug.Log(interactObj.name + "과 상호작용 시작");
+            isInteracting = true;
+        }
+        
     }
 
     void FixedUpdate()
@@ -64,25 +85,52 @@ public class PlayerController : MonoBehaviour
         //수평값에 따른 이동
         playerRigidbody.velocity = new Vector2(horizontal * playerSpeed, playerRigidbody.velocity.y);
         
-        //레이캐스트 디버그
+        //땅 감지 레이캐스트 디버그
         Debug.DrawRay(playerRigidbody.position, Vector2.down, Color.cyan);
+        
         //플레이어가 떨어지는 경우
         if (playerRigidbody.velocity.y < 0f)
         {
-            RaycastHit2D rayHit = Physics2D.Raycast(playerRigidbody.position, Vector2.down, 0.5f, LayerMask.GetMask("Ground"));
+            RaycastHit2D groundRayHit = Physics2D.Raycast(playerRigidbody.position, Vector2.down, 0.5f, LayerMask.GetMask("Ground"));
             //땅을 감지하고
-            if (rayHit.collider != null)
+            if (groundRayHit.collider != null)
             {
                 //거리가 0.3 미만이면
-                if (rayHit.distance < 0.3f)
+                if (groundRayHit.distance < 0.3f)
                 {
                     //점프 애니메이션 해제
                     playerAnimator.SetBool("IsJump", false);
                 }
-                Debug.Log(rayHit.collider.name);
+
+                Debug.Log(groundRayHit.collider.name);
             }
         }
+        
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        //상호작용 중이지 않고, 트리거 충돌한 오브젝트가 Interaction 태그를 갖고 있는 오브젝트일 경우
+        if (other.CompareTag("Interaction") && !isInteracting)
+        {
+            //상호작용 할 오브젝트에 트리거 충돌 오브젝트를 할당
+            interactObj = other.gameObject;
+            Debug.Log(other.name + "과 상호작용 가능");
+        }
+    }
+    
+    void OnTriggerExit2D(Collider2D other)
+    {
+        //상호작용 중이지 않고, 트리거 충돌 오브젝트에게서 멀어질 때
+        if (interactObj != null && !isInteracting)
+        {
+            //상호작용 할 오브젝트에 null 할당
+            interactObj = null;
+            Debug.Log(other.name + "과 상호작용 불가능");
+        }
+        
+    }
+
 
     //플레이어 스프라이트 뒤집기
     void Flip()
@@ -95,4 +143,21 @@ public class PlayerController : MonoBehaviour
             sr.flipX = !isFacingRight;
         }
     }
+
+    //대쉬
+    void Dash()
+    {
+        //playerAnimator.SetBool("IsDash", true);
+        //플레이어가 바라보고 있는 방향으로 이동
+        Debug.Log("Dash : " + isFacingRight);
+        if (isFacingRight)
+        {
+            playerRigidbody.AddForce(transform.right * dashSpeed);
+        }
+        else
+        {
+            //playerRigidbody.AddForce( dashSpeed);
+        }
+    }
+    
 }
