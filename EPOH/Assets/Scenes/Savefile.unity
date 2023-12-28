@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1507d79337d4ec04ca2e2ea984514143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  next_scene_name: MR
+  next_scene_name: MainRoom
 --- !u!1 &241277309
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,7 +878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1507d79337d4ec04ca2e2ea984514143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  next_scene_name: MR
+  next_scene_name: MainRoom
 --- !u!1 &976829966
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,7 +1380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1507d79337d4ec04ca2e2ea984514143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  next_scene_name: MR
+  next_scene_name: MainRoom
 --- !u!114 &1212412806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2081,7 +2081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1507d79337d4ec04ca2e2ea984514143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  next_scene_name: MR
+  next_scene_name: MainRoom
 --- !u!1 &1767980775
 GameObject:
   m_ObjectHideFlags: 0
