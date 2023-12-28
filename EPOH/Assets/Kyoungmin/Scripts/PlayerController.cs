@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     //플레이어 점프 힘
     public float playerJumpForce = 10f;
     //플레이어 대쉬 이동 속도
-    public float dashSpeed = 20f;
+    public float dashPower = 20f;
     //플레이어 리지드바디 컴포넌트
     private Rigidbody2D playerRigidbody;
     //플레이어 애니메이터
@@ -26,6 +26,10 @@ public class PlayerController : MonoBehaviour
     private GameObject interactObj;
     //플레이어가 상호작용 중인지
     private bool isInteracting = false;
+    //플레이어가 대쉬 중인지
+    private bool isDashing = false;
+    //대쉬 타임
+    public float dashTime = 2f;
     
     void Start()
     {
@@ -65,11 +69,13 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetBool("IsRun", true);
         }
         
+        /*
         //대쉬 버튼을 누르면
         if (Input.GetKeyDown(KeyCode.C))
         {
-            Dash();
+            DashStart();
         }
+        */
 
         //스페이스를 누르고, 상호작용 할 오브젝트가 존재하고, 상호작용 중이지 않을 경우
         if (Input.GetKeyDown(KeyCode.Space) && (interactObj != null) && !isInteracting)
@@ -145,19 +151,20 @@ public class PlayerController : MonoBehaviour
     }
 
     //대쉬
-    void Dash()
+    void DashStart()
     {
-        //playerAnimator.SetBool("IsDash", true);
-        //플레이어가 바라보고 있는 방향으로 이동
-        Debug.Log("Dash : " + isFacingRight);
+        playerAnimator.SetBool("IsDash", true);
+        var originalGravity = playerRigidbody.gravityScale;
+        playerRigidbody.gravityScale = 0f;
         if (isFacingRight)
         {
-            playerRigidbody.AddForce(transform.right * dashSpeed);
+            playerRigidbody.velocity = new Vector2(dashPower, 0);
         }
         else
         {
-            //playerRigidbody.AddForce( dashSpeed);
+            playerRigidbody.velocity = new Vector2((-1) * dashPower, 0);
         }
+        
     }
     
 }
