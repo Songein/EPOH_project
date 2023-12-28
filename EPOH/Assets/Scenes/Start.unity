@@ -354,7 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1507d79337d4ec04ca2e2ea984514143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: Setting
+  next_scene_name: Setting
 --- !u!1 &243615230
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,7 +1163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1507d79337d4ec04ca2e2ea984514143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: Savefile
+  next_scene_name: Savefile
 --- !u!1 &1795464267
 GameObject:
   m_ObjectHideFlags: 0
