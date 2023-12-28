@@ -8,19 +8,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/Start.unity
-    guid: 5b3ba92b4c98472498b19dfe3ad2bb14
-  - enabled: 1
-    path: Assets/Scenes/Savefile.unity
-    guid: 40c113bece0c9e846a04aad195cf239a
-  - enabled: 1
-    path: Assets/Scenes/Setting.unity
-    guid: 55f80fb6953e8dd4298668c6b10efc87
-  - enabled: 1
-    path: Assets/Scenes/MR.unity
-    guid: e917c3b53795d1441974da3d6e6aa14d
-  - enabled: 1
-    path: Assets/Scenes/Gameover.unity
-    guid: 3ba95b968848f4c46986fd1fd74faba3
   m_configObjects: {}
