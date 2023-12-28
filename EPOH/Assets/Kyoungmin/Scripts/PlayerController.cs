@@ -12,8 +12,6 @@ public class PlayerController : MonoBehaviour
     public float playerSpeed = 8f;
     //플레이어 점프 힘
     public float playerJumpForce = 10f;
-    //플레이어 대쉬 이동 속도
-    public float dashPower = 20f;
     //플레이어 리지드바디 컴포넌트
     private Rigidbody2D playerRigidbody;
     //플레이어 애니메이터
@@ -26,10 +24,14 @@ public class PlayerController : MonoBehaviour
     private GameObject interactObj;
     //플레이어가 상호작용 중인지
     private bool isInteracting = false;
-    //플레이어가 대쉬 중인지
-    private bool isDashing = false;
-    //대쉬 타임
-    public float dashTime = 2f;
+
+    [SerializeField] private TrailRenderer tr;
+
+    private bool can_dash = true; //플레이어가 대쉬를 할 수 있는지
+    public float dash_power = 8f; //대쉬 파워
+    private bool is_dashing = false; //플레이어가 대쉬 중인지
+    public float dash_time = 0.5f; //대쉬 지속 타임
+    public float dash_cool_time = 2f; //대쉬 쿨타임
     
     void Start()
     {
@@ -38,10 +40,15 @@ public class PlayerController : MonoBehaviour
         //게임 오브젝트로부터 Animator 컴포넌트 가져와서 할당하기
         playerAnimator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        tr = GetComponent<TrailRenderer>();
     }
     
     void Update()
     {
+        if (is_dashing || isInteracting)
+        {
+            return;
+        }
         horizontal = Input.GetAxisRaw("Horizontal");
         Flip();
 
@@ -69,14 +76,13 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetBool("IsRun", true);
         }
         
-        /*
+        
         //대쉬 버튼을 누르면
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) && can_dash)
         {
-            DashStart();
+            StartCoroutine(Dash());
         }
-        */
-
+        
         //스페이스를 누르고, 상호작용 할 오브젝트가 존재하고, 상호작용 중이지 않을 경우
         if (Input.GetKeyDown(KeyCode.Space) && (interactObj != null) && !isInteracting)
         {
@@ -88,6 +94,10 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (is_dashing || isInteracting)
+        {
+            return;
+        }
         //수평값에 따른 이동
         playerRigidbody.velocity = new Vector2(horizontal * playerSpeed, playerRigidbody.velocity.y);
         
@@ -151,20 +161,35 @@ public class PlayerController : MonoBehaviour
     }
 
     //대쉬
-    void DashStart()
+    private IEnumerator Dash()
     {
+        //Dash 시작 시
+        can_dash = false;
+        is_dashing = true;
         playerAnimator.SetBool("IsDash", true);
-        var originalGravity = playerRigidbody.gravityScale;
+        float original_gravity = playerRigidbody.gravityScale;
         playerRigidbody.gravityScale = 0f;
         if (isFacingRight)
         {
-            playerRigidbody.velocity = new Vector2(dashPower, 0);
+            playerRigidbody.velocity = new Vector2(transform.localScale.x * dash_power, 0f);
         }
         else
         {
-            playerRigidbody.velocity = new Vector2((-1) * dashPower, 0);
+            playerRigidbody.velocity = new Vector2(transform.localScale.x * dash_power * (-1), 0f);
         }
-        
+        tr.emitting = true;
+
+        //Dash 끝
+        yield return new WaitForSeconds(dash_time);
+        tr.emitting = false;
+        playerRigidbody.gravityScale = original_gravity;
+        playerAnimator.SetBool("IsDash", false);
+        is_dashing = false;
+
+        //Dash 쿨 타임
+        yield return new WaitForSeconds(dash_cool_time);
+        can_dash = true;
+        Debug.Log("Dash 쿨타임 끝");
     }
     
 }
