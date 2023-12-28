@@ -219,6 +219,7 @@ GameObject:
   - component: {fileID: 24860169}
   - component: {fileID: 24860168}
   - component: {fileID: 24860167}
+  - component: {fileID: 24860170}
   m_Layer: 5
   m_Name: Setting Button
   m_TagString: Untagged
@@ -291,8 +292,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 784497397}
-        m_TargetAssemblyTypeName: MoveToSetting, Assembly-CSharp
+      - m_Target: {fileID: 24860170}
+        m_TargetAssemblyTypeName: MoveToNextScene, Assembly-CSharp
         m_MethodName: sceneChange
         m_Mode: 1
         m_Arguments:
@@ -341,50 +342,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 24860165}
   m_CullTransparentMesh: 1
---- !u!1 &157367761
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 157367763}
-  - component: {fileID: 157367762}
-  m_Layer: 0
-  m_Name: Gameover Button Click
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &157367762
+--- !u!114 &24860170
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 157367761}
+  m_GameObject: {fileID: 24860165}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4e3f0629f112f44b977110afbdb4bfa, type: 3}
+  m_Script: {fileID: 11500000, guid: 1507d79337d4ec04ca2e2ea984514143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &157367763
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 157367761}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 329.48022, y: 188.55205, z: -1.5269668}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  nextSceneName: Setting
 --- !u!1 &243615230
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,19 +573,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 633351116}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 157367762}
-        m_TargetAssemblyTypeName: MoveToGameover, Assembly-CSharp
-        m_MethodName: sceneChange
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &633351116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -757,50 +715,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &784497396
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 784497398}
-  - component: {fileID: 784497397}
-  m_Layer: 0
-  m_Name: Setting Button Click
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &784497397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 784497396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10b8c8d0b555c1445a20ffa50848a73e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &784497398
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 784497396}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 329.48022, y: 188.55205, z: -1.5269668}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &936217632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,6 +1015,7 @@ GameObject:
   - component: {fileID: 1767953488}
   - component: {fileID: 1767953487}
   - component: {fileID: 1767953490}
+  - component: {fileID: 1767953491}
   m_Layer: 5
   m_Name: Savefile Button
   m_TagString: Untagged
@@ -1173,8 +1088,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1842220363}
-        m_TargetAssemblyTypeName: MoveToSavefile, Assembly-CSharp
+      - m_Target: {fileID: 1767953491}
+        m_TargetAssemblyTypeName: MoveToNextScene, Assembly-CSharp
         m_MethodName: sceneChange
         m_Mode: 1
         m_Arguments:
@@ -1236,6 +1151,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   default_button: {fileID: 1767953487}
+--- !u!114 &1767953491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767953485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1507d79337d4ec04ca2e2ea984514143, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextSceneName: Savefile
 --- !u!1 &1795464267
 GameObject:
   m_ObjectHideFlags: 0
@@ -1371,47 +1299,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795464267}
   m_CullTransparentMesh: 1
---- !u!1 &1842220362
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1842220364}
-  - component: {fileID: 1842220363}
-  m_Layer: 0
-  m_Name: Savefile Button Click
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1842220363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1842220362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1ff560cdb2834a469b00bf27301c9be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1842220364
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1842220362}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 329.48022, y: 188.55205, z: -1.5269668}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
