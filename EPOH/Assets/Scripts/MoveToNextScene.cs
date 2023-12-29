@@ -10,7 +10,7 @@ public class MoveToNextScene : MonoBehaviour
 
     public void sceneChange()
     {
-        SceneManager.LoadScene(next_scene_name); // nextSceneName 변수를 사용하여 씬을 로드
+        SceneManager.LoadScene(next_scene_name); // next_scene_name 변수를 사용하여 씬을 로드
     }
 
   
