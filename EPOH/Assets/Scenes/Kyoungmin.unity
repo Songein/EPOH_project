@@ -576,11 +576,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae43a92558a44ad1bfc429a8bb16ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 8
+  player_speed: 8
   playerJumpForce: 10
   tr: {fileID: 0}
-  dash_power: 8
-  dash_time: 0.5
+  dash_power: 20
+  dash_time: 0.3
   dash_cool_time: 2
 --- !u!1 &1028848994
 GameObject:
