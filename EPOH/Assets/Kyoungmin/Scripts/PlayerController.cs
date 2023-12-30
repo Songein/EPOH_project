@@ -6,98 +6,114 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //수평 값
-    private float horizontal;
-    //플레이어 이동 속도
-    public float playerSpeed = 8f;
-    //플레이어 점프 힘
-    public float playerJumpForce = 10f;
-    //플레이어 대쉬 이동 속도
-    public float dashPower = 20f;
+    //플레이어 좌우 이동
+    private float horizontal; //수평 값
+    public float player_speed = 8f; //이동 속도
+    private bool is_facing_right = true; //플레이어가 오른쪽을 쳐다보고 있는지
+    
+    //플레이어 점프
+    public float playerJumpForce = 10f; //점프 힘
+    
     //플레이어 리지드바디 컴포넌트
-    private Rigidbody2D playerRigidbody;
+    private Rigidbody2D rigid;
     //플레이어 애니메이터
-    private Animator playerAnimator;
-    //플레이어 flip 관련 변수(오른 쪽을 쳐다보고 있는지)
-    private bool isFacingRight = true;
+    private Animator animator;
     //스프라이트 렌더러 컴포넌트
     private SpriteRenderer sr;
-    //플레이어가 상호작용할 오브젝트
-    private GameObject interactObj;
-    //플레이어가 상호작용 중인지
-    private bool isInteracting = false;
-    //플레이어가 대쉬 중인지
-    private bool isDashing = false;
-    //대쉬 타임
-    public float dashTime = 2f;
+    
+    //플레이어 상호작용
+    private GameObject interact_obj; //플레이어가 상호작용할 오브젝트
+    private bool is_interacting = false; //플레이어가 상호작용 중인지
+
+    //플레이어 대쉬
+    [SerializeField] private TrailRenderer tr; //대쉬 효과
+    private bool can_dash = true; //플레이어가 대쉬를 할 수 있는지
+    public float dash_power = 20f; //대쉬 파워
+    private bool is_dashing = false; //플레이어가 대쉬 중인지
+    public float dash_time = 0.3f; //대쉬 지속 타임
+    public float dash_cool_time = 2f; //대쉬 쿨타임
     
     void Start()
     {
-        //게임 오브젝트로부터 Rigidbody2D 컴포넌트를 가져와서 할당하기
-        playerRigidbody = GetComponent<Rigidbody2D>();
-        //게임 오브젝트로부터 Animator 컴포넌트 가져와서 할당하기
-        playerAnimator = GetComponent<Animator>();
+        //Rigidbody2D 컴포넌트 할당
+        rigid = GetComponent<Rigidbody2D>();
+        //Animator 컴포넌트 할당
+        animator = GetComponent<Animator>();
+        //Sprite Renderer 컴포넌트 할당
         sr = GetComponent<SpriteRenderer>();
+        //Trail Renderer 컴포넌트 할당
+        tr = GetComponent<TrailRenderer>();
     }
     
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        Flip();
-
-        //점프 버튼을 누르면
-        if (Input.GetButtonDown("Jump"))
+        //대쉬 중이고 상호작용 중이면 다른 작업 이루어지지 않도록
+        if (is_dashing || is_interacting)
         {
-            playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, playerJumpForce);
-            playerAnimator.SetBool("IsJump", true);
-        }
-        //점프 도중 점프버튼에서 손을 뗀 경우
-        if (Input.GetButtonUp("Jump") && playerRigidbody.velocity.y > 0f)
-        {
-            //점프 속도 절반으로 감소
-            playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, playerRigidbody.velocity.y * 0.5f);
-            
+            return;
         }
         
+        //수평값 읽어오기
+        horizontal = Input.GetAxisRaw("Horizontal");
+        //플레이어 Flip 검사
+        Flip();
         //뛰는 경우 애니메이션
-        if (Mathf.Abs(playerRigidbody.velocity.x) < 0.3f)
+        if (Mathf.Abs(rigid.velocity.x) < 0.3f)
         {
-            playerAnimator.SetBool("IsRun", false);
+            animator.SetBool("IsRun", false);
         }
         else
         {
-            playerAnimator.SetBool("IsRun", true);
+            animator.SetBool("IsRun", true);
+        }
+
+        //점프 버튼을 누르면 점프
+        if (Input.GetButtonDown("Jump"))
+        {
+            rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce);
+            animator.SetBool("IsJump", true);
+        }
+        //점프 도중 점프버튼에서 손을 뗀 경우
+        if (Input.GetButtonUp("Jump") && rigid.velocity.y > 0f)
+        {
+            //점프 속도 절반으로 감소
+            rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * 0.5f);
+            
         }
         
-        /*
         //대쉬 버튼을 누르면
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetButtonDown("Dash") && can_dash)
         {
-            DashStart();
+            StartCoroutine(Dash());
         }
-        */
-
+        
         //스페이스를 누르고, 상호작용 할 오브젝트가 존재하고, 상호작용 중이지 않을 경우
-        if (Input.GetKeyDown(KeyCode.Space) && (interactObj != null) && !isInteracting)
+        if (Input.GetButtonDown("Interact") && (interact_obj != null) && !is_interacting)
         {
-            Debug.Log(interactObj.name + "과 상호작용 시작");
-            isInteracting = true;
+            Debug.Log(interact_obj.name + "과 상호작용 시작");
+            is_interacting = true;
         }
         
     }
 
     void FixedUpdate()
     {
+        //대쉬 중이고 상호작용 중이면 다른 작업 이루어지지 않도록
+        if (is_dashing || is_interacting)
+        {
+            return;
+        }
+        
         //수평값에 따른 이동
-        playerRigidbody.velocity = new Vector2(horizontal * playerSpeed, playerRigidbody.velocity.y);
+        rigid.velocity = new Vector2(horizontal * player_speed, rigid.velocity.y);
         
         //땅 감지 레이캐스트 디버그
-        Debug.DrawRay(playerRigidbody.position, Vector2.down, Color.cyan);
+        //Debug.DrawRay(rigid.position, Vector2.down, Color.cyan);
         
         //플레이어가 떨어지는 경우
-        if (playerRigidbody.velocity.y < 0f)
+        if (rigid.velocity.y < 0f)
         {
-            RaycastHit2D groundRayHit = Physics2D.Raycast(playerRigidbody.position, Vector2.down, 0.5f, LayerMask.GetMask("Ground"));
+            RaycastHit2D groundRayHit = Physics2D.Raycast(rigid.position, Vector2.down, 0.5f, LayerMask.GetMask("Ground"));
             //땅을 감지하고
             if (groundRayHit.collider != null)
             {
@@ -105,10 +121,10 @@ public class PlayerController : MonoBehaviour
                 if (groundRayHit.distance < 0.3f)
                 {
                     //점프 애니메이션 해제
-                    playerAnimator.SetBool("IsJump", false);
+                    animator.SetBool("IsJump", false);
                 }
 
-                Debug.Log(groundRayHit.collider.name);
+                //Debug.Log(groundRayHit.collider.name);
             }
         }
         
@@ -117,10 +133,10 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         //상호작용 중이지 않고, 트리거 충돌한 오브젝트가 Interaction 태그를 갖고 있는 오브젝트일 경우
-        if (other.CompareTag("Interaction") && !isInteracting)
+        if (other.CompareTag("Interaction") && !is_interacting)
         {
             //상호작용 할 오브젝트에 트리거 충돌 오브젝트를 할당
-            interactObj = other.gameObject;
+            interact_obj = other.gameObject;
             Debug.Log(other.name + "과 상호작용 가능");
         }
     }
@@ -128,10 +144,10 @@ public class PlayerController : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         //상호작용 중이지 않고, 트리거 충돌 오브젝트에게서 멀어질 때
-        if (interactObj != null && !isInteracting)
+        if (interact_obj != null && !is_interacting)
         {
             //상호작용 할 오브젝트에 null 할당
-            interactObj = null;
+            interact_obj = null;
             Debug.Log(other.name + "과 상호작용 불가능");
         }
         
@@ -142,29 +158,48 @@ public class PlayerController : MonoBehaviour
     void Flip()
     {
         //오른쪽을 보고 있는데 왼쪽으로 이동하거나 왼쪽을 보고 있는데 오른쪽으로 이동할 경우
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        if (is_facing_right && horizontal < 0f || !is_facing_right && horizontal > 0f)
         {
             //플레이어를 좌우로 뒤집기
-            isFacingRight = !isFacingRight;
-            sr.flipX = !isFacingRight;
+            is_facing_right = !is_facing_right;
+            //sprite renderer flipx 값 변경하기
+            sr.flipX = !is_facing_right;
         }
     }
 
     //대쉬
-    void DashStart()
+    private IEnumerator Dash()
     {
-        playerAnimator.SetBool("IsDash", true);
-        var originalGravity = playerRigidbody.gravityScale;
-        playerRigidbody.gravityScale = 0f;
-        if (isFacingRight)
+        //Dash 시작 시
+        can_dash = false; //대쉬 불가능으로 설정
+        is_dashing = true; //대쉬 중으로 설정
+        animator.SetBool("IsDash", true); //대쉬 애니메이션 시작
+        float original_gravity = rigid.gravityScale; //플레이어의 원래 중력 값 저장
+        rigid.gravityScale = 0f; //플레이어의 중력 0으로 변경하여 중력 무시
+        //플레이어가 바라보고 있는 방향으로 대쉬
+        if (is_facing_right)
         {
-            playerRigidbody.velocity = new Vector2(dashPower, 0);
+            //오른쪽 바라보고 있으면 오른쪽으로 대쉬
+            rigid.velocity = new Vector2(transform.localScale.x * dash_power, 0f);
         }
         else
         {
-            playerRigidbody.velocity = new Vector2((-1) * dashPower, 0);
+            //왼쪽 바라보고 있으면 왼쪽으로 대쉬
+            rigid.velocity = new Vector2(transform.localScale.x * dash_power * (-1), 0f);
         }
-        
+        tr.emitting = true; //대쉬 효과 발산
+
+        //Dash 끝
+        yield return new WaitForSeconds(dash_time);
+        tr.emitting = false; //대쉬 효과 끝
+        rigid.gravityScale = original_gravity; //플레이어의 원래 중력 회복
+        animator.SetBool("IsDash", false); //대쉬 애니메이션 끝
+        is_dashing = false; //대쉬 중 해제
+
+        //Dash 쿨 타임
+        yield return new WaitForSeconds(dash_cool_time);
+        can_dash = true; //쿨타임 후 대쉬 가능으로 변경
+        Debug.Log("Dash 쿨타임 끝");
     }
     
 }
