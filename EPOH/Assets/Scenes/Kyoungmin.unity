@@ -577,7 +577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_speed: 8
-  playerJumpForce: 10
+  playerJumpForce: 7
   tr: {fileID: 0}
   dash_power: 20
   dash_time: 0.3
