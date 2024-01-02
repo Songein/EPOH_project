@@ -1,8 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
+using Quaternion = UnityEngine.Quaternion;
+using Vector2 = UnityEngine.Vector2;
 
 public class PlayerController : MonoBehaviour
 {
@@ -34,6 +38,14 @@ public class PlayerController : MonoBehaviour
     public float dash_time = 0.3f; //대쉬 지속 타임
     public float dash_cool_time = 2f; //대쉬 쿨타임
     
+    //순간이동
+    private Vector2 teleport_pos; //순간이동할 위치
+    private bool can_teleport = false; //순간이동할 수 있는지
+    private bool is_teleporting = false; //순간이동 중인지
+    public float teleport_time = 0.3f; //순간이동 지속 타임
+    public GameObject port_prefab; //순간이동 포트 프리팹
+    private GameObject port; //순간이동 포트
+    
     void Start()
     {
         //Rigidbody2D 컴포넌트 할당
@@ -49,7 +61,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //대쉬 중이고 상호작용 중이면 다른 작업 이루어지지 않도록
-        if (is_dashing || is_interacting)
+        if (is_dashing || is_interacting || is_teleporting)
         {
             return;
         }
@@ -111,12 +123,29 @@ public class PlayerController : MonoBehaviour
             is_interacting = true;
         }
         
+        //순간이동 버튼을 누르면
+        if (Input.GetButtonDown("Teleport"))
+        {
+            if (can_teleport) //순간이동을 할 수 있으면(표식을 설치한 경우)
+            {
+                StartCoroutine(Teleport());
+            }
+            else //표식을 설치하지 않은 경우
+            {
+                animator.SetInteger("IsTeleport",0); //순간이동 표식 설치 애니메이션 실행
+                Invoke("EndPortAni", 0.3f); //0.3초 후 순간이동 표식 설치 애니메이션 종료
+                teleport_pos = transform.position; //플레이어의 현재 위치 받아오기
+                port = Instantiate(port_prefab, new Vector2(teleport_pos.x, teleport_pos.y), Quaternion.identity); //표식 생성
+                can_teleport = true; //순간이동 할 수 있다고 상태 변경
+            }
+        }
+        
     }
 
     void FixedUpdate()
     {
         //대쉬 중이고 상호작용 중이면 다른 작업 이루어지지 않도록
-        if (is_dashing || is_interacting)
+        if (is_dashing || is_interacting || is_teleporting)
         {
             return;
         }
@@ -140,6 +169,7 @@ public class PlayerController : MonoBehaviour
                     //점프 애니메이션 해제
                     animator.SetBool("IsJump", false);
                     animator.SetBool("IsDoubleJump", false);
+                    animator.SetInteger("IsTeleport",-1);
                     player_jump_cnt = 0; //바닥에 닿으면 플레이어 점프 횟수 초기화
 
                 }
@@ -220,6 +250,27 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(dash_cool_time);
         can_dash = true; //쿨타임 후 대쉬 가능으로 변경
         Debug.Log("Dash 쿨타임 끝");
+    }
+    
+    //순간이동
+    private IEnumerator Teleport()
+    {
+        //순간이동 시작 시
+        can_teleport = false; //순간이동 불가능으로 설정
+        is_teleporting = true; //순간이동 중으로 설정
+        Destroy(port); //순간이동 표식 제거
+        gameObject.transform.position = new Vector2(teleport_pos.x, teleport_pos.y + 2f); //순간이동 표식보다 y축으로 2만큼 위로 이동
+        animator.SetInteger("IsTeleport",1); //순간이동 끝 애니메이션 실행
+        //rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce);
+
+        //순간이동 끝
+        yield return new WaitForSeconds(teleport_time);
+        is_teleporting = false; //순간이동 중 해제
+    }
+
+    void EndPortAni() //순간이동 표식 생성 애니메이션 해제
+    {
+        animator.SetInteger("IsTeleport",-1);
     }
     
 }

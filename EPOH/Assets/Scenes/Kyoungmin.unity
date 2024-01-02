@@ -582,6 +582,8 @@ MonoBehaviour:
   dash_power: 20
   dash_time: 0.3
   dash_cool_time: 2
+  teleport_time: 0.3
+  port_prefab: {fileID: 8089051319890647574, guid: 389390a4264eb42b986a804feca4cbc2, type: 3}
 --- !u!1 &1028848994
 GameObject:
   m_ObjectHideFlags: 0
