@@ -9,6 +9,7 @@ public class TalkAction : MonoBehaviour
     public TalkManager talk_manager;
     public GameManager game_manager;
     public TypingEffect talk_effect;
+    public Songein_PlayerController player_controller;
 
     public GameObject talk_panel; // 대화창 panel
     public bool is_talking = false; // 대화중인지 확인
@@ -20,6 +21,7 @@ public class TalkAction : MonoBehaviour
     {
         Talk(game_manager.story_info);
         talk_panel.SetActive(is_talking);
+        player_controller.is_talking = is_talking;
     }
 
     void Talk(int id)
