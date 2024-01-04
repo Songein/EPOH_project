@@ -14,5 +14,4 @@ public class GameManager : MonoBehaviour
     public string[,] boss_info = new string[,] { { "Dog" , "1" }, { "ForgetMeNot", "3" }, { "PartTime", "2" } }; 
 
     public bool[] boss_clear_info = new bool[boss_cnt]; // 보스 클리어 여부 확인
-
 }
