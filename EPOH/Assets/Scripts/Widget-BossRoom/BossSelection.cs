@@ -8,6 +8,9 @@ public class BossSelection : MonoBehaviour
     public Button[] bossButtons; // 보스를 선택하는 버튼 배열
     private GameManager gameManager; // GameManager 스크립트에 대한 참조 변수
 
+    private int selectedBossIndex; // 선택된 보스 인덱스를 저장하는 변수
+
+
     void Start()
     {
         // GameManager 스크립트에 대한 참조 가져오기
@@ -60,5 +63,11 @@ public class BossSelection : MonoBehaviour
         gameManager.boss_num = bossIndex; // 선택한 보스의 인덱스 기록
         Debug.Log("사용자가 " + bossButtons[buttonIndex].GetComponentInChildren<TextMeshProUGUI>().text + "를 선택했습니다.");
         
+    }
+    
+     // 선택된 보스 인덱스를 반환하는 메서드
+    public int GetSelectedBossIndex()
+    {
+        return selectedBossIndex;
     }
 }
