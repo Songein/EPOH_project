@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class BossSelection : MonoBehaviour
 {
@@ -22,13 +23,28 @@ public class BossSelection : MonoBehaviour
         AssignBossInfoToButtons();
     }
 
-    void AssignBossInfoToButtons()
+    public void AssignBossInfoToButtons()
     {
-    
-        // 보스 정보를 버튼에 랜덤하게 배정
+        List<int> assignedBossIndexes = new List<int>(); // 이미 배정된 보스 인덱스를 추적하기 위한 리스트
+
+        // 보스 정보를 버튼에 배정
         for (int i = 0; i < bossButtons.Length; i++)
         {
-            int randomBossIndex = Random.Range(0, GameManager.boss_cnt); // 랜덤한 보스 인덱스 선택
+            int randomBossIndex;
+
+            // 중복된 보스가 배정되지 않도록 처리
+            do
+            {
+                randomBossIndex = Random.Range(0, GameManager.boss_cnt); // 랜덤한 보스 인덱스 선택
+            } while (assignedBossIndexes.Contains(randomBossIndex));
+
+            // GameManager의 boss_clear_info를 확인하여 true인 보스는 배정하지 않음
+            while (gameManager.boss_clear_info[randomBossIndex])
+            {
+                randomBossIndex = (randomBossIndex + 1) % GameManager.boss_cnt; // 다음 보스로 이동
+            }
+
+            assignedBossIndexes.Add(randomBossIndex); // 배정된 보스 인덱스를 리스트에 추가
             bossButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = gameManager.boss_info[randomBossIndex, 0]; // 보스 이름으로 버튼 텍스트 설정
 
             // 버튼 클릭 이벤트 설정
@@ -36,6 +52,7 @@ public class BossSelection : MonoBehaviour
             bossButtons[i].onClick.AddListener(() => OnBossButtonClick(buttonIndex, randomBossIndex));
         }
     }
+
 
     // 버튼이 클릭될 때 실행되는 함수
     public void OnBossButtonClick(int buttonIndex, int bossIndex)

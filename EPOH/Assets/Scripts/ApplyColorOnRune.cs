@@ -16,7 +16,7 @@ public class ApplyColorOnRune : MonoBehaviour
     void Start()
     {
         // 초기 색상 설정
-        ApplyColorToGameObject(runeObject, Color.yellow); // 노란색으로 초기화
+        ApplyColorToGameObject(runeObject, Color.white); // 흰색으로 초기화
 
         // GameManager 스크립트에 대한 참조 가져오기
         GameManager gameManager = FindObjectOfType<GameManager>();
