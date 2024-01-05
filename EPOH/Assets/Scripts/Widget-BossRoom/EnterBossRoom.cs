@@ -21,8 +21,6 @@ public class EnterBossRoom : MonoBehaviour
             Debug.LogError("GameManager를 찾을 수 없습니다.");
             return;
         }
-
-        
     }
 
     void MoveToBossRoom()
@@ -30,26 +28,17 @@ public class EnterBossRoom : MonoBehaviour
         int bossIndex = gameManager.boss_num;
         string bossRoomSceneName = "";
 
-        // 보스 인덱스에 따라 보스 룸 씬의 이름 설정
-        switch (bossIndex)
+        if (bossIndex >= 0 && bossIndex < GameManager.boss_cnt)
         {
-            case 0:
-                bossRoomSceneName = "BossRoom_Dog";
-                break;
-            case 1:
-                bossRoomSceneName = "BossRoom_ForgetMeNot";
-                break;
-            case 2:
-                bossRoomSceneName = "BossRoom_PartTime";
-                break;
-            default:
-                Debug.LogWarning("해당하는 보스 룸 씬을 찾을 수 없습니다.");
-                break;
+            bossRoomSceneName = "BossRoom" + gameManager.boss_info[bossIndex, 0]; // 보스 룸 씬의 이름 설정
+        }
+        else
+        {
+            Debug.LogWarning("해당하는 보스 룸 씬을 찾을 수 없습니다.");
+            return;
         }
 
         // 보스 룸 씬으로 전환
         SceneManager.LoadScene(bossRoomSceneName);
     }
-
-    
 }

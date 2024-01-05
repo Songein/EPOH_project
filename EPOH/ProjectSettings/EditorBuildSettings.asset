@@ -24,12 +24,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Corrider.unity
     guid: 6eb941954cf0b26448e048f70ea9042c
   - enabled: 1
-    path: Assets/Scenes/BossRoom_Dog.unity
-    guid: adce5d6b318782c45b63af995793621f
+    path: Assets/Scenes/BossRoomDog.unity
+    guid: d08cfd1e6cf61c04f87933598d8ca608
   - enabled: 1
-    path: Assets/Scenes/BossRoom02_ForgetMeNot.unity
-    guid: 5d67eef7f44254c40a4f87bd7d8795f3
+    path: Assets/Scenes/BossRoomForgetMeNot.unity
+    guid: 74eb43b338363e744afb0285c831f1bd
   - enabled: 1
-    path: Assets/Scenes/BossRoom_PartTime.unity
-    guid: 35736f960dd7d2245932044eee25b87e
+    path: Assets/Scenes/BossRoomPartTime.unity
+    guid: 36c3ff87145a2d84e92381b45421525a
   m_configObjects: {}
