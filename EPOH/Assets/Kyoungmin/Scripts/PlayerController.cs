@@ -1,8 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
+using Quaternion = UnityEngine.Quaternion;
+using Vector2 = UnityEngine.Vector2;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,9 +14,11 @@ public class PlayerController : MonoBehaviour
     private float horizontal; //수평 값
     public float player_speed = 8f; //이동 속도
     private bool is_facing_right = true; //플레이어가 오른쪽을 쳐다보고 있는지
+    private AttackArea attack_area; //AttackArea 스크립트(AttackArea의 좌우반전을 위해)
     
     //플레이어 점프
-    public float playerJumpForce = 10f; //점프 힘
+    public float playerJumpForce = 7f; //점프 힘
+    private int player_jump_cnt = 0; //플레이어 점프 횟수
     
     //플레이어 리지드바디 컴포넌트
     private Rigidbody2D rigid;
@@ -33,6 +39,17 @@ public class PlayerController : MonoBehaviour
     public float dash_time = 0.3f; //대쉬 지속 타임
     public float dash_cool_time = 2f; //대쉬 쿨타임
     
+    //순간이동
+    private Vector2 teleport_pos; //순간이동할 위치
+    private bool can_teleport = false; //순간이동할 수 있는지
+    private bool is_teleporting = false; //순간이동 중인지
+    public float teleport_time = 0.3f; //순간이동 지속 타임
+    public GameObject port_prefab; //순간이동 포트 프리팹
+    private GameObject port; //순간이동 포트
+    
+    //대화창
+    private bool is_talking = false; //플레이어가 대화 중인지
+    
     void Start()
     {
         //Rigidbody2D 컴포넌트 할당
@@ -43,12 +60,14 @@ public class PlayerController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         //Trail Renderer 컴포넌트 할당
         tr = GetComponent<TrailRenderer>();
+        //AttackArea 오브젝트의 컴포넌트 할당
+        attack_area = transform.GetChild(0).gameObject.GetComponent<AttackArea>();
     }
     
     void Update()
     {
-        //대쉬 중이고 상호작용 중이면 다른 작업 이루어지지 않도록
-        if (is_dashing || is_interacting)
+        //대쉬 | 상호작용 | 순간이동 | 대화 중이면 다른 작업 이루어지지 않도록
+        if (is_dashing || is_interacting || is_teleporting || is_talking)
         {
             return;
         }
@@ -67,12 +86,26 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsRun", true);
         }
 
-        //점프 버튼을 누르면 점프
-        if (Input.GetButtonDown("Jump"))
+        //점프 버튼을 누르고 점프 횟수가 2미만일 때 점프 수행
+        if (Input.GetButtonDown("Jump") && player_jump_cnt < 2)
         {
-            rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce);
-            animator.SetBool("IsJump", true);
+            switch (player_jump_cnt)
+            {
+                case 0 : //첫 점프일 때
+                    rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce);
+                    animator.SetBool("IsJump", true);
+                    break;
+                case 1 : //2단 점프일 때
+                    rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce * 1.5f); //2단 점프는 좀 더 높이 점프
+                    animator.SetBool("IsDoubleJump", true);
+                    break;
+                    
+            }
+            player_jump_cnt++;
+            
         }
+        
+        /*
         //점프 도중 점프버튼에서 손을 뗀 경우
         if (Input.GetButtonUp("Jump") && rigid.velocity.y > 0f)
         {
@@ -80,6 +113,7 @@ public class PlayerController : MonoBehaviour
             rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * 0.5f);
             
         }
+        */
         
         //대쉬 버튼을 누르면
         if (Input.GetButtonDown("Dash") && can_dash)
@@ -88,18 +122,35 @@ public class PlayerController : MonoBehaviour
         }
         
         //스페이스를 누르고, 상호작용 할 오브젝트가 존재하고, 상호작용 중이지 않을 경우
-        if (Input.GetButtonDown("Interact") && (interact_obj != null) && !is_interacting)
+        if (Input.GetButtonDown("Interact") && (interact_obj != null))
         {
-            Debug.Log(interact_obj.name + "과 상호작용 시작");
+            Debug.Log("[PlayerController] : " + interact_obj.name + "과 상호작용 시작");
             is_interacting = true;
+        }
+        
+        //순간이동 버튼을 누르면
+        if (Input.GetButtonDown("Teleport"))
+        {
+            if (can_teleport) //순간이동을 할 수 있으면(표식을 설치한 경우)
+            {
+                StartCoroutine(Teleport());
+            }
+            else //표식을 설치하지 않은 경우
+            {
+                animator.SetInteger("IsTeleport",0); //순간이동 표식 설치 애니메이션 실행
+                Invoke("EndPortAni", 0.3f); //0.3초 후 순간이동 표식 설치 애니메이션 종료
+                teleport_pos = transform.position; //플레이어의 현재 위치 받아오기
+                port = Instantiate(port_prefab, new Vector2(teleport_pos.x, teleport_pos.y), Quaternion.identity); //표식 생성
+                can_teleport = true; //순간이동 할 수 있다고 상태 변경
+            }
         }
         
     }
 
     void FixedUpdate()
     {
-        //대쉬 중이고 상호작용 중이면 다른 작업 이루어지지 않도록
-        if (is_dashing || is_interacting)
+        //대쉬 | 상호작용 | 순간이동 | 대화 중이면 다른 작업 이루어지지 않도록
+        if (is_dashing || is_interacting || is_teleporting || is_talking)
         {
             return;
         }
@@ -122,6 +173,10 @@ public class PlayerController : MonoBehaviour
                 {
                     //점프 애니메이션 해제
                     animator.SetBool("IsJump", false);
+                    animator.SetBool("IsDoubleJump", false);
+                    animator.SetInteger("IsTeleport",-1);
+                    player_jump_cnt = 0; //바닥에 닿으면 플레이어 점프 횟수 초기화
+
                 }
 
                 //Debug.Log(groundRayHit.collider.name);
@@ -132,23 +187,23 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        //상호작용 중이지 않고, 트리거 충돌한 오브젝트가 Interaction 태그를 갖고 있는 오브젝트일 경우
-        if (other.CompareTag("Interaction") && !is_interacting)
+        //트리거 충돌한 오브젝트가 Interaction 태그를 갖고 있는 오브젝트일 경우
+        if (other.CompareTag("Interaction"))
         {
             //상호작용 할 오브젝트에 트리거 충돌 오브젝트를 할당
             interact_obj = other.gameObject;
-            Debug.Log(other.name + "과 상호작용 가능");
+            Debug.Log("[PlayerController] : " + other.name + "과 상호작용 가능");
         }
     }
     
     void OnTriggerExit2D(Collider2D other)
     {
-        //상호작용 중이지 않고, 트리거 충돌 오브젝트에게서 멀어질 때
-        if (interact_obj != null && !is_interacting)
+        //트리거 충돌 오브젝트에게서 멀어질 때
+        if (interact_obj != null)
         {
             //상호작용 할 오브젝트에 null 할당
             interact_obj = null;
-            Debug.Log(other.name + "과 상호작용 불가능");
+            Debug.Log("[PlayerController] : " + other.name + "과 상호작용 불가능");
         }
         
     }
@@ -164,6 +219,8 @@ public class PlayerController : MonoBehaviour
             is_facing_right = !is_facing_right;
             //sprite renderer flipx 값 변경하기
             sr.flipX = !is_facing_right;
+            //공격 범위도 뒤집기
+            attack_area.Flip(is_facing_right);
         }
     }
 
@@ -199,7 +256,33 @@ public class PlayerController : MonoBehaviour
         //Dash 쿨 타임
         yield return new WaitForSeconds(dash_cool_time);
         can_dash = true; //쿨타임 후 대쉬 가능으로 변경
-        Debug.Log("Dash 쿨타임 끝");
+        Debug.Log("[PlayController] : Dash 쿨타임 끝");
+    }
+    
+    //순간이동
+    private IEnumerator Teleport()
+    {
+        //순간이동 시작 시
+        can_teleport = false; //순간이동 불가능으로 설정
+        is_teleporting = true; //순간이동 중으로 설정
+        Destroy(port); //순간이동 표식 제거
+        gameObject.transform.position = new Vector2(teleport_pos.x, teleport_pos.y + 2f); //순간이동 표식보다 y축으로 2만큼 위로 이동
+        animator.SetInteger("IsTeleport",1); //순간이동 끝 애니메이션 실행
+        //rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce);
+
+        //순간이동 끝
+        yield return new WaitForSeconds(teleport_time);
+        is_teleporting = false; //순간이동 중 해제
+    }
+
+    void EndPortAni() //순간이동 표식 생성 애니메이션 해제
+    {
+        animator.SetInteger("IsTeleport",-1);
+    }
+
+    public void SetIsTalking(bool b)
+    {
+        is_talking = b;
     }
     
 }
