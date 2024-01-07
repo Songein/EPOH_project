@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private float horizontal; //수평 값
     public float player_speed = 8f; //이동 속도
     private bool is_facing_right = true; //플레이어가 오른쪽을 쳐다보고 있는지
+    private AttackArea attack_area; //AttackArea 스크립트(AttackArea의 좌우반전을 위해)
     
     //플레이어 점프
     public float playerJumpForce = 7f; //점프 힘
@@ -46,6 +47,9 @@ public class PlayerController : MonoBehaviour
     public GameObject port_prefab; //순간이동 포트 프리팹
     private GameObject port; //순간이동 포트
     
+    //대화창
+    private bool is_talking = false; //플레이어가 대화 중인지
+    
     void Start()
     {
         //Rigidbody2D 컴포넌트 할당
@@ -56,12 +60,14 @@ public class PlayerController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         //Trail Renderer 컴포넌트 할당
         tr = GetComponent<TrailRenderer>();
+        //AttackArea 오브젝트의 컴포넌트 할당
+        attack_area = transform.GetChild(0).gameObject.GetComponent<AttackArea>();
     }
     
     void Update()
     {
-        //대쉬 중이고 상호작용 중이면 다른 작업 이루어지지 않도록
-        if (is_dashing || is_interacting || is_teleporting)
+        //대쉬 | 상호작용 | 순간이동 | 대화 중이면 다른 작업 이루어지지 않도록
+        if (is_dashing || is_interacting || is_teleporting || is_talking)
         {
             return;
         }
@@ -96,7 +102,6 @@ public class PlayerController : MonoBehaviour
                     
             }
             player_jump_cnt++;
-            Debug.Log("점프 횟수 : " + player_jump_cnt);
             
         }
         
@@ -117,9 +122,9 @@ public class PlayerController : MonoBehaviour
         }
         
         //스페이스를 누르고, 상호작용 할 오브젝트가 존재하고, 상호작용 중이지 않을 경우
-        if (Input.GetButtonDown("Interact") && (interact_obj != null) && !is_interacting)
+        if (Input.GetButtonDown("Interact") && (interact_obj != null))
         {
-            Debug.Log(interact_obj.name + "과 상호작용 시작");
+            Debug.Log("[PlayerController] : " + interact_obj.name + "과 상호작용 시작");
             is_interacting = true;
         }
         
@@ -144,8 +149,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        //대쉬 중이고 상호작용 중이면 다른 작업 이루어지지 않도록
-        if (is_dashing || is_interacting || is_teleporting)
+        //대쉬 | 상호작용 | 순간이동 | 대화 중이면 다른 작업 이루어지지 않도록
+        if (is_dashing || is_interacting || is_teleporting || is_talking)
         {
             return;
         }
@@ -182,23 +187,23 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        //상호작용 중이지 않고, 트리거 충돌한 오브젝트가 Interaction 태그를 갖고 있는 오브젝트일 경우
-        if (other.CompareTag("Interaction") && !is_interacting)
+        //트리거 충돌한 오브젝트가 Interaction 태그를 갖고 있는 오브젝트일 경우
+        if (other.CompareTag("Interaction"))
         {
             //상호작용 할 오브젝트에 트리거 충돌 오브젝트를 할당
             interact_obj = other.gameObject;
-            Debug.Log(other.name + "과 상호작용 가능");
+            Debug.Log("[PlayerController] : " + other.name + "과 상호작용 가능");
         }
     }
     
     void OnTriggerExit2D(Collider2D other)
     {
-        //상호작용 중이지 않고, 트리거 충돌 오브젝트에게서 멀어질 때
-        if (interact_obj != null && !is_interacting)
+        //트리거 충돌 오브젝트에게서 멀어질 때
+        if (interact_obj != null)
         {
             //상호작용 할 오브젝트에 null 할당
             interact_obj = null;
-            Debug.Log(other.name + "과 상호작용 불가능");
+            Debug.Log("[PlayerController] : " + other.name + "과 상호작용 불가능");
         }
         
     }
@@ -214,6 +219,8 @@ public class PlayerController : MonoBehaviour
             is_facing_right = !is_facing_right;
             //sprite renderer flipx 값 변경하기
             sr.flipX = !is_facing_right;
+            //공격 범위도 뒤집기
+            attack_area.Flip(is_facing_right);
         }
     }
 
@@ -249,7 +256,7 @@ public class PlayerController : MonoBehaviour
         //Dash 쿨 타임
         yield return new WaitForSeconds(dash_cool_time);
         can_dash = true; //쿨타임 후 대쉬 가능으로 변경
-        Debug.Log("Dash 쿨타임 끝");
+        Debug.Log("[PlayController] : Dash 쿨타임 끝");
     }
     
     //순간이동
@@ -272,6 +279,10 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetInteger("IsTeleport",-1);
     }
-    
+
+    public void SetIsTalking(bool b)
+    {
+        is_talking = b;
+    }
     
 }
