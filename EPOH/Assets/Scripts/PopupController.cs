@@ -20,22 +20,18 @@ public class PopupController : MonoBehaviour
     }
 
     // 버튼 클릭 시 호출되는 함수
-    public void TogglePopup()
+    public void togglePopup()
     {
         // 팝업이 열려있으면 닫고, 닫혀있으면 열도록 설정
         is_open = !is_open;
         popup.SetActive(is_open);
     }
 
-    //팝업 열기 함수
-    public void openPopup()
-    {
-        //popup.SetActive(true);
-    }
 
-    //팝업 닫기 함수
+     //팝업 닫기 함수
     public void closePopup()
     {
         popup.SetActive(false);
     }
+
 }

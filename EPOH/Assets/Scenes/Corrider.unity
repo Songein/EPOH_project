@@ -12729,7 +12729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c247e6357780e54f9a080c7722685d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveToRightButton: {fileID: 1480816394}
+  move_to_right_button: {fileID: 1480816394}
 --- !u!114 &1480816398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12758,7 +12758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19eac0e955de05c4eaa70a4b97e16a39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossButtons: []
+  boss_buttons: []
 --- !u!1 &1624682086
 GameObject:
   m_ObjectHideFlags: 0
@@ -12770,7 +12770,6 @@ GameObject:
   - component: {fileID: 1624682089}
   - component: {fileID: 1624682088}
   - component: {fileID: 1624682087}
-  - component: {fileID: 1624682090}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -12844,19 +12843,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1624682090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1624682086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b052df358ee8fbc43b12a562c5362b5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
 --- !u!1 &1767004696
 GameObject:
   m_ObjectHideFlags: 0

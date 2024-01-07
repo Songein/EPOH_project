@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ApplyColorOnRune : MonoBehaviour
 {
-    public GameObject runeObject; // 룬에 해당하는 GameObject
+    public GameObject rune_object; // 룬에 해당하는 GameObject
 
     private Color[] colors = new Color[5]
     {
@@ -16,7 +16,7 @@ public class ApplyColorOnRune : MonoBehaviour
     void Start()
     {
         // 초기 색상 설정
-        ApplyColorToGameObject(runeObject, Color.white); // 흰색으로 초기화
+        applyColorToGameObject(rune_object, Color.white); // 흰색으로 초기화
 
         // GameManager 스크립트에 대한 참조 가져오기
         GameManager gameManager = FindObjectOfType<GameManager>();
@@ -27,10 +27,10 @@ public class ApplyColorOnRune : MonoBehaviour
             return;
         }
 
-        SetRuneColor(gameManager.rune);
+        setRuneColor(gameManager.rune);
     }
 
-    void SetRuneColor(bool[] runes)
+    void setRuneColor(bool[] runes)
     {
         int activeIndex = -1;
         for (int i = 0; i < runes.Length; i++)
@@ -48,7 +48,7 @@ public class ApplyColorOnRune : MonoBehaviour
 
         if (activeIndex != -1) // 하나의 값만 true인 경우에만 색상을 적용
         {
-            ApplyColorToGameObject(runeObject, colors[activeIndex]);
+            applyColorToGameObject(rune_object, colors[activeIndex]);
         }
         else
         {
@@ -56,7 +56,7 @@ public class ApplyColorOnRune : MonoBehaviour
         }
     }
 
-    void ApplyColorToGameObject(GameObject obj, Color color)
+    void applyColorToGameObject(GameObject obj, Color color)
     {
         // GameObject에 색상 적용
         SpriteRenderer renderer = obj.GetComponent<SpriteRenderer>();
