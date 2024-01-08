@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MoveToCorriderActivation : MonoBehaviour
+public class MissionDecisionCorrider : MonoBehaviour
 {
     public Button mission1_button; // Mission1 버튼
     public Button mission2_button; // Mission2 버튼
