@@ -1491,7 +1491,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 394593732}
     m_SelectOnRight: {fileID: 1283320720}
-  m_Transition: 2
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -3278,7 +3278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19eac0e955de05c4eaa70a4b97e16a39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossButtons:
+  boss_buttons:
   - {fileID: 394593732}
   - {fileID: 151050948}
   - {fileID: 1283320720}
@@ -3774,7 +3774,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 151050948}
-  m_Transition: 2
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -22771,7 +22771,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 1461112182}
     m_SelectOnLeft: {fileID: 151050948}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}

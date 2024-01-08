@@ -12606,7 +12606,6 @@ GameObject:
   - component: {fileID: 1480816394}
   - component: {fileID: 1480816397}
   - component: {fileID: 1480816398}
-  - component: {fileID: 1480816399}
   m_Layer: 5
   m_Name: MoveToRight device
   m_TagString: Untagged
@@ -12746,19 +12745,6 @@ MonoBehaviour:
   rune: 0000000000
   boss_num: 0
   boss_clear_info: 000000
---- !u!114 &1480816399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1480816392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19eac0e955de05c4eaa70a4b97e16a39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bossButtons: []
 --- !u!1 &1624682086
 GameObject:
   m_ObjectHideFlags: 0
