@@ -12728,7 +12728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c247e6357780e54f9a080c7722685d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveToRightButton: {fileID: 1480816394}
+  move_to_right_button: {fileID: 1480816394}
 --- !u!114 &1480816398
 MonoBehaviour:
   m_ObjectHideFlags: 0
