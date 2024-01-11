@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BossRoom_MinJu.unity
     guid: 99ac07ec63b49c04cb8afdb9f5be7c11
+  - enabled: 1
+    path: Assets/Scenes/BossRoomPartTime.unity
+    guid: 36c3ff87145a2d84e92381b45421525a
   m_configObjects: {}
