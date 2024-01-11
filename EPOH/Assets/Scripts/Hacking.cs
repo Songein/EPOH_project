@@ -41,7 +41,13 @@ public class Hacking : MonoBehaviour
 
         if (boss_index >= 0 && boss_index < GameManager.boss_cnt)
         {
-            game_manager.boss_clear_info[boss_index] = true; // 보스 클리어 여부 업데이트
+            // 해당 보스전 hacking_point가 100%에 다다랐다면 클리어 여부 업데이트
+            if (boss_manager.hacking_point >= 100)
+            {
+                game_manager.boss_clear_info[boss_index] = true; // 보스 클리어 여부 업데이트
+
+                Debug.Log("보스 클리어!");
+            }
         }
     }
 
