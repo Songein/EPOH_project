@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class EnterBossRoom : MonoBehaviour
 {
-    public Button move_to_right_button; // MoveToRight device ë²„íŠ¼
-    private GameManager game_manager; // GameManager ìŠ¤í¬ë¦½íŠ¸ì— ëŒ€í•œ ì°¸ì¡° ë³€ìˆ˜
+    public Button move_to_right_button; // MoveToRight device ¹öÆ°
+    // private GameManager game_manager; // GameManager ½ºÅ©¸³Æ®¿¡ ´ëÇÑ ÂüÁ¶ º¯¼ö
 
     void Start()
     {
@@ -13,33 +13,24 @@ public class EnterBossRoom : MonoBehaviour
         {
             move_to_right_button.onClick.AddListener(() => moveToBossRoom());
         }
-
-        game_manager = FindObjectOfType<GameManager>();
-
-        if (game_manager == null)
-        {
-            Debug.LogError("GameManagerë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
-            return;
-        }
     }
 
     void moveToBossRoom()
     {
-        int boss_index = game_manager.boss_num;
+        int boss_index = GameManager.instance.boss_num;
         string boss_room_scene_name = "";
 
         if (boss_index >= 0 && boss_index < GameManager.boss_cnt)
         {
-            boss_room_scene_name = "BossRoom" + game_manager.boss_info[boss_index, 0]; // ë³´ìŠ¤ ë£¸ ì”¬ì˜ ì´ë¦„ ì„¤ì •
+            boss_room_scene_name = "BossRoom" + GameManager.instance.boss_info[boss_index, 0]; // º¸½º ·ë ¾ÀÀÇ ÀÌ¸§ ¼³Á¤
         }
         else
         {
-            Debug.LogWarning("í•´ë‹¹í•˜ëŠ” ë³´ìŠ¤ ë£¸ ì”¬ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
+            Debug.LogWarning("ÇØ´çÇÏ´Â º¸½º ·ë ¾ÀÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.");
             return;
         }
 
-        // ë³´ìŠ¤ ë£¸ ì”¬ìœ¼ë¡œ ì „í™˜
+        // º¸½º ·ë ¾ÀÀ¸·Î ÀüÈ¯
         SceneManager.LoadScene(boss_room_scene_name);
     }
 }
- 
