@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
@@ -10,71 +10,71 @@ using Vector2 = UnityEngine.Vector2;
 
 public class Songein_PlayerController : MonoBehaviour
 {
-    //ÇÃ·¹ÀÌ¾î ÁÂ¿ì ÀÌµ¿
-    private float horizontal; //¼öÆò °ª
-    public float player_speed = 8f; //ÀÌµ¿ ¼Óµµ
-    private bool is_facing_right = true; //ÇÃ·¹ÀÌ¾î°¡ ¿À¸¥ÂÊÀ» ÃÄ´Ùº¸°í ÀÖ´ÂÁö
+    //í”Œë ˆì´ì–´ ì¢Œìš° ì´ë™
+    private float horizontal; //ìˆ˜í‰ ê°’
+    public float player_speed = 8f; //ì´ë™ ì†ë„
+    private bool is_facing_right = true; //í”Œë ˆì´ì–´ê°€ ì˜¤ë¥¸ìª½ì„ ì³ë‹¤ë³´ê³  ìˆëŠ”ì§€
 
-    //ÇÃ·¹ÀÌ¾î Á¡ÇÁ
-    public float playerJumpForce = 7f; //Á¡ÇÁ Èû
-    private int player_jump_cnt = 0; //ÇÃ·¹ÀÌ¾î Á¡ÇÁ È½¼ö
+    //í”Œë ˆì´ì–´ ì í”„
+    public float playerJumpForce = 7f; //ì í”„ í˜
+    private int player_jump_cnt = 0; //í”Œë ˆì´ì–´ ì í”„ íšŸìˆ˜
 
-    //ÇÃ·¹ÀÌ¾î ¸®Áöµå¹Ùµğ ÄÄÆ÷³ÍÆ®
+    //í”Œë ˆì´ì–´ ë¦¬ì§€ë“œë°”ë”” ì»´í¬ë„ŒíŠ¸
     private Rigidbody2D rigid;
-    //ÇÃ·¹ÀÌ¾î ¾Ö´Ï¸ŞÀÌÅÍ
+    //í”Œë ˆì´ì–´ ì• ë‹ˆë©”ì´í„°
     private Animator animator;
-    //½ºÇÁ¶óÀÌÆ® ·»´õ·¯ ÄÄÆ÷³ÍÆ®
+    //ìŠ¤í”„ë¼ì´íŠ¸ ë Œë”ëŸ¬ ì»´í¬ë„ŒíŠ¸
     private SpriteRenderer sr;
 
-    //ÇÃ·¹ÀÌ¾î »óÈ£ÀÛ¿ë
-    private GameObject interact_obj; //ÇÃ·¹ÀÌ¾î°¡ »óÈ£ÀÛ¿ëÇÒ ¿ÀºêÁ§Æ®
-    private bool is_interacting = false; //ÇÃ·¹ÀÌ¾î°¡ »óÈ£ÀÛ¿ë ÁßÀÎÁö
+    //í”Œë ˆì´ì–´ ìƒí˜¸ì‘ìš©
+    private GameObject interact_obj; //í”Œë ˆì´ì–´ê°€ ìƒí˜¸ì‘ìš©í•  ì˜¤ë¸Œì íŠ¸
+    private bool is_interacting = false; //í”Œë ˆì´ì–´ê°€ ìƒí˜¸ì‘ìš© ì¤‘ì¸ì§€
 
-    // ****************************************************************************************ÇÃ·¹ÀÌ¾î ´ëÈ­
+    // ****************************************************************************************í”Œë ˆì´ì–´ ëŒ€í™”
     public bool is_talking = false;
     public TalkAction talkaction;
 
-    //ÇÃ·¹ÀÌ¾î ´ë½¬
-    [SerializeField] private TrailRenderer tr; //´ë½¬ È¿°ú
-    private bool can_dash = true; //ÇÃ·¹ÀÌ¾î°¡ ´ë½¬¸¦ ÇÒ ¼ö ÀÖ´ÂÁö
-    public float dash_power = 20f; //´ë½¬ ÆÄ¿ö
-    private bool is_dashing = false; //ÇÃ·¹ÀÌ¾î°¡ ´ë½¬ ÁßÀÎÁö
-    public float dash_time = 0.3f; //´ë½¬ Áö¼Ó Å¸ÀÓ
-    public float dash_cool_time = 2f; //´ë½¬ ÄğÅ¸ÀÓ
+    //í”Œë ˆì´ì–´ ëŒ€ì‰¬
+    [SerializeField] private TrailRenderer tr; //ëŒ€ì‰¬ íš¨ê³¼
+    private bool can_dash = true; //í”Œë ˆì´ì–´ê°€ ëŒ€ì‰¬ë¥¼ í•  ìˆ˜ ìˆëŠ”ì§€
+    public float dash_power = 20f; //ëŒ€ì‰¬ íŒŒì›Œ
+    private bool is_dashing = false; //í”Œë ˆì´ì–´ê°€ ëŒ€ì‰¬ ì¤‘ì¸ì§€
+    public float dash_time = 0.3f; //ëŒ€ì‰¬ ì§€ì† íƒ€ì„
+    public float dash_cool_time = 2f; //ëŒ€ì‰¬ ì¿¨íƒ€ì„
 
-    //¼ø°£ÀÌµ¿
-    private Vector2 teleport_pos; //¼ø°£ÀÌµ¿ÇÒ À§Ä¡
-    private bool can_teleport = false; //¼ø°£ÀÌµ¿ÇÒ ¼ö ÀÖ´ÂÁö
-    private bool is_teleporting = false; //¼ø°£ÀÌµ¿ ÁßÀÎÁö
-    public float teleport_time = 0.3f; //¼ø°£ÀÌµ¿ Áö¼Ó Å¸ÀÓ
-    public GameObject port_prefab; //¼ø°£ÀÌµ¿ Æ÷Æ® ÇÁ¸®ÆÕ
-    private GameObject port; //¼ø°£ÀÌµ¿ Æ÷Æ®
+    //ìˆœê°„ì´ë™
+    private Vector2 teleport_pos; //ìˆœê°„ì´ë™í•  ìœ„ì¹˜
+    private bool can_teleport = false; //ìˆœê°„ì´ë™í•  ìˆ˜ ìˆëŠ”ì§€
+    private bool is_teleporting = false; //ìˆœê°„ì´ë™ ì¤‘ì¸ì§€
+    public float teleport_time = 0.3f; //ìˆœê°„ì´ë™ ì§€ì† íƒ€ì„
+    public GameObject port_prefab; //ìˆœê°„ì´ë™ í¬íŠ¸ í”„ë¦¬íŒ¹
+    private GameObject port; //ìˆœê°„ì´ë™ í¬íŠ¸
 
     void Start()
     {
-        //Rigidbody2D ÄÄÆ÷³ÍÆ® ÇÒ´ç
+        //Rigidbody2D ì»´í¬ë„ŒíŠ¸ í• ë‹¹
         rigid = GetComponent<Rigidbody2D>();
-        //Animator ÄÄÆ÷³ÍÆ® ÇÒ´ç
+        //Animator ì»´í¬ë„ŒíŠ¸ í• ë‹¹
         animator = GetComponent<Animator>();
-        //Sprite Renderer ÄÄÆ÷³ÍÆ® ÇÒ´ç
+        //Sprite Renderer ì»´í¬ë„ŒíŠ¸ í• ë‹¹
         sr = GetComponent<SpriteRenderer>();
-        //Trail Renderer ÄÄÆ÷³ÍÆ® ÇÒ´ç
+        //Trail Renderer ì»´í¬ë„ŒíŠ¸ í• ë‹¹
         tr = GetComponent<TrailRenderer>();
     }
 
     void Update()
     {
-        //´ë½¬ ÁßÀÌ°í »óÈ£ÀÛ¿ë ÁßÀÌ¸é ´Ù¸¥ ÀÛ¾÷ ÀÌ·ç¾îÁöÁö ¾Êµµ·Ï
-        if (is_dashing || is_interacting || is_teleporting) //***************************************** ¿©±â is_talking ÀÖÀ¸¸é ¾ÈµÊ
+        //ëŒ€ì‰¬ ì¤‘ì´ê³  ìƒí˜¸ì‘ìš© ì¤‘ì´ë©´ ë‹¤ë¥¸ ì‘ì—… ì´ë£¨ì–´ì§€ì§€ ì•Šë„ë¡
+        if (is_dashing || is_interacting || is_teleporting) //***************************************** ì—¬ê¸° is_talking ìˆìœ¼ë©´ ì•ˆë¨
         {
             return;
         }
 
-        //¼öÆò°ª ÀĞ¾î¿À±â
+        //ìˆ˜í‰ê°’ ì½ì–´ì˜¤ê¸°
         horizontal = Input.GetAxisRaw("Horizontal");
-        //ÇÃ·¹ÀÌ¾î Flip °Ë»ç
+        //í”Œë ˆì´ì–´ Flip ê²€ì‚¬
         Flip();
-        //¶Ù´Â °æ¿ì ¾Ö´Ï¸ŞÀÌ¼Ç
+        //ë›°ëŠ” ê²½ìš° ì• ë‹ˆë©”ì´ì…˜
         if (Mathf.Abs(rigid.velocity.x) < 0.3f)
         {
             animator.SetBool("IsRun", false);
@@ -84,70 +84,70 @@ public class Songein_PlayerController : MonoBehaviour
             animator.SetBool("IsRun", true);
         }
 
-        //Á¡ÇÁ ¹öÆ°À» ´©¸£°í Á¡ÇÁ È½¼ö°¡ 2¹Ì¸¸ÀÏ ¶§ Á¡ÇÁ ¼öÇà
+        //ì í”„ ë²„íŠ¼ì„ ëˆ„ë¥´ê³  ì í”„ íšŸìˆ˜ê°€ 2ë¯¸ë§Œì¼ ë•Œ ì í”„ ìˆ˜í–‰
         if (Input.GetButtonDown("Jump") && player_jump_cnt < 2)
         {
             switch (player_jump_cnt)
             {
-                case 0: //Ã¹ Á¡ÇÁÀÏ ¶§
+                case 0: //ì²« ì í”„ì¼ ë•Œ
                     rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce);
                     animator.SetBool("IsJump", true);
                     break;
-                case 1: //2´Ü Á¡ÇÁÀÏ ¶§
-                    rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce * 1.5f); //2´Ü Á¡ÇÁ´Â Á» ´õ ³ôÀÌ Á¡ÇÁ
+                case 1: //2ë‹¨ ì í”„ì¼ ë•Œ
+                    rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce * 1.5f); //2ë‹¨ ì í”„ëŠ” ì¢€ ë” ë†’ì´ ì í”„
                     animator.SetBool("IsDoubleJump", true);
                     break;
 
             }
             player_jump_cnt++;
-            Debug.Log("Á¡ÇÁ È½¼ö : " + player_jump_cnt);
+            Debug.Log("ì í”„ íšŸìˆ˜ : " + player_jump_cnt);
 
         }
 
         /*
-        //Á¡ÇÁ µµÁß Á¡ÇÁ¹öÆ°¿¡¼­ ¼ÕÀ» ¶¾ °æ¿ì
+        //ì í”„ ë„ì¤‘ ì í”„ë²„íŠ¼ì—ì„œ ì†ì„ ë—€ ê²½ìš°
         if (Input.GetButtonUp("Jump") && rigid.velocity.y > 0f)
         {
-            //Á¡ÇÁ ¼Óµµ Àı¹İÀ¸·Î °¨¼Ò
+            //ì í”„ ì†ë„ ì ˆë°˜ìœ¼ë¡œ ê°ì†Œ
             rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * 0.5f);
             
         }
         */
 
-        //´ë½¬ ¹öÆ°À» ´©¸£¸é
+        //ëŒ€ì‰¬ ë²„íŠ¼ì„ ëˆ„ë¥´ë©´
         if (Input.GetButtonDown("Dash") && can_dash)
         {
             StartCoroutine(Dash());
         }
 
-        //½ºÆäÀÌ½º¸¦ ´©¸¥ °æ¿ì ********************************************************************************
+        //ìŠ¤í˜ì´ìŠ¤ë¥¼ ëˆ„ë¥¸ ê²½ìš° ********************************************************************************
         if (Input.GetButtonDown("Interact"))
         {
-            if (is_talking) // ´ëÈ­ ÁßÀÌ¸é
+            if (is_talking) // ëŒ€í™” ì¤‘ì´ë©´
             {
-                talkaction.Action(); //´ÙÀ½ ´ëÈ­
+                talkaction.Action(); //ë‹¤ìŒ ëŒ€í™”
             }
-            else if (interact_obj != null) // ´ëÈ­ ÁßÀÌ ¾Æ´Ï°í »óÈ£ÀÛ¿ë ÇÒ ¿ÀºêÁ§Æ®°¡ ÀÖÀ» °æ¿ì
+            else if (interact_obj != null) // ëŒ€í™” ì¤‘ì´ ì•„ë‹ˆê³  ìƒí˜¸ì‘ìš© í•  ì˜¤ë¸Œì íŠ¸ê°€ ìˆì„ ê²½ìš°
             {
-                Debug.Log(interact_obj.name + "°ú »óÈ£ÀÛ¿ë ½ÃÀÛ");
+                Debug.Log(interact_obj.name + "ê³¼ ìƒí˜¸ì‘ìš© ì‹œì‘");
                 is_interacting = true;
             }
         }
 
-        //¼ø°£ÀÌµ¿ ¹öÆ°À» ´©¸£¸é
+        //ìˆœê°„ì´ë™ ë²„íŠ¼ì„ ëˆ„ë¥´ë©´
         if (Input.GetButtonDown("Teleport"))
         {
-            if (can_teleport) //¼ø°£ÀÌµ¿À» ÇÒ ¼ö ÀÖÀ¸¸é(Ç¥½ÄÀ» ¼³Ä¡ÇÑ °æ¿ì)
+            if (can_teleport) //ìˆœê°„ì´ë™ì„ í•  ìˆ˜ ìˆìœ¼ë©´(í‘œì‹ì„ ì„¤ì¹˜í•œ ê²½ìš°)
             {
                 StartCoroutine(Teleport());
             }
-            else //Ç¥½ÄÀ» ¼³Ä¡ÇÏÁö ¾ÊÀº °æ¿ì
+            else //í‘œì‹ì„ ì„¤ì¹˜í•˜ì§€ ì•Šì€ ê²½ìš°
             {
-                animator.SetInteger("IsTeleport", 0); //¼ø°£ÀÌµ¿ Ç¥½Ä ¼³Ä¡ ¾Ö´Ï¸ŞÀÌ¼Ç ½ÇÇà
-                Invoke("EndPortAni", 0.3f); //0.3ÃÊ ÈÄ ¼ø°£ÀÌµ¿ Ç¥½Ä ¼³Ä¡ ¾Ö´Ï¸ŞÀÌ¼Ç Á¾·á
-                teleport_pos = transform.position; //ÇÃ·¹ÀÌ¾îÀÇ ÇöÀç À§Ä¡ ¹Ş¾Æ¿À±â
-                port = Instantiate(port_prefab, new Vector2(teleport_pos.x, teleport_pos.y), Quaternion.identity); //Ç¥½Ä »ı¼º
-                can_teleport = true; //¼ø°£ÀÌµ¿ ÇÒ ¼ö ÀÖ´Ù°í »óÅÂ º¯°æ
+                animator.SetInteger("IsTeleport", 0); //ìˆœê°„ì´ë™ í‘œì‹ ì„¤ì¹˜ ì• ë‹ˆë©”ì´ì…˜ ì‹¤í–‰
+                Invoke("EndPortAni", 0.3f); //0.3ì´ˆ í›„ ìˆœê°„ì´ë™ í‘œì‹ ì„¤ì¹˜ ì• ë‹ˆë©”ì´ì…˜ ì¢…ë£Œ
+                teleport_pos = transform.position; //í”Œë ˆì´ì–´ì˜ í˜„ì¬ ìœ„ì¹˜ ë°›ì•„ì˜¤ê¸°
+                port = Instantiate(port_prefab, new Vector2(teleport_pos.x, teleport_pos.y), Quaternion.identity); //í‘œì‹ ìƒì„±
+                can_teleport = true; //ìˆœê°„ì´ë™ í•  ìˆ˜ ìˆë‹¤ê³  ìƒíƒœ ë³€ê²½
             }
         }
 
@@ -155,33 +155,33 @@ public class Songein_PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        //´ë½¬ ÁßÀÌ°í »óÈ£ÀÛ¿ë ÁßÀÌ¸é ´Ù¸¥ ÀÛ¾÷ ÀÌ·ç¾îÁöÁö ¾Êµµ·Ï
+        //ëŒ€ì‰¬ ì¤‘ì´ê³  ìƒí˜¸ì‘ìš© ì¤‘ì´ë©´ ë‹¤ë¥¸ ì‘ì—… ì´ë£¨ì–´ì§€ì§€ ì•Šë„ë¡
         if (is_dashing || is_interacting || is_teleporting || is_talking) // ***********************
         {
             return;
         }
 
-        //¼öÆò°ª¿¡ µû¸¥ ÀÌµ¿
+        //ìˆ˜í‰ê°’ì— ë”°ë¥¸ ì´ë™
         rigid.velocity = new Vector2(horizontal * player_speed, rigid.velocity.y);
 
-        //¶¥ °¨Áö ·¹ÀÌÄ³½ºÆ® µğ¹ö±×
+        //ë•… ê°ì§€ ë ˆì´ìºìŠ¤íŠ¸ ë””ë²„ê·¸
         //Debug.DrawRay(rigid.position, Vector2.down, Color.cyan);
 
-        //ÇÃ·¹ÀÌ¾î°¡ ¶³¾îÁö´Â °æ¿ì
+        //í”Œë ˆì´ì–´ê°€ ë–¨ì–´ì§€ëŠ” ê²½ìš°
         if (rigid.velocity.y < 0f)
         {
             RaycastHit2D groundRayHit = Physics2D.Raycast(rigid.position, Vector2.down, 0.5f, LayerMask.GetMask("Ground"));
-            //¶¥À» °¨ÁöÇÏ°í
+            //ë•…ì„ ê°ì§€í•˜ê³ 
             if (groundRayHit.collider != null)
             {
-                //°Å¸®°¡ 0.3 ¹Ì¸¸ÀÌ¸é
+                //ê±°ë¦¬ê°€ 0.3 ë¯¸ë§Œì´ë©´
                 if (groundRayHit.distance < 0.3f)
                 {
-                    //Á¡ÇÁ ¾Ö´Ï¸ŞÀÌ¼Ç ÇØÁ¦
+                    //ì í”„ ì• ë‹ˆë©”ì´ì…˜ í•´ì œ
                     animator.SetBool("IsJump", false);
                     animator.SetBool("IsDoubleJump", false);
                     animator.SetInteger("IsTeleport", -1);
-                    player_jump_cnt = 0; //¹Ù´Ú¿¡ ´êÀ¸¸é ÇÃ·¹ÀÌ¾î Á¡ÇÁ È½¼ö ÃÊ±âÈ­
+                    player_jump_cnt = 0; //ë°”ë‹¥ì— ë‹¿ìœ¼ë©´ í”Œë ˆì´ì–´ ì í”„ íšŸìˆ˜ ì´ˆê¸°í™”
 
                 }
 
@@ -193,93 +193,93 @@ public class Songein_PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        //»óÈ£ÀÛ¿ë ÁßÀÌÁö ¾Ê°í, Æ®¸®°Å Ãæµ¹ÇÑ ¿ÀºêÁ§Æ®°¡ Interaction ÅÂ±×¸¦ °®°í ÀÖ´Â ¿ÀºêÁ§Æ®ÀÏ °æ¿ì
+        //ìƒí˜¸ì‘ìš© ì¤‘ì´ì§€ ì•Šê³ , íŠ¸ë¦¬ê±° ì¶©ëŒí•œ ì˜¤ë¸Œì íŠ¸ê°€ Interaction íƒœê·¸ë¥¼ ê°–ê³  ìˆëŠ” ì˜¤ë¸Œì íŠ¸ì¼ ê²½ìš°
         if (other.CompareTag("Interaction") && !is_interacting)
         {
-            //»óÈ£ÀÛ¿ë ÇÒ ¿ÀºêÁ§Æ®¿¡ Æ®¸®°Å Ãæµ¹ ¿ÀºêÁ§Æ®¸¦ ÇÒ´ç
+            //ìƒí˜¸ì‘ìš© í•  ì˜¤ë¸Œì íŠ¸ì— íŠ¸ë¦¬ê±° ì¶©ëŒ ì˜¤ë¸Œì íŠ¸ë¥¼ í• ë‹¹
             interact_obj = other.gameObject;
-            Debug.Log(other.name + "°ú »óÈ£ÀÛ¿ë °¡´É");
+            Debug.Log(other.name + "ê³¼ ìƒí˜¸ì‘ìš© ê°€ëŠ¥");
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        //»óÈ£ÀÛ¿ë ÁßÀÌÁö ¾Ê°í, Æ®¸®°Å Ãæµ¹ ¿ÀºêÁ§Æ®¿¡°Ô¼­ ¸Ö¾îÁú ¶§
+        //ìƒí˜¸ì‘ìš© ì¤‘ì´ì§€ ì•Šê³ , íŠ¸ë¦¬ê±° ì¶©ëŒ ì˜¤ë¸Œì íŠ¸ì—ê²Œì„œ ë©€ì–´ì§ˆ ë•Œ
         if (interact_obj != null && !is_interacting)
         {
-            //»óÈ£ÀÛ¿ë ÇÒ ¿ÀºêÁ§Æ®¿¡ null ÇÒ´ç
+            //ìƒí˜¸ì‘ìš© í•  ì˜¤ë¸Œì íŠ¸ì— null í• ë‹¹
             interact_obj = null;
-            Debug.Log(other.name + "°ú »óÈ£ÀÛ¿ë ºÒ°¡´É");
+            Debug.Log(other.name + "ê³¼ ìƒí˜¸ì‘ìš© ë¶ˆê°€ëŠ¥");
         }
 
     }
 
 
-    //ÇÃ·¹ÀÌ¾î ½ºÇÁ¶óÀÌÆ® µÚÁı±â
+    //í”Œë ˆì´ì–´ ìŠ¤í”„ë¼ì´íŠ¸ ë’¤ì§‘ê¸°
     void Flip()
     {
-        //¿À¸¥ÂÊÀ» º¸°í ÀÖ´Âµ¥ ¿ŞÂÊÀ¸·Î ÀÌµ¿ÇÏ°Å³ª ¿ŞÂÊÀ» º¸°í ÀÖ´Âµ¥ ¿À¸¥ÂÊÀ¸·Î ÀÌµ¿ÇÒ °æ¿ì
+        //ì˜¤ë¥¸ìª½ì„ ë³´ê³  ìˆëŠ”ë° ì™¼ìª½ìœ¼ë¡œ ì´ë™í•˜ê±°ë‚˜ ì™¼ìª½ì„ ë³´ê³  ìˆëŠ”ë° ì˜¤ë¥¸ìª½ìœ¼ë¡œ ì´ë™í•  ê²½ìš°
         if (is_facing_right && horizontal < 0f || !is_facing_right && horizontal > 0f)
         {
-            //ÇÃ·¹ÀÌ¾î¸¦ ÁÂ¿ì·Î µÚÁı±â
+            //í”Œë ˆì´ì–´ë¥¼ ì¢Œìš°ë¡œ ë’¤ì§‘ê¸°
             is_facing_right = !is_facing_right;
-            //sprite renderer flipx °ª º¯°æÇÏ±â
+            //sprite renderer flipx ê°’ ë³€ê²½í•˜ê¸°
             sr.flipX = !is_facing_right;
         }
     }
 
-    //´ë½¬
+    //ëŒ€ì‰¬
     private IEnumerator Dash()
     {
-        //Dash ½ÃÀÛ ½Ã
-        can_dash = false; //´ë½¬ ºÒ°¡´ÉÀ¸·Î ¼³Á¤
-        is_dashing = true; //´ë½¬ ÁßÀ¸·Î ¼³Á¤
-        animator.SetBool("IsDash", true); //´ë½¬ ¾Ö´Ï¸ŞÀÌ¼Ç ½ÃÀÛ
-        float original_gravity = rigid.gravityScale; //ÇÃ·¹ÀÌ¾îÀÇ ¿ø·¡ Áß·Â °ª ÀúÀå
-        rigid.gravityScale = 0f; //ÇÃ·¹ÀÌ¾îÀÇ Áß·Â 0À¸·Î º¯°æÇÏ¿© Áß·Â ¹«½Ã
-        //ÇÃ·¹ÀÌ¾î°¡ ¹Ù¶óº¸°í ÀÖ´Â ¹æÇâÀ¸·Î ´ë½¬
+        //Dash ì‹œì‘ ì‹œ
+        can_dash = false; //ëŒ€ì‰¬ ë¶ˆê°€ëŠ¥ìœ¼ë¡œ ì„¤ì •
+        is_dashing = true; //ëŒ€ì‰¬ ì¤‘ìœ¼ë¡œ ì„¤ì •
+        animator.SetBool("IsDash", true); //ëŒ€ì‰¬ ì• ë‹ˆë©”ì´ì…˜ ì‹œì‘
+        float original_gravity = rigid.gravityScale; //í”Œë ˆì´ì–´ì˜ ì›ë˜ ì¤‘ë ¥ ê°’ ì €ì¥
+        rigid.gravityScale = 0f; //í”Œë ˆì´ì–´ì˜ ì¤‘ë ¥ 0ìœ¼ë¡œ ë³€ê²½í•˜ì—¬ ì¤‘ë ¥ ë¬´ì‹œ
+        //í”Œë ˆì´ì–´ê°€ ë°”ë¼ë³´ê³  ìˆëŠ” ë°©í–¥ìœ¼ë¡œ ëŒ€ì‰¬
         if (is_facing_right)
         {
-            //¿À¸¥ÂÊ ¹Ù¶óº¸°í ÀÖÀ¸¸é ¿À¸¥ÂÊÀ¸·Î ´ë½¬
+            //ì˜¤ë¥¸ìª½ ë°”ë¼ë³´ê³  ìˆìœ¼ë©´ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ëŒ€ì‰¬
             rigid.velocity = new Vector2(transform.localScale.x * dash_power, 0f);
         }
         else
         {
-            //¿ŞÂÊ ¹Ù¶óº¸°í ÀÖÀ¸¸é ¿ŞÂÊÀ¸·Î ´ë½¬
+            //ì™¼ìª½ ë°”ë¼ë³´ê³  ìˆìœ¼ë©´ ì™¼ìª½ìœ¼ë¡œ ëŒ€ì‰¬
             rigid.velocity = new Vector2(transform.localScale.x * dash_power * (-1), 0f);
         }
-        tr.emitting = true; //´ë½¬ È¿°ú ¹ß»ê
+        tr.emitting = true; //ëŒ€ì‰¬ íš¨ê³¼ ë°œì‚°
 
-        //Dash ³¡
+        //Dash ë
         yield return new WaitForSeconds(dash_time);
-        tr.emitting = false; //´ë½¬ È¿°ú ³¡
-        rigid.gravityScale = original_gravity; //ÇÃ·¹ÀÌ¾îÀÇ ¿ø·¡ Áß·Â È¸º¹
-        animator.SetBool("IsDash", false); //´ë½¬ ¾Ö´Ï¸ŞÀÌ¼Ç ³¡
-        is_dashing = false; //´ë½¬ Áß ÇØÁ¦
+        tr.emitting = false; //ëŒ€ì‰¬ íš¨ê³¼ ë
+        rigid.gravityScale = original_gravity; //í”Œë ˆì´ì–´ì˜ ì›ë˜ ì¤‘ë ¥ íšŒë³µ
+        animator.SetBool("IsDash", false); //ëŒ€ì‰¬ ì• ë‹ˆë©”ì´ì…˜ ë
+        is_dashing = false; //ëŒ€ì‰¬ ì¤‘ í•´ì œ
 
-        //Dash Äğ Å¸ÀÓ
+        //Dash ì¿¨ íƒ€ì„
         yield return new WaitForSeconds(dash_cool_time);
-        can_dash = true; //ÄğÅ¸ÀÓ ÈÄ ´ë½¬ °¡´ÉÀ¸·Î º¯°æ
-        Debug.Log("Dash ÄğÅ¸ÀÓ ³¡");
+        can_dash = true; //ì¿¨íƒ€ì„ í›„ ëŒ€ì‰¬ ê°€ëŠ¥ìœ¼ë¡œ ë³€ê²½
+        Debug.Log("Dash ì¿¨íƒ€ì„ ë");
     }
 
-    //¼ø°£ÀÌµ¿
+    //ìˆœê°„ì´ë™
     private IEnumerator Teleport()
     {
-        //¼ø°£ÀÌµ¿ ½ÃÀÛ ½Ã
-        can_teleport = false; //¼ø°£ÀÌµ¿ ºÒ°¡´ÉÀ¸·Î ¼³Á¤
-        is_teleporting = true; //¼ø°£ÀÌµ¿ ÁßÀ¸·Î ¼³Á¤
-        Destroy(port); //¼ø°£ÀÌµ¿ Ç¥½Ä Á¦°Å
-        gameObject.transform.position = new Vector2(teleport_pos.x, teleport_pos.y + 2f); //¼ø°£ÀÌµ¿ Ç¥½Äº¸´Ù yÃàÀ¸·Î 2¸¸Å­ À§·Î ÀÌµ¿
-        animator.SetInteger("IsTeleport", 1); //¼ø°£ÀÌµ¿ ³¡ ¾Ö´Ï¸ŞÀÌ¼Ç ½ÇÇà
+        //ìˆœê°„ì´ë™ ì‹œì‘ ì‹œ
+        can_teleport = false; //ìˆœê°„ì´ë™ ë¶ˆê°€ëŠ¥ìœ¼ë¡œ ì„¤ì •
+        is_teleporting = true; //ìˆœê°„ì´ë™ ì¤‘ìœ¼ë¡œ ì„¤ì •
+        Destroy(port); //ìˆœê°„ì´ë™ í‘œì‹ ì œê±°
+        gameObject.transform.position = new Vector2(teleport_pos.x, teleport_pos.y + 2f); //ìˆœê°„ì´ë™ í‘œì‹ë³´ë‹¤ yì¶•ìœ¼ë¡œ 2ë§Œí¼ ìœ„ë¡œ ì´ë™
+        animator.SetInteger("IsTeleport", 1); //ìˆœê°„ì´ë™ ë ì• ë‹ˆë©”ì´ì…˜ ì‹¤í–‰
         //rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce);
 
-        //¼ø°£ÀÌµ¿ ³¡
+        //ìˆœê°„ì´ë™ ë
         yield return new WaitForSeconds(teleport_time);
-        is_teleporting = false; //¼ø°£ÀÌµ¿ Áß ÇØÁ¦
+        is_teleporting = false; //ìˆœê°„ì´ë™ ì¤‘ í•´ì œ
     }
 
-    void EndPortAni() //¼ø°£ÀÌµ¿ Ç¥½Ä »ı¼º ¾Ö´Ï¸ŞÀÌ¼Ç ÇØÁ¦
+    void EndPortAni() //ìˆœê°„ì´ë™ í‘œì‹ ìƒì„± ì• ë‹ˆë©”ì´ì…˜ í•´ì œ
     {
         animator.SetInteger("IsTeleport", -1);
     }
