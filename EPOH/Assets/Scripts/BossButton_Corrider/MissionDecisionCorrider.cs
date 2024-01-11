@@ -7,7 +7,6 @@ public class MissionDecisionCorrider : MonoBehaviour
     public Button mission1_button; // Mission1 버튼
     public Button mission2_button; // Mission2 버튼
     public Button mission3_button; // Mission3 버튼
-    public Button move_to_corrider_button; // MoveToCorrider 버튼
 
     public GameObject mission_decision_popup; // 팝업 창
     public Button yes_button; // 'Yes' 버튼
@@ -15,7 +14,7 @@ public class MissionDecisionCorrider : MonoBehaviour
 
     private Button last_clicked_button; // 마지막에 클릭된 버튼을 저장하는 변수
     private BossSelection boss_selection; // BossSelection 스크립트에 대한 참조 변수
-
+    public bool canInteractWithPortal = false;
 
     void Start()
     {
@@ -34,12 +33,10 @@ public class MissionDecisionCorrider : MonoBehaviour
         // BossSelection 스크립트에 대한 참조 가져오기
         boss_selection = FindObjectOfType<BossSelection>();
 
-        // MoveToCorrider 버튼 비활성화
-        move_to_corrider_button.interactable = false;
     }
 
     // 임무 버튼 클릭 시 호출되는 함수
-    void onMissionButtonClick(Button clicked_button)
+    public void onMissionButtonClick(Button clicked_button)
     {
         // 마지막에 클릭된 버튼 갱신
         last_clicked_button = clicked_button;
@@ -55,7 +52,7 @@ public class MissionDecisionCorrider : MonoBehaviour
     }
 
     // 'Yes' 버튼 클릭 시 호출되는 함수
-    void onYesButtonClick()
+    public void onYesButtonClick()
     {
         // 팝업 창 비활성화
         mission_decision_popup.SetActive(false);
@@ -65,38 +62,48 @@ public class MissionDecisionCorrider : MonoBehaviour
         mission2_button.interactable = false;
         mission3_button.interactable = false;
 
-        // MoveToCorrider 버튼 활성화
-        move_to_corrider_button.interactable = true;
+        canInteractWithPortal = true;
+
     }
 
     // 'No' 버튼 클릭 시 호출되는 함수
-    void onNoButtonClick()
+    public void onNoButtonClick()
     {
         // 팝업 창 비활성화
         mission_decision_popup.SetActive(false);
 
         // 마지막에 클릭된 버튼 초기화
         last_clicked_button = null;
+
+        canInteractWithPortal = false;
+
     }
 
 
-    // MoveToCorrider 버튼 클릭 시 호출되는 함수
-    void onMoveToCorriderButtonClick()
+    // Portal과 상호작용시 호출되는 함수
+    public void onPortalInteraction()
     {
-        if (last_clicked_button == mission1_button)
+        if(canInteractWithPortal)
         {
-            Debug.Log("Mission 1 버튼이 클릭되었습니다.");
-            // Mission 1에 대한 추가적인 처리
+            if (last_clicked_button == mission1_button)
+            {
+                Debug.Log("Mission 1 버튼이 클릭되었습니다.");
+                // Mission 1에 대한 추가적인 처리
+            }
+            else if (last_clicked_button == mission2_button)
+            {
+                Debug.Log("Mission 2 버튼이 클릭되었습니다.");
+                // Mission 2에 대한 추가적인 처리
+            }
+            else if (last_clicked_button == mission3_button)
+            {
+                Debug.Log("Mission 3 버튼이 클릭되었습니다.");
+                // Mission 3에 대한 추가적인 처리
+            }
         }
-        else if (last_clicked_button == mission2_button)
+        else
         {
-            Debug.Log("Mission 2 버튼이 클릭되었습니다.");
-            // Mission 2에 대한 추가적인 처리
-        }
-        else if (last_clicked_button == mission3_button)
-        {
-            Debug.Log("Mission 3 버튼이 클릭되었습니다.");
-            // Mission 3에 대한 추가적인 처리
+            Debug.Log("상호작용이 불가능한 상태입니다.");
         }
 
     }

@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     
     //플레이어 상호작용
     private GameObject interact_obj; //플레이어가 상호작용할 오브젝트
-    private bool is_interacting = false; //플레이어가 상호작용 중인지
+    public bool is_interacting = false; //플레이어가 상호작용 중인지
     private Interaction interaction; //플레이어가 상호작용할 오브젝트에 부착된 Interact 스크립트
 
     //플레이어 대화
