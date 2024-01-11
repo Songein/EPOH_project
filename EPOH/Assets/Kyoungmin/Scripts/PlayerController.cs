@@ -30,6 +30,11 @@ public class PlayerController : MonoBehaviour
     //플레이어 상호작용
     private GameObject interact_obj; //플레이어가 상호작용할 오브젝트
     private bool is_interacting = false; //플레이어가 상호작용 중인지
+    private Interaction interaction; //플레이어가 상호작용할 오브젝트에 부착된 Interact 스크립트
+
+    //플레이어 대화
+    public bool is_talking = false;
+    public TalkAction talkaction;
 
     //플레이어 대쉬
     [SerializeField] private TrailRenderer tr; //대쉬 효과
@@ -47,9 +52,6 @@ public class PlayerController : MonoBehaviour
     public GameObject port_prefab; //순간이동 포트 프리팹
     private GameObject port; //순간이동 포트
     
-    //대화창
-    private bool is_talking = false; //플레이어가 대화 중인지
-    
     void Start()
     {
         //Rigidbody2D 컴포넌트 할당
@@ -66,8 +68,8 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        //대쉬 | 상호작용 | 순간이동 | 대화 중이면 다른 작업 이루어지지 않도록
-        if (is_dashing || is_interacting || is_teleporting || is_talking)
+        //대쉬 | 상호작용 | 순간이동 중이면 다른 작업 이루어지지 않도록
+        if (is_dashing || is_interacting || is_teleporting)
         {
             return;
         }
@@ -120,12 +122,19 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
-        
-        //스페이스를 누르고, 상호작용 할 오브젝트가 존재하고, 상호작용 중이지 않을 경우
-        if (Input.GetButtonDown("Interact") && (interact_obj != null))
+
+        if (Input.GetButtonDown("Interact")) // 상호작용
         {
-            Debug.Log("[PlayerController] : " + interact_obj.name + "과 상호작용 시작");
-            is_interacting = true;
+            if (is_talking) // 대화 중이면
+            {
+                talkaction.Action(); //다음 대화
+            }
+            else if (interact_obj != null) // 대화 중이 아니고 상호작용 할 오브젝트가 있을 경우
+            {
+                Debug.Log(interact_obj.name + "과 상호작용 시작");
+                interaction.Interact();
+                is_interacting = true;
+            }
         }
         
         //순간이동 버튼을 누르면
@@ -192,6 +201,7 @@ public class PlayerController : MonoBehaviour
         {
             //상호작용 할 오브젝트에 트리거 충돌 오브젝트를 할당
             interact_obj = other.gameObject;
+            interaction = interact_obj.GetComponent<Interaction>(); // 충돌한 오브젝트의 Interaction 할당
             Debug.Log("[PlayerController] : " + other.name + "과 상호작용 가능");
         }
     }
