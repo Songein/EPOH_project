@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Interaction
-  - Enemy
+  - OneWayPlatform
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -13,9 +14,9 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Boss
+  - PlayerDamaged
   - 
   - 
   - 
