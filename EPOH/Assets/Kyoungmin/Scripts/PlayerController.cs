@@ -50,6 +50,9 @@ public class PlayerController : MonoBehaviour
     //대화창
     public bool is_talking = false; //플레이어가 대화 중인지
     
+    //공격
+    public bool is_attacking = false; //공격 중일 때 플레이어 이동 막기 위한 변수
+    
     void Start()
     {
         //Rigidbody2D 컴포넌트 할당
@@ -67,7 +70,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //대쉬 | 상호작용 | 순간이동 | 대화 중이면 다른 작업 이루어지지 않도록
-        if (is_dashing || is_interacting || is_teleporting || is_talking)
+        if (is_dashing || is_interacting || is_teleporting || is_talking || is_attacking)
         {
             return;
         }
@@ -151,7 +154,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         //대쉬 | 상호작용 | 순간이동 | 대화 중이면 다른 작업 이루어지지 않도록
-        if (is_dashing || is_interacting || is_teleporting || is_talking)
+        if (is_dashing || is_interacting || is_teleporting || is_talking || is_attacking)
         {
             return;
         }
