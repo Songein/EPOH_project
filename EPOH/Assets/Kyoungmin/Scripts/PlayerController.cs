@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
                     break;
                 case 1 : //2단 점프일 때
                     rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce * 1.5f); //2단 점프는 좀 더 높이 점프
-                    animator.SetBool("IsDoubleJump", true);
+                    animator.SetBool("IsDoubleJump",true);
                     break;
                     
             }
@@ -164,6 +164,7 @@ public class PlayerController : MonoBehaviour
         //플레이어가 떨어지는 경우
         if (rigid.velocity.y < 0f)
         {
+            animator.SetBool("IsFall", true);
             RaycastHit2D groundRayHit = Physics2D.Raycast(rigid.position, Vector2.down, 0.5f, LayerMask.GetMask("Ground"));
             //땅을 감지하고
             if (groundRayHit.collider != null)
@@ -172,9 +173,9 @@ public class PlayerController : MonoBehaviour
                 if (groundRayHit.distance < 0.3f)
                 {
                     //점프 애니메이션 해제
-                    animator.SetBool("IsJump", false);
-                    animator.SetBool("IsDoubleJump", false);
-                    animator.SetInteger("IsTeleport",-1);
+                    animator.SetBool("IsFall", false);
+                    animator.SetBool("IsJump",false);
+                    animator.SetBool("IsDoubleJump",false);
                     player_jump_cnt = 0; //바닥에 닿으면 플레이어 점프 횟수 초기화
 
                 }
@@ -267,7 +268,7 @@ public class PlayerController : MonoBehaviour
         is_teleporting = true; //순간이동 중으로 설정
         Destroy(port); //순간이동 표식 제거
         gameObject.transform.position = new Vector2(teleport_pos.x, teleport_pos.y + 2f); //순간이동 표식보다 y축으로 2만큼 위로 이동
-        animator.SetInteger("IsTeleport",1); //순간이동 끝 애니메이션 실행
+        animator.SetBool("IsFall",true); //순간이동 끝 애니메이션 실행
         //rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce);
 
         //순간이동 끝
