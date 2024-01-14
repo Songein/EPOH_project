@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     
     //플레이어 상호작용
     private GameObject interact_obj; //플레이어가 상호작용할 오브젝트
-    private bool is_interacting = false; //플레이어가 상호작용 중인지
+    public bool is_interacting = false; //플레이어가 상호작용 중인지
 
     //플레이어 대쉬
     [SerializeField] private TrailRenderer tr; //대쉬 효과
@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     private GameObject port; //순간이동 포트
     
     //대화창
-    private bool is_talking = false; //플레이어가 대화 중인지
+    public bool is_talking = false; //플레이어가 대화 중인지
     
     void Start()
     {
@@ -280,11 +280,6 @@ public class PlayerController : MonoBehaviour
     void EndPortAni() //순간이동 표식 생성 애니메이션 해제
     {
         animator.SetInteger("IsTeleport",-1);
-    }
-
-    public void SetIsTalking(bool b)
-    {
-        is_talking = b;
     }
     
 }
