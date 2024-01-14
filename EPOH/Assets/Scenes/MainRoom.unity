@@ -3197,6 +3197,7 @@ GameObject:
   - component: {fileID: 266624394}
   - component: {fileID: 266624393}
   - component: {fileID: 266624395}
+  - component: {fileID: 266624396}
   m_Layer: 5
   m_Name: Widget Panel
   m_TagString: Untagged
@@ -3283,6 +3284,22 @@ MonoBehaviour:
   - {fileID: 394593732}
   - {fileID: 151050948}
   - {fileID: 1283320720}
+--- !u!114 &266624396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266624391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f26a1220c25b441b9302a38ace3ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  story_info: 0
+  rune: 0000000000
+  boss_num: 0
+  boss_clear_info: 000000
 --- !u!1 &279265210
 GameObject:
   m_ObjectHideFlags: 0
@@ -3591,6 +3608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 363333356}
   - component: {fileID: 363333355}
+  - component: {fileID: 363333357}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3629,6 +3647,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &363333357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363333354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecd6224785be56f48b126e07fdb55481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &389703581
 GameObject:
   m_ObjectHideFlags: 0
@@ -4301,6 +4331,8 @@ GameObject:
   m_Component:
   - component: {fileID: 434578288}
   - component: {fileID: 434578287}
+  - component: {fileID: 434578290}
+  - component: {fileID: 434578289}
   m_Layer: 0
   m_Name: Core
   m_TagString: Interaction
@@ -4349,6 +4381,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &434578289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434578286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94740224bbd92164c9ee787f2460b603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &434578290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434578286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a254d45b97d3e14fbd546be412033fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popup: {fileID: 515036348}
+  return_button: {fileID: 167349284}
 --- !u!1 &435724545
 GameObject:
   m_ObjectHideFlags: 0
@@ -18045,10 +18103,10 @@ MonoBehaviour:
   mission1_button: {fileID: 394593732}
   mission2_button: {fileID: 151050948}
   mission3_button: {fileID: 1283320720}
-  move_to_corrider_button: {fileID: 468859878}
   mission_decision_popup: {fileID: 471311612}
   yes_button: {fileID: 966437595}
   no_button: {fileID: 1452843023}
+  canInteractWithPortal: 0
 --- !u!1 &469891926
 GameObject:
   m_ObjectHideFlags: 0
@@ -21178,6 +21236,8 @@ GameObject:
   m_Component:
   - component: {fileID: 909515333}
   - component: {fileID: 909515332}
+  - component: {fileID: 909515335}
+  - component: {fileID: 909515334}
   m_Layer: 0
   m_Name: Widget
   m_TagString: Interaction
@@ -21226,6 +21286,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &909515334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909515331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94740224bbd92164c9ee787f2460b603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &909515335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909515331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a254d45b97d3e14fbd546be412033fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popup: {fileID: 266624391}
+  return_button: {fileID: 1461112182}
 --- !u!1 &921510858
 GameObject:
   m_ObjectHideFlags: 0
@@ -24859,8 +24945,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1493410615}
   - component: {fileID: 1493410614}
-  - component: {fileID: 1493410616}
+  - component: {fileID: 1493410618}
   - component: {fileID: 1493410617}
+  - component: {fileID: 1493410616}
+  - component: {fileID: 1493410619}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Interaction
@@ -24918,10 +25006,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1493410613}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1507d79337d4ec04ca2e2ea984514143, type: 3}
+  m_Script: {fileID: 11500000, guid: 7cb03fa24ae02ba41997c184c5ae9b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  next_scene_name: Corrider
 --- !u!114 &1493410617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24931,9 +25018,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 1493410613}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cde4d108c063f794fb2495e3b680d259, type: 3}
+  m_Script: {fileID: 11500000, guid: f787812182d531740893adf679e3f3d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mission1_button: {fileID: 394593732}
+  mission2_button: {fileID: 151050948}
+  mission3_button: {fileID: 1283320720}
+  mission_decision_popup: {fileID: 471311612}
+  yes_button: {fileID: 966437595}
+  no_button: {fileID: 1452843023}
+  canInteractWithPortal: 0
+--- !u!114 &1493410618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493410613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1507d79337d4ec04ca2e2ea984514143, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next_scene_name: Corrider
+--- !u!114 &1493410619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493410613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19eac0e955de05c4eaa70a4b97e16a39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss_buttons:
+  - {fileID: 394593732}
+  - {fileID: 151050948}
+  - {fileID: 1283320720}
 --- !u!1 &1509176517
 GameObject:
   m_ObjectHideFlags: 0
@@ -30796,6 +30919,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_speed: 8
   playerJumpForce: 7
+  is_interacting: 0
   is_talking: 0
   talkaction: {fileID: 0}
   tr: {fileID: 0}

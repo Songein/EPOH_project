@@ -7822,9 +7822,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 866969018}
-  - component: {fileID: 866969019}
   - component: {fileID: 866969017}
+  - component: {fileID: 866969019}
   - component: {fileID: 866969020}
+  - component: {fileID: 866969021}
+  - component: {fileID: 866969022}
   m_Layer: 0
   m_Name: PortalRight
   m_TagString: Interaction
@@ -7882,10 +7884,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 866969016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1507d79337d4ec04ca2e2ea984514143, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c247e6357780e54f9a080c7722685d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  next_scene_name: NextScene
 --- !u!114 &866969020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7895,10 +7896,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 866969016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c247e6357780e54f9a080c7722685d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 0864b2415d939d04386d7275ee712a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move_to_right_button: {fileID: 0}
+--- !u!114 &866969021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866969016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f26a1220c25b441b9302a38ace3ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  story_info: 0
+  rune: 0000000000
+  boss_num: 0
+  boss_clear_info: 000000
+--- !u!114 &866969022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866969016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19eac0e955de05c4eaa70a4b97e16a39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss_buttons: []
 --- !u!1 &880862497
 GameObject:
   m_ObjectHideFlags: 0
@@ -12072,6 +12101,67 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1253174387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1253174389}
+  - component: {fileID: 1253174388}
+  - component: {fileID: 1253174390}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1253174388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253174387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f26a1220c25b441b9302a38ace3ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  story_info: 0
+  rune: 0000000000
+  boss_num: 0
+  boss_clear_info: 000000
+--- !u!4 &1253174389
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253174387}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 356.40454, y: 230.49434, z: -1.0225207}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1253174390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253174387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecd6224785be56f48b126e07fdb55481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1435294477
 GameObject:
   m_ObjectHideFlags: 0
@@ -12898,7 +12988,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c247e6357780e54f9a080c7722685d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move_to_right_button: {fileID: 1480816394}
 --- !u!1 &1624682086
 GameObject:
   m_ObjectHideFlags: 0
@@ -13194,6 +13283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_speed: 8
   playerJumpForce: 7
+  is_interacting: 0
   is_talking: 0
   talkaction: {fileID: 0}
   tr: {fileID: 0}
