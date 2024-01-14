@@ -87,7 +87,8 @@ public class PlayerController : MonoBehaviour
         }
 
         //점프 버튼을 누르고 점프 횟수가 2미만일 때 점프 수행
-        if (Input.GetButtonDown("Jump") && player_jump_cnt < 2)
+        //아래 화살표 키를 누르고 있지 않은 경우에만 점프 실행(누르고 있는 경우는 점프가 아닌 발판에서 내려오기 위한 입력으로 판단)
+        if (Input.GetButtonDown("Jump") && player_jump_cnt < 2 && !Input.GetKey(KeyCode.DownArrow))
         {
             switch (player_jump_cnt)
             {
