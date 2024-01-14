@@ -57,7 +57,7 @@ public class PlayerOneWayPlatform : MonoBehaviour
         //플레이어 콜라이더와 발판 콜라이더 간 충돌을 무시하도록 설정
         Physics2D.IgnoreCollision(player_collider,platform_collider);
         
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(0.5f);
         //플레이어 콜라이더와 발판 콜라이더 간 충돌을 다시 활성화
         Physics2D.IgnoreCollision(player_collider,platform_collider,false);
     }
