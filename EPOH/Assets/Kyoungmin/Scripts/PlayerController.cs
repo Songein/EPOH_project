@@ -52,9 +52,6 @@ public class PlayerController : MonoBehaviour
     public GameObject port_prefab; //순간이동 포트 프리팹
     private GameObject port; //순간이동 포트
     
-    //대화창
-    public bool is_talking = false; //플레이어가 대화 중인지
-    
     //공격
     public bool is_attacking = false; //공격 중일 때 플레이어 이동 막기 위한 변수
     
