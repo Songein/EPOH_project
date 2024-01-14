@@ -3608,6 +3608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 363333356}
   - component: {fileID: 363333355}
+  - component: {fileID: 363333357}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3646,6 +3647,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &363333357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363333354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecd6224785be56f48b126e07fdb55481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &389703581
 GameObject:
   m_ObjectHideFlags: 0
@@ -21225,7 +21238,6 @@ GameObject:
   - component: {fileID: 909515332}
   - component: {fileID: 909515335}
   - component: {fileID: 909515334}
-  - component: {fileID: 909515336}
   m_Layer: 0
   m_Name: Widget
   m_TagString: Interaction
@@ -21300,22 +21312,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popup: {fileID: 266624391}
   return_button: {fileID: 1461112182}
---- !u!114 &909515336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 909515331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99f26a1220c25b441b9302a38ace3ed7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  story_info: 0
-  rune: 0000000000
-  boss_num: 0
-  boss_clear_info: 000000
 --- !u!1 &921510858
 GameObject:
   m_ObjectHideFlags: 0
@@ -24952,6 +24948,7 @@ GameObject:
   - component: {fileID: 1493410618}
   - component: {fileID: 1493410617}
   - component: {fileID: 1493410616}
+  - component: {fileID: 1493410619}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Interaction
@@ -25044,6 +25041,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   next_scene_name: Corrider
+--- !u!114 &1493410619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493410613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19eac0e955de05c4eaa70a4b97e16a39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss_buttons:
+  - {fileID: 394593732}
+  - {fileID: 151050948}
+  - {fileID: 1283320720}
 --- !u!1 &1509176517
 GameObject:
   m_ObjectHideFlags: 0

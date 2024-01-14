@@ -6,7 +6,7 @@ public class PopupController : MonoBehaviour
     public GameObject popup; // 팝업창을 나타내는 GameObject
     public Button return_button; // 돌아가기 버튼을 나타내는 Button 컴포넌트
     private bool is_open = false; // 팝업이 열려있는지 여부
-    private PlayerController playerController; // PlayerController 참조 변수 추가
+    private PlayerController player_controller; // PlayerController 참조 변수 추가
 
     void Start()
     {
@@ -14,7 +14,7 @@ public class PopupController : MonoBehaviour
         popup.SetActive(false);
 
         // PlayerController 참조 가져오기
-        playerController = FindObjectOfType<PlayerController>();
+        player_controller = FindObjectOfType<PlayerController>();
 
         // 확인 버튼에 클릭 이벤트 연결
         if (return_button != null)
@@ -36,9 +36,9 @@ public class PopupController : MonoBehaviour
         popup.SetActive(false);
 
         // PlayerController가 존재하고 is_interacting를 false로 설정
-        if (playerController != null)
+        if (player_controller != null)
         {
-            playerController.is_interacting = false;
+            player_controller.is_interacting = false;
         }
         
     }
