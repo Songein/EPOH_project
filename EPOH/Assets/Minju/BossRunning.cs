@@ -5,7 +5,7 @@ public class BossRunning : MonoBehaviour
     private GameObject player;
     private PlayerController player_controller;
     public float movement_speed = 12f;
-    public float start_chasing_range = 10f;
+    public float start_chasing_range = 30f;
 
     private bool isChasing = false;
     public float distance_to_player;
@@ -34,15 +34,18 @@ public class BossRunning : MonoBehaviour
             else if(isChasing && distance_to_player > 0)
             {
                 ContinueChasing();
-                if(distance_to_player == 0)
+                if(distance_to_player <= 1.2)
                 {
+                    // 플레이어에게 데미지 전달
+                    PlayerHealth player_health = player.GetComponent<PlayerHealth>();
+                    if (player_health != null)
+                    {
+                        player_health.Damage(10f); // 10만큼의 데미지를 입힘
+                    }
                     StopChasing();
                 }
             }  
-            else if(isChasing && distance_to_player == 0)  
-            {
-                StopChasing();
-            }
+            
         }    
     }
 
@@ -58,7 +61,7 @@ public class BossRunning : MonoBehaviour
     }
     
 
-    void OnTriggerEnter2D(Collider2D other)
+    /*void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
@@ -83,6 +86,7 @@ public class BossRunning : MonoBehaviour
             StopChasing();
         }
     }
+    */
 
     void StopChasing()
     {
