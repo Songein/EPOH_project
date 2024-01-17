@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class BossRunning : MonoBehaviour
 {
@@ -45,7 +46,6 @@ public class BossRunning : MonoBehaviour
                     {
                         player_health.Damage(10f); // 플레이어에게 데미지 10을 입힘
                         createDamageEffect(); //데미지 시각효과
-
                     }
                     stopChasing();
                 }
@@ -61,6 +61,12 @@ public class BossRunning : MonoBehaviour
 
     void continueChasing()
     {
+        StartCoroutine(chaseWithDelay());
+    }
+
+    IEnumerator chaseWithDelay()
+    {
+        yield return new WaitForSeconds(5f); // 전조 행동을 위한 5초 대기시간
         Vector3 direction_to_player = (player.transform.position - transform.position).normalized;
         transform.Translate(direction_to_player * movement_speed * Time.deltaTime);
     }

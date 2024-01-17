@@ -567,8 +567,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bd022644227bb64399ca95d13aa2c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement_speed: 10
-  start_chasing_range: 3
+  movement_speed: 12
+  start_chasing_range: 6
   distance_to_player: 0
   damage_effect_prefab: {fileID: 3156798883806684666, guid: e0c8242b241b92248a36968870d45c35, type: 3}
   effect_duration: 1
@@ -1440,11 +1440,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075611, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.93
+      value: -0.31
       objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075611, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.98
+      value: -3.89
       objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075611, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: m_LocalPosition.z
