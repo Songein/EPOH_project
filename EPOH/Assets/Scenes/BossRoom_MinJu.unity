@@ -1363,7 +1363,7 @@ MonoBehaviour:
   movement_speed: 12
   start_stomping_range: 10
   distance_to_player: 0
-  shockwavePrefab: {fileID: 3156798883806684666, guid: e0c8242b241b92248a36968870d45c35, type: 3}
+  shockwave_prefab: {fileID: 3156798883806684666, guid: e0c8242b241b92248a36968870d45c35, type: 3}
 --- !u!61 &1525517602
 BoxCollider2D:
   m_ObjectHideFlags: 0

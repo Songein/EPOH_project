@@ -11,9 +11,11 @@ public class BossStomping : MonoBehaviour
     private bool is_stomping = false;
     public float distance_to_player;
 
-    public GameObject shockwavePrefab; // Assign the prefab in the Inspector
+    public GameObject shockwave_prefab; // Assign the prefab in the Inspector
 
     private GameObject shockwave;
+
+    private bool has_created_shockwave = false;
 
     void Start()
     {
@@ -32,9 +34,10 @@ public class BossStomping : MonoBehaviour
         {
             distance_to_player = Vector3.Distance(transform.position, player.transform.position);
 
-            if (!is_stomping && distance_to_player >= start_stomping_range)
+            if (!is_stomping && distance_to_player >= start_stomping_range && !has_created_shockwave)
             {
-                StartStomping();
+                StartCoroutine(startStompingWithDelay());
+                has_created_shockwave = true; // 충격파 생성 여부를 기록
             }
             else if (is_stomping && shockwave != null)
             {
@@ -47,7 +50,7 @@ public class BossStomping : MonoBehaviour
                     {
                         player_health.Damage(10f); // 플레이어에게 데미지 10을 입힘
                     }
-                    StopStomping();
+                    stopStomping();
                 }
             }
         }
@@ -60,22 +63,28 @@ public class BossStomping : MonoBehaviour
         }
     }
 
-    void StartStomping()
+     IEnumerator startStompingWithDelay()
+    {
+        yield return new WaitForSeconds(5f); // 전조 행동을 위한 5초 대기시간
+        startStomping();
+    }
+
+    void startStomping()
     {
         is_stomping = true;
 
         // 충격파 생성
-        if (shockwavePrefab != null)
+        if (shockwave_prefab != null)
         {
-            shockwave = Instantiate(shockwavePrefab, transform.position, Quaternion.identity);
+            shockwave = Instantiate(shockwave_prefab, transform.position, Quaternion.identity);
         }
         else
         {
-            Debug.LogError("Shockwave prefab이 지정되지 않았습니다!");
+            Debug.LogError("shockwave prefab이 지정되지 않았습니다!");
         }
     }
 
-    void StopStomping()
+    void stopStomping()
     {
         is_stomping = false;
 
