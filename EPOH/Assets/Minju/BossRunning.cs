@@ -7,7 +7,7 @@ public class BossRunning : MonoBehaviour
     public float movement_speed = 12f;
     public float start_chasing_range = 30f;
 
-    private bool isChasing = false;
+    private bool is_chasing = false;
     public float distance_to_player;
 
     public GameObject damage_effect_prefab;
@@ -30,13 +30,13 @@ public class BossRunning : MonoBehaviour
         {
             distance_to_player = Vector3.Distance(transform.position, player.transform.position);
 
-            if (!isChasing && distance_to_player >= start_chasing_range)
+            if (!is_chasing && distance_to_player >= start_chasing_range)
             {
-                StartChasing();
+                startChasing();
             }
-            else if(isChasing && distance_to_player > 0)
+            else if(is_chasing && distance_to_player > 0)
             {
-                ContinueChasing();
+                continueChasing();
                 if(distance_to_player <= 1.2)
                 {
                     // 플레이어에게 데미지 전달
@@ -44,33 +44,33 @@ public class BossRunning : MonoBehaviour
                     if (player_health != null)
                     {
                         player_health.Damage(10f); // 플레이어에게 데미지 10을 입힘
-                        CreateDamageEffect(); //데미지 시각효과
+                        createDamageEffect(); //데미지 시각효과
 
                     }
-                    StopChasing();
+                    stopChasing();
                 }
             }  
             
         }    
     }
 
-    void StartChasing()
+    void startChasing()
     {
-        isChasing = true;
+        is_chasing = true;
     }
 
-    void ContinueChasing()
+    void continueChasing()
     {
         Vector3 direction_to_player = (player.transform.position - transform.position).normalized;
         transform.Translate(direction_to_player * movement_speed * Time.deltaTime);
     }
     
-    void StopChasing()
+    void stopChasing()
     {
-        isChasing = false;
+        is_chasing = false;
     }
 
-    void CreateDamageEffect()
+    void createDamageEffect()
     {
         if (damage_effect_prefab != null)
         {

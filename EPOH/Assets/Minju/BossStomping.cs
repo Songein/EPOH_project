@@ -1,53 +1,88 @@
 using UnityEngine;
+using System.Collections;
 
 public class BossStomping : MonoBehaviour
 {
-    public float min_attack_distance = 6f; // 플레이어와의 최소 공격 거리
-    public float impact_force = 10f; // 충격파 세기
-    public GameObject impact_wave_prefab; // 충격파 프리팹
-    public int wave_count = 10; // 생성할 충격파 개수
-    public float damage_amount = 10f; // 플레이어에게 입힐 데미지
+    private GameObject player;
+    private PlayerController player_controller;
+    public float movement_speed = 12f;
+    public float start_stomping_range = 10f;
 
-    private Transform player_transform; // 플레이어의 Transform
-    private PlayerHealth player_health; // PlayerHealth 스크립트 참조
+    private bool is_stomping = false;
+    public float distance_to_player;
+
+    public GameObject shockwavePrefab; // Assign the prefab in the Inspector
+
+    private GameObject shockwave;
 
     void Start()
     {
-        // 플레이어의 Transform 가져오기
-        player_transform = GameObject.FindGameObjectWithTag("Player").transform;
-        // PlayerScript 참조
-        player_health = player_transform.GetComponent<PlayerHealth>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        player_controller = player.GetComponent<PlayerController>();
 
-        // 일정 시간 간격으로 AttackPlayer 함수 호출
-        InvokeRepeating("attackPlayer", 0f, 10f);
+        if (player == null)
+        {
+            Debug.LogError("플레이어 오브젝트를 찾을 수 없습니다!");
+        }
     }
 
-    void attackPlayer()
+    void Update()
     {
-        // 플레이어와의 거리 계산
-        float distance_to_player = Vector2.Distance(transform.position, player_transform.position);
-
-        // 플레이어와의 거리가 최소 공격 거리 이상이고, 공격 가능 거리 이내라면
-        if (distance_to_player > min_attack_distance)
+        if (player != null && player_controller != null)
         {
-            // 플레이어 방향으로 충격파 생성
-            Vector2 direction = (player_transform.position - transform.position).normalized;
+            distance_to_player = Vector3.Distance(transform.position, player.transform.position);
 
-            for (int i = 0; i < wave_count; i++)
+            if (!is_stomping && distance_to_player >= start_stomping_range)
             {
-                // 충격파 생성
-                GameObject impact_wave = Instantiate(impact_wave_prefab, transform.position, Quaternion.identity);
-
-                // 충격파에 방향과 세기 설정
-                impact_wave.GetComponent<Rigidbody2D>().AddForce(direction * impact_force, ForceMode2D.Impulse);
-
-                // 플레이어에게 데미지 주기
-                player_health.Damage(damage_amount);
-
-                // 충돌 처리
-                Destroy(gameObject);
-
+                StartStomping();
             }
+            else if (is_stomping && shockwave != null)
+            {
+                // 플레이어와 충격파 충돌
+                if (Vector3.Distance(player.transform.position, shockwave.transform.position) <= 1.2f)
+                {
+                    // 플레이어에게 데미지 전달
+                    PlayerHealth player_health = player.GetComponent<PlayerHealth>();
+                    if (player_health != null)
+                    {
+                        player_health.Damage(10f); // 플레이어에게 데미지 10을 입힘
+                    }
+                    StopStomping();
+                }
+            }
+        }
+        // 추가: 보스 이동 로직
+        if (is_stomping && shockwave != null)
+        {
+            // 충격파를 플레이어 방향으로 이동
+            Vector3 direction = (player.transform.position - shockwave.transform.position).normalized;
+            shockwave.transform.Translate(direction * Time.deltaTime * movement_speed);
+        }
+    }
+
+    void StartStomping()
+    {
+        is_stomping = true;
+
+        // 충격파 생성
+        if (shockwavePrefab != null)
+        {
+            shockwave = Instantiate(shockwavePrefab, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogError("Shockwave prefab이 지정되지 않았습니다!");
+        }
+    }
+
+    void StopStomping()
+    {
+        is_stomping = false;
+
+        // 충격파 제거
+        if (shockwave != null)
+        {
+            Destroy(shockwave);
         }
     }
 }
