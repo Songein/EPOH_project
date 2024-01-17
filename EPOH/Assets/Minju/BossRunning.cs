@@ -10,6 +10,9 @@ public class BossRunning : MonoBehaviour
     private bool isChasing = false;
     public float distance_to_player;
 
+    public GameObject damage_effect_prefab;
+    public float effect_duration = 1.0f;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -40,7 +43,9 @@ public class BossRunning : MonoBehaviour
                     PlayerHealth player_health = player.GetComponent<PlayerHealth>();
                     if (player_health != null)
                     {
-                        player_health.Damage(10f); // 10만큼의 데미지를 입힘
+                        player_health.Damage(10f); // 플레이어에게 데미지 10을 입힘
+                        CreateDamageEffect(); //데미지 시각효과
+
                     }
                     StopChasing();
                 }
@@ -60,36 +65,24 @@ public class BossRunning : MonoBehaviour
         transform.Translate(direction_to_player * movement_speed * Time.deltaTime);
     }
     
-
-    /*void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            // 부딪혔을 때 처리
-            Debug.Log("플레이어와 부딪혔습니다!");
-            
-            // 플레이어에게 데미지 전달
-            PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
-            {
-                playerHealth.Damage(10f); // 10만큼의 데미지를 입힘
-            }
-
-
-            // 플레이어 오브젝트에 Rigidbody2D가 있는지 확인
-            Rigidbody2D playerRigidbody = other.GetComponent<Rigidbody2D>();
-            if (playerRigidbody != null)
-            {
-                // 플레이어를 밀어내지 않도록 velocity를 0으로 설정
-                playerRigidbody.velocity = Vector2.zero;
-            }
-            StopChasing();
-        }
-    }
-    */
-
     void StopChasing()
     {
         isChasing = false;
+    }
+
+    void CreateDamageEffect()
+    {
+        if (damage_effect_prefab != null)
+        {
+            GameObject damage_effect = Instantiate(damage_effect_prefab, player.transform.position, Quaternion.identity);
+            
+            Rigidbody rb = damage_effect.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.isKinematic = true;
+            }
+            
+            Destroy(damage_effect, effect_duration);
+        }
     }
 }

@@ -570,6 +570,8 @@ MonoBehaviour:
   movement_speed: 10
   start_chasing_range: 3
   distance_to_player: 0
+  damage_effect_prefab: {fileID: 3156798883806684666, guid: e0c8242b241b92248a36968870d45c35, type: 3}
+  effect_duration: 1
 --- !u!1 &869420304
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,11 +1410,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075611, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.8
+      value: 3.11
       objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075611, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.01
+      value: -4.12
       objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075611, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: m_LocalPosition.z
