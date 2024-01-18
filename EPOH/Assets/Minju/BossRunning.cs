@@ -13,6 +13,8 @@ public class BossRunning : MonoBehaviour
     private float time_since_last_player_move = 0f; // New variable to track time since the player's last movement
     public float delay_before_chasing = 5f; // 플레이어 위치 이동 후 플레이어 쫓기 전 보스 딜레이 시간
 
+    private Vector3 player_initial_position; // Added to store the player's initial position
+
     public GameObject damage_effect_prefab;
     public float effect_duration = 1.0f;
 
@@ -75,6 +77,12 @@ public class BossRunning : MonoBehaviour
         if (time_since_last_player_move >= delay_before_chasing)
         {
             is_chasing = true;
+
+            // Store the player's initial position when the chase starts
+            if (player != null)
+            {
+                player_initial_position = player.transform.position;
+            }
         }
     }
 
@@ -86,7 +94,9 @@ public class BossRunning : MonoBehaviour
     IEnumerator chaseWithDelay()
     {
         yield return new WaitForSeconds(5f); // 전조 행동을 위한 5초 대기시간
-        Vector3 direction_to_player = (player.transform.position - transform.position).normalized;
+        Vector3 direction_to_player = (player_initial_position - transform.position).normalized;
+        
+        //Vector3 direction_to_player = (player.transform.position - transform.position).normalized;
         //transform.Translate(direction_to_player * movement_speed * Time.deltaTime);
 
         // Move only along the x-axis
