@@ -51,7 +51,7 @@ public class BossRunning : MonoBehaviour
             else if(is_chasing && distance_to_player > 0)
             {
                 continueChasing();
-                if(distance_to_player <= 0)
+                if(distance_to_player <= 1.2f)
                 {
                     // 플레이어에게 데미지 전달
                     PlayerHealth player_health = player.GetComponent<PlayerHealth>();
