@@ -7825,8 +7825,6 @@ GameObject:
   - component: {fileID: 866969017}
   - component: {fileID: 866969019}
   - component: {fileID: 866969020}
-  - component: {fileID: 866969021}
-  - component: {fileID: 866969022}
   m_Layer: 0
   m_Name: PortalRight
   m_TagString: Interaction
@@ -7868,7 +7866,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 866969016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.73, y: -0.53, z: 0.20468275}
+  m_LocalPosition: {x: -9.38, y: -0.53, z: 0.20468275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7899,35 +7897,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0864b2415d939d04386d7275ee712a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &866969021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 866969016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99f26a1220c25b441b9302a38ace3ed7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  story_info: 0
-  rune: 0000000000
-  boss_num: 0
-  boss_clear_info: 000000
---- !u!114 &866969022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 866969016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19eac0e955de05c4eaa70a4b97e16a39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boss_buttons: []
 --- !u!1 &880862497
 GameObject:
   m_ObjectHideFlags: 0
