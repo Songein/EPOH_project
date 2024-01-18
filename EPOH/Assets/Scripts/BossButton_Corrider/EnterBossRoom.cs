@@ -24,7 +24,7 @@ public class EnterBossRoom : MonoBehaviour
             int boss_index = GameManager.instance.boss_num;
             string boss_room_scene_name = "";
 
-            if (boss_index >= 0 && boss_index < GameManager.boss_cnt)
+            if (boss_index >= 0 && boss_index < GameManager.boss_cnt) 
             {
                 boss_room_scene_name = "BossRoom" + GameManager.instance.boss_info[boss_index, 0]; // 보스룸 씬 이름
                 Debug.Log("Boss Room Scene Name: " + boss_room_scene_name);

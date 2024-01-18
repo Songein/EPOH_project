@@ -570,6 +570,7 @@ MonoBehaviour:
   movement_speed: 12
   start_chasing_range: 6
   distance_to_player: 0
+  delay_before_chasing: 5
   damage_effect_prefab: {fileID: 3156798883806684666, guid: e0c8242b241b92248a36968870d45c35, type: 3}
   effect_duration: 1
 --- !u!1 &869420304

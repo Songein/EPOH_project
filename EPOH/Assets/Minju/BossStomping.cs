@@ -56,11 +56,12 @@ public class BossStomping : MonoBehaviour
                 if (Vector3.Distance(player.transform.position, shockwave.transform.position) <= 1.2f)
                 {
                     // 플레이어에게 데미지 전달
-                    PlayerHealth player_health = player.GetComponent<PlayerHealth>();
+                    /*PlayerHealth player_health = player.GetComponent<PlayerHealth>();
                     if (player_health != null)
                     {
                         player_health.Damage(10f); // 플레이어에게 데미지 10을 입힘
                     }
+                    */
                     stopStomping();
                 }
             }
@@ -68,6 +69,25 @@ public class BossStomping : MonoBehaviour
         // 추가: 보스 이동 로직
         if (is_stomping && shockwave != null)
         {
+            // 충돌 감지를 Collider2D를 이용하여 수행
+            Collider2D player_collider = player.GetComponent<Collider2D>();
+            Collider2D shockwave_collider = shockwave.GetComponent<Collider2D>();
+
+            if (player_collider != null && shockwave_collider != null)
+            {
+                // 충돌 검사
+                if (Physics2D.IsTouching(player_collider, shockwave_collider))
+                {
+                    // 충돌 발생: 플레이어에게 데미지 전달
+                    PlayerHealth player_health = player.GetComponent<PlayerHealth>();
+                    if (player_health != null)
+                    {
+                        player_health.Damage(10f);
+                        stopStomping();
+                    }
+                }
+            }
+
             // Move towards the player's initial position
             Vector3 direction = (player_initial_position - shockwave.transform.position).normalized;
             
