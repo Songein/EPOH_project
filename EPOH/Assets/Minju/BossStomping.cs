@@ -70,9 +70,6 @@ public class BossStomping : MonoBehaviour
         {
             // Move towards the player's initial position
             Vector3 direction = (player_initial_position - shockwave.transform.position).normalized;
-
-            // 충격파를 플레이어 방향으로 이동
-            //Vector3 direction = (player.transform.position - shockwave.transform.position).normalized;
             
             // Restrict movement along the x-axis
             direction.y = 0f;

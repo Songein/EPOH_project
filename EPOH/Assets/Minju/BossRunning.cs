@@ -95,9 +95,6 @@ public class BossRunning : MonoBehaviour
     {
         yield return new WaitForSeconds(5f); // 전조 행동을 위한 5초 대기시간
         Vector3 direction_to_player = (player_initial_position - transform.position).normalized;
-        
-        //Vector3 direction_to_player = (player.transform.position - transform.position).normalized;
-        //transform.Translate(direction_to_player * movement_speed * Time.deltaTime);
 
         // Move only along the x-axis
         transform.Translate(new Vector3(direction_to_player.x, 0, 0) * movement_speed * Time.deltaTime);
