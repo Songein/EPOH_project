@@ -12,7 +12,8 @@ public class ShockWave : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             //플레이어에게 충격파 세기 만큼의 데미지 입힘
-            other.gameObject.GetComponent<PlayerHealth>().Damage(power);
+            PlayerHealth player_health = other.GetComponent<PlayerHealth>();
+            player_health.Damage(power);
         }
     }
 }
