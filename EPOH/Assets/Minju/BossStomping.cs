@@ -17,6 +17,8 @@ public class BossStomping : MonoBehaviour
 
     private bool has_created_shockwave = false;
 
+    private Vector3 player_initial_position; // Added to store the player's initial position
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -26,6 +28,15 @@ public class BossStomping : MonoBehaviour
         {
             Debug.LogError("플레이어 오브젝트를 찾을 수 없습니다!");
         }
+
+        // Make the boss object a trigger
+        GetComponent<Collider2D>().isTrigger = true;
+
+        // Make the boss object kinematic
+        GetComponent<Rigidbody2D>().isKinematic = true;
+
+        // Disable gravity for the boss object
+        GetComponent<Rigidbody2D>().gravityScale = 0;
     }
 
     void Update()
@@ -57,8 +68,16 @@ public class BossStomping : MonoBehaviour
         // 추가: 보스 이동 로직
         if (is_stomping && shockwave != null)
         {
+            // Move towards the player's initial position
+            Vector3 direction = (player_initial_position - shockwave.transform.position).normalized;
+
             // 충격파를 플레이어 방향으로 이동
-            Vector3 direction = (player.transform.position - shockwave.transform.position).normalized;
+            //Vector3 direction = (player.transform.position - shockwave.transform.position).normalized;
+            
+            // Restrict movement along the x-axis
+            direction.y = 0f;
+            direction.z = 0f;
+            
             shockwave.transform.Translate(direction * Time.deltaTime * movement_speed);
         }
     }
@@ -73,10 +92,25 @@ public class BossStomping : MonoBehaviour
     {
         is_stomping = true;
 
+        // Store the player's initial position
+        if (player != null)
+        {
+            player_initial_position = player.transform.position;
+        }
+
         // 충격파 생성
         if (shockwave_prefab != null)
         {
             shockwave = Instantiate(shockwave_prefab, transform.position, Quaternion.identity);
+
+            // Make the shockwave object kinematic
+            shockwave.GetComponent<Rigidbody2D>().isKinematic = true;
+        
+            // Disable gravity for the shockwave object
+            shockwave.GetComponent<Rigidbody2D>().gravityScale = 0;
+            
+
+        
         }
         else
         {
