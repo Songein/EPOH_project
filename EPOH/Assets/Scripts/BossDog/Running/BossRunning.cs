@@ -5,18 +5,18 @@ public class BossRunning : MonoBehaviour
 {
     private GameObject player;
     private PlayerController player_controller;
-    public float movement_speed = 12f;
-    public float start_chasing_range = 6f;
+    public float movement_speed = 12f; // 이동 속도
+    public float start_chasing_range = 6f; // 플레이어를 쫓기 시작할 거리
 
-    private bool is_chasing = false;
-    public float distance_to_player;
-    private float time_since_last_player_move = 0f; // New variable to track time since the player's last movement
+    private bool is_chasing = false; // 플레이어를 쫓는 중인지 여부
+    public float distance_to_player; // 보스와 플레이어 간의 거리
+    private float time_since_last_player_move = 0f; // 플레이어의 마지막 움직임 기록
     public float delay_before_chasing = 5f; // 플레이어 위치 이동 후 플레이어 쫓기 전 보스 딜레이 시간
 
-    private Vector3 player_initial_position; // Added to store the player's initial position
+    private Vector3 player_initial_position; // 플레이어의 초기 위치
 
-    public GameObject damage_effect_prefab;
-    public float effect_duration = 1.0f;
+    public GameObject damage_effect_prefab; // 데미지 효과 프리팹
+    public float effect_duration = 1.0f; // 데미지 효과의 지속 시간
 
     void Start()
     {
@@ -40,31 +40,42 @@ public class BossRunning : MonoBehaviour
 
     void Update()
     {
+        // player 및 player_controller가 초기화되어 있는지 확인
         if (player != null && player_controller != null)
         {
+            // 보스와 플레이어 간의 거리 계산
             distance_to_player = Vector3.Distance(transform.position, player.transform.position);
 
+
+            // 플레이어를 쫓는 상태가 아니고, 플레이어와의 거리가 지정한 범위보다 큰 경우
             if (!is_chasing && distance_to_player >= start_chasing_range)
             {
+                //쫓기 시작
                 startChasing();
             }
+
+            // 플레이어를 쫓는 상태이고, 플레이어와의 거리가 0 이상인 경우
             else if(is_chasing && distance_to_player > 0)
             {
+                // 계속해서 플레이어를 쫓음
                 continueChasing();
+
+                 // 플레이어와의 거리가 1.2 이하인 경우
                 if(distance_to_player <= 1.2f)
                 {
-                    // 플레이어에게 데미지 전달
+                    // 플레이어에게 데미지 전달, 데미지 효과 생성
                     PlayerHealth player_health = player.GetComponent<PlayerHealth>();
                     if (player_health != null)
                     {
                         player_health.Damage(10f); // 플레이어에게 데미지 10을 입힘
                         createDamageEffect(); //데미지 시각효과
                     }
+                    // 쫓기 중지
                     stopChasing();
                 }
             }
             
-            // Update the time since the player's last movement
+            // 플레이어의 마지막 움직임 시간 업데이트
             time_since_last_player_move += Time.deltaTime;
 
             
@@ -77,8 +88,9 @@ public class BossRunning : MonoBehaviour
         if (time_since_last_player_move >= delay_before_chasing)
         {
             is_chasing = true;
+            
 
-            // Store the player's initial position when the chase starts
+            // 쫓기 시작할 때 플레이어의 초기 위치 기록
             if (player != null)
             {
                 player_initial_position = player.transform.position;
@@ -88,15 +100,18 @@ public class BossRunning : MonoBehaviour
 
     void continueChasing()
     {
+        // 일정 시간 후에 쫓기 시작
         StartCoroutine(chaseWithDelay());
     }
 
     IEnumerator chaseWithDelay()
     {
         yield return new WaitForSeconds(5f); // 전조 행동을 위한 5초 대기시간
+
+         // 플레이어의 초기 위치를 향해 이동하는 벡터 계산
         Vector3 direction_to_player = (player_initial_position - transform.position).normalized;
 
-        // Move only along the x-axis
+        // x 축 방향으로만 이동
         transform.Translate(new Vector3(direction_to_player.x, 0, 0) * movement_speed * Time.deltaTime);
     }
     
@@ -104,9 +119,11 @@ public class BossRunning : MonoBehaviour
     
     void stopChasing()
     {
+        // 쫓기 상태 비활성화
         is_chasing = false;
     }
 
+    //데미지 효과 생성
     void createDamageEffect()
     {
         if (damage_effect_prefab != null)
