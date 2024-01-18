@@ -19130,6 +19130,7 @@ GameObject:
   - component: {fileID: 561352471}
   - component: {fileID: 561352470}
   - component: {fileID: 561352469}
+  - component: {fileID: 561352472}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -19172,7 +19173,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -19203,6 +19204,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &561352472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561352468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad8e8142ac61f074f95595ed6744e482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &570684461
 GameObject:
   m_ObjectHideFlags: 0
@@ -30928,6 +30941,7 @@ MonoBehaviour:
   dash_cool_time: 2
   teleport_time: 0.3
   port_prefab: {fileID: 8089051319890647574, guid: 389390a4264eb42b986a804feca4cbc2, type: 3}
+  is_attacking: 0
 --- !u!96 &1740969178
 TrailRenderer:
   serializedVersion: 2
