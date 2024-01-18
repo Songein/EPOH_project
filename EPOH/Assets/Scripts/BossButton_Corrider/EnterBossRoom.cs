@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class EnterBossRoom : MonoBehaviour
 {
+    //private GameManager game_manager; // GameManager 스크립트에 대한 참조 변수
     /*public Button move_to_right_button; // MoveToRight device 버튼
-    // private GameManager game_manager; // GameManager 스크립트에 대한 참조 변수
 
     void Start()
     {
@@ -15,6 +15,7 @@ public class EnterBossRoom : MonoBehaviour
         }
     }
     */
+
 
     public void moveToBossRoom()
     {
@@ -30,16 +31,13 @@ public class EnterBossRoom : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Cannot find the corresponding boss room scene.");
+                Debug.LogWarning("해당하는 보스룸 씬을 찾을 수 없습니다.");
                 return;
             }
 
             // 보스룸으로 이동
             SceneManager.LoadScene(boss_room_scene_name);
         }
-        else
-        {
-            Debug.LogWarning("GameManager instance not found.");
-        }
+        
     }
 }
