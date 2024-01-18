@@ -6,21 +6,21 @@ public class EnterBossRoom : MonoBehaviour
 {
     //private GameManager game_manager; // GameManager 스크립트에 대한 참조 변수
     /*public Button move_to_right_button; // MoveToRight device 버튼
-
-    void Start()
-    {
-        if (move_to_right_button != null)
-        {
-            move_to_right_button.onClick.AddListener(() => moveToBossRoom());
-        }
-    }
     */
+
+    void Start(){
+        /*
+        if (move_to_right_button != null){
+            move_to_right_button.onClick.AddListener(() => moveToBossRoom());
+        }*/
+    }
 
 
     public void moveToBossRoom()
     {
+        
         if (GameManager.instance != null)
-        {
+        { 
             int boss_index = GameManager.instance.boss_num;
             string boss_room_scene_name = "";
 
@@ -34,9 +34,13 @@ public class EnterBossRoom : MonoBehaviour
                 Debug.LogWarning("해당하는 보스룸 씬을 찾을 수 없습니다.");
                 return;
             }
+            Debug.Log(boss_room_scene_name);
 
             // 보스룸으로 이동
-            SceneManager.LoadScene(boss_room_scene_name);
+            SceneManager.LoadScene(boss_room_scene_name); 
+        }
+        else{
+            Debug.LogWarning("GameManager instance not found.");
         }
         
     }

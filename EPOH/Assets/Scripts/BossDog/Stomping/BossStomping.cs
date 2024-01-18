@@ -5,25 +5,25 @@ public class BossStomping : MonoBehaviour
 {
     private GameObject player;
     private PlayerController player_controller;
-    public float movement_speed = 12f;
-    public float start_stomping_range = 10f;
+    public float movement_speed = 12f; // 이동 속도
+    public float start_stomping_range = 10f; // 발구르기 시작 거리
 
-    private bool is_stomping = false;
-    public float distance_to_player;
+    private bool is_stomping = false; // 발구르기 중인지 여부
+    public float distance_to_player; // 보스와 플레이어 간의 거리
 
-    public GameObject shockwave_prefab; // Assign the prefab in the Inspector
+    public GameObject shockwave_prefab; // 충격파 prefab
+    private GameObject shockwave; // 생성된 충격파 오브젝트에 대한 참조
 
-    private GameObject shockwave;
+    private bool has_created_shockwave = false; // 충격파 생성 여부
 
-    private bool has_created_shockwave = false;
-
-    private Vector3 player_initial_position; // Added to store the player's initial position
+    private Vector3 player_initial_position; // 플레이어의 초기 위치 저장
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         player_controller = player.GetComponent<PlayerController>();
 
+        // 플레이어를 찾지 못한 경우 오류를 표시
         if (player == null)
         {
             Debug.LogError("플레이어 오브젝트를 찾을 수 없습니다!");
@@ -41,15 +41,21 @@ public class BossStomping : MonoBehaviour
 
     void Update()
     {
+        // player 및 player_controller가 초기화되어 있는지 확인
         if (player != null && player_controller != null)
         {
+            // 보스와 플레이어 간의 거리 계산
             distance_to_player = Vector3.Distance(transform.position, player.transform.position);
 
+            // 발구르기 중이 아니고, 플레이어와의 거리가 지정한 범위보다 크고 충격파가 생성되지 않은 경우
             if (!is_stomping && distance_to_player >= start_stomping_range && !has_created_shockwave)
             {
+                // 일정 시간 후 발구르기 시작
                 StartCoroutine(startStompingWithDelay());
-                has_created_shockwave = true; // 충격파 생성 여부를 기록
+                // 충격파 생성 여부를 기록
+                has_created_shockwave = true; 
             }
+            //발구르기 중이고 충격파 오브젝트가 존재하는 경우
             else if (is_stomping && shockwave != null)
             {
                 // 플레이어와 충격파 충돌
@@ -62,17 +68,22 @@ public class BossStomping : MonoBehaviour
                         player_health.Damage(10f); // 플레이어에게 데미지 10을 입힘
                     }
                     */
+
+                    //발구르기 중지
                     stopStomping();
                 }
             }
         }
-        // 추가: 보스 이동 로직
+        
+        // 보스가 발구르기 중이면서 충격파 오브젝트가 존재하는 경우
         if (is_stomping && shockwave != null)
         {
             // 충돌 감지를 Collider2D를 이용하여 수행
             Collider2D player_collider = player.GetComponent<Collider2D>();
             Collider2D shockwave_collider = shockwave.GetComponent<Collider2D>();
 
+
+            //충돌 감지에 필요한 컴포넌트가 존재하는 경우
             if (player_collider != null && shockwave_collider != null)
             {
                 // 충돌 검사
@@ -83,15 +94,16 @@ public class BossStomping : MonoBehaviour
                     if (player_health != null)
                     {
                         player_health.Damage(10f);
+                        //발구르기 중지
                         stopStomping();
                     }
                 }
             }
 
-            // Move towards the player's initial position
+            // 플레이어의 초기 위치를 향해 이동하는 벡터 계산
             Vector3 direction = (player_initial_position - shockwave.transform.position).normalized;
             
-            // Restrict movement along the x-axis
+            // y 및 z 축 방향 이동 제한
             direction.y = 0f;
             direction.z = 0f;
             
@@ -99,17 +111,20 @@ public class BossStomping : MonoBehaviour
         }
     }
 
-     IEnumerator startStompingWithDelay()
+    //일정 시간 후 발구르기 시작하는 코루틴
+    IEnumerator startStompingWithDelay()
     {
         yield return new WaitForSeconds(5f); // 전조 행동을 위한 5초 대기시간
+        
         startStomping();
     }
 
-    void startStomping()
+    void startStomping() //발구르기 시작
     {
+        //발구르기 중인 상태로 변경
         is_stomping = true;
 
-        // Store the player's initial position
+        // 플레이어의 초기 위치 저장
         if (player != null)
         {
             player_initial_position = player.transform.position;
@@ -135,8 +150,11 @@ public class BossStomping : MonoBehaviour
         }
     }
 
-    void stopStomping()
+
+
+    void stopStomping() // 발구르기 중지
     {
+        // 발구르기 상태 비활성화
         is_stomping = false;
 
         // 충격파 제거
