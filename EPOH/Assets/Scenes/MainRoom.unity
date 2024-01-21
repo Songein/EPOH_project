@@ -1323,7 +1323,6 @@ GameObject:
   - component: {fileID: 150277943}
   - component: {fileID: 150277942}
   - component: {fileID: 150277944}
-  - component: {fileID: 150277945}
   m_Layer: 5
   m_Name: Rune
   m_TagString: Untagged
@@ -1416,22 +1415,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rune_object: {fileID: 150277941}
---- !u!114 &150277945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 150277941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99f26a1220c25b441b9302a38ace3ed7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  story_info: 0
-  rune: 0000000000
-  boss_num: 0
-  boss_clear_info: 000000
 --- !u!1 &151050946
 GameObject:
   m_ObjectHideFlags: 0
@@ -3196,8 +3179,6 @@ GameObject:
   - component: {fileID: 266624392}
   - component: {fileID: 266624394}
   - component: {fileID: 266624393}
-  - component: {fileID: 266624395}
-  - component: {fileID: 266624396}
   m_Layer: 5
   m_Name: Widget Panel
   m_TagString: Untagged
@@ -3268,38 +3249,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 266624391}
   m_CullTransparentMesh: 1
---- !u!114 &266624395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 266624391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19eac0e955de05c4eaa70a4b97e16a39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boss_buttons:
-  - {fileID: 394593732}
-  - {fileID: 151050948}
-  - {fileID: 1283320720}
---- !u!114 &266624396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 266624391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99f26a1220c25b441b9302a38ace3ed7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  story_info: 0
-  rune: 0000000000
-  boss_num: 0
-  boss_clear_info: 000000
 --- !u!1 &279265210
 GameObject:
   m_ObjectHideFlags: 0
@@ -17959,7 +17908,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &468859877
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19130,6 +19079,7 @@ GameObject:
   - component: {fileID: 561352471}
   - component: {fileID: 561352470}
   - component: {fileID: 561352469}
+  - component: {fileID: 561352472}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -19172,7 +19122,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -19203,6 +19153,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &561352472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561352468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad8e8142ac61f074f95595ed6744e482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &570684461
 GameObject:
   m_ObjectHideFlags: 0
@@ -20541,7 +20503,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &823982389
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21238,6 +21200,7 @@ GameObject:
   - component: {fileID: 909515332}
   - component: {fileID: 909515335}
   - component: {fileID: 909515334}
+  - component: {fileID: 909515337}
   m_Layer: 0
   m_Name: Widget
   m_TagString: Interaction
@@ -21312,6 +21275,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popup: {fileID: 266624391}
   return_button: {fileID: 1461112182}
+--- !u!114 &909515337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909515331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19eac0e955de05c4eaa70a4b97e16a39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss_buttons:
+  - {fileID: 394593732}
+  - {fileID: 151050948}
+  - {fileID: 1283320720}
 --- !u!1 &921510858
 GameObject:
   m_ObjectHideFlags: 0
@@ -22488,7 +22467,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1133616648
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24948,7 +24927,6 @@ GameObject:
   - component: {fileID: 1493410618}
   - component: {fileID: 1493410617}
   - component: {fileID: 1493410616}
-  - component: {fileID: 1493410619}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Interaction
@@ -25041,22 +25019,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   next_scene_name: Corrider
---- !u!114 &1493410619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493410613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19eac0e955de05c4eaa70a4b97e16a39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boss_buttons:
-  - {fileID: 394593732}
-  - {fileID: 151050948}
-  - {fileID: 1283320720}
 --- !u!1 &1509176517
 GameObject:
   m_ObjectHideFlags: 0
@@ -30928,6 +30890,7 @@ MonoBehaviour:
   dash_cool_time: 2
   teleport_time: 0.3
   port_prefab: {fileID: 8089051319890647574, guid: 389390a4264eb42b986a804feca4cbc2, type: 3}
+  is_attacking: 0
 --- !u!96 &1740969178
 TrailRenderer:
   serializedVersion: 2
