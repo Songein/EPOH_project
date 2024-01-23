@@ -46,8 +46,8 @@ public class PlayerController : MonoBehaviour
     
     //순간이동
     private Vector2 teleport_pos; //순간이동할 위치
-    private bool can_teleport = false; //순간이동할 수 있는지
-    private bool is_teleporting = false; //순간이동 중인지
+    public bool can_teleport = false; //순간이동할 수 있는지
+    public bool is_teleporting = false; //순간이동 중인지
     public float teleport_time = 0.3f; //순간이동 지속 타임
     public GameObject port_prefab; //순간이동 포트 프리팹
     private GameObject port; //순간이동 포트
