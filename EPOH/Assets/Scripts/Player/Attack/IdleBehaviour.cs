@@ -18,9 +18,12 @@ public class IdleBehaviour : StateMachineBehaviour
         }
 
         //플레이어가 상호작용 중이거나 대화 중이면 공격 불가능하도록 조건 추가
-        if (PlayerAttack.instance.is_attacking && !pr.is_interacting && !pr.is_talking)
+        if (PlayerAttack.instance != null && PlayerAttack.instance.is_attacking && !pr.is_interacting && !pr.is_talking)
         {
+            if (PlayerAttack.instance != null)
+            {
             PlayerAttack.instance.animator.Play("Attack One");
+            }
         }
     }
 

@@ -11,6 +11,7 @@ public class MissionDecisionCorrider : MonoBehaviour
     public GameObject mission_decision_popup; // 팝업 창
     public Button yes_button; // 'Yes' 버튼
     public Button no_button; // 'No' 버튼
+    public Button widget_return_button; //위젯 '돌아가기' 버튼
 
     private Button last_clicked_button; // 마지막에 클릭된 버튼을 저장하는 변수
     private BossSelection boss_selection; // BossSelection 스크립트에 대한 참조 변수
@@ -50,14 +51,32 @@ public class MissionDecisionCorrider : MonoBehaviour
 
     }
 
-    // 임무 버튼 클릭 시 호출되는 함수
+    
+    //임무 버튼 스페이스바 누를시 호출되는 함수
+    void Update()
+    {
+        // 스페이스바를 눌렀을 때
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // 현재 선택된 버튼을 클릭하도록 처리
+            if (last_clicked_button != null)
+            {
+                onMissionButtonClick(last_clicked_button);
+            }
+        }
+
+    }
+
+
+
+    // 임무 버튼 마우스 클릭 시 호출되는 함수
     public void onMissionButtonClick(Button clicked_button)
     {
         Debug.Log("onMissionButtonClick 함수 호출");
         // 마지막에 클릭된 버튼 갱신
         last_clicked_button = clicked_button;
 
-
+ 
         // 팝업 창 활성화
         mission_decision_popup.SetActive(true);
 
@@ -72,12 +91,17 @@ public class MissionDecisionCorrider : MonoBehaviour
         {
             Debug.LogError("BossSelection 스크립트가 할당되지 않았습니다.");
         }
+
     }
+
+    
+
 
     // 'Yes' 버튼 클릭 시 호출되는 함수
     public void onYesButtonClick()
     {
         Debug.Log("onYesButtonClick 함수 호출");
+
         // 팝업 창 비활성화
         mission_decision_popup.SetActive(false);
 
@@ -85,9 +109,9 @@ public class MissionDecisionCorrider : MonoBehaviour
         mission1_button.interactable = false;
         mission2_button.interactable = false;
         mission3_button.interactable = false;
-
+            
         canInteractWithPortal = true;
-
+        
     }
 
     // 'No' 버튼 클릭 시 호출되는 함수
@@ -100,6 +124,9 @@ public class MissionDecisionCorrider : MonoBehaviour
 
         // 마지막에 클릭된 버튼 초기화
         last_clicked_button = null;
+
+        // Mission1 버튼을 디폴트로 선택
+        mission1_button.Select();
 
         canInteractWithPortal = false;
 
@@ -137,4 +164,5 @@ public class MissionDecisionCorrider : MonoBehaviour
         }
 
     }
+
 }
