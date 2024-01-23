@@ -46,8 +46,8 @@ public class PlayerController : MonoBehaviour
     
     //순간이동
     private Vector2 teleport_pos; //순간이동할 위치
-    private bool can_teleport = false; //순간이동할 수 있는지
-    private bool is_teleporting = false; //순간이동 중인지
+    public bool can_teleport = false; //순간이동할 수 있는지
+    public bool is_teleporting = false; //순간이동 중인지
     public float teleport_time = 0.3f; //순간이동 지속 타임
     public GameObject port_prefab; //순간이동 포트 프리팹
     private GameObject port; //순간이동 포트
@@ -179,18 +179,21 @@ public class PlayerController : MonoBehaviour
         if (rigid.velocity.y < 0f)
         {
             animator.SetBool("IsFall", true);
-            RaycastHit2D groundRayHit = Physics2D.Raycast(rigid.position, Vector2.down, 0.5f, LayerMask.GetMask("Ground"));
+            Debug.DrawRay(rigid.position, Vector2.down * 1f, Color.red);
+            RaycastHit2D groundRayHit = Physics2D.Raycast(rigid.position, Vector2.down, 1f, LayerMask.GetMask("Ground"));
             //땅을 감지하고
             if (groundRayHit.collider != null)
             {
-                //거리가 0.3 미만이면
-                if (groundRayHit.distance < 0.3f)
+                //거리가 0.5 미만이면
+                if (groundRayHit.distance < 0.5f)
                 {
                     //점프 애니메이션 해제
                     animator.SetBool("IsFall", false);
                     animator.SetBool("IsJump",false);
                     animator.SetBool("IsDoubleJump",false);
                     player_jump_cnt = 0; //바닥에 닿으면 플레이어 점프 횟수 초기화
+                    
+                    Debug.Log("거리 0.3f 미만");
 
                 }
 
@@ -276,7 +279,7 @@ public class PlayerController : MonoBehaviour
     }
     
     //순간이동
-    private IEnumerator Teleport()
+    public IEnumerator Teleport()
     {
         //순간이동 시작 시
         can_teleport = false; //순간이동 불가능으로 설정
