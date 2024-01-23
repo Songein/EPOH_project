@@ -39,14 +39,14 @@ public class PlayerBossFight : MonoBehaviour
         }
     }
 
-    /*void Update()
+    void Update()
     {
 
         if (Input.GetButtonDown("Teleport"))
         {
             if (player_controller.can_teleport)
             {
-                StartCoroutine(Teleport());
+                StartCoroutine(player_controller.Teleport());
 
                 // Player가 순간이동 시 hacking_point -10
                 boss_manager.hacking_point -= 10;
@@ -56,11 +56,10 @@ public class PlayerBossFight : MonoBehaviour
         // hacking_point가 200 달성시 임무완료 씬으로 이동
         if (boss_manager.hacking_point >= 200)
         {
-            // Load Mission Complete Scene
-            // Add your code to load the Mission Complete Scene here
+            
         }
     }
-    */
+    
 
     // Additional method to handle boss movement and properties
     void HandleBossMovement()

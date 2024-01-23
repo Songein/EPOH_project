@@ -279,7 +279,7 @@ public class PlayerController : MonoBehaviour
     }
     
     //순간이동
-    private IEnumerator Teleport()
+    public IEnumerator Teleport()
     {
         //순간이동 시작 시
         can_teleport = false; //순간이동 불가능으로 설정
