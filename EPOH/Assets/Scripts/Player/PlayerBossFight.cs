@@ -123,7 +123,7 @@ public class PlayerBossFight : MonoBehaviour
         if (boss_manager != null && boss_manager.hacking_point >= 200 && boss_manager.boss_hp == 0)
         {
             SceneManager.LoadScene("MissionClear");
-            GameManager.instance.boss_clear_info[GameManager.instance.boss_num] = true;
+            //GameManager.instance.boss_clear_info[GameManager.instance.boss_num] = true;
         }
 
         // 공격 버튼 처리
