@@ -20,7 +20,7 @@ public class ActivatePortalInteract : Interaction
         // 플레이어가 상호작용 중이면서 Portal이 비활성화된 상태일때
         if (player_controller.is_interacting && !missionDecisionCorrider.canInteractWithPortal)
         {
-            player_controller.is_interacting = false;
+            //player_controller.is_interacting = false;
         }
     }
 
