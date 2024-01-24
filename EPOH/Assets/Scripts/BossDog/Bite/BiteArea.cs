@@ -18,7 +18,7 @@ public class BiteArea : MonoBehaviour
         //트리거 충돌 대상이 플레이어라면
         if (other.CompareTag("Player"))
         {
-            //플레이어 hp를 관리하는 스크립트 할당하여 Damage 메서드 접근ㄴ
+            //플레이어 hp를 관리하는 스크립트 할당하여 Damage 메서드 접근
             PlayerHealth player_health = other.GetComponent<PlayerHealth>();
             player_health.Damage(power);
         }
