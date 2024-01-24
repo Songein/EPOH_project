@@ -65,7 +65,7 @@ public class PlayerBossFight : MonoBehaviour
             player_controller.is_attacking = true;
             comboCount(); // ComboCount 메서드 호출
 
-            if (player_attack != null)
+            if (player_attack != null && attack_area != null)
             {
 
                 // 현재 콤보에 해당하는 공격 세기 설정
@@ -74,31 +74,35 @@ public class PlayerBossFight : MonoBehaviour
                 // 공격 범위의 공격 세기 설정
                 attack_area.SetAttackPower(current_attack_power);
 
-
-
-                boss_manager.boss_hp -= current_attack_power; // 플레이어의 공격을 받으면 boss_hp 값 공격세기만큼 감소
-                if(boss_manager.boss_hp > 0)
+                // Check if the attack area collides with the boss
+                Collider2D boss_collider = boss.GetComponent<Collider2D>();
+                if (boss_collider != null && attack_area.GetComponent<Collider2D>().IsTouching(boss_collider))
                 {
-                    Debug.Log("boss_hp 값: " + boss_manager.boss_hp);
-                }
-                //Bossmanager의 boss_hp 값이 0이 되면 더이상 감소하지 않음
-                else if(boss_manager.boss_hp <= 0)
-                {
-                    boss_manager.boss_hp = 0;
-                    Debug.Log("boss_hp 값: " + boss_manager.boss_hp);
-                }
-                
+                    Debug.Log("Boss를 공격했습니다!");
 
-                boss_manager.hacking_point += 1; // Boss에게 공격 성공시 hacking_point 값 +1
-                if(boss_manager.hacking_point != 200)
-                {
-                    Debug.Log("hacking_point 값: " + boss_manager.hacking_point);
-                }
-                else if (boss_manager.hacking_point == 200)
-                {
-                    Debug.Log("hacking_point 값: " + boss_manager.hacking_point);   
-                }
+                    boss_manager.boss_hp -= current_attack_power; // 플레이어의 공격을 받으면 boss_hp 값 공격세기만큼 감소
+                    if(boss_manager.boss_hp > 0)
+                    {
+                        Debug.Log("boss_hp 값: " + boss_manager.boss_hp);
+                    }
+                    //Bossmanager의 boss_hp 값이 0이 되면 더이상 감소하지 않음
+                    else if(boss_manager.boss_hp <= 0)
+                    {
+                        boss_manager.boss_hp = 0;
+                        Debug.Log("boss_hp 값: " + boss_manager.boss_hp);
+                    }
+                    
 
+                    boss_manager.hacking_point += 1; // Boss에게 공격 성공시 hacking_point 값 +1
+                    if(boss_manager.hacking_point != 200)
+                    {
+                        Debug.Log("hacking_point 값: " + boss_manager.hacking_point);
+                    }
+                    else if (boss_manager.hacking_point == 200)
+                    {
+                        Debug.Log("hacking_point 값: " + boss_manager.hacking_point);   
+                    }
+                }
                 
             }
 
