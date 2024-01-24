@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossHealth : MonoBehaviour
 {
-    public float boss_hp = 2000f; //보스의 목숨
+    public float boss_hp = 1000f; //보스의 목숨
     
     public void Damage(float power)
     {
