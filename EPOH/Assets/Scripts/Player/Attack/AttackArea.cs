@@ -25,8 +25,16 @@ public class AttackArea : MonoBehaviour
             Debug.Log("[AttackArea] : 충돌");
             //상대의 Enemy 스크립트 참조
             boss_health = other.GetComponent<BossHealth>();
+            
+            if (boss_health != null)
+            {
             //상대를 공격하기
             boss_health.Damage(attack_power);
+            }
+            else
+            {
+                Debug.LogError("[AttackArea] : BossHealth 컴포넌트를 찾을 수 없습니다.");
+            }
         }
         else
         {
