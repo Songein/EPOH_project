@@ -195,4 +195,18 @@ public class BossDog : MonoBehaviour
         ShockWave.transform.localScale = new Vector2(1f, 1f);
         is_skill = false; //스킬 중 해제
     }
+
+    private IEnumerator Running()
+    {
+        Debug.Log("[Running] : 보스가 몸을 웅크리고 으르릉 댄다.");
+        yield return new WaitForSeconds(precursor_time); //전조 시간만큼 대기
+
+    }
+
+    private IEnumerator Stomping()
+    {
+        Debug.Log("[Stomping] : 보스가 앞발을 든다.");
+        yield return new WaitForSeconds(precursor_time); //전조 시간만큼 대기
+
+    }
 }
