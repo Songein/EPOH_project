@@ -1627,6 +1627,7 @@ GameObject:
   - component: {fileID: 167349286}
   - component: {fileID: 167349285}
   - component: {fileID: 167349284}
+  - component: {fileID: 167349287}
   m_Layer: 5
   m_Name: Core Return Button
   m_TagString: Untagged
@@ -1737,6 +1738,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 167349282}
   m_CullTransparentMesh: 1
+--- !u!114 &167349287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167349282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e27b43cb5a676004bb9518bfbda93456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  default_button: {fileID: 167349284}
 --- !u!1 &167536767
 GameObject:
   m_ObjectHideFlags: 0
@@ -18205,6 +18219,7 @@ MonoBehaviour:
   yes_button: {fileID: 966437595}
   no_button: {fileID: 1452843023}
   widget_return_button: {fileID: 0}
+  last_clicked_button: {fileID: 0}
   canInteractWithPortal: 0
 --- !u!1 &469891926
 GameObject:
@@ -25131,7 +25146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 1283320720}
     m_SelectOnDown: {fileID: 0}
@@ -25562,6 +25577,7 @@ MonoBehaviour:
   yes_button: {fileID: 966437595}
   no_button: {fileID: 1452843023}
   widget_return_button: {fileID: 1461112182}
+  last_clicked_button: {fileID: 0}
   canInteractWithPortal: 0
 --- !u!114 &1493410618
 MonoBehaviour:

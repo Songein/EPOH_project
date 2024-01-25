@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class MissionDecisionCorrider : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class MissionDecisionCorrider : MonoBehaviour
     public Button no_button; // 'No' 버튼
     public Button widget_return_button; //위젯 '돌아가기' 버튼
 
-    private Button last_clicked_button; // 마지막에 클릭된 버튼을 저장하는 변수
+    public Button last_clicked_button; // 마지막에 클릭된 버튼을 저장하는 변수
     private BossSelection boss_selection; // BossSelection 스크립트에 대한 참조 변수
     private PlayerController player_controller; // PlayerController 참조 변수 추가
     public bool canInteractWithPortal = false;
@@ -32,7 +33,6 @@ public class MissionDecisionCorrider : MonoBehaviour
         yes_button.onClick.AddListener(onYesButtonClick);
         no_button.onClick.AddListener(onNoButtonClick);
         
-
         // 팝업 창 비활성화
         mission_decision_popup.SetActive(false);
 
@@ -64,6 +64,17 @@ public class MissionDecisionCorrider : MonoBehaviour
             {
                 onMissionButtonClick(last_clicked_button);
             }
+
+            /*if (yes_button != null)
+            {
+                onYesButtonClick();
+            }
+
+            if (no_button != null)
+            {
+                onNoButtonClick();
+            }
+            */
         }
 
     }
@@ -73,6 +84,7 @@ public class MissionDecisionCorrider : MonoBehaviour
     // 임무 버튼 마우스 클릭 시 호출되는 함수
     public void onMissionButtonClick(Button clicked_button)
     {
+
         Debug.Log("onMissionButtonClick 함수 호출");
         // 마지막에 클릭된 버튼 갱신
         last_clicked_button = clicked_button;
@@ -93,6 +105,9 @@ public class MissionDecisionCorrider : MonoBehaviour
             Debug.LogError("BossSelection 스크립트가 할당되지 않았습니다.");
         }
 
+        // Yes 버튼을 디폴트로 선택
+        OnEnable();
+
     }
 
     
@@ -110,6 +125,15 @@ public class MissionDecisionCorrider : MonoBehaviour
         mission1_button.interactable = false;
         mission2_button.interactable = false;
         mission3_button.interactable = false;
+
+
+        
+        // widget_return_button 디폴트로 눌려있게 설정
+        if (widget_return_button != null)
+        {
+            EventSystem.current.SetSelectedGameObject(widget_return_button.gameObject);
+        }
+        
             
         canInteractWithPortal = true;
         
@@ -127,11 +151,32 @@ public class MissionDecisionCorrider : MonoBehaviour
         last_clicked_button = null;
 
         // Mission1 버튼을 디폴트로 선택
-        mission1_button.Select();
-
+        if (!mission_decision_popup.activeSelf && mission1_button != null)
+        {
+            EventSystem.current.SetSelectedGameObject(mission1_button.gameObject);
+        }
+        /*// 팝업이 활성화되어 있으면 Yes 버튼을 디폴트로 선택
+        else if (mission_decision_popup.activeSelf && yes_button != null)
+        {
+            EventSystem.current.SetSelectedGameObject(yes_button.gameObject);
+        }
+        */
+        
         canInteractWithPortal = false;
 
     }
+
+    // MissionDecisionCorrider 스크립트가 활성화될 때 호출되는 함수
+    private void OnEnable()
+    {
+        // 팝업이 활성화되면 Yes 버튼을 디폴트로 선택
+        if (mission_decision_popup.activeSelf && yes_button != null)
+        {
+            EventSystem.current.SetSelectedGameObject(yes_button.gameObject);
+        }
+    }
+
+
 
 
     // Portal과 상호작용시 호출되는 함수
