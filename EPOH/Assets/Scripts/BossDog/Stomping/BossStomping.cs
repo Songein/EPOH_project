@@ -176,7 +176,7 @@ public class BossStomping : MonoBehaviour
     IEnumerator startStomping()
     {
         Debug.Log("[Stomping] : 보스가 앞발을 든다.");
-        is_attacking = true;
+        //is_attacking = true;
         yield return new WaitForSeconds(precursor_time);
 
         // player 및 player_controller가 초기화되어 있는지 확인

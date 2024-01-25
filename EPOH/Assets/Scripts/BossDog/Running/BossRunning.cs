@@ -146,7 +146,7 @@ public class BossRunning : MonoBehaviour
     IEnumerator StartRunning()
     {
         Debug.Log("[Running] : 보스가 몸을 웅크림.");
-        is_attacking = true;
+        //is_attacking = true;
         yield return new WaitForSeconds(precursor_time);
 
         // player 및 player_controller가 초기화되어 있는지 확인
