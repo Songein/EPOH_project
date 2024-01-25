@@ -48,7 +48,6 @@ public class MissionDecisionCorrider : MonoBehaviour
             Debug.LogError("PlayerController 스크립트가 할당되지 않았습니다.");
         }
 
-
     }
 
     
