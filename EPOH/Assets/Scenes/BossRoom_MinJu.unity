@@ -434,9 +434,9 @@ GameObject:
   - component: {fileID: 846428866}
   - component: {fileID: 846428865}
   - component: {fileID: 846428869}
-  - component: {fileID: 846428870}
   - component: {fileID: 846428871}
   - component: {fileID: 846428872}
+  - component: {fileID: 846428873}
   m_Layer: 7
   m_Name: Boss Running
   m_TagString: Boss
@@ -454,7 +454,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.00000047683716, y: 0.00000011920929}
@@ -576,18 +576,6 @@ MonoBehaviour:
   delay_before_chasing: 5
   damage_effect_prefab: {fileID: 3156798883806684666, guid: e0c8242b241b92248a36968870d45c35, type: 3}
   effect_duration: 1
---- !u!114 &846428870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 846428864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bed0c65e5aa8714c9225a8d35096175, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &846428871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,7 +603,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a06733a94cce544d1ad187e99f10cbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss_hp: 2000
+  boss_hp: 1000
+--- !u!114 &846428873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846428864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81cb41220e038a04d874468fbc249007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss_manager: {fileID: 0}
+  game_manager: {fileID: 0}
+  boss_health: {fileID: 0}
 --- !u!1 &869420304
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,6 +952,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1288345509 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4632130523800075608, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+  m_PrefabInstance: {fileID: 1601780351}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1288345531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288345509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81cb41220e038a04d874468fbc249007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss_manager: {fileID: 0}
+  game_manager: {fileID: 0}
+  boss_health: {fileID: 0}
 --- !u!1 &1360401855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1478,6 +1501,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4632130523800075602, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: combo_attack_power.Array.data[0]
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632130523800075602, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: combo_attack_power.Array.data[1]
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632130523800075602, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: combo_attack_power.Array.data[2]
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075604, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: m_Size.x
       value: 0.9283526
@@ -1536,6 +1571,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075611, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632130524254600248, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

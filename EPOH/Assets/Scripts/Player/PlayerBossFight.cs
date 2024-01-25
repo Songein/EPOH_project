@@ -18,12 +18,12 @@ public class PlayerBossFight : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player"); 
         boss = GameObject.FindWithTag("Boss");
+        attack_area_object = player.transform.Find("AttackArea").gameObject;
 
         player_controller = player.GetComponent<PlayerController>();
         boss_manager = boss.GetComponent<BossManager>();
 
         player_attack = player.GetComponent<PlayerAttack>();  
-
         
         if (player_controller == null)
         {
@@ -39,7 +39,8 @@ public class PlayerBossFight : MonoBehaviour
         {
             Debug.LogError("PlayerAttack 스크립트를 찾을 수 없습니다.");
         }
-        else{
+        else 
+        {
             attack_area_object = player.transform.Find("AttackArea").gameObject;
             attack_area = attack_area_object.GetComponentInChildren<AttackArea>();
 
@@ -47,10 +48,8 @@ public class PlayerBossFight : MonoBehaviour
             {
                 Debug.LogError("AttackArea 스크립트를 찾을 수 없습니다.");
             }
-
         }
 
-        
         
         if (player == null)
         {
@@ -60,8 +59,12 @@ public class PlayerBossFight : MonoBehaviour
 
     void attackBoss()
     {
+        Debug.Log("보스 공격을 시도합니다...");
+
         if (!player_controller.is_attacking)
         {
+            Debug.Log("플레이어가 공격 중입니다...");
+
             player_controller.is_attacking = true;
             comboCount(); // ComboCount 메서드 호출
 
@@ -102,8 +105,13 @@ public class PlayerBossFight : MonoBehaviour
                     {
                         Debug.Log("hacking_point 값: " + boss_manager.hacking_point);   
                     }
+
                 }
-                
+                Debug.Log("Attack logic executed successfully!");
+            }
+            else
+            {
+                Debug.LogError("PlayerAttack 또는 AttackArea 스크립트를 찾을 수 없습니다.");
             }
 
             player_controller.is_attacking = false;
@@ -131,7 +139,7 @@ public class PlayerBossFight : MonoBehaviour
         }
 
         // 공격 버튼 처리
-        if (Input.GetButtonDown("Attack") && !player_controller.is_attacking)
+        if (Input.GetButtonDown("Attack") && player_controller.is_attacking)
         {
             comboCount();
             attackBoss();
