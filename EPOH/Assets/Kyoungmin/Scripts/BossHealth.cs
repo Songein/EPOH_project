@@ -5,6 +5,9 @@ using UnityEngine;
 public class BossHealth : MonoBehaviour
 {
     public BossManager boss_manager;
+    public Hacking hacking;
+
+
     private GameObject boss;
     public float boss_hp = 1000f; //보스의 목숨
 
@@ -12,6 +15,7 @@ public class BossHealth : MonoBehaviour
     {
         boss = GameObject.FindWithTag("Boss");
         boss_manager = boss.GetComponent<BossManager>();
+        hacking = GetComponent<Hacking>();
     }
     
     public void Damage(float power)
@@ -25,6 +29,7 @@ public class BossHealth : MonoBehaviour
             {
                 Die();
                 boss_manager.boss_hp = boss_hp;
+                hacking.endBossBattle();
             }
             else
             { 
