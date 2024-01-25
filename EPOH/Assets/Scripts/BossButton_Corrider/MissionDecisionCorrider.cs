@@ -57,6 +57,7 @@ public class MissionDecisionCorrider : MonoBehaviour
     void Update()
     {
         // 스페이스바를 눌렀을 때
+        /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // 현재 선택된 버튼을 클릭하도록 처리
@@ -64,18 +65,9 @@ public class MissionDecisionCorrider : MonoBehaviour
             {
                 onMissionButtonClick(last_clicked_button);
             }
-
-            /*if (yes_button != null)
-            {
-                onYesButtonClick();
-            }
-
-            if (no_button != null)
-            {
-                onNoButtonClick();
-            }
-            */
+            
         }
+        */
 
     }
 
@@ -161,6 +153,7 @@ public class MissionDecisionCorrider : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(yes_button.gameObject);
         }
         */
+
         
         canInteractWithPortal = false;
 
