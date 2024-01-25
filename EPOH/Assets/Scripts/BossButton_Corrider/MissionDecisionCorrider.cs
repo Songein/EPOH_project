@@ -22,6 +22,7 @@ public class MissionDecisionCorrider : MonoBehaviour
     {
         Debug.Log("Start 함수 호출");
 
+        
         // 각 버튼에 클릭 이벤트 리스너 추가
         mission1_button.onClick.AddListener(() => onMissionButtonClick(mission1_button));
         mission2_button.onClick.AddListener(() => onMissionButtonClick(mission2_button));
@@ -30,6 +31,7 @@ public class MissionDecisionCorrider : MonoBehaviour
         // 'Yes', 'No' 버튼에 클릭 이벤트 리스너 추가
         yes_button.onClick.AddListener(onYesButtonClick);
         no_button.onClick.AddListener(onNoButtonClick);
+        
 
         // 팝업 창 비활성화
         mission_decision_popup.SetActive(false);
