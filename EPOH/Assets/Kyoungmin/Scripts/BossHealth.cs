@@ -29,7 +29,7 @@ public class BossHealth : MonoBehaviour
             {
                 Die();
                 boss_manager.boss_hp = boss_hp;
-                hacking.endBossBattle();
+                hacking.checkHackingPoint();
             }
             else
             { 
