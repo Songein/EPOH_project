@@ -92,6 +92,27 @@ public class Hacking : MonoBehaviour
         }
     }
 
+    // hacking_point를 감소시키는 함수
+    public void decreaseHackingPoint(int amount)
+    {
+        if (boss_manager != null)
+        {
+            // 해킹포인트가 0 보다 작지 않음
+            if (boss_manager.hacking_point > 0)
+            {
+                boss_manager.hacking_point -= amount;
+                boss_manager.hacking_point = Mathf.Max(boss_manager.hacking_point, 0);
+
+                // hacking_point 감소 후 확인
+                checkHackingPoint();
+            }
+        }
+        else
+        {
+            Debug.LogError("[Hacking] : BossManager 컴포넌트를 찾을 수 없습니다.");
+        }
+    }
+
     // Boss 공격 성공시 hacking_point 증가
     public void onBossHealthDecrease(float damage)
     {
