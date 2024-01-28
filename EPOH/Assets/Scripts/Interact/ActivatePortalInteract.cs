@@ -26,7 +26,10 @@ public class ActivatePortalInteract : Interaction
 
     public override void Interact()
     {
-
+        if (player_controller.is_interacting && !missionDecisionCorrider.canInteractWithPortal)
+        {
+            player_controller.is_interacting = false;
+        }
         if (missionDecisionCorrider != null && missionDecisionCorrider.canInteractWithPortal && moveToNextScene != null)
         {
             missionDecisionCorrider.onPortalInteraction();
