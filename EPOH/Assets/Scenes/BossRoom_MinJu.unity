@@ -457,7 +457,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00000047683716, y: 0.00000011920929}
+  m_Offset: {x: -0.001536727, y: 0.0043679476}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -468,7 +468,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0683546, y: 0.93164754}
+  m_Size: {x: 1.0650601, y: 1.0692458}
   m_EdgeRadius: 0
 --- !u!50 &846428866
 Rigidbody2D:
@@ -551,8 +551,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 846428864}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.8612, y: -2.6979, z: 0}
-  m_LocalScale: {x: 2.6825, y: 2.5822, z: 1}
+  m_LocalPosition: {x: 5.7746, y: -2.8914, z: 0}
+  m_LocalScale: {x: 2.4904702, y: 2.5582106, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -570,6 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bd022644227bb64399ca95d13aa2c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  precursor_time: 1.5
   movement_speed: 12
   start_chasing_range: 6
   distance_to_player: 0
@@ -1430,6 +1431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c5fe67a7206634d82ce4f0868fcb32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  precursor_time: 1.5
   movement_speed: 12
   start_stomping_range: 10
   distance_to_player: 0

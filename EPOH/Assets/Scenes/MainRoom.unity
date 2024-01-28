@@ -31472,6 +31472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5492f69f317ce4ffa832b60bb8c81636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boss_manager: {fileID: 0}
   player_hp: 200
 --- !u!114 &1740969175
 MonoBehaviour:
