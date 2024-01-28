@@ -36,7 +36,7 @@ public class CoreQuestGoalText : MonoBehaviour
             // 완료한 퀘스트 이름을 표기
             if (GameManager.instance.boss_clear_info[GameManager.instance.boss_num])
             {
-                quest_text.text = mission_decision_corrider.last_clicked_button.GetComponentInChildren<TextMeshProUGUI>().text + " 퀘스트를 완료하였습니다!";
+                quest_text.text = mission_decision_corrider.last_clicked_button.GetComponentInChildren<TextMeshProUGUI>().text + " 퀘스트를 달성하였습니다!";
             }
 
             // 선택한(완료 전) 퀘스트 이름을 표기

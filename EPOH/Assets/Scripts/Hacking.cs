@@ -44,7 +44,6 @@ public class Hacking : MonoBehaviour
         if (boss_manager.hacking_point == 200 && boss_manager.boss_hp <= 0)
         {
             endBossBattle();
-            updateBossClearInfo();
         }
     }
 
@@ -58,7 +57,7 @@ public class Hacking : MonoBehaviour
     }
 
     // 보스 클리어 정보 갱신
-    private void updateBossClearInfo()
+    public void updateBossClearInfo()
     {
         int boss_index = GameManager.instance.boss_num; // 선택한 보스의 인덱스
 

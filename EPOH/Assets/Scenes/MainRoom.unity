@@ -1627,7 +1627,6 @@ GameObject:
   - component: {fileID: 167349286}
   - component: {fileID: 167349285}
   - component: {fileID: 167349284}
-  - component: {fileID: 167349287}
   m_Layer: 5
   m_Name: Core Return Button
   m_TagString: Untagged
@@ -1738,19 +1737,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 167349282}
   m_CullTransparentMesh: 1
---- !u!114 &167349287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 167349282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e27b43cb5a676004bb9518bfbda93456, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  default_button: {fileID: 167349284}
 --- !u!1 &167536767
 GameObject:
   m_ObjectHideFlags: 0
@@ -18908,7 +18894,7 @@ MonoBehaviour:
   mission_decision_corrider: {fileID: 0}
   game_manager: {fileID: 0}
   quest_text: {fileID: 2014417855}
-  core_popup: {fileID: 1106263018}
+  quest_box: {fileID: 0}
 --- !u!114 &515036353
 MonoBehaviour:
   m_ObjectHideFlags: 0
