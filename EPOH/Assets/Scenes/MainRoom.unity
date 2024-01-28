@@ -18793,6 +18793,8 @@ GameObject:
   - component: {fileID: 515036349}
   - component: {fileID: 515036351}
   - component: {fileID: 515036350}
+  - component: {fileID: 515036352}
+  - component: {fileID: 515036353}
   m_Layer: 5
   m_Name: Core Panel
   m_TagString: Untagged
@@ -18891,6 +18893,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515036348}
   m_CullTransparentMesh: 1
+--- !u!114 &515036352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515036348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b30e4e2de30e5a145b7bbdf4e4e9902b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mission_decision_corrider: {fileID: 0}
+  game_manager: {fileID: 0}
+  quest_text: {fileID: 2014417855}
+  core_popup: {fileID: 1106263018}
+--- !u!114 &515036353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515036348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f787812182d531740893adf679e3f3d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mission1_button: {fileID: 394593732}
+  mission2_button: {fileID: 151050948}
+  mission3_button: {fileID: 1283320720}
+  mission_decision_popup: {fileID: 471311612}
+  yes_button: {fileID: 966437595}
+  no_button: {fileID: 1452843023}
+  widget_return_button: {fileID: 1461112182}
+  last_clicked_button: {fileID: 0}
+  canInteractWithPortal: 0
 --- !u!1 &530524688
 GameObject:
   m_ObjectHideFlags: 0
@@ -31516,6 +31555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae43a92558a44ad1bfc429a8bb16ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hacking: {fileID: 0}
   player_speed: 8
   playerJumpForce: 13
   is_interacting: 0
@@ -33977,7 +34017,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 73.56122, w: 0}
+  m_margin: {x: 0, y: 0, z: -73.615585, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
