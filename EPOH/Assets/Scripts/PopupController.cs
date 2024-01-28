@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,7 +21,7 @@ public class PopupController : MonoBehaviour
         // 확인 버튼에 클릭 이벤트 연결
         if (return_button != null)
         {
-            return_button.onClick.AddListener(closePopupAndSetInteractingFalse);
+            return_button.onClick.AddListener(OnReturnButtonClick);
         }
     }
 
@@ -31,13 +33,20 @@ public class PopupController : MonoBehaviour
         popup.SetActive(is_open);
     }
 
-    public void closePopupAndSetInteractingFalse()
+    public void OnReturnButtonClick()
+    {
+        StartCoroutine(closePopupAndSetInteractingFalse());
+    }
+
+    private IEnumerator closePopupAndSetInteractingFalse()
     {
         popup.SetActive(false);
 
         // PlayerController가 존재하고 is_interacting를 false로 설정
+        yield return new WaitForSeconds(0.5f); // 잠시 대기
         if (player_controller != null)
         {
+            is_open = false;
             player_controller.is_interacting = false;
         }
         

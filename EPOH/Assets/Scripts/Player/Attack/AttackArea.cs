@@ -10,11 +10,14 @@ public class AttackArea : MonoBehaviour
     private float attack_power; //공격 세기
     private CircleCollider2D collider; //AttackArea의 collider;
     private BossHealth boss_health; //BossHealth 참조
-
+    private Hacking hacking;
+    
     void Awake()
     {
         //공격 범위 콜라이더 할당
         collider = GetComponent<CircleCollider2D>();
+
+        hacking = GetComponentInParent<Hacking>();
     }
     
     void OnTriggerEnter2D(Collider2D other)
@@ -23,10 +26,23 @@ public class AttackArea : MonoBehaviour
         if (other.CompareTag("Boss"))
         {
             Debug.Log("[AttackArea] : 충돌");
+
             //상대의 Enemy 스크립트 참조
             boss_health = other.GetComponent<BossHealth>();
+            
+            if (boss_health != null)
+            {
             //상대를 공격하기
             boss_health.Damage(attack_power);
+            }
+            else
+            {
+                Debug.LogError("[AttackArea] : BossHealth 컴포넌트를 찾을 수 없습니다.");
+            }
+
+            Debug.Log("[AttackArea] :  Before calling onBossHealthDecrease");
+            // Hacking 스크립트의 onBossHealthDecrease 호출
+            hacking.onBossHealthDecrease(attack_power);
         }
         else
         {

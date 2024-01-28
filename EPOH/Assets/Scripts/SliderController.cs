@@ -19,10 +19,15 @@ public class SliderController : MonoBehaviour
 
     private void updateSliderValues()
     {
+        // 최대값을 100으로 가정하여 백분율 계산
+        float max_boss_hp = 1000;
+        float max_player_hp = 200;
+        float max_hacking_point = 200;
+
         // BossManager의 변수를 읽어와서 슬라이더 값으로 설정
-        boss_hp_slider.value = boss_manager.boss_hp;
-        player_hp_slider.value = boss_manager.player_hp;
-        hacking_point_slider.value = boss_manager.hacking_point;
+        boss_hp_slider.value = boss_manager.boss_hp / max_boss_hp;
+        player_hp_slider.value = boss_manager.player_hp / max_player_hp;
+        hacking_point_slider.value = boss_manager.hacking_point / max_hacking_point;
     }
 
     void Update()

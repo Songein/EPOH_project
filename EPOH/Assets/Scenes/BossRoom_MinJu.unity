@@ -434,7 +434,10 @@ GameObject:
   - component: {fileID: 846428866}
   - component: {fileID: 846428865}
   - component: {fileID: 846428869}
-  m_Layer: 0
+  - component: {fileID: 846428871}
+  - component: {fileID: 846428872}
+  - component: {fileID: 846428873}
+  m_Layer: 7
   m_Name: Boss Running
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -451,7 +454,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.00000047683716, y: 0.00000011920929}
@@ -548,8 +551,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 846428864}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.02, y: -3.489, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 5.8612, y: -2.6979, z: 0}
+  m_LocalScale: {x: 2.6825, y: 2.5822, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -573,6 +576,51 @@ MonoBehaviour:
   delay_before_chasing: 5
   damage_effect_prefab: {fileID: 3156798883806684666, guid: e0c8242b241b92248a36968870d45c35, type: 3}
   effect_duration: 1
+--- !u!114 &846428871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846428864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 355606f8fb30bca4a856e2880bf8da9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss_hp: 1000
+  player_hp: 200
+  hacking_point: 0
+--- !u!114 &846428872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846428864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a06733a94cce544d1ad187e99f10cbe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss_manager: {fileID: 0}
+  hacking: {fileID: 0}
+  boss_hp: 1000
+--- !u!114 &846428873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846428864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81cb41220e038a04d874468fbc249007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss_manager: {fileID: 0}
+  game_manager: {fileID: 0}
+  boss_health: {fileID: 0}
 --- !u!1 &869420304
 GameObject:
   m_ObjectHideFlags: 0
@@ -906,6 +954,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1288345509 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4632130523800075608, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+  m_PrefabInstance: {fileID: 1601780351}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1288345531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288345509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81cb41220e038a04d874468fbc249007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss_manager: {fileID: 0}
+  game_manager: {fileID: 0}
+  boss_health: {fileID: 0}
 --- !u!1 &1360401855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,9 +1343,10 @@ GameObject:
   - component: {fileID: 1525517601}
   - component: {fileID: 1525517603}
   - component: {fileID: 1525517602}
-  m_Layer: 0
+  - component: {fileID: 1525517604}
+  m_Layer: 7
   m_Name: Boss Stomping
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1412,6 +1481,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1525517604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525517598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 355606f8fb30bca4a856e2880bf8da9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss_hp: 1000
+  player_hp: 200
+  hacking_point: 0
 --- !u!1001 &1601780351
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1419,6 +1503,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4632130523800075602, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: combo_attack_power.Array.data[0]
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632130523800075602, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: combo_attack_power.Array.data[1]
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632130523800075602, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: combo_attack_power.Array.data[2]
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075604, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: m_Size.x
       value: 0.9283526
@@ -1445,7 +1541,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075611, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.89
+      value: -2.9
       objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075611, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1479,6 +1575,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4632130524254600248, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6533cbff165824e039977611200fc9d8, type: 3}
 --- !u!1 &1775134792
@@ -1494,7 +1594,6 @@ GameObject:
   - component: {fileID: 1775134794}
   - component: {fileID: 1775134793}
   - component: {fileID: 1775134798}
-  - component: {fileID: 1775134797}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1586,21 +1685,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1775134797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1775134792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 355606f8fb30bca4a856e2880bf8da9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boss_hp: 1000
-  player_hp: 200
-  hacking_point: 0
 --- !u!114 &1775134798
 MonoBehaviour:
   m_ObjectHideFlags: 0

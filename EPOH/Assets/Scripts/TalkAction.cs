@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +9,7 @@ public class TalkAction : MonoBehaviour
     public TalkManager talk_manager;
     public GameManager game_manager;
     public TypingEffect talk_effect;
-    public Songein_PlayerController player_controller;
+    public PlayerController player_controller;
 
     public GameObject talk_panel; // 대화창 panel
     public bool is_talking = false; // 대화중인지 확인
