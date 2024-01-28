@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public BossManager boss_manager; // BossManager 스크립트 참조
+
     public float player_hp = 200; //플레이어의 목숨
     private SpriteRenderer sp; //플레이어 SpriteRenderer 참조
     private bool is_invincible; //무적 여부
@@ -13,6 +15,10 @@ public class PlayerHealth : MonoBehaviour
     {
         //SpriteRenderer 할당하기
         sp = GetComponent<SpriteRenderer>();
+
+        boss_manager = FindObjectOfType<BossManager>();
+
+        
     }
     
     //플레이어 데미지 관련
@@ -27,11 +33,15 @@ public class PlayerHealth : MonoBehaviour
 
             if (player_hp <= 0) //플레이어 목숨이 0이하라면
             {
+                player_hp = 0;
+                boss_manager.player_hp = player_hp; // BossManager의 player_hp 값 업데이트
                 Die();
             }
             else
             {
                 StartCoroutine(Invincible()); //무적시간 호출
+
+                boss_manager.player_hp = player_hp; // BossManager의 player_hp 값 업데이트
             }  
         }
     }

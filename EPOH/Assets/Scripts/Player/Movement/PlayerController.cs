@@ -10,6 +10,9 @@ using Vector2 = UnityEngine.Vector2;
 
 public class PlayerController : MonoBehaviour
 {
+    public Hacking hacking; //Hacking 스크립트 참조
+
+    
     //플레이어 좌우 이동
     private float horizontal; //수평 값
     public float player_speed = 8f; //이동 속도
@@ -68,6 +71,8 @@ public class PlayerController : MonoBehaviour
         tr = GetComponent<TrailRenderer>();
         //AttackArea 오브젝트의 컴포넌트 할당
         attack_area = transform.GetChild(0).gameObject.GetComponent<AttackArea>();
+
+        hacking = GetComponent<Hacking>();
     }
     
     void Update()
@@ -148,6 +153,12 @@ public class PlayerController : MonoBehaviour
             if (can_teleport) //순간이동을 할 수 있으면(표식을 설치한 경우)
             {
                 StartCoroutine(Teleport());
+
+                // 순간이동 시 hacking_point -10 줄어듦
+                if (hacking != null)
+                {
+                    hacking.decreaseHackingPoint(10);
+                }
             }
             else //표식을 설치하지 않은 경우
             {

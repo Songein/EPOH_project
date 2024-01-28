@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossHealth : MonoBehaviour
+public class BossHealth :MonoBehaviour
 {
     public BossManager boss_manager;
     public Hacking hacking;
@@ -28,6 +28,7 @@ public class BossHealth : MonoBehaviour
             if (boss_hp <= 0)
             {
                 Die();
+                boss_hp = 0;
                 boss_manager.boss_hp = boss_hp;
                 hacking.checkHackingPoint();
             }
