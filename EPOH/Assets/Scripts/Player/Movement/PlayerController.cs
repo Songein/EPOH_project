@@ -222,6 +222,9 @@ public class PlayerController : MonoBehaviour
             interact_obj = other.gameObject;
             interaction = interact_obj.GetComponent<Interaction>(); // 충돌한 오브젝트의 Interaction 할당
             Debug.Log("[PlayerController] : " + other.name + "과 상호작용 가능");
+            
+            //상호작용 오브젝트 위에 상호작용 가능함(Space)을 나타내기
+            
         }
     }
     
