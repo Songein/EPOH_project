@@ -196,16 +196,14 @@ public class PlayerController : MonoBehaviour
             if (groundRayHit.collider != null)
             {
                 //거리가 0.5 미만이면
-                if (groundRayHit.distance < 2.5f)
+                if (groundRayHit.distance < 2.8f)
                 {
-                    Debug.Log("땅");
+                    Debug.Log("2.8f 미만");
                     //점프 애니메이션 해제
                     animator.SetBool("IsFall", false);
                     animator.SetBool("IsJump",false);
                     animator.SetBool("IsDoubleJump",false);
                     player_jump_cnt = 0; //바닥에 닿으면 플레이어 점프 횟수 초기화
-                    
-                    Debug.Log("거리 0.3f 미만");
 
                 }
 
@@ -297,7 +295,7 @@ public class PlayerController : MonoBehaviour
         can_teleport = false; //순간이동 불가능으로 설정
         is_teleporting = true; //순간이동 중으로 설정
         Destroy(port); //순간이동 표식 제거
-        gameObject.transform.position = new Vector2(teleport_pos.x, teleport_pos.y + 2f); //순간이동 표식보다 y축으로 2만큼 위로 이동
+        gameObject.transform.position = new Vector2(teleport_pos.x, teleport_pos.y + 3f); //순간이동 표식보다 y축으로 3만큼 위로 이동
         animator.SetBool("IsFall",true); //순간이동 끝 애니메이션 실행
         //rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce);
 
