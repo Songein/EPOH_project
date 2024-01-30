@@ -27,7 +27,7 @@ public class BossDog : MonoBehaviour
     //물기 변수
     public GameObject bite_area; //bite 공격 범위 오브젝트
     public AnimationCurve curve; //포물선 이동을 위한 AnimationCurve 선언
-    [SerializeField] float duration = 0.5f; //포물선 이동에 걸리는 시간
+    [SerializeField] float bite_duration = 0.5f; //포물선 이동에 걸리는 시간
 
     //하울링 변수
     public GameObject ShockWave; //충격파 오브젝트
@@ -35,6 +35,13 @@ public class BossDog : MonoBehaviour
 
     //달리기 변수
     public float movement_speed = 12f; // 이동 속도
+    [SerializeField] float reach_distance_long = 18f; //공격 사정 거리
+    [SerializeField] float run_duration = 1.0f; //달리기 이동에 걸리는 시간
+
+    //충격파 변수
+    public GameObject[] GroundShock; //충격파 오브젝트
+    [SerializeField] int shock_num = 3; // 충격파 개수
+
 
 
 
@@ -80,11 +87,11 @@ public class BossDog : MonoBehaviour
         float distance = Vector3.Distance(transform.position, player.transform.position);
         if(distance < close_range)
         {
-            skill = Random.Range(0, 2); // 가까울 때 2가지 패턴
+            skill = Random.Range(2, 4); // 가까울 때 모든 패턴 발생
         }
         else
         {
-            skill = Random.Range(0, 2); // 멀 때 2가지 패턴
+            skill = Random.Range(2, 4); // 멀 때 2가지 패턴만 발생
         }
         BossSkill(skill);
         yield return new WaitForSeconds(boss_skill_cooldown); // 스킬을 사용하지 않음
@@ -111,11 +118,13 @@ public class BossDog : MonoBehaviour
                 StartCoroutine(Bite());
                 break;
             case 1:
-                StartCoroutine(StartHowling());
+                StartCoroutine(Howling());
                 break;
             case 2:
+                StartCoroutine(Running());
                 break;
             case 3:
+                StartCoroutine(Stomping());
                 break;
             default:
                 break;
@@ -158,10 +167,10 @@ public class BossDog : MonoBehaviour
 
         //해당 위치로 아치형을 그리며 돌진
         float time = 0f;
-        while (time < duration)
+        while (time < bite_duration)
         {
             time += Time.deltaTime;
-            float linearT = time / duration;
+            float linearT = time / bite_duration;
             float heightT = curve.Evaluate(linearT);
             float height = Mathf.Lerp(0.0f, 10f, heightT);
 
@@ -175,7 +184,7 @@ public class BossDog : MonoBehaviour
         is_skill = false;
     }
 
-    private IEnumerator StartHowling()
+    private IEnumerator Howling()
     {
         Debug.Log("[Howling.cs] : 보스가 멈추고 고개를 든다.");
         yield return new WaitForSeconds(precursor_time); //전조 시간만큼 대기
@@ -198,9 +207,45 @@ public class BossDog : MonoBehaviour
 
     private IEnumerator Running()
     {
+        //플레이어의 현재 위치 파악
+        Vector2 player_pos = player.transform.position;
+
         Debug.Log("[Running] : 보스가 몸을 웅크리고 으르릉 댄다.");
         yield return new WaitForSeconds(precursor_time); //전조 시간만큼 대기
 
+
+        float run_distance; //보스가 이동할 거리
+
+        //transform.position.x - player_pos.x 값이 양수면 플레이어는 보스의 왼쪽에 위치함.
+        //반대로, 음수면 플레이어는 보스의 오른쪽에 위치함을 알 수 있음.
+        if (transform.position.x - player_pos.x >= 0f)
+        {
+            //이동을 왼쪽으로 사정거리만큼 하도록 설정
+            run_distance = -1 * reach_distance_long;
+        }
+        else
+        {
+            //이동을 오른쪽으로 사정거리만큼 하도록 설정
+            run_distance = 1 * reach_distance_long;
+        }
+
+        //보스의 도착지점 위치 지정
+        Vector2 end = new Vector2(transform.position.x + run_distance, transform.position.y);
+
+        //위치를 향해 돌진
+        float time = 0f;
+        float running_speed = Vector3.Distance(transform.position, end) / run_duration;
+        Debug.Log(running_speed);
+        while (time < run_duration)
+        {
+            time += Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, end, running_speed * Time.deltaTime);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.1f);
+        Debug.Log("[Running] : 사용 완료");
+        is_skill = false;
     }
 
     private IEnumerator Stomping()
@@ -208,5 +253,27 @@ public class BossDog : MonoBehaviour
         Debug.Log("[Stomping] : 보스가 앞발을 든다.");
         yield return new WaitForSeconds(precursor_time); //전조 시간만큼 대기
 
+        //충격파 오브젝트 순차적으로 발동
+        for (int i = 0; i < shock_num; i++)
+        {
+            //아래 시간을 조정함에 따라 충격파 발동 시간이 조절됨
+            yield return new WaitForSeconds(0.2f);
+
+            //충격파 오브젝트 활성화
+            GroundShock[i].SetActive(true);
+        }
+        //충격파 오브젝트 순차적으로 꺼짐
+        for (int i = 0; i < shock_num; i++)
+        {
+            //아래 시간을 조정함에 따라 충격파 발동 시간이 조절됨
+            yield return new WaitForSeconds(0.2f);
+
+            //충격파 오브젝트 활성화
+            GroundShock[i].SetActive(false);
+        }
+
+        yield return new WaitForSeconds(0.1f);
+        Debug.Log("[Stomping] : 사용 완료");
+        is_skill = false;
     }
 }
