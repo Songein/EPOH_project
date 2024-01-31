@@ -19,7 +19,17 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+        }
+        // 인스턴스가 존재하는 경우 새로생기는 인스턴스를 삭제한다.
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+
         DontDestroyOnLoad(gameObject);
     }
 }
