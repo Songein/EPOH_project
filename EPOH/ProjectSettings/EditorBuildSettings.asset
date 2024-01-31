@@ -29,7 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BossRoomForgetMeNot.unity
     guid: 74eb43b338363e744afb0285c831f1bd
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BossRoom_MinJu.unity
     guid: 99ac07ec63b49c04cb8afdb9f5be7c11
   - enabled: 1

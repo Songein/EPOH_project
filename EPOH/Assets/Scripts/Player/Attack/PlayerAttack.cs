@@ -9,7 +9,7 @@ public class PlayerAttack : MonoBehaviour
     public bool is_attacking = false; //현재 공격 중인지
     public Animator animator; //플레이어 애니메이터 변수
     public static PlayerAttack instance;
-    public float[] combo_attack_power = { 20f, 40f, 100f }; //콤보 별 공격 세기
+    public float[] combo_attack_power = { 20.0f, 40.0f, 80.0f }; //콤보 별 공격 세기
     private GameObject attack_area; //공격범위 오브젝트 참조 변수
 
     void Start()

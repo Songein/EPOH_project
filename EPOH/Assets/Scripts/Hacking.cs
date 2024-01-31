@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class Hacking : MonoBehaviour
 {
     public BossManager boss_manager; // BossManager 스크립트에 대한 참조
-    public GameManager game_manager; // GameManager 스크립트에 대한 참조
     public BossHealth boss_health;
 
     private GameObject boss;

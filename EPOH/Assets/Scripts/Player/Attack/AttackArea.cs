@@ -9,15 +9,13 @@ public class AttackArea : MonoBehaviour
 {
     private float attack_power; //공격 세기
     private CircleCollider2D collider; //AttackArea의 collider;
-    private BossHealth boss_health; //BossHealth 참조
-    private Hacking hacking;
+    public BossHealth boss_health; //BossHealth 참조
+    public Hacking hacking;
     
     void Awake()
     {
         //공격 범위 콜라이더 할당
         collider = GetComponent<CircleCollider2D>();
-
-        hacking = GetComponentInParent<Hacking>();
     }
     
     void OnTriggerEnter2D(Collider2D other)
