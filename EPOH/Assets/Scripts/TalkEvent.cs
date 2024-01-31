@@ -15,7 +15,7 @@ public class TalkEvent : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             action.Action();
-            Debug.Log("시작");
+            this.gameObject.SetActive(false);
         }
     }
 }
