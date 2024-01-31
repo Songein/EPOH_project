@@ -60,8 +60,8 @@ public class AttackArea : MonoBehaviour
     //플레이어 이동에 따라 공격범위 뒤집기
     public void Flip(bool is_facing_right)
     {
-        //플레이어가 오른쪽을 쳐다보고 있으면 collider offset의 x 값을 0.5, 아니면 -0.5로 설정
-        collider.offset = new Vector2(is_facing_right ? 0.5f : -0.5f, collider.offset.y);
+        //플레이어가 오른쪽을 쳐다보고 있으면 collider offset의 x 값을 0.8, 아니면 -0.8로 설정
+        collider.offset = new Vector2(is_facing_right ? 0.8f : -0.8f, collider.offset.y);
     }
 
     

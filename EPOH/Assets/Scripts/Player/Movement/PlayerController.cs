@@ -76,9 +76,6 @@ public class PlayerController : MonoBehaviour
         attack_area = transform.GetChild(0).gameObject.GetComponent<AttackArea>();
 
         hacking = GetComponent<Hacking>();
-        
-        //interaction_text 위치 값 할당
-        pos = interaction_text.transform.position;
     }
     
     void Update()
@@ -213,7 +210,7 @@ public class PlayerController : MonoBehaviour
                 //거리가 0.5 미만이면
                 if (groundRayHit.distance < 2.8f)
                 {
-                    Debug.Log("2.8f 미만");
+                    //Debug.Log("2.8f 미만");
                     //점프 애니메이션 해제
                     animator.SetBool("IsFall", false);
                     animator.SetBool("IsJump",false);
