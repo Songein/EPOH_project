@@ -8,6 +8,10 @@ public class TalkEvent : MonoBehaviour
     private void Start()
     {
         action = FindObjectOfType<TalkAction>();
+        if(GameManager.instance.story_info > 0)
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
