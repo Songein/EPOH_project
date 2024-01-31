@@ -779,6 +779,7 @@ GameObject:
   - component: {fileID: 633351117}
   - component: {fileID: 633351116}
   - component: {fileID: 633351115}
+  - component: {fileID: 633351118}
   m_Layer: 5
   m_Name: Gameover Button
   m_TagString: Untagged
@@ -850,7 +851,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 633351116}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 633351118}
+        m_TargetAssemblyTypeName: GameQuit, Assembly-CSharp
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &633351116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -889,6 +902,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633351113}
   m_CullTransparentMesh: 1
+--- !u!114 &633351118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633351113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3c73b14fb5b826469db42c049983d1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &745052653
 GameObject:
   m_ObjectHideFlags: 0
