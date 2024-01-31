@@ -81,7 +81,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -928175443, guid: 3e69ae7a3af0e4ec79de2f0cbb67f864, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -90,7 +90,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 2.26}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &4632130523800075609
@@ -127,8 +127,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2.24}
+  m_Offset: {x: 0, y: -0.6}
+  m_Size: {x: 1.1, y: 2.4}
   m_Direction: 0
 --- !u!95 &4632130523800075606
 Animator:
@@ -262,6 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae43a92558a44ad1bfc429a8bb16ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hacking: {fileID: 0}
   player_speed: 8
   playerJumpForce: 13
   is_interacting: 0
@@ -271,6 +272,8 @@ MonoBehaviour:
   dash_power: 20
   dash_time: 0.3
   dash_cool_time: 2
+  can_teleport: 0
+  is_teleporting: 0
   teleport_time: 0.3
   port_prefab: {fileID: 8089051319890647574, guid: 389390a4264eb42b986a804feca4cbc2, type: 3}
   is_attacking: 0
@@ -316,6 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5492f69f317ce4ffa832b60bb8c81636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boss_manager: {fileID: 0}
   player_hp: 200
 --- !u!1 &4632130524254600248
 GameObject:
@@ -363,9 +367,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1, y: 0}
+  m_Offset: {x: 0.5, y: -0.5}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 1.5
 --- !u!114 &4632130524254600251
 MonoBehaviour:
   m_ObjectHideFlags: 0
