@@ -49,7 +49,7 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator Invincible()
     {
         //오브젝트의 레이어를 PlayerDamaged로 변경
-        gameObject.layer = 8;
+        //gameObject.layer = 8;
         //무적 여부를 담고 있는 is_invincible 변수를 true로 변경
         is_invincible = true;
         //오브젝트의 색 변경(하얀 투명색)
@@ -57,7 +57,7 @@ public class PlayerHealth : MonoBehaviour
 
         yield return new WaitForSeconds(2f); //무적시간 2초
         //오브젝트의 레이어를 Player로 변경
-        gameObject.layer = 6;
+        //gameObject.layer = 6;
         //무적 여부를 담고 있는 is_invincible 변수를 true로 변경
         is_invincible = false;
         //오브젝트의 색 원래대로 변경
