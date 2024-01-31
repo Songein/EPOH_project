@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class PlayerController : MonoBehaviour
 {
@@ -51,7 +52,7 @@ public class PlayerController : MonoBehaviour
     public float dash_cool_time = 2f; //대쉬 쿨타임
     
     //순간이동
-    private Vector2 teleport_pos; //순간이동할 위치
+    private Vector3 teleport_pos; //순간이동할 위치
     public bool can_teleport = false; //순간이동할 수 있는지
     public bool is_teleporting = false; //순간이동 중인지
     public float teleport_time = 0.3f; //순간이동 지속 타임
@@ -168,7 +169,8 @@ public class PlayerController : MonoBehaviour
                 animator.SetInteger("IsTeleport",0); //순간이동 표식 설치 애니메이션 실행
                 Invoke("EndPortAni", 0.3f); //0.3초 후 순간이동 표식 설치 애니메이션 종료
                 teleport_pos = transform.position; //플레이어의 현재 위치 받아오기
-                port = Instantiate(port_prefab, new Vector2(teleport_pos.x, teleport_pos.y), Quaternion.identity); //표식 생성
+                Vector3 port_pos = new Vector3(teleport_pos.x, teleport_pos.y, port_prefab.transform.position.z);
+                port = Instantiate(port_prefab, port_pos, Quaternion.identity); //표식 생성
                 can_teleport = true; //순간이동 할 수 있다고 상태 변경
             }
         }
