@@ -20095,7 +20095,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &675308110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21676,7 +21676,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   talk_manager: {fileID: 892681762}
-  game_manager: {fileID: 363333355}
   talk_effect: {fileID: 892681760}
   player_controller: {fileID: 1740969177}
   talk_panel: {fileID: 503649903}
