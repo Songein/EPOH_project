@@ -39,7 +39,7 @@ public class BossRunning : MonoBehaviour
         GetComponent<Rigidbody2D>().gravityScale = 0;
     }
 
-    /*
+    
     void Update()
     {
         // player 및 player_controller가 초기화되어 있는지 확인
@@ -141,7 +141,7 @@ public class BossRunning : MonoBehaviour
             Destroy(damage_effect, effect_duration);
         }
     }
-    */
+    
 
     IEnumerator StartRunning()
     {

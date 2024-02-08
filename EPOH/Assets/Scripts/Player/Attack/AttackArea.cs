@@ -9,15 +9,13 @@ public class AttackArea : MonoBehaviour
 {
     private float attack_power; //공격 세기
     private CircleCollider2D collider; //AttackArea의 collider;
-    private BossHealth boss_health; //BossHealth 참조
-    private Hacking hacking;
+    public BossHealth boss_health; //BossHealth 참조
+    public Hacking hacking;
     
     void Awake()
     {
         //공격 범위 콜라이더 할당
         collider = GetComponent<CircleCollider2D>();
-
-        hacking = GetComponentInParent<Hacking>();
     }
     
     void OnTriggerEnter2D(Collider2D other)
@@ -60,8 +58,8 @@ public class AttackArea : MonoBehaviour
     //플레이어 이동에 따라 공격범위 뒤집기
     public void Flip(bool is_facing_right)
     {
-        //플레이어가 오른쪽을 쳐다보고 있으면 collider offset의 x 값을 1, 아니면 -1로 설정
-        collider.offset = new Vector2(is_facing_right ? 1f : -1f, collider.offset.y);
+        //플레이어가 오른쪽을 쳐다보고 있으면 collider offset의 x 값을 0.8, 아니면 -0.8로 설정
+        collider.offset = new Vector2(is_facing_right ? 0.8f : -0.8f, collider.offset.y);
     }
 
     

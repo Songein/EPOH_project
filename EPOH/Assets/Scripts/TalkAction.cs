@@ -7,7 +7,6 @@ using TMPro;
 public class TalkAction : MonoBehaviour
 {
     public TalkManager talk_manager;
-    public GameManager game_manager;
     public TypingEffect talk_effect;
     public PlayerController player_controller;
 
@@ -19,7 +18,7 @@ public class TalkAction : MonoBehaviour
 
     public void Action()
     {
-        Talk(game_manager.story_info);
+        Talk(GameManager.instance.story_info);
         talk_panel.SetActive(is_talking);
         player_controller.is_talking = is_talking;
     }
@@ -31,7 +30,7 @@ public class TalkAction : MonoBehaviour
         {
             is_talking=false; // 대화 상태를 false로
             talk_index = 0; // 인덱스 초기화
-            game_manager.story_info++;
+            GameManager.instance.story_info++;
             return;
         }
         // 대사가 있을 경우

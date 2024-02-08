@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class Hacking : MonoBehaviour
 {
     public BossManager boss_manager; // BossManager 스크립트에 대한 참조
-    public GameManager game_manager; // GameManager 스크립트에 대한 참조
     public BossHealth boss_health;
 
     private GameObject boss;
@@ -41,10 +40,9 @@ public class Hacking : MonoBehaviour
     // BossManager의 hacking_point가 200에 다다랐을 시 보스전이 종료되는 함수
     public void checkHackingPoint()
     {
-        if (boss_manager.hacking_point == 200 && boss_health.boss_hp == 0)
+        if (boss_manager.hacking_point == 200 && boss_manager.boss_hp <= 0)
         {
             endBossBattle();
-            updateBossClearInfo();
         }
     }
 
@@ -58,7 +56,7 @@ public class Hacking : MonoBehaviour
     }
 
     // 보스 클리어 정보 갱신
-    private void updateBossClearInfo()
+    public void updateBossClearInfo()
     {
         int boss_index = GameManager.instance.boss_num; // 선택한 보스의 인덱스
 
@@ -83,6 +81,27 @@ public class Hacking : MonoBehaviour
                 boss_manager.hacking_point = Mathf.Min(boss_manager.hacking_point, 200);
 
                 // hacking_point 증가 후 확인
+                checkHackingPoint();
+            }
+        }
+        else
+        {
+            Debug.LogError("[Hacking] : BossManager 컴포넌트를 찾을 수 없습니다.");
+        }
+    }
+
+    // hacking_point를 감소시키는 함수
+    public void decreaseHackingPoint(int amount)
+    {
+        if (boss_manager != null)
+        {
+            // 해킹포인트가 0 보다 작지 않음
+            if (boss_manager.hacking_point > 0)
+            {
+                boss_manager.hacking_point -= amount;
+                boss_manager.hacking_point = Mathf.Max(boss_manager.hacking_point, 0);
+
+                // hacking_point 감소 후 확인
                 checkHackingPoint();
             }
         }

@@ -29,7 +29,6 @@ public class SoundManager : MonoBehaviour
     {
         if (now_playing == bgm_index)
         {
-            Debug.Log("사운드 리턴");
             return; // 만약 현재 재생되고 있는 것과 재생할 음악이 같다면 리턴
         }
         //다르다면 BGM 재생

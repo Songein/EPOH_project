@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public BossManager boss_manager; // BossManager 스크립트 참조
+
     public float player_hp = 200; //플레이어의 목숨
     private SpriteRenderer sp; //플레이어 SpriteRenderer 참조
     private bool is_invincible; //무적 여부
@@ -13,6 +15,10 @@ public class PlayerHealth : MonoBehaviour
     {
         //SpriteRenderer 할당하기
         sp = GetComponent<SpriteRenderer>();
+
+        boss_manager = FindObjectOfType<BossManager>();
+
+        
     }
     
     //플레이어 데미지 관련
@@ -27,11 +33,15 @@ public class PlayerHealth : MonoBehaviour
 
             if (player_hp <= 0) //플레이어 목숨이 0이하라면
             {
+                player_hp = 0;
+                boss_manager.player_hp = player_hp; // BossManager의 player_hp 값 업데이트
                 Die();
             }
             else
             {
                 StartCoroutine(Invincible()); //무적시간 호출
+
+                boss_manager.player_hp = player_hp; // BossManager의 player_hp 값 업데이트
             }  
         }
     }
@@ -39,7 +49,7 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator Invincible()
     {
         //오브젝트의 레이어를 PlayerDamaged로 변경
-        gameObject.layer = 8;
+        //gameObject.layer = 8;
         //무적 여부를 담고 있는 is_invincible 변수를 true로 변경
         is_invincible = true;
         //오브젝트의 색 변경(하얀 투명색)
@@ -47,7 +57,7 @@ public class PlayerHealth : MonoBehaviour
 
         yield return new WaitForSeconds(2f); //무적시간 2초
         //오브젝트의 레이어를 Player로 변경
-        gameObject.layer = 6;
+        //gameObject.layer = 6;
         //무적 여부를 담고 있는 is_invincible 변수를 true로 변경
         is_invincible = false;
         //오브젝트의 색 원래대로 변경

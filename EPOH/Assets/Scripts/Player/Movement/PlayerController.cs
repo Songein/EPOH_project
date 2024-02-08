@@ -7,9 +7,13 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class PlayerController : MonoBehaviour
 {
+    public Hacking hacking; //Hacking 스크립트 참조
+
+    
     //플레이어 좌우 이동
     private float horizontal; //수평 값
     public float player_speed = 8f; //이동 속도
@@ -31,6 +35,9 @@ public class PlayerController : MonoBehaviour
     private GameObject interact_obj; //플레이어가 상호작용할 오브젝트
     public bool is_interacting = false; //플레이어가 상호작용 중인지
     private Interaction interaction; //플레이어가 상호작용할 오브젝트에 부착된 Interact 스크립트
+    public GameObject interaction_text_prefab; //상호작용 물체 위에 뜨는 space 텍스트 프리팹
+    private GameObject interaction_text; //상호작용 Space 텍스트 오브젝트
+    private Vector2 pos; //interaction_text의 위치 값
 
     //플레이어 대화
     public bool is_talking = false;
@@ -45,7 +52,7 @@ public class PlayerController : MonoBehaviour
     public float dash_cool_time = 2f; //대쉬 쿨타임
     
     //순간이동
-    private Vector2 teleport_pos; //순간이동할 위치
+    private Vector3 teleport_pos; //순간이동할 위치
     public bool can_teleport = false; //순간이동할 수 있는지
     public bool is_teleporting = false; //순간이동 중인지
     public float teleport_time = 0.3f; //순간이동 지속 타임
@@ -68,6 +75,8 @@ public class PlayerController : MonoBehaviour
         tr = GetComponent<TrailRenderer>();
         //AttackArea 오브젝트의 컴포넌트 할당
         attack_area = transform.GetChild(0).gameObject.GetComponent<AttackArea>();
+
+        hacking = GetComponent<Hacking>();
     }
     
     void Update()
@@ -148,15 +157,31 @@ public class PlayerController : MonoBehaviour
             if (can_teleport) //순간이동을 할 수 있으면(표식을 설치한 경우)
             {
                 StartCoroutine(Teleport());
+
+                // 순간이동 시 hacking_point -10 줄어듦
+                if (hacking != null)
+                {
+                    hacking.decreaseHackingPoint(10);
+                }
             }
             else //표식을 설치하지 않은 경우
             {
                 animator.SetInteger("IsTeleport",0); //순간이동 표식 설치 애니메이션 실행
                 Invoke("EndPortAni", 0.3f); //0.3초 후 순간이동 표식 설치 애니메이션 종료
                 teleport_pos = transform.position; //플레이어의 현재 위치 받아오기
-                port = Instantiate(port_prefab, new Vector2(teleport_pos.x, teleport_pos.y), Quaternion.identity); //표식 생성
+                Vector3 port_pos = new Vector3(teleport_pos.x, teleport_pos.y, port_prefab.transform.position.z);
+                port = Instantiate(port_prefab, port_pos, Quaternion.identity); //표식 생성
                 can_teleport = true; //순간이동 할 수 있다고 상태 변경
             }
+        }
+
+        //interaction_text가 null이 아니면 -> 존재하면
+        if (interaction_text != null)
+        {
+            Vector2 dir_pos = pos;
+            //0.3f 거리 내에서 -1f ~ 1f 만큼 위아래로 이동 효과
+            dir_pos.y = pos.y + 0.3f * Mathf.Sin(Time.time * 1f);
+            interaction_text.transform.position = dir_pos;
         }
         
     }
@@ -185,16 +210,14 @@ public class PlayerController : MonoBehaviour
             if (groundRayHit.collider != null)
             {
                 //거리가 0.5 미만이면
-                if (groundRayHit.distance < 2.5f)
+                if (groundRayHit.distance < 2.8f)
                 {
-                    Debug.Log("땅");
+                    //Debug.Log("2.8f 미만");
                     //점프 애니메이션 해제
                     animator.SetBool("IsFall", false);
                     animator.SetBool("IsJump",false);
                     animator.SetBool("IsDoubleJump",false);
                     player_jump_cnt = 0; //바닥에 닿으면 플레이어 점프 횟수 초기화
-                    
-                    Debug.Log("거리 0.3f 미만");
 
                 }
 
@@ -213,6 +236,21 @@ public class PlayerController : MonoBehaviour
             interact_obj = other.gameObject;
             interaction = interact_obj.GetComponent<Interaction>(); // 충돌한 오브젝트의 Interaction 할당
             Debug.Log("[PlayerController] : " + other.name + "과 상호작용 가능");
+            
+            //상호작용 오브젝트 위에 상호작용 가능함(Space)을 나타내기
+            //상호작용 물체의 위치 가져오기
+            Vector2 interaction_pos = other.transform.position;
+            //상호작용 물체의 높이 가져오기
+            float height = other.GetComponent<BoxCollider2D>().size.y;
+            //텍스트의 위치 벡터 생성하기
+            Vector2 text_pos = new Vector2(interaction_pos.x, interaction_pos.y + height/2 + 0.5f);
+            //text_pos 위치에 텍스트 생성하기
+            interaction_text = Instantiate(interaction_text_prefab,text_pos, Quaternion.identity);
+            //생성한 텍스트를 상호작용 오브젝트의 하위 오브젝트로 만들기
+            interaction_text.transform.parent = other.transform;
+            
+            //interaction_text의 위치 값 할당
+            pos = interaction_text.transform.position;
         }
     }
     
@@ -224,6 +262,8 @@ public class PlayerController : MonoBehaviour
             //상호작용 할 오브젝트에 null 할당
             interact_obj = null;
             Debug.Log("[PlayerController] : " + other.name + "과 상호작용 불가능");
+            //상호작용 space 텍스트 제거하기
+            Destroy(interaction_text);
         }
         
     }
@@ -286,7 +326,7 @@ public class PlayerController : MonoBehaviour
         can_teleport = false; //순간이동 불가능으로 설정
         is_teleporting = true; //순간이동 중으로 설정
         Destroy(port); //순간이동 표식 제거
-        gameObject.transform.position = new Vector2(teleport_pos.x, teleport_pos.y + 2f); //순간이동 표식보다 y축으로 2만큼 위로 이동
+        gameObject.transform.position = new Vector2(teleport_pos.x, teleport_pos.y + 3f); //순간이동 표식보다 y축으로 3만큼 위로 이동
         animator.SetBool("IsFall",true); //순간이동 끝 애니메이션 실행
         //rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce);
 
