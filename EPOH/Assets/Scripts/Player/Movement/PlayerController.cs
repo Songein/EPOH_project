@@ -13,6 +13,17 @@ public class PlayerController : MonoBehaviour
 {
     public Hacking hacking; //Hacking 스크립트 참조
 
+    // PlayerSound audioSource
+    private AudioSource audioSource;
+
+    public AudioClip footstepClip; // 발걸음 소리(뛰기, 점프 착지)
+    public AudioClip jumpClip1; // 1단 점프
+    public AudioClip jumpClip2; // 2단 점프
+    public AudioClip dashClip; // 대쉬
+    public AudioClip teleportClip1; // 순간이동 표식 설치
+    public AudioClip teleportClip2; // 순간이동 표식 위치로 이동
+
+    
     
     //플레이어 좌우 이동
     private float horizontal; //수평 값
@@ -77,9 +88,14 @@ public class PlayerController : MonoBehaviour
         attack_area = transform.GetChild(0).gameObject.GetComponent<AttackArea>();
 
         hacking = GetComponent<Hacking>();
+
+
+        audioSource = GetComponent<AudioSource>();
+
         
         //TalkAction 스크립트 할당
         talkaction = FindObjectOfType<TalkAction>();
+
     }
     
     void Update()
@@ -102,6 +118,8 @@ public class PlayerController : MonoBehaviour
         else
         {
             animator.SetBool("IsRun", true);
+            // 발소리 재생
+            PlayFootstepSound();
         }
 
         //점프 버튼을 누르고 점프 횟수가 2미만일 때 점프 수행
@@ -113,10 +131,17 @@ public class PlayerController : MonoBehaviour
                 case 0 : //첫 점프일 때
                     rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce);
                     animator.SetBool("IsJump", true);
+
+                    // 1단 점프 소리 재생
+                    Jump1Sound();
                     break;
+
                 case 1 : //2단 점프일 때
                     rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce * 1.5f); //2단 점프는 좀 더 높이 점프
                     animator.SetBool("IsDoubleJump",true);
+
+                    // 2단 점프 소리 재생
+                    Jump2Sound();
                     break;
                     
             }
@@ -138,6 +163,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Dash") && can_dash)
         {
             StartCoroutine(Dash());
+            
         }
 
         if (Input.GetButtonDown("Interact")) // 상호작용
@@ -166,6 +192,9 @@ public class PlayerController : MonoBehaviour
                 {
                     hacking.decreaseHackingPoint(10);
                 }
+
+                // 순간이동 2 소리
+                Teleport2Sound();
             }
             else //표식을 설치하지 않은 경우
             {
@@ -175,6 +204,9 @@ public class PlayerController : MonoBehaviour
                 Vector3 port_pos = new Vector3(teleport_pos.x, teleport_pos.y, port_prefab.transform.position.z);
                 port = Instantiate(port_prefab, port_pos, Quaternion.identity); //표식 생성
                 can_teleport = true; //순간이동 할 수 있다고 상태 변경
+
+                // 순간이동 1 소리
+                Teleport1Sound();
             }
         }
 
@@ -221,6 +253,9 @@ public class PlayerController : MonoBehaviour
                     animator.SetBool("IsJump",false);
                     animator.SetBool("IsDoubleJump",false);
                     player_jump_cnt = 0; //바닥에 닿으면 플레이어 점프 횟수 초기화
+
+                    // 발소리 재생
+                    PlayFootstepSound();
 
                 }
 
@@ -309,6 +344,9 @@ public class PlayerController : MonoBehaviour
         }
         tr.emitting = true; //대쉬 효과 발산
 
+        // 대쉬 소리 재생
+        DashSound();
+
         //Dash 끝
         yield return new WaitForSeconds(dash_time);
         tr.emitting = false; //대쉬 효과 끝
@@ -342,5 +380,91 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetInteger("IsTeleport",-1);
     }
+
+    // 발소리 재생 함수
+    void PlayFootstepSound()
+    {
+        // footstepClip이 null이 아닌지 확인
+        if (footstepClip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(footstepClip);
+        }
+        else
+        {
+            Debug.LogWarning("Footstep AudioClip이나 AudioSource가 null입니다.");
+        }
+    }
+
+    // 점프 1단 소리 재생 함수
+    void Jump1Sound()
+    {
+        // jumpClip1이 null이 아닌지 확인
+        if (jumpClip1 != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(jumpClip1);
+        }
+        else
+        {
+            Debug.LogWarning("jumpClip1이나 AudioSource가 null입니다.");
+        }
+    }
     
+    // 점프 2단 소리 재생 함수
+    void Jump2Sound()
+    {
+        // jumpClip2이 null이 아닌지 확인
+        if (jumpClip2 != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(jumpClip2);
+        }
+        else
+        {
+            Debug.LogWarning("jumpClip2이나 AudioSource가 null입니다.");
+        }
+    }
+
+    // 대쉬 소리 재생 함수
+    void DashSound()
+    {
+        // dashClip이 null이 아닌지 확인
+        if (dashClip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(dashClip);
+        }
+        else
+        {
+            Debug.LogWarning("dashClip이나 AudioSource가 null입니다.");
+        }
+
+    }
+
+    // 순간이동 표식 설치 소리 재생 함수
+    void Teleport1Sound()
+    {
+        //teleportClip1이 null이 아닌지 확인
+        if (teleportClip1 != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(teleportClip1);
+        }
+        else
+        {
+            Debug.LogWarning("teleportClip1이나 AudioSource가 null입니다.");
+        }
+
+    }
+
+    // 순간이동 표식 위치 이동 소리 재생 함수
+    void Teleport2Sound()
+    {
+        //teleportClip2이 null이 아닌지 확인
+        if (teleportClip2 != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(teleportClip2);
+        }
+        else
+        {
+            Debug.LogWarning("teleportClip2이나 AudioSource가 null입니다.");
+        }
+
+    }
 }
