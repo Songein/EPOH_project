@@ -52,7 +52,7 @@ public class Event2Script : MonoBehaviour
 
         // 두 번째 안내음 표시
         yield return new WaitForSeconds(0.5f); // 안내음 간의 짧은 딜레이
-        event_text.text = "안내음: 직원코드 H-00,의뢰가 할당되었습니다. 업무에 임해주시기 바랍니다.";
+        event_text.text = "안내음: 직원코드 H-00. 의뢰가 할당되었습니다. 업무에 임해주시기 바랍니다.";
         yield return new WaitForSeconds(event_delay);
 
         // 안내음 사라짐
