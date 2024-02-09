@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip jumpClip1; // 1단 점프
     public AudioClip jumpClip2; // 2단 점프
     public AudioClip dashClip; // 대쉬
+    public AudioClip teleportClip1; // 순간이동 표식 설치
+    public AudioClip teleportClip2; // 순간이동 표식 위치로 이동
 
     
     
@@ -184,6 +186,9 @@ public class PlayerController : MonoBehaviour
                 {
                     hacking.decreaseHackingPoint(10);
                 }
+
+                // 순간이동 2 소리
+                Teleport2Sound();
             }
             else //표식을 설치하지 않은 경우
             {
@@ -193,6 +198,9 @@ public class PlayerController : MonoBehaviour
                 Vector3 port_pos = new Vector3(teleport_pos.x, teleport_pos.y, port_prefab.transform.position.z);
                 port = Instantiate(port_prefab, port_pos, Quaternion.identity); //표식 생성
                 can_teleport = true; //순간이동 할 수 있다고 상태 변경
+
+                // 순간이동 1 소리
+                Teleport1Sound();
             }
         }
 
@@ -420,6 +428,36 @@ public class PlayerController : MonoBehaviour
         else
         {
             Debug.LogWarning("dashClip이나 AudioSource가 null입니다.");
+        }
+
+    }
+
+    // 순간이동 표식 설치 소리 재생 함수
+    void Teleport1Sound()
+    {
+        //teleportClip1이 null이 아닌지 확인
+        if (teleportClip1 != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(teleportClip1);
+        }
+        else
+        {
+            Debug.LogWarning("teleportClip1이나 AudioSource가 null입니다.");
+        }
+
+    }
+
+    // 순간이동 표식 위치 이동 소리 재생 함수
+    void Teleport2Sound()
+    {
+        //teleportClip2이 null이 아닌지 확인
+        if (teleportClip2 != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(teleportClip2);
+        }
+        else
+        {
+            Debug.LogWarning("teleportClip2이나 AudioSource가 null입니다.");
         }
 
     }

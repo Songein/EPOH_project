@@ -268,6 +268,8 @@ MonoBehaviour:
   jumpClip1: {fileID: 8300000, guid: 16eb595cb84df9743b43927e6e11f487, type: 3}
   jumpClip2: {fileID: 8300000, guid: 17294eb08ece64144823d4e09b117d63, type: 3}
   dashClip: {fileID: 8300000, guid: c5dea467677cdd449a7f8190f8453783, type: 3}
+  teleportClip1: {fileID: 8300000, guid: 991a00e228f5993478cb335089e8f722, type: 3}
+  teleportClip2: {fileID: 8300000, guid: 788b9829b5e33c542a07bc4e5530dcd9, type: 3}
   player_speed: 8
   playerJumpForce: 13
   is_interacting: 0
