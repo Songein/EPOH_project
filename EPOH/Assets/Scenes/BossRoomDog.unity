@@ -1340,6 +1340,11 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &479889374 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2472680666091417137, guid: 34e41f9f337d747afa4e76eb8753b606, type: 3}
+  m_PrefabInstance: {fileID: 708050797}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &527161404
 GameObject:
   m_ObjectHideFlags: 0
@@ -1838,7 +1843,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2472680666091417137, guid: 34e41f9f337d747afa4e76eb8753b606, type: 3}
       propertyPath: m_Name
-      value: Platform (1)
+      value: Right
       objectReference: {fileID: 0}
     - target: {fileID: 2472680666091417139, guid: 34e41f9f337d747afa4e76eb8753b606, type: 3}
       propertyPath: m_Size.x
@@ -2941,7 +2946,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2472680666091417137, guid: 34e41f9f337d747afa4e76eb8753b606, type: 3}
       propertyPath: m_Name
-      value: Platform
+      value: Left
       objectReference: {fileID: 0}
     - target: {fileID: 2472680666091417139, guid: 34e41f9f337d747afa4e76eb8753b606, type: 3}
       propertyPath: m_Size.x
@@ -3251,6 +3256,11 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1160186963 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2472680666091417137, guid: 34e41f9f337d747afa4e76eb8753b606, type: 3}
+  m_PrefabInstance: {fileID: 1617892850}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1175084301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3412,6 +3422,19 @@ MonoBehaviour:
   event2_end: 0
   tutorial_end: 0
   battle_start: 0
+  background: {fileID: 470126089}
+  platforms:
+  - {fileID: 1671160916}
+  - {fileID: 479889374}
+  - {fileID: 1160186963}
+  background_sprites:
+  - {fileID: 21300000, guid: 28ea0316d0ad6471789e5683e588b02b, type: 3}
+  - {fileID: 21300000, guid: e3a8eb9e6789845768f6577f885f6739, type: 3}
+  platform_sprites:
+  - {fileID: 1737334311, guid: 60a606803c6e842f195e214cb34edaaa, type: 3}
+  - {fileID: 383904569, guid: b97aa24b1aeaf4a068db68a361ca0743, type: 3}
+  - {fileID: 2129949475, guid: ca491e3ab08a64f64a5818358c152032, type: 3}
+  - {fileID: 21300000, guid: 1a9ada47cc34e424c982dcce08d17c02, type: 3}
 --- !u!1 &1281960352
 GameObject:
   m_ObjectHideFlags: 0
@@ -4353,7 +4376,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2472680666091417137, guid: 34e41f9f337d747afa4e76eb8753b606, type: 3}
       propertyPath: m_Name
-      value: Platform (2)
+      value: Top
       objectReference: {fileID: 0}
     - target: {fileID: 2472680666091417139, guid: 34e41f9f337d747afa4e76eb8753b606, type: 3}
       propertyPath: m_Size.x
@@ -4385,16 +4408,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2472680666091417140, guid: 34e41f9f337d747afa4e76eb8753b606, type: 3}
       propertyPath: m_Size.x
-      value: 0.09001767
+      value: 7.731518
       objectReference: {fileID: 0}
     - target: {fileID: 2472680666091417140, guid: 34e41f9f337d747afa4e76eb8753b606, type: 3}
       propertyPath: m_Size.y
-      value: 0.1
+      value: 1.31
       objectReference: {fileID: 0}
     - target: {fileID: 2472680666091417140, guid: 34e41f9f337d747afa4e76eb8753b606, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -565406513, guid: 0661cc58ba5234828aebb99c5c6c2def, type: 3}
+      objectReference: {fileID: 2129949475, guid: ca491e3ab08a64f64a5818358c152032, type: 3}
     - target: {fileID: 2472680666091417140, guid: 34e41f9f337d747afa4e76eb8753b606, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -4483,6 +4506,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1671160916 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2472680666091417137, guid: 34e41f9f337d747afa4e76eb8753b606, type: 3}
+  m_PrefabInstance: {fileID: 1063228484}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1672857491
 GameObject:
   m_ObjectHideFlags: 0
