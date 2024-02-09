@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
 {
     public Hacking hacking; //Hacking 스크립트 참조
 
+    // Footstep AudioClip 변수를 public으로 선언
+    public AudioClip footstepClip;
+
+    private AudioSource audioSource;
     
     //플레이어 좌우 이동
     private float horizontal; //수평 값
@@ -77,6 +81,8 @@ public class PlayerController : MonoBehaviour
         attack_area = transform.GetChild(0).gameObject.GetComponent<AttackArea>();
 
         hacking = GetComponent<Hacking>();
+
+        audioSource = GetComponent<AudioSource>();
     }
     
     void Update()
@@ -99,6 +105,8 @@ public class PlayerController : MonoBehaviour
         else
         {
             animator.SetBool("IsRun", true);
+            // 발소리 재생
+            PlayFootstepSound();
         }
 
         //점프 버튼을 누르고 점프 횟수가 2미만일 때 점프 수행
@@ -219,6 +227,9 @@ public class PlayerController : MonoBehaviour
                     animator.SetBool("IsDoubleJump",false);
                     player_jump_cnt = 0; //바닥에 닿으면 플레이어 점프 횟수 초기화
 
+                    // 발소리 재생
+                    PlayFootstepSound();
+
                 }
 
                 //Debug.Log(groundRayHit.collider.name);
@@ -338,6 +349,20 @@ public class PlayerController : MonoBehaviour
     void EndPortAni() //순간이동 표식 생성 애니메이션 해제
     {
         animator.SetInteger("IsTeleport",-1);
+    }
+
+    // 발소리 재생 함수
+    void PlayFootstepSound()
+    {
+         // footstepClip이 null이 아닌지 확인
+        if (footstepClip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(footstepClip);
+        }
+        else
+        {
+            Debug.LogWarning("Footstep AudioClip이나 AudioSource가 null입니다.");
+        }
     }
     
 }
