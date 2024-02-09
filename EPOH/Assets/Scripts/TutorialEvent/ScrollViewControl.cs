@@ -10,14 +10,10 @@ public class ScrollViewControl : MonoBehaviour
 
     public GameObject character_panel; // 주인공 대화창 Panel을 저장할 변수
     public TMP_Text dialogue_text; // 주인공 Dialogue TMPro Text 요소를 저장할 변수
-    private float delay_between_lines = 2f; // 대사 사이의 딜레이
+    //private float delay_between_lines = 2f; // 대사 사이의 딜레이
     private bool has_started_talking = false; // 대화가 시작되었는지 체크하는 변수
 
-    /*
-    public GameObject event_panel; //  이벤트 Panel을 저장할 변수
-    public TMP_Text event_text; // 이벤트 TMPro Text 요소를 저장할 변수
-    private float event_delay = 2f;
-    */
+    private bool space_pressed = false; // Space 키를 눌렀는지 체크하는 변수 추가
 
     public Button accept_button; // Accept 버튼
 
@@ -31,13 +27,6 @@ public class ScrollViewControl : MonoBehaviour
         //event_panel.SetActive(false); //이벤트 Panel 비활성화
 
         accept_button.gameObject.SetActive(false); // Accept 버튼 비활성화
-
-        /*
-        accept_button.onClick.AddListener(() => {
-            myScrollRect.gameObject.SetActive(false); // ScrollRect 비활성화
-            //StartCoroutine(startEvent4Talk()); // 이벤트 안내음 
-        };
-        */
 
     }
     
@@ -72,30 +61,40 @@ public class ScrollViewControl : MonoBehaviour
             has_started_talking = true; // 대화가 시작되었음을 표시
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            space_pressed = true;
+        }
+
     }
 
     IEnumerator startCharacterTalk()
     {
+        yield return new WaitForSeconds(0.1f); // 약간의 딜레이 추가
+
 
         // 첫 번째 대사 표시
         dialogue_text.text = "나: 기억을 지워…? 내가 기억을 지우는 일을 했다는 건가?";
-        yield return new WaitForSeconds(delay_between_lines);
+        space_pressed = false; // space_pressed 초기화
+        yield return new WaitUntil(() => space_pressed); // space_pressed가 참이 될 때까지 기다림
             
         // 대사 사라짐
         dialogue_text.text = "";
 
         // 두 번째 대사 표시
-        yield return new WaitForSeconds(0.5f); // 대사 간의 짧은 딜레이
+        //yield return new WaitForSeconds(0.5f); // 대사 간의 짧은 딜레이
         dialogue_text.text = "나: …그랬던 것 같기도 한데, 자세한 것들이 하나도 기억나지 않아.";
-        yield return new WaitForSeconds(delay_between_lines);
+        space_pressed = false; // space_pressed 초기화
+        yield return new WaitUntil(() => space_pressed); // space_pressed가 참이 될 때까지 기다림
 
         // 대사 사라짐
         dialogue_text.text = "";
 
         // 세 번째 대사 표시
-        yield return new WaitForSeconds(0.5f); // 대사 간의 짧은 딜레이
+        //yield return new WaitForSeconds(0.5f); // 대사 간의 짧은 딜레이
         dialogue_text.text = "나: 이 ‘의뢰’를 해결하면 무언가 더 기억이 날까…";
-        yield return new WaitForSeconds(delay_between_lines);
+         space_pressed = false; // space_pressed 초기화
+        yield return new WaitUntil(() => space_pressed); // space_pressed가 참이 될 때까지 기다림
 
         // 대사 사라짐
         dialogue_text.text = "";
@@ -108,6 +107,21 @@ public class ScrollViewControl : MonoBehaviour
         accept_button.Select(); // Accept 버튼을 디폴트로 선택하도록 만듦
         
     }
+
+    IEnumerator waitForKeyPress() // Space 키를 누르면 다음 대사로 넘어가는 함수
+    {
+        while (true)
+        {
+            if (space_pressed)
+            {
+                space_pressed = false; // Space 키를 눌렀다는 체크를 초기화
+                yield break; // 루프를 빠져나와 다음 대사로 넘어감
+            }
+
+            yield return null;
+        }
+    }
+
 
    
 
