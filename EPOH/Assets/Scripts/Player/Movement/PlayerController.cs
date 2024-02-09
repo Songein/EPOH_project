@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip footstepClip; // 발걸음 소리(뛰기, 점프 착지)
     public AudioClip jumpClip1; // 1단 점프
     public AudioClip jumpClip2; // 2단 점프
+    public AudioClip dashClip; // 대쉬
 
     
     
@@ -154,6 +155,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Dash") && can_dash)
         {
             StartCoroutine(Dash());
+            
         }
 
         if (Input.GetButtonDown("Interact")) // 상호작용
@@ -328,6 +330,9 @@ public class PlayerController : MonoBehaviour
         }
         tr.emitting = true; //대쉬 효과 발산
 
+        // 대쉬 소리 재생
+        DashSound();
+
         //Dash 끝
         yield return new WaitForSeconds(dash_time);
         tr.emitting = false; //대쉬 효과 끝
@@ -402,5 +407,20 @@ public class PlayerController : MonoBehaviour
         {
             Debug.LogWarning("jumpClip2이나 AudioSource가 null입니다.");
         }
+    }
+
+    // 대쉬 소리 재생 함수
+    void DashSound()
+    {
+        // dashClip이 null이 아닌지 확인
+        if (dashClip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(dashClip);
+        }
+        else
+        {
+            Debug.LogWarning("dashClip이나 AudioSource가 null입니다.");
+        }
+
     }
 }
