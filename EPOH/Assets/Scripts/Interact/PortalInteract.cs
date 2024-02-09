@@ -8,7 +8,9 @@ public class PortalInteract : Interaction
 
     private void Start()
     {
+        
         moveToNextScene = GetComponent<MoveToNextScene>();
+       
     }
     public override void Interact()
     {

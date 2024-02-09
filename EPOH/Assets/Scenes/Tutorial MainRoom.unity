@@ -21451,7 +21451,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1614172868}
   m_HandleRect: {fileID: 1614172867}
   m_Direction: 2
-  m_Value: 1.0000001
+  m_Value: 1
   m_Size: 0.4984711
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -21644,6 +21644,7 @@ MonoBehaviour:
   event_panel: {fileID: 2125940859}
   event_text: {fileID: 1831533413}
   accept_button: {fileID: 478011697}
+  player_controller: {fileID: 0}
 --- !u!1 &679174749
 GameObject:
   m_ObjectHideFlags: 0
@@ -23411,7 +23412,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   char_per_sec: 15
-  message_text: {fileID: 331667597}
+  talk_text: {fileID: 0}
+  notice_text: {fileID: 0}
 --- !u!114 &892681761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23428,6 +23430,7 @@ MonoBehaviour:
   talk_effect: {fileID: 892681760}
   player_controller: {fileID: 0}
   talk_panel: {fileID: 503649903}
+  notice_panel: {fileID: 0}
   is_talking: 0
   talk_index: 0
 --- !u!114 &892681762
@@ -28772,8 +28775,7 @@ GameObject:
   - component: {fileID: 1493410615}
   - component: {fileID: 1493410614}
   - component: {fileID: 1493410618}
-  - component: {fileID: 1493410617}
-  - component: {fileID: 1493410616}
+  - component: {fileID: 1493410619}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Interaction
@@ -28822,39 +28824,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1493410616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493410613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cb03fa24ae02ba41997c184c5ae9b70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1493410617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493410613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f787812182d531740893adf679e3f3d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mission1_button: {fileID: 394593732}
-  mission2_button: {fileID: 151050948}
-  mission3_button: {fileID: 1283320720}
-  mission_decision_popup: {fileID: 471311612}
-  yes_button: {fileID: 966437595}
-  no_button: {fileID: 1452843023}
-  widget_return_button: {fileID: 1461112182}
-  last_clicked_button: {fileID: 0}
-  canInteractWithPortal: 0
 --- !u!114 &1493410618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28868,6 +28837,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   next_scene_name: Corrider
+--- !u!114 &1493410619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493410613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde4d108c063f794fb2495e3b680d259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1498150692
 GameObject:
   m_ObjectHideFlags: 0

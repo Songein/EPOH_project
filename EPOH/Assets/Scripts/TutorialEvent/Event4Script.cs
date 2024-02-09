@@ -13,7 +13,11 @@ public class Event4Script : MonoBehaviour
 
     public Button accept_button;
 
-     private bool space_pressed = false; // Space 키를 눌렀는지 체크하는 변수 추가
+    private bool space_pressed = false; // Space 키를 눌렀는지 체크하는 변수 추가
+
+    public PlayerController player_controller;
+
+    
 
     void Start()
     {
@@ -21,6 +25,8 @@ public class Event4Script : MonoBehaviour
         event_panel.SetActive(false);
         accept_button.onClick.AddListener(closeScrollViewAndOpenEventPanel);
         space_pressed = false; // 스크립트가 시작될 때 space_pressed를 false로 설정
+        player_controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        
     }
 
     void Update()
@@ -34,12 +40,15 @@ public class Event4Script : MonoBehaviour
     public void closeScrollViewAndOpenEventPanel()
     {
         scrollRect.gameObject.SetActive(false); // ScrollRect 비활성화
+        player_controller.is_interacting = false;
         StartCoroutine(startEvent4Talk());
+        
     }
 
     IEnumerator startEvent4Talk()
     {
         event_panel.SetActive(true); // 이벤트 Panel 활성화
+        player_controller.is_talking = true;
         yield return new WaitForSeconds(0.1f); // 약간의 딜레이 추가
 
         //첫 번째 이벤트 안내음
@@ -77,22 +86,20 @@ public class Event4Script : MonoBehaviour
 
         // 이벤트 Panel 비활성화
         event_panel.SetActive(false);
+        player_controller.is_talking = false;
         
-         // 대화가 끝나고 space_pressed 초기화
+        // 대화가 끝나고 space_pressed 초기화
         space_pressed = false;
+
+        
+
 
     }
 
     IEnumerator waitForKeyPress() // Space 키를 누르면 다음 대사로 넘어가는 함수
     {
-        while (true)
+        while (!Input.GetKeyDown(KeyCode.Space))
         {
-            if (space_pressed)
-            {
-                space_pressed = false; // Space 키를 눌렀다는 체크를 초기화
-                yield break; // 루프를 빠져나와 다음 대사로 넘어감
-            }
-
             yield return null;
         }
     }

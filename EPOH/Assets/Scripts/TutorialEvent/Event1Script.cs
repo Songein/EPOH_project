@@ -13,10 +13,11 @@ public class Event1Script : MonoBehaviour
     //private float tutorial_delay = 4f;
 
     private bool space_pressed = false; // Space 키를 눌렀는지 체크하는 변수 추가
+    public PlayerController player_controller;
 
     void Start()
     {
-        
+        player_controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         StartCoroutine(startCharacterEvent());
 
     }
@@ -33,6 +34,7 @@ public class Event1Script : MonoBehaviour
     {
 
         character_panel.SetActive(true); // 주인공 대화창 Panel 활성화
+        player_controller.is_talking = true;
         tutorial_panel.SetActive(false); // 튜토리얼 Panel 비활성화
 
         //메인룸에서 눈을 뜨는 주인공
@@ -62,6 +64,7 @@ public class Event1Script : MonoBehaviour
 
         // 주인공 대화창 Panel 비활성화
         character_panel.SetActive(false);
+        player_controller.is_talking = false;
 
 
         // 튜토리얼 Panel 활성화
@@ -73,6 +76,7 @@ public class Event1Script : MonoBehaviour
         if (tutorial_panel.activeSelf) 
         {
             StartCoroutine(tutorialTextPrint()); // 튜토리얼 이벤트 발생
+            player_controller.is_talking = true;
         }
 
     }
@@ -85,6 +89,7 @@ public class Event1Script : MonoBehaviour
         yield return waitForKeyPress();
         tutorial_panel.SetActive(false); // 튜토리얼 Panel 비활성화
         Debug.Log("튜토리얼 panel 비활성화");
+        player_controller.is_talking = false;
     }
 
     IEnumerator waitForKeyPress() // Space 키를 누르면 다음 대사로 넘어가는 함수

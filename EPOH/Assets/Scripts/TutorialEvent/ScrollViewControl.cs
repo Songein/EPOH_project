@@ -17,12 +17,15 @@ public class ScrollViewControl : MonoBehaviour
 
     public Button accept_button; // Accept 버튼
 
+    public PlayerController player_controller;
+
     //private bool should_start_event = false; // 코루틴 시작 플래그
     
 
 
     void Start()
     {
+        player_controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         character_panel.SetActive(false); // 주인공 대화창 Panel 비활성화
         //event_panel.SetActive(false); //이벤트 Panel 비활성화
 
@@ -55,6 +58,7 @@ public class ScrollViewControl : MonoBehaviour
         {
             // 주인공 대화창 Panel을 활성화
             character_panel.SetActive(true);
+            player_controller.is_talking = true;
 
             // 주인공 대사 이벤트 발생
             StartCoroutine(startCharacterTalk());
@@ -106,9 +110,11 @@ public class ScrollViewControl : MonoBehaviour
 
         // 주인공 대화창 Panel 비활성화
         character_panel.SetActive(false);
+        player_controller.is_talking = false;
 
         // Accept 버튼 활성화
         accept_button.gameObject.SetActive(true);
+        player_controller.is_interacting = true;
         accept_button.Select(); // Accept 버튼을 디폴트로 선택하도록 만듦
         
     }
