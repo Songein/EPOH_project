@@ -77,6 +77,9 @@ public class PlayerController : MonoBehaviour
         attack_area = transform.GetChild(0).gameObject.GetComponent<AttackArea>();
 
         hacking = GetComponent<Hacking>();
+        
+        //TalkAction 스크립트 할당
+        talkaction = FindObjectOfType<TalkAction>();
     }
     
     void Update()
