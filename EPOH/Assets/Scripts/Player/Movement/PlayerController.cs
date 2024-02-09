@@ -13,10 +13,14 @@ public class PlayerController : MonoBehaviour
 {
     public Hacking hacking; //Hacking 스크립트 참조
 
-    // Footstep AudioClip 변수를 public으로 선언
-    public AudioClip footstepClip;
-
+    // PlayerSound audioSource
     private AudioSource audioSource;
+
+    public AudioClip footstepClip; // 발걸음 소리(뛰기, 점프 착지)
+    public AudioClip jumpClip1; // 1단 점프
+    public AudioClip jumpClip2; // 2단 점프
+
+    
     
     //플레이어 좌우 이동
     private float horizontal; //수평 값
@@ -118,10 +122,17 @@ public class PlayerController : MonoBehaviour
                 case 0 : //첫 점프일 때
                     rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce);
                     animator.SetBool("IsJump", true);
+
+                    // 1단 점프 소리 재생
+                    Jump1Sound();
                     break;
+
                 case 1 : //2단 점프일 때
                     rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce * 1.5f); //2단 점프는 좀 더 높이 점프
                     animator.SetBool("IsDoubleJump",true);
+
+                    // 2단 점프 소리 재생
+                    Jump2Sound();
                     break;
                     
             }
@@ -354,7 +365,7 @@ public class PlayerController : MonoBehaviour
     // 발소리 재생 함수
     void PlayFootstepSound()
     {
-         // footstepClip이 null이 아닌지 확인
+        // footstepClip이 null이 아닌지 확인
         if (footstepClip != null && audioSource != null)
         {
             audioSource.PlayOneShot(footstepClip);
@@ -364,5 +375,32 @@ public class PlayerController : MonoBehaviour
             Debug.LogWarning("Footstep AudioClip이나 AudioSource가 null입니다.");
         }
     }
+
+    // 점프 1단 소리 재생 함수
+    void Jump1Sound()
+    {
+        // jumpClip1이 null이 아닌지 확인
+        if (jumpClip1 != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(jumpClip1);
+        }
+        else
+        {
+            Debug.LogWarning("jumpClip1이나 AudioSource가 null입니다.");
+        }
+    }
     
+    // 점프 2단 소리 재생 함수
+    void Jump2Sound()
+    {
+        // jumpClip2이 null이 아닌지 확인
+        if (jumpClip2 != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(jumpClip2);
+        }
+        else
+        {
+            Debug.LogWarning("jumpClip2이나 AudioSource가 null입니다.");
+        }
+    }
 }
