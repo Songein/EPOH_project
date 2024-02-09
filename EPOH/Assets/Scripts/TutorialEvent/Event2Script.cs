@@ -55,7 +55,9 @@ public class Event2Script : MonoBehaviour
         event_panel.SetActive(true);
 
         //첫 번째 이벤트 안내음
-        event_text.text = "안내음: 의식 접속 확인";
+        event_text.text = "안내음: ";
+        yield return new WaitForSeconds(0.6f); // 약간의 딜레이 추가
+        yield return StartCoroutine(printEventTextEffect("의식 접속 확인", 0.05f)); // 텍스트 효과 적용
         yield return new WaitWhile(() => !space_pressed);
         space_pressed = false;
 
@@ -63,8 +65,9 @@ public class Event2Script : MonoBehaviour
         event_text.text = "";
 
         // 두 번째 안내음 표시
-        //yield return new WaitForSeconds(0.5f); // 안내음 간의 짧은 딜레이
-        event_text.text = "안내음: 직원코드 H-00. 의뢰가 할당되었습니다. 업무에 임해주시기 바랍니다.";
+        event_text.text = "안내음: ";
+        yield return new WaitForSeconds(0.6f); // 안내음 간의 짧은 딜레이
+        yield return StartCoroutine(printEventTextEffect("직원코드 H-00. 의뢰가 할당되었습니다. 업무에 임해주시기 바랍니다.", 0.05f)); // 텍스트 효과 적용
         yield return waitForKeyPress();
 
         // 안내음 사라짐
@@ -89,7 +92,9 @@ public class Event2Script : MonoBehaviour
 
     IEnumerator startCharacterDialogue()
     {
-        character_text.text = "나: 의뢰? 업무? 저쪽에 빛나고 있는 것을 조작하면 되는 건가?";
+        character_text.text = "나: ";
+        yield return new WaitForSeconds(0.6f); // 약간의 딜레이 추가
+        yield return StartCoroutine(printCharacterTextEffect("의뢰? 업무? 저쪽에 빛나고 있는 것을 조작하면 되는 건가?", 0.05f)); // 텍스트 효과 적용
         yield return waitForKeyPress();
         
         // 대사 사라짐
@@ -113,7 +118,9 @@ public class Event2Script : MonoBehaviour
 
     IEnumerator tutorialEvent()
     {
-        tutorial_text.text = "튜토리얼- space로 상호작용이 가능합니다.";
+        tutorial_text.text = "튜토리얼- ";
+         yield return new WaitForSeconds(0.6f); // 약간의 딜레이 추가
+        yield return StartCoroutine(printTutorialTextEffect("space로 상호작용이 가능합니다.", 0.05f)); // 텍스트 효과 적용
         yield return waitForKeyPress();
         tutorial_panel.SetActive(false); // 튜토리얼 Panel 비활성화
         Debug.Log("튜토리얼 panel 비활성화");
@@ -132,4 +139,32 @@ public class Event2Script : MonoBehaviour
             yield return null;
         }
     }
+
+    IEnumerator printCharacterTextEffect(string text, float delay)
+    {
+        for (int i = 0; i < text.Length; i++)
+        {
+            character_text.text += text[i];
+            yield return new WaitForSeconds(delay);
+        }
+    }
+
+    IEnumerator printTutorialTextEffect(string text, float delay)
+    {
+        for (int i = 0; i < text.Length; i++)
+        {
+            tutorial_text.text += text[i];
+            yield return new WaitForSeconds(delay);
+        }
+    }
+
+    IEnumerator printEventTextEffect(string text, float delay)
+    {
+        for (int i = 0; i < text.Length; i++)
+        {
+            event_text.text += text[i];
+            yield return new WaitForSeconds(delay);
+        }
+    }
+
 }

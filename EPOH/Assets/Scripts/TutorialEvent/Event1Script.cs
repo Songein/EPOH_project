@@ -39,7 +39,9 @@ public class Event1Script : MonoBehaviour
         Debug.Log("눈을 뜨는 주인공 애니메이션");
 
         // 첫 번째 대사 표시
-        dialogue_text.text = "나: 여긴…?";
+        dialogue_text.text = "나: ";
+        yield return new WaitForSeconds(0.6f); // 약간의 딜레이 추가
+        yield return StartCoroutine(printCharacterTextEffect("여긴…?", 0.05f)); // 텍스트 효과 적용
         yield return waitForKeyPress();
 
         // 대사 사라짐
@@ -50,7 +52,9 @@ public class Event1Script : MonoBehaviour
 
         // 두 번째 대사 표시
         //yield return new WaitForSeconds(0.2f); // 대사 간의 짧은 딜레이
-        dialogue_text.text = "나: 아무 것도 기억나지 않아…";
+        dialogue_text.text = "나: ";
+        yield return new WaitForSeconds(0.6f); // 약간의 딜레이 추가
+        yield return StartCoroutine(printCharacterTextEffect("아무 것도 기억나지 않아…", 0.05f)); // 텍스트 효과 적용
         yield return waitForKeyPress();
 
         // 대사 사라짐
@@ -75,7 +79,9 @@ public class Event1Script : MonoBehaviour
 
     IEnumerator tutorialTextPrint()
     {
-        tutorial_text.text = "튜토리얼 - 좌우 방향키로 이동할 수 있습니다. Z키로 점프할 수 있습니다. 점프는 최대 2번까지 연속으로 가능합니다.";
+        tutorial_text.text = "튜토리얼 - ";
+        yield return new WaitForSeconds(0.6f); // 약간의 딜레이 추가
+        yield return StartCoroutine(printTutorialTextEffect("좌우 방향키로 이동할 수 있습니다. Z키로 점프할 수 있습니다. 점프는 최대 2번까지 연속으로 가능합니다.", 0.05f)); // 텍스트 효과 적용
         yield return waitForKeyPress();
         tutorial_panel.SetActive(false); // 튜토리얼 Panel 비활성화
         Debug.Log("튜토리얼 panel 비활성화");
@@ -92,6 +98,24 @@ public class Event1Script : MonoBehaviour
             }
 
             yield return null;
+        }
+    }
+
+    IEnumerator printCharacterTextEffect(string text, float delay)
+    {
+        for (int i = 0; i < text.Length; i++)
+        {
+            dialogue_text.text += text[i];
+            yield return new WaitForSeconds(delay);
+        }
+    }
+
+    IEnumerator printTutorialTextEffect(string text, float delay)
+    {
+        for (int i = 0; i < text.Length; i++)
+        {
+            tutorial_text.text += text[i];
+            yield return new WaitForSeconds(delay);
         }
     }
 

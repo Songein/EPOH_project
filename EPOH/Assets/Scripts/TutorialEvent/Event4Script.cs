@@ -43,7 +43,9 @@ public class Event4Script : MonoBehaviour
         yield return new WaitForSeconds(0.1f); // 약간의 딜레이 추가
 
         //첫 번째 이벤트 안내음
-        event_text.text = "안내음: 의뢰가 수리되었습니다. 의뢰인의 기억과 연결합니다.";
+        event_text.text = "안내음: ";
+        yield return new WaitForSeconds(0.6f); // 안내음 간의 짧은 딜레이
+        yield return StartCoroutine(printEventTextEffect("의뢰가 수리되었습니다. 의뢰인의 기억과 연결합니다.", 0.05f)); // 텍스트 효과 적용
         space_pressed = false; // space_pressed 초기화
         yield return new WaitUntil(() => space_pressed); // space_pressed가 참이 될 때까지 기다림
 
@@ -53,7 +55,9 @@ public class Event4Script : MonoBehaviour
         event_text.text = "";
 
         // 두 번째 안내음 표시
-        event_text.text = "안내음: ……";
+        event_text.text = "안내음: ";
+        yield return new WaitForSeconds(0.6f); // 안내음 간의 짧은 딜레이
+        yield return StartCoroutine(printEventTextEffect("……", 0.05f)); // 텍스트 효과 적용
         yield return waitForKeyPress();
 
 
@@ -62,7 +66,9 @@ public class Event4Script : MonoBehaviour
 
         // 세 번째 안내음 표시
         //yield return new WaitForSeconds(0.5f); // 안내음 간의 짧은 딜레이
-        event_text.text = "안내음: 연결 완료. 전사 장치를 통해 기억에 입장해주시기 바랍니다.";
+        event_text.text = "안내음: ";
+        yield return new WaitForSeconds(0.6f); // 안내음 간의 짧은 딜레이
+        yield return StartCoroutine(printEventTextEffect("연결 완료. 전사 장치를 통해 기억에 입장해주시기 바랍니다.", 0.05f)); // 텍스트 효과 적용
         yield return waitForKeyPress();
 
 
@@ -90,4 +96,14 @@ public class Event4Script : MonoBehaviour
             yield return null;
         }
     }
+
+    IEnumerator printEventTextEffect(string text, float delay)
+    {
+        for (int i = 0; i < text.Length; i++)
+        {
+            event_text.text += text[i];
+            yield return new WaitForSeconds(delay);
+        }
+    }
+
 }

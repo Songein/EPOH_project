@@ -70,11 +70,14 @@ public class ScrollViewControl : MonoBehaviour
 
     IEnumerator startCharacterTalk()
     {
+        dialogue_text.text = "";
         yield return new WaitForSeconds(0.1f); // 약간의 딜레이 추가
 
 
         // 첫 번째 대사 표시
-        dialogue_text.text = "나: 기억을 지워…? 내가 기억을 지우는 일을 했다는 건가?";
+        dialogue_text.text = "나: ";
+        yield return new WaitForSeconds(0.6f); // 약간의 딜레이 추가
+        yield return StartCoroutine(printCharacterTextEffect("기억을 지워…? 내가 기억을 지우는 일을 했다는 건가?", 0.05f)); // 텍스트 효과 적용
         space_pressed = false; // space_pressed 초기화
         yield return new WaitUntil(() => space_pressed); // space_pressed가 참이 될 때까지 기다림
             
@@ -82,8 +85,9 @@ public class ScrollViewControl : MonoBehaviour
         dialogue_text.text = "";
 
         // 두 번째 대사 표시
-        //yield return new WaitForSeconds(0.5f); // 대사 간의 짧은 딜레이
-        dialogue_text.text = "나: …그랬던 것 같기도 한데, 자세한 것들이 하나도 기억나지 않아.";
+        dialogue_text.text = "나: ";
+        yield return new WaitForSeconds(0.6f); // 약간의 딜레이 추가
+        yield return StartCoroutine(printCharacterTextEffect("…그랬던 것 같기도 한데, 자세한 것들이 하나도 기억나지 않아.", 0.05f)); // 텍스트 효과 적용
         space_pressed = false; // space_pressed 초기화
         yield return new WaitUntil(() => space_pressed); // space_pressed가 참이 될 때까지 기다림
 
@@ -91,9 +95,10 @@ public class ScrollViewControl : MonoBehaviour
         dialogue_text.text = "";
 
         // 세 번째 대사 표시
-        //yield return new WaitForSeconds(0.5f); // 대사 간의 짧은 딜레이
-        dialogue_text.text = "나: 이 ‘의뢰’를 해결하면 무언가 더 기억이 날까…";
-         space_pressed = false; // space_pressed 초기화
+        dialogue_text.text = "나: ";
+        yield return new WaitForSeconds(0.6f); // 약간의 딜레이 추가
+        yield return StartCoroutine(printCharacterTextEffect("이 ‘의뢰’를 해결하면 무언가 더 기억이 날까…", 0.05f)); // 텍스트 효과 적용
+        space_pressed = false; // space_pressed 초기화
         yield return new WaitUntil(() => space_pressed); // space_pressed가 참이 될 때까지 기다림
 
         // 대사 사라짐
@@ -122,7 +127,13 @@ public class ScrollViewControl : MonoBehaviour
         }
     }
 
-
-   
+    IEnumerator printCharacterTextEffect(string text, float delay)
+    {
+        for (int i = 0; i < text.Length; i++)
+        {
+            dialogue_text.text += text[i];
+            yield return new WaitForSeconds(delay);
+        }
+    }
 
 }
