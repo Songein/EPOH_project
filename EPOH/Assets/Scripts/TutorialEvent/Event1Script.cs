@@ -29,7 +29,7 @@ public class Event1Script : MonoBehaviour
         Debug.Log("눈을 뜨는 주인공 애니메이션");
 
         // 첫 번째 대사 표시
-        dialogue_text.text = "주인공: 여긴…?";
+        dialogue_text.text = "나: 여긴…?";
         yield return new WaitForSeconds(delay_between_lines);
 
         // 대사 사라짐
@@ -40,7 +40,7 @@ public class Event1Script : MonoBehaviour
 
         // 두 번째 대사 표시
         yield return new WaitForSeconds(0.5f); // 대사 간의 짧은 딜레이
-        dialogue_text.text = "주인공: 아무 것도 기억나지 않아…";
+        dialogue_text.text = "나: 아무 것도 기억나지 않아…";
         yield return new WaitForSeconds(delay_between_lines);
 
         // 대사 사라짐

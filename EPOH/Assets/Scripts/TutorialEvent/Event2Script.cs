@@ -77,7 +77,7 @@ public class Event2Script : MonoBehaviour
 
     IEnumerator startCharacterDialogue()
     {
-        character_text.text = "주인공: 의뢰? 업무? 저쪽에 빛나고 있는 것을 조작하면 되는 건가?";
+        character_text.text = "나: 의뢰? 업무? 저쪽에 빛나고 있는 것을 조작하면 되는 건가?";
         yield return new WaitForSeconds(delay_between_lines);
         
         // 대사 사라짐
