@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 1282986811}
   - component: {fileID: 1282986810}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Beginning Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,10 +161,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB300\uC0C1 \uC2DD\uBCC4\uC911\u2026\nE801F83499F1D00AE6B6451C445B013880A9906EF783C86EFB671E1CE74C3842CCE97B597E16546AABDE44AB50E816027E1E08F44E297BF89E41C61B1807F6C2\n\uC0C1\uD0DC:
-    Trance\n\uC758\uC2DD \uC5F0\uACB0\uC744 \uC2DC\uC791\uD569\uB2C8\uB2E4.\n\uACF5\uC720
-    \uC5D0\uC5B4\uB9AC\uC5B4 \uC811\uC18D\n\uC544\uBC14\uD0C0 \uAD6C\uD604\uD654\n\uCEF4\uD3EC\uB10C\uD2B8
-    H \uBD80\uCC29\n......\n\uD504\uB85C\uC138\uC2A4 \uC644\uB8CC\n"
+  m_text: '
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 461aaf65f1d77b84bb5b0460c37b40f0, type: 2}
   m_sharedMaterial: {fileID: 802615788018617377, guid: 461aaf65f1d77b84bb5b0460c37b40f0, type: 2}
@@ -293,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e13a4fa9b915f4dbf3a6835685eee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target_text: {fileID: 1282986810}
+  b_text: {fileID: 1282986810}
 --- !u!114 &1376869234
 MonoBehaviour:
   m_ObjectHideFlags: 0
