@@ -48,7 +48,7 @@ public class BossHealth :MonoBehaviour
     void Die()
     {
         Debug.Log("[Enemy] : " + gameObject.name + " 사망");
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     void ReturnColor()

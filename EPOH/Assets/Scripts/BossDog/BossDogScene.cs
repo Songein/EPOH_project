@@ -17,7 +17,7 @@ public class BossDogScene : MonoBehaviour
     private Vector3 destination = new Vector3(5.8f, -3f, -10f); //서브 카메라 도착 위치
     private TalkAction talk_action; //TalkAction 스크립트 참조
 
-    [SerializeField] private bool battle_start; //배틀 시작
+    public bool battle_start; //배틀 시작
 
     [SerializeField] private GameObject background; //배경 오브젝트
     [SerializeField] private GameObject[] platforms; //발판 오브젝트들
@@ -90,6 +90,7 @@ public class BossDogScene : MonoBehaviour
         if (boss_health.boss_hp == 0f && !phase_end)
         {
             //보스 움직임 멈춤(배틀 일시정지)
+            battle_start = false;
             talk_action.Action();
             phase_end = true;
             //전환 애니메이션
@@ -102,6 +103,11 @@ public class BossDogScene : MonoBehaviour
             talk_action.Action();
             phase_end2 = true;
         }
+
+        if (GameManager.instance.story_info == 10)
+        {
+            battle_start = true;
+        }
         
     }
 
@@ -110,5 +116,6 @@ public class BossDogScene : MonoBehaviour
     {
         tutorial_text.SetActive(false);
         tutorial_end = true;
+        battle_start = true;
     }
 }
