@@ -20,6 +20,7 @@ public class BossDog : MonoBehaviour
 
     public GameObject player; // 플레이어 게임 오브젝트
     private int skill; // 사용하는 스킬
+    private BossDogScene scene; //BossDogScene 스크립트 참조
 
 
     //가까운 공격
@@ -56,6 +57,7 @@ public class BossDog : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player"); // 플레이어가 있는지 확인
         sr = GetComponent<SpriteRenderer>(); //SpriteRenderer 할당
+        scene = FindObjectOfType<BossDogScene>(); //BossDogScene 스크립트 할당
         
         //스킬의 공격 범위 비활성화
         bite_area.SetActive(false); //Bite의 공격 범위 비활성화
@@ -72,41 +74,51 @@ public class BossDog : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distance = Vector3.Distance(transform.position, player.transform.position);
-        if (is_track && distance > track_range && !is_skill) // 트랙 중이고 거리가 최소 거리보다 크며 스킬 사용중이 아닐 때
+        //배틀이 시작되기 전까지는 보스는 움직이면 안됨.
+        if (scene.battle_start)
         {
-            CheckFlip();
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.transform.position.x, transform.position.y, transform.position.z), boss_speed * Time.deltaTime);
+            float distance = Vector3.Distance(transform.position, player.transform.position);
+            if (is_track && distance > track_range && !is_skill) // 트랙 중이고 거리가 최소 거리보다 크며 스킬 사용중이 아닐 때
+            {
+                CheckFlip();
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.transform.position.x, transform.position.y, transform.position.z), boss_speed * Time.deltaTime);
+            }
         }
     }
 
     public IEnumerator MoveCooldown()
     {
-        CheckFlip();
-        Debug.Log("코루틴 시작");
+        if (scene.battle_start)
+        {
+            CheckFlip();
+            Debug.Log("코루틴 시작");
 
-        yield return new WaitForSeconds(boss_move_cooldown);
-        is_track = !is_track; // 추적하는 상태와 그렇지 않은 상태를 번갈아서 반복
-        StartCoroutine(MoveCooldown());
+            yield return new WaitForSeconds(boss_move_cooldown);
+            is_track = !is_track; // 추적하는 상태와 그렇지 않은 상태를 번갈아서 반복
+            StartCoroutine(MoveCooldown());
+        }
     }
 
     public IEnumerator SkillCooldown()
     {
-        CheckFlip();
-        Debug.Log("스킬 사용");
-        is_skill = true;
-        float distance = Vector3.Distance(transform.position, player.transform.position);
-        if(distance < close_range)
+        if (scene.battle_start)
         {
-            skill = Random.Range(0, 2); // 가까울 때 모든 패턴 발생
+            CheckFlip();
+            Debug.Log("스킬 사용");
+            is_skill = true;
+            float distance = Vector3.Distance(transform.position, player.transform.position);
+            if(distance < close_range)
+            {
+                skill = Random.Range(0, 2); // 가까울 때 모든 패턴 발생
+            }
+            else
+            {
+                skill = Random.Range(2, 4); // 멀 때 2가지 패턴만 발생
+            }
+            BossSkill(skill);
+            yield return new WaitForSeconds(boss_skill_cooldown); // 스킬을 사용하지 않음
+            StartCoroutine(SkillCooldown());
         }
-        else
-        {
-            skill = Random.Range(2, 4); // 멀 때 2가지 패턴만 발생
-        }
-        BossSkill(skill);
-        yield return new WaitForSeconds(boss_skill_cooldown); // 스킬을 사용하지 않음
-        StartCoroutine(SkillCooldown());
     }
 
     private void OnTriggerEnter2D(Collider2D collision) // 충돌시 데미지
