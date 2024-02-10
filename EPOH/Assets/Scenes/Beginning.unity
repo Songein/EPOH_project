@@ -166,8 +166,8 @@ MonoBehaviour:
     \uC5D0\uC5B4\uB9AC\uC5B4 \uC811\uC18D\n\uC544\uBC14\uD0C0 \uAD6C\uD604\uD654\n\uCEF4\uD3EC\uB10C\uD2B8
     H \uBD80\uCC29\n......\n\uD504\uB85C\uC138\uC2A4 \uC644\uB8CC\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 461aaf65f1d77b84bb5b0460c37b40f0, type: 2}
-  m_sharedMaterial: {fileID: 802615788018617377, guid: 461aaf65f1d77b84bb5b0460c37b40f0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dba63c9f8ed17154f8293db30d08bb6f, type: 2}
+  m_sharedMaterial: {fileID: -522386911494266784, guid: dba63c9f8ed17154f8293db30d08bb6f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
