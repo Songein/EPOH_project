@@ -49,7 +49,7 @@ public class Event2Script : MonoBehaviour
 
             space_pressed = false; // space_pressed 값을 초기화
             StartCoroutine(startEventSound()); // 안내음 이벤트 시작
-            player_controller.is_talking = true;
+            
         }
     }
 
@@ -58,6 +58,7 @@ public class Event2Script : MonoBehaviour
     {
         // 이벤트 Panel 활성화
         event_panel.SetActive(true);
+        player_controller.is_talking = true;
 
         //첫 번째 이벤트 안내음
         event_text.text = "안내음: ";
