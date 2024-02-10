@@ -18,10 +18,14 @@ public class Event2Script : MonoBehaviour
 
     private bool space_pressed = false; // Space 키를 눌렀는지 체크하는 변수 추가
 
+    public PlayerController player_controller;
+
 
 
      void Start()
     {
+        player_controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+
         character_panel.SetActive(false); //주인공 대화창 Panel 비활성화
         tutorial_panel.SetActive(false); //튜토리얼 Panel 비활성화
         event_panel.SetActive(false); //이벤트 Panel 비활성화
@@ -45,6 +49,7 @@ public class Event2Script : MonoBehaviour
 
             space_pressed = false; // space_pressed 값을 초기화
             StartCoroutine(startEventSound()); // 안내음 이벤트 시작
+            
         }
     }
 
@@ -53,6 +58,7 @@ public class Event2Script : MonoBehaviour
     {
         // 이벤트 Panel 활성화
         event_panel.SetActive(true);
+        player_controller.is_talking = true;
 
         //첫 번째 이벤트 안내음
         event_text.text = "안내음: ";
@@ -75,9 +81,11 @@ public class Event2Script : MonoBehaviour
 
         // 이벤트 Panel 비활성화
         event_panel.SetActive(false);
+        player_controller.is_talking = false;
 
         // 캐릭터 대화창 Panel 활성화
         character_panel.SetActive(true);
+        player_controller.is_talking = true;
         Debug.Log("캐릭터 대화창 panel 활성화");
 
         yield return null; // 한 프레임 대기
@@ -102,9 +110,11 @@ public class Event2Script : MonoBehaviour
 
         //주인공 대화창 Panel 비활성화
         character_panel.SetActive(false);
+        player_controller.is_talking = false;
 
         // 튜토리얼 Panel 활성화
         tutorial_panel.SetActive(true);
+        player_controller.is_talking = true;
         Debug.Log("튜토리얼 panel 활성화");
 
         yield return null; // 한 프레임 대기
@@ -123,7 +133,9 @@ public class Event2Script : MonoBehaviour
         yield return StartCoroutine(printTutorialTextEffect("space로 상호작용이 가능합니다.", 0.05f)); // 텍스트 효과 적용
         yield return waitForKeyPress();
         tutorial_panel.SetActive(false); // 튜토리얼 Panel 비활성화
+        player_controller.is_talking = false;
         Debug.Log("튜토리얼 panel 비활성화");
+
     }
     
     IEnumerator waitForKeyPress() // Space 키를 누르면 다음 대사로 넘어가는 함수

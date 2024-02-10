@@ -13875,6 +13875,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hacking: {fileID: 0}
+  footstepClip: {fileID: 0}
+  jumpClip1: {fileID: 0}
+  jumpClip2: {fileID: 0}
+  dashClip: {fileID: 0}
+  teleportClip1: {fileID: 0}
+  teleportClip2: {fileID: 0}
   player_speed: 8
   playerJumpForce: 7
   is_interacting: 0

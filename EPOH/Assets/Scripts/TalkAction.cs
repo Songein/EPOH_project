@@ -13,8 +13,8 @@ public class TalkAction : MonoBehaviour
 
     public GameObject talk_panel; // 대화창 panel
     public GameObject notice_panel; // 안내음 panel
-    private int[] noitce_array = { 1, 4, 7, 9, 10 }; //안내음인 스토리 정보
-    private bool is_notice;
+    public int[] notice_array = { 1, 4, 7, 9, 10 }; //안내음인 스토리 정보
+    public bool is_notice;
     
     public bool is_talking = false; // 대화중인지 확인
 
@@ -23,7 +23,7 @@ public class TalkAction : MonoBehaviour
 
     public void Action()
     {
-        is_notice = Array.IndexOf(noitce_array, GameManager.instance.story_info) > -1 ? true : false;
+        is_notice = Array.IndexOf(notice_array, GameManager.instance.story_info) > -1 ? true : false;
         Talk(GameManager.instance.story_info);
         
         if (is_notice)

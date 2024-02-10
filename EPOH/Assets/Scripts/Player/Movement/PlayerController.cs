@@ -90,9 +90,9 @@ public class PlayerController : MonoBehaviour
         hacking = GetComponent<Hacking>();
 
 
-        audioSource = GetComponent<AudioSource>();
 
-        
+        audioSource = GetComponent<AudioSource>();
+   
         //TalkAction 스크립트 할당
         talkaction = FindObjectOfType<TalkAction>();
 
