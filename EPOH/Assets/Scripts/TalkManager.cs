@@ -158,7 +158,7 @@ public class TalkManager : MonoBehaviour
         {
             "의뢰가 수리되었습니다. 의뢰인의 기억과 연결합니다.",
             "......",
-            "연결 완료. 전사 장치를 통해 기억에 입장해주시기 바랍니다.",
+            "연결 완료. 전사 장치를 통해 기억에 입장해주시기 바랍니다."
         });
         talk_data.Add(5, new string[]
         {
