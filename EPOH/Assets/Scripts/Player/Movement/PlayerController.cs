@@ -101,7 +101,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //대쉬 | 상호작용 | 순간이동 | 대화 중이면 다른 작업 이루어지지 않도록
-        if (is_dashing || is_interacting || is_teleporting || is_attacking)
+        if (is_interacting && is_talking) {} // 상호작용 중에 대화가 발생할 경우 Talk 진행을 위해 넘김
+        else if (is_dashing || is_interacting || is_teleporting || is_attacking)
         {
             return;
         }

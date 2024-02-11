@@ -41,7 +41,7 @@ public class Event3Talk : MonoBehaviour
         {
             // Scroll View의 위치를 맨 끝으로 이동
             myScrollRect.verticalNormalizedPosition = 0;
-            Debug.Log(GameManager.instance.story_info);
+            
          
         }
 
@@ -51,6 +51,13 @@ public class Event3Talk : MonoBehaviour
             scroll_end = true;
             action.Action();
 
+        }
+
+        if (GameManager.instance.story_info == 4)
+        {
+            // Accept 버튼 활성화
+            accept_button.gameObject.SetActive(true);
+            accept_button.Select(); // Accept 버튼을 디폴트로 선택하도록 만듦
         }
         
 

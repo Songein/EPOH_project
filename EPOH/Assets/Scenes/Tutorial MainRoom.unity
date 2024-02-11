@@ -19719,6 +19719,7 @@ GameObject:
   - component: {fileID: 478011699}
   - component: {fileID: 478011698}
   - component: {fileID: 478011697}
+  - component: {fileID: 478011700}
   m_Layer: 5
   m_Name: Accept Button
   m_TagString: Untagged
@@ -19803,6 +19804,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 478011700}
+        m_TargetAssemblyTypeName: Event4Button, Assembly-CSharp
+        m_MethodName: startEvent4Talk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &478011698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19841,6 +19854,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478011695}
   m_CullTransparentMesh: 1
+--- !u!114 &478011700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478011695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718ede70dda264a4c9a61d81ff45bdee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dog_request_panel: {fileID: 1460462795}
+  accept_button: {fileID: 478011697}
+  player_controller: {fileID: 0}
+  scroll_close: 0
 --- !u!1 &479466740
 GameObject:
   m_ObjectHideFlags: 0
@@ -21680,7 +21709,6 @@ GameObject:
   - component: {fileID: 675308112}
   - component: {fileID: 675308111}
   - component: {fileID: 675308110}
-  - component: {fileID: 675308115}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -21783,23 +21811,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &675308115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 675308109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33a6d24b338690f41bf06f5c106a24ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scrollRect: {fileID: 1460462797}
-  event_panel: {fileID: 2125940859}
-  event_text: {fileID: 1831533413}
-  accept_button: {fileID: 478011697}
-  player_controller: {fileID: 0}
 --- !u!1 &679174749
 GameObject:
   m_ObjectHideFlags: 0
@@ -27854,6 +27865,7 @@ MonoBehaviour:
   scrollSpeed: 0.4
   accept_button: {fileID: 478011697}
   player_controller: {fileID: 1031765312}
+  scroll_end: 0
 --- !u!1 &1460895589
 GameObject:
   m_ObjectHideFlags: 0
@@ -34286,7 +34298,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.007086158, y: 0}
+  m_Offset: {x: 0.22854517, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -34297,7 +34309,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3542819, y: 1}
+  m_Size: {x: 1.3930912, y: 1}
   m_EdgeRadius: 0
 --- !u!4 &1657800983
 Transform:
@@ -37336,37 +37348,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1927226364}
   m_CullTransparentMesh: 1
---- !u!1 &1928487796
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1928487798}
-  m_Layer: 0
-  m_Name: Event 3 C Talk
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1928487798
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1928487796}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.38241, y: -0.60096323, z: -0.29304707}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 17
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1987799329
 GameObject:
   m_ObjectHideFlags: 0
