@@ -15,6 +15,7 @@ public class BossDogScene : MonoBehaviour
     [SerializeField] bool event2_end = false; //이벤트2 끝 확인
     [SerializeField] bool tutorial_end = false; //튜토리얼 끝 확인
     [SerializeField] bool tutorial2_end = false; //튜토리얼 끝 확인
+    [SerializeField] bool port_end = false; //전사장치 이벤트 끝 확인
     
     private Vector3 pos; //튜토리얼 텍스트 위치
     private Vector3 pos2; //튜토리얼 텍스트 위치
@@ -40,6 +41,8 @@ public class BossDogScene : MonoBehaviour
     [SerializeField] private GameObject boss;
     private Vector3 boss_spawn_pos;
     private Vector3 player_spawn_pos;
+
+    [SerializeField] private GameObject corrider_potal;
     
     // Start is called before the first frame update
     void Start()
@@ -140,6 +143,17 @@ public class BossDogScene : MonoBehaviour
             dir_pos.y = pos.y + 0.3f * Mathf.Sin(Time.time * 1f);
             tutorial_text2.transform.position = dir_pos;
         }
+
+        if (GameManager.instance.story_info == 11 && !port_end)
+        {
+            sub_camera.SetActive(false);
+            main_camera.SetActive(true);
+            port_end = true;
+            //전사장치 생성
+            corrider_potal.SetActive(true);
+            GameManager.instance.boss_clear_info[0] = true;
+            GameManager.instance.is_back = true;
+        }
         
     }
 
@@ -184,5 +198,18 @@ public class BossDogScene : MonoBehaviour
         //페이즈 open 애니메이션 시작
         transition_animation.Play("Open Transition");
         yield return new WaitForSeconds(1.8f);
+    }
+
+    public void CompleteHacking()
+    {
+        main_camera.SetActive(false);
+        Vector3 camera_pos = new Vector3(boss.transform.position.x, sub_camera.transform.position.y, sub_camera.transform.position.z);
+        sub_camera.transform.position = camera_pos;
+        sub_camera.SetActive(true);
+        //개가 개 집으로 끌려들어감.
+        Debug.Log("개가 개집으로 끌려 들어감.");
+        boss.SetActive(false);
+        talk_action.Action();
+        
     }
 }
