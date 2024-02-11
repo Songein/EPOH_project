@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Event1Script : MonoBehaviour
+public class Event2Tutorial : MonoBehaviour
 {
     public TalkAction action;
     public PlayerController player_controller; 
@@ -15,7 +15,6 @@ public class Event1Script : MonoBehaviour
     private bool isTutorialShown = false;
 
 
-
     private bool space_pressed = false;
     
     private void Start()
@@ -24,10 +23,10 @@ public class Event1Script : MonoBehaviour
         action = GameObject.FindGameObjectWithTag("TalkManager").GetComponent<TalkAction>();
     }
 
-    private void Update()
+    void Update()
     {
-        // GameManager.instance.story_info가 1이면 tutorial_panel 활성화
-        if (GameManager.instance.story_info == 1 && !isTutorialShown)
+        // GameManager.instance.story_info가 3이면 tutorial_panel 활성화
+        if (GameManager.instance.story_info == 3 && !isTutorialShown)
         {
             if(tutorial_panel.activeSelf == false && action.is_talking == false)
             {
@@ -80,5 +79,6 @@ public class Event1Script : MonoBehaviour
             yield return new WaitForSeconds(delay);
         }
     }
+
 
 }

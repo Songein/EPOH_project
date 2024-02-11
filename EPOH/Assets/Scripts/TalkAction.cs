@@ -37,7 +37,7 @@ public class TalkAction : MonoBehaviour
         player_controller.is_talking = is_talking;
     }
     
-    void Talk(int id)
+    public void Talk(int id)
     {
         string talk_line = talk_manager.GetTalk(id, talk_index); // talk manager의 GetTalk 함수를 호출하여 대사를 한 줄 받아옴
         if (talk_line == null) // 더 이상 대사가 없을 경우
