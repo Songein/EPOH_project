@@ -93,7 +93,6 @@ public class Event4Script : MonoBehaviour
 
         
 
-
     }
 
     IEnumerator waitForKeyPress() // Space 키를 누르면 다음 대사로 넘어가는 함수
