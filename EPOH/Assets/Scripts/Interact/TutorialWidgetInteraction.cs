@@ -20,11 +20,11 @@ public class TutorialWidgetInteraction : Interaction
     public override void Interact()
     {
         event3Script.activateRequestPanel();
-        CoreSelectSound();
+        widgetSelectSound();
 
     }
 
-    void CoreSelectSound()
+    void widgetSelectSound()
     {
         if (widgetSelectClip != null && audioSource != null)
         {

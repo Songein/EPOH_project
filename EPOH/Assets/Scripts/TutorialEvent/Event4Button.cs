@@ -7,6 +7,7 @@ public class Event4Button : MonoBehaviour
 
     public GameObject dog_request_panel;
     public GameObject widget;
+    public GameObject portal;
 
     public Button accept_button;
 
@@ -21,11 +22,13 @@ public class Event4Button : MonoBehaviour
     {
         action = FindObjectOfType<TalkAction>();
         player_controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        portal.SetActive(false);
     }
 
 
     public void startEvent4Talk()
     {
+        GameManager.instance.boss_num = 0;
 
         if (GameManager.instance.story_info == 4 && !scroll_close)
         {
@@ -33,6 +36,7 @@ public class Event4Button : MonoBehaviour
             dog_request_panel.SetActive(false);
             widget.SetActive(false);
             player_controller.is_interacting = false;
+           
             Debug.Log("1 player_controller.is_talking: " + player_controller.is_talking);
             Debug.Log("1 player_controller.is_interacting: " + player_controller.is_interacting);
             
@@ -42,7 +46,7 @@ public class Event4Button : MonoBehaviour
             Debug.Log("2 player_controller.is_talking: " + player_controller.is_talking);
             Debug.Log("2 player_controller.is_interacting: " + player_controller.is_interacting);
             
-            
+            portal.SetActive(true);
             
         }
         
