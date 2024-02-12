@@ -13,7 +13,7 @@ public class TalkAction : MonoBehaviour
 
     public GameObject talk_panel; // 대화창 panel
     public GameObject notice_panel; // 안내음 panel
-
+    
     [SerializeField] private GameObject talk_portrait; //대화창 panel의 초상화
     [SerializeField] private GameObject talk_name; //대화창 panel의 이름
     [SerializeField] private Sprite[] portraits; //캐릭터 초상화 모음
@@ -35,7 +35,7 @@ public class TalkAction : MonoBehaviour
 
     public void Action()
     {
-        is_notice = Array.IndexOf(noitce_array, GameManager.instance.story_info) > -1 ? true : false;
+        is_notice = Array.IndexOf(notice_array, GameManager.instance.story_info) > -1 ? true : false;
         Talk(GameManager.instance.story_info);
         
         if (is_notice)
@@ -60,7 +60,7 @@ public class TalkAction : MonoBehaviour
         player_controller.is_talking = is_talking;
     }
     
-    void Talk(int id)
+    public void Talk(int id)
     {
         string talk_line = talk_manager.GetTalk(id, talk_index); // talk manager의 GetTalk 함수를 호출하여 대사를 한 줄 받아옴
         if (talk_line == null) // 더 이상 대사가 없을 경우

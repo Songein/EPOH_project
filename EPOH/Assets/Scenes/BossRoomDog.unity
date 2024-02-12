@@ -365,7 +365,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: 140}
+  m_AnchoredPosition: {x: -299.3, y: 173.7}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &86525576
@@ -1606,7 +1606,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: 120}
+  m_AnchoredPosition: {x: -299.3, y: 153.7}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &528117098 stripped
@@ -3941,6 +3941,7 @@ MonoBehaviour:
   - {fileID: 383904569, guid: b97aa24b1aeaf4a068db68a361ca0743, type: 3}
   - {fileID: 2129949475, guid: ca491e3ab08a64f64a5818358c152032, type: 3}
   - {fileID: 21300000, guid: 1a9ada47cc34e424c982dcce08d17c02, type: 3}
+
   phase_start: 0
   phase_start2: 0
   phase_start3: 0
@@ -3949,6 +3950,7 @@ MonoBehaviour:
   player: {fileID: 528117098}
   boss: {fileID: 956072242}
   corrider_potal: {fileID: 822335414}
+
 --- !u!1 &1281960352
 GameObject:
   m_ObjectHideFlags: 0
@@ -5759,7 +5761,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: 160}
+  m_AnchoredPosition: {x: -299.3, y: 193.7}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1853664787
@@ -5912,7 +5914,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "X\uD0A4\uB85C \uC801\uC744 \uACF5\uACA9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 461aaf65f1d77b84bb5b0460c37b40f0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 23b4d246b7617924c96a7c744c64c809, type: 2}
   m_sharedMaterial: {fileID: 802615788018617377, guid: 461aaf65f1d77b84bb5b0460c37b40f0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5979,7 +5981,7 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_renderer: {fileID: 1919565522}
   m_maskType: 0
 --- !u!23 &1919565522
@@ -6421,11 +6423,13 @@ MonoBehaviour:
   player_controller: {fileID: 198541891}
   talk_panel: {fileID: 89744865}
   notice_panel: {fileID: 22237198}
+
   talk_portrait: {fileID: 0}
   talk_name: {fileID: 0}
   portraits:
   - {fileID: -1736910442, guid: 09b19e5d0dafa455b8a62852b376973f, type: 3}
   - {fileID: -1736910442, guid: 09b19e5d0dafa455b8a62852b376973f, type: 3}
+
   is_talking: 0
   talk_index: 0
 --- !u!114 &2081717376
@@ -6516,7 +6520,7 @@ MonoBehaviour:
   m_text: "C\uD0A4\uB85C \uB300\uC2DC\uD558\uC5EC \uC801\uC758 \uACF5\uACA9\uC744
     \uD53C\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 461aaf65f1d77b84bb5b0460c37b40f0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 23b4d246b7617924c96a7c744c64c809, type: 2}
   m_sharedMaterial: {fileID: 802615788018617377, guid: 461aaf65f1d77b84bb5b0460c37b40f0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -6583,7 +6587,7 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_renderer: {fileID: 2092712444}
   m_maskType: 0
 --- !u!23 &2092712444

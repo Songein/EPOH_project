@@ -7943,11 +7943,13 @@ MonoBehaviour:
   player_controller: {fileID: 1991019926}
   talk_panel: {fileID: 1219731262}
   notice_panel: {fileID: 2039737923}
+
   talk_portrait: {fileID: 0}
   talk_name: {fileID: 0}
   portraits:
   - {fileID: 21300000, guid: e0f821a8b38bb44b2b437b07ab28ee08, type: 2}
   - {fileID: 21300000, guid: e0f821a8b38bb44b2b437b07ab28ee08, type: 2}
+
   is_talking: 0
   talk_index: 0
 --- !u!114 &821861084
@@ -12226,7 +12228,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "[ \uC8FC\uC778\uACF5 ]"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 461aaf65f1d77b84bb5b0460c37b40f0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 23b4d246b7617924c96a7c744c64c809, type: 2}
   m_sharedMaterial: {fileID: 802615788018617377, guid: 461aaf65f1d77b84bb5b0460c37b40f0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -12290,7 +12292,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1162845786
@@ -13513,7 +13515,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u25BC"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 461aaf65f1d77b84bb5b0460c37b40f0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 23b4d246b7617924c96a7c744c64c809, type: 2}
   m_sharedMaterial: {fileID: 802615788018617377, guid: 461aaf65f1d77b84bb5b0460c37b40f0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -13577,7 +13579,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1790982665
@@ -13710,7 +13712,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC800, \uC800\uAC8C \uBB50\uC57C! \uC800\uB7F0\uAC8C \uC815\uB9D0 \uAC1C\uB77C\uACE0?"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 461aaf65f1d77b84bb5b0460c37b40f0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 23b4d246b7617924c96a7c744c64c809, type: 2}
   m_sharedMaterial: {fileID: 802615788018617377, guid: 461aaf65f1d77b84bb5b0460c37b40f0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -13774,7 +13776,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1845179239
@@ -13930,6 +13932,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hacking: {fileID: 0}
+  footstepClip: {fileID: 0}
+  jumpClip1: {fileID: 0}
+  jumpClip2: {fileID: 0}
+  dashClip: {fileID: 0}
+  teleportClip1: {fileID: 0}
+  teleportClip2: {fileID: 0}
   player_speed: 8
   playerJumpForce: 7
   is_interacting: 0
