@@ -4746,6 +4746,7 @@ MonoBehaviour:
   rune: 0000000000
   boss_num: -1
   boss_clear_info: 000000
+  is_back: 0
 --- !u!4 &363333356
 Transform:
   m_ObjectHideFlags: 0
@@ -19867,6 +19868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dog_request_panel: {fileID: 1460462795}
   widget: {fileID: 909515331}
+  portal: {fileID: 0}
   accept_button: {fileID: 478011697}
   player_controller: {fileID: 0}
   scroll_close: 0
@@ -23369,8 +23371,6 @@ MonoBehaviour:
   player_controller: {fileID: 1031765312}
   talk_panel: {fileID: 29504448}
   notice_panel: {fileID: 127031853}
-  notice_array: 010000000400000007000000090000000a000000
-  is_notice: 0
   is_talking: 0
   talk_index: 0
 --- !u!114 &892681762
@@ -27648,7 +27648,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1431872989}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 119675f886be34be2b241ede2ee431a7, type: 3}
+  m_Script: {fileID: 11500000, guid: abc1ffefba40b014cbf56834c5002bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1439183455
@@ -29146,7 +29146,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1561556870}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 119675f886be34be2b241ede2ee431a7, type: 3}
+  m_Script: {fileID: 11500000, guid: abc1ffefba40b014cbf56834c5002bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1568422911
