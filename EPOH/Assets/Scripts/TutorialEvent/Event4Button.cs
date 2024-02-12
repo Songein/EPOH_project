@@ -33,6 +33,7 @@ public class Event4Button : MonoBehaviour
             dog_request_panel.SetActive(false);
             widget.SetActive(false);
             player_controller.is_interacting = false;
+           
             Debug.Log("1 player_controller.is_talking: " + player_controller.is_talking);
             Debug.Log("1 player_controller.is_interacting: " + player_controller.is_interacting);
             
