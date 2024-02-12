@@ -618,6 +618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f26a1220c25b441b9302a38ace3ed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  if_first: 1
   story_info: 0
   rune: 0000000000
   boss_num: 0
