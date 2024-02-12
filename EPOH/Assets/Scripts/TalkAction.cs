@@ -18,7 +18,7 @@ public class TalkAction : MonoBehaviour
     [SerializeField] private GameObject talk_name; //대화창 panel의 이름
     [SerializeField] private Sprite[] portraits; //캐릭터 초상화 모음
     
-    private int[] noitce_array = { 1, 4, 7, 9, 10 }; //안내음인 스토리 정보
+    private int[] notice_array = { 1, 4, 7, 9, 10 }; //안내음인 스토리 정보
     private int[] hoa_array = { 12, 14, 16, 18, 20, 22, 24 }; //호아의 대화 정보
     private bool is_notice;
     private bool is_hoa;
