@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public string[,] boss_info = new string[,] { { "Dog" , "1" }, { "ForgetMeNot", "3" }, { "PartTime", "2" } }; 
 
     public bool[] boss_clear_info = new bool[boss_cnt]; // 보스 클리어 여부 확인
+    
+    public bool is_back = false; //클리어 후 돌아오는 길인지 corrider에서 확인하기 위한 변수
 
     private void Awake()
     {
