@@ -7,6 +7,7 @@ public class Event4Button : MonoBehaviour
 
     public GameObject dog_request_panel;
     public GameObject widget;
+    public GameObject portal;
 
     public Button accept_button;
 
@@ -21,6 +22,7 @@ public class Event4Button : MonoBehaviour
     {
         action = FindObjectOfType<TalkAction>();
         player_controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        portal.SetActive(false);
     }
 
 
@@ -43,7 +45,7 @@ public class Event4Button : MonoBehaviour
             Debug.Log("2 player_controller.is_talking: " + player_controller.is_talking);
             Debug.Log("2 player_controller.is_interacting: " + player_controller.is_interacting);
             
-            
+            portal.SetActive(true);
             
         }
         
