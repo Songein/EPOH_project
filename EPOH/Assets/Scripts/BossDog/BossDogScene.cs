@@ -69,7 +69,7 @@ public class BossDogScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //카메라 이벤트 1 : 보스룸 입장과 동시에 보스 쪽으로 카메라 빠르게 이동ㄴ 
+        //카메라 이벤트 1 : 보스룸 입장과 동시에 보스 쪽으로 카메라 빠르게 이동
         if (camera_move_event1)
         {
             if (sub_camera.transform.position.x >= destination.x - 0.1f)

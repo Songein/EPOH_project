@@ -6421,6 +6421,11 @@ MonoBehaviour:
   player_controller: {fileID: 198541891}
   talk_panel: {fileID: 89744865}
   notice_panel: {fileID: 22237198}
+  talk_portrait: {fileID: 0}
+  talk_name: {fileID: 0}
+  portraits:
+  - {fileID: -1736910442, guid: 09b19e5d0dafa455b8a62852b376973f, type: 3}
+  - {fileID: -1736910442, guid: 09b19e5d0dafa455b8a62852b376973f, type: 3}
   is_talking: 0
   talk_index: 0
 --- !u!114 &2081717376

@@ -192,6 +192,71 @@ public class TalkManager : MonoBehaviour
             "기억 제거 프로세스가 완료되었습니다. 수고하셨습니다.",
             "업무 대기실로 복귀해주시기 바랍니다."
         });
+        talk_data.Add(11, new string[]
+        {
+            "개에게 물린 기억을 지우면 개를 더이상 두려워하지 않을 수 있다니, 좋은걸." ,
+            "가기 전에도 저런 게 있었던가...?",
+            "윽...!"
+        });
+        talk_data.Add(12, new string[]
+        {
+            "불쌍해... 우리가 키울 수는 없을까?"
+        });
+        talk_data.Add(13, new string[]
+        {
+            "괜찮겠어, 호아? 너 개를 무서워하잖아."
+        });
+        talk_data.Add(14, new string[]
+        {
+            "괘, 괜찮... 흐아악!"
+        });
+        talk_data.Add(15, new string[]
+        {
+            "하나도 안 괜찮아 보이는데..."
+        });
+        talk_data.Add(16, new string[]
+        {
+            "어릴 적에 큰 개한테 물린 기억이 있거든. 작은 강아지면 괜찮을 줄 알았는데..."
+        });
+        talk_data.Add(17, new string[]
+        {
+            "이 녀석이 얼마나 더 클지 모르는 걸. 무리하지 않는 편이 좋아."
+        });
+        talk_data.Add(18, new string[]
+        {
+            "......"
+        });
+        talk_data.Add(19, new string[]
+        {
+            "주인을 찾는 공고를 올리면 어쩌면 사람이 금방 와줄지도 모르고..."
+        });
+        talk_data.Add(20, new string[]
+        {
+            "있잖아.",
+            "혹시, 우리가 연구하고 있는 기억 절제술로 개에 물렸던 기억을 지우면 더이상 개를 두려워하지 않을 수 있지 않을까?"
+        });
+        talk_data.Add(21, new string[]
+        {
+            "뭐?"
+        });
+        talk_data.Add(22, new string[]
+        {
+            "...어차피 임상 실험이 필요한 시기잖아."
+        });
+        talk_data.Add(23, new string[]
+        {
+            "그래도, 어떻게 될지 모르는데..."
+        });
+        talk_data.Add(24, new string[]
+        {
+            "괜찮아, 나는 동료들을 믿으니까.",
+            "내 기억을 지워보는게 어때?"
+        });
+        talk_data.Add(25, new string[]
+        {
+            "이건...",
+            "내... 기억?"
+        });
     }
 
     public string GetTalk(int id, int talk_index) // 대사를 한 줄씩 리턴해주는 함수
