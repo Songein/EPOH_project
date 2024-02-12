@@ -19866,6 +19866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dog_request_panel: {fileID: 1460462795}
+  widget: {fileID: 909515331}
   accept_button: {fileID: 478011697}
   player_controller: {fileID: 0}
   scroll_close: 0
