@@ -10,7 +10,7 @@ public class Event2Tutorial : MonoBehaviour
     public PlayerController player_controller; 
 
     public GameObject tutorial_panel; 
-    public TMP_Text tutorial_text;
+    //public TMP_Text tutorial_text;
 
     private bool isTutorialShown = false;
 
@@ -52,9 +52,9 @@ public class Event2Tutorial : MonoBehaviour
         tutorial_panel.SetActive(true); 
         player_controller.is_interacting = true; 
 
-        tutorial_text.text = "튜토리얼- ";
-        yield return new WaitForSeconds(0.6f); 
-        StartCoroutine(printTutorialTextEffect("space로 상호작용이 가능합니다.", 0.05f));
+        //tutorial_text.text = "튜토리얼- ";
+        //yield return new WaitForSeconds(0.6f); 
+        //StartCoroutine(printTutorialTextEffect("space로 상호작용이 가능합니다.", 0.05f));
         yield return StartCoroutine(waitForKeyPress());
         tutorial_panel.SetActive(false); 
         player_controller.is_interacting = false;
@@ -71,6 +71,7 @@ public class Event2Tutorial : MonoBehaviour
         space_pressed = false; // Space 키를 눌렀다는 체크를 초기화
     }
 
+    /*
     IEnumerator printTutorialTextEffect(string text, float delay)
     {
         for (int i = 0; i < text.Length; i++)
@@ -79,6 +80,7 @@ public class Event2Tutorial : MonoBehaviour
             yield return new WaitForSeconds(delay);
         }
     }
+    */
 
 
 }
