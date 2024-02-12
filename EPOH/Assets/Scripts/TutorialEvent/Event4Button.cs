@@ -28,6 +28,7 @@ public class Event4Button : MonoBehaviour
 
     public void startEvent4Talk()
     {
+        GameManager.instance.boss_num = 0;
 
         if (GameManager.instance.story_info == 4 && !scroll_close)
         {
