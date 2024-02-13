@@ -116,12 +116,13 @@ public class PlayerController : MonoBehaviour
         if (Mathf.Abs(rigid.velocity.x) < 0.3f)
         {
             animator.SetBool("IsRun", false);
+            StopCoroutine("PlayRunningSound"); // 플레이어가 뛰지 않는 경우 발소리 재생 코루틴 멈춤
         }
         else
         {
             animator.SetBool("IsRun", true);
-            // 발소리 재생
-            PlayFootstepSound();
+            StartCoroutine("PlayRunningSound"); // 플레이어가 뛰는 경우 발소리 재생 코루틴 시작
+            
         }
 
         //점프 버튼을 누르고 점프 횟수가 2미만일 때 점프 수행
@@ -468,5 +469,16 @@ public class PlayerController : MonoBehaviour
             Debug.LogWarning("teleportClip2이나 AudioSource가 null입니다.");
         }
 
+    }
+
+    // 플레이어 뛸 때 소리
+    IEnumerator PlayRunningSound()
+    {
+        if(!audioSource.isPlaying) // 오디오가 현재 재생 중이 아닐 때만 발소리 재생
+        {
+            audioSource.clip = footstepClip; // 오디오 소스에 발소리 클립을 할당
+            audioSource.Play(); // 발소리 재생
+        }
+        yield return new WaitForSeconds(1f); // 2초 동안 대기
     }
 }
