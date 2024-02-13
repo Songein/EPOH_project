@@ -6,13 +6,14 @@ using UnityEngine;
 public class Event2Talk : MonoBehaviour
 {
     TalkAction action;
-    [SerializeField] bool first_talk_end = false; // 첫번째 대화 끝 확인
+    bool first_talk_end = false; // 첫번째 대화 끝 확인
 
-    public PlayerController player_controller; 
+    private PlayerController player_controller; 
 
     private void Start()
     {
-        action = FindObjectOfType<TalkAction>();
+        action = GameObject.FindGameObjectWithTag("TalkManager").GetComponent<TalkAction>();
+        player_controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     private void Update()
@@ -22,15 +23,5 @@ public class Event2Talk : MonoBehaviour
             first_talk_end = true;
             action.Action();
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            action.Action();
-        }
-    }
-
-    
+    }    
 }

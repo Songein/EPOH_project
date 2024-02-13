@@ -9,18 +9,13 @@ public class Event4Button : MonoBehaviour
     public GameObject widget;
     public GameObject portal;
 
-    public Button accept_button;
-
-    TalkAction action;
-
-    public PlayerController player_controller; 
-
-    [SerializeField] bool scroll_close = false; // 스크롤 닫힘 확인
+    private TalkAction action;
+    private PlayerController player_controller; 
 
 
     void Start()
     {
-        action = FindObjectOfType<TalkAction>();
+        action = GameObject.FindGameObjectWithTag("TalkManager").GetComponent<TalkAction>();
         player_controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         portal.SetActive(false);
     }
@@ -30,25 +25,21 @@ public class Event4Button : MonoBehaviour
     {
         GameManager.instance.boss_num = 0;
 
-        if (GameManager.instance.story_info == 4 && !scroll_close)
+        if (GameManager.instance.story_info == 4 && dog_request_panel.activeSelf)
         {
-            scroll_close = true;
-            dog_request_panel.SetActive(false);
-            widget.SetActive(false);
-            player_controller.is_interacting = false;
-           
-            Debug.Log("1 player_controller.is_talking: " + player_controller.is_talking);
-            Debug.Log("1 player_controller.is_interacting: " + player_controller.is_interacting);
-            
-            action.Action();
-
-            player_controller.is_interacting = false;
-            Debug.Log("2 player_controller.is_talking: " + player_controller.is_talking);
-            Debug.Log("2 player_controller.is_interacting: " + player_controller.is_interacting);
-            
-            portal.SetActive(true);
-            
+            StartCoroutine(EventStart());
         }
         
+    }
+
+    IEnumerator EventStart()
+    {
+        dog_request_panel.SetActive(false);
+        widget.SetActive(false);
+        yield return new WaitForSeconds(1.0f);
+
+        player_controller.is_interacting = false;
+        action.Action();
+        portal.SetActive(true);
     }
 }

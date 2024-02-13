@@ -23,6 +23,7 @@ public class CoreQuestGoalText : MonoBehaviour
     {
         if (GameManager.instance.boss_num >= 0)
         {
+            /*
             // 완료한 퀘스트 이름을 표기
             if (GameManager.instance.boss_clear_info[GameManager.instance.boss_num])
             {
@@ -31,6 +32,7 @@ public class CoreQuestGoalText : MonoBehaviour
 
             // 선택한(완료 전) 퀘스트 이름을 표기
             quest_text.text = GameManager.instance.boss_info[GameManager.instance.boss_num, 0] + " 퀘스트를 진행 중입니다";
+            */
         }
         else 
         {
