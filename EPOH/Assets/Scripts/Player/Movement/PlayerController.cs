@@ -258,7 +258,7 @@ public class PlayerController : MonoBehaviour
                     animator.SetBool("IsDoubleJump",false);
                     player_jump_cnt = 0; //바닥에 닿으면 플레이어 점프 횟수 초기화
 
-                    // 발소리 재생
+                    // (발소리) 착지 소리 재생
                     PlayFootstepSound();
 
                 }
@@ -385,12 +385,13 @@ public class PlayerController : MonoBehaviour
         animator.SetInteger("IsTeleport",-1);
     }
 
-    // 발소리 재생 함수
+    // (발소리) 착지 재생 함수
     void PlayFootstepSound()
     {
         // footstepClip이 null이 아닌지 확인
         if (footstepClip != null && audioSource != null)
         {
+            audioSource.volume = 0.5f;
             audioSource.PlayOneShot(footstepClip);
         }
         else
@@ -478,6 +479,7 @@ public class PlayerController : MonoBehaviour
         if(!audioSource.isPlaying) // 오디오가 현재 재생 중이 아닐 때만 발소리 재생
         {
             audioSource.clip = runningClip; // 오디오 소스에 발소리 클립을 할당
+            audioSource.volume = 0.5f;
             audioSource.Play(); // 발소리 재생
         }
         yield return new WaitForSeconds(0.1f); // 2초 동안 대기
