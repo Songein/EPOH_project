@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     
     //플레이어 점프
     public float playerJumpForce = 7f; //점프 힘
-    private int player_jump_cnt = 0; //플레이어 점프 횟수
+    public int player_jump_cnt = 0; //플레이어 점프 횟수
     
     //플레이어 리지드바디 컴포넌트
     private Rigidbody2D rigid;
