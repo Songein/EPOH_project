@@ -88,9 +88,11 @@ public class MissionDecisionCorrider : MonoBehaviour
         // BossSelection 스크립트의 선택된 보스 인덱스 참고하여 문구 출력
         if (boss_selection != null)
         {
+            /*
             int boss_index = boss_selection.getSelectedBossIndex(); // BossSelection 스크립트의 선택된 보스 인덱스 가져오기
             TextMeshProUGUI popup_text = mission_decision_popup.GetComponentInChildren<TextMeshProUGUI>(); // 팝업 창의 텍스트 가져오기
             popup_text.text = clicked_button.GetComponentInChildren<TextMeshProUGUI>().text + " 임무를 선택하시겠습니까?";
+            */
         }
         else
         {

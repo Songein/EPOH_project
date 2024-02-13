@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class BossSelection : MonoBehaviour
 {
+    /*
     public Button[] boss_buttons; // 보스를 선택하는 버튼 배열
     private GameManager game_manager; // GameManager 스크립트에 대한 참조 변수
 
@@ -59,4 +60,5 @@ public class BossSelection : MonoBehaviour
     {
         return selected_boss_index;
     }
+    */
 }

@@ -151,7 +151,7 @@ public class BossDogScene : MonoBehaviour
             port_end = true;
             //전사장치 생성
             corrider_potal.SetActive(true);
-            GameManager.instance.boss_clear_info[0] = true;
+            GameManager.instance.boss_num++; // 보스 인덱스를 사용하도록 수정 (24.02.13)
             GameManager.instance.is_back = true;
         }
         

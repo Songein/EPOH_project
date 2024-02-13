@@ -36,13 +36,13 @@ public class ActivateRune : MonoBehaviour
             Debug.LogError("GameManager를 찾을 수 없습니다.");
             return;
         }
-
+        /*
         // 보스룸 Dog가 클리어되면 Rune Anger를 활성화
         if (GameManager.instance.boss_clear_info[0])
         {
             GameManager.instance.rune[0] = true; 
             activateRuneColor(rune_anger, true, 0); // Rune Anger를 활성화
-        }
+        }*/
 
         //보스룸 oo가 클리어되면 Rune Fear를 활성화
 

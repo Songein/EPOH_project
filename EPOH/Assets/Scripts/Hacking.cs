@@ -62,15 +62,11 @@ public class Hacking : MonoBehaviour
     // 보스 클리어 정보 갱신
     public void updateBossClearInfo()
     {
-        int boss_index = GameManager.instance.boss_num; // 선택한 보스의 인덱스
-
-        if (boss_index >= 0 && boss_index < GameManager.boss_cnt)
+        if (GameManager.instance.boss_num < GameManager.boss_cnt)
         {
-            GameManager.instance.boss_clear_info[boss_index] = true; // 보스 클리어 여부 업데이트
-
-            Debug.Log("보스 클리어!");
-            
+            GameManager.instance.boss_num++; // 보스 클리어 여부 업데이트
         }
+        Debug.Log("보스 클리어!");
     }
 
     // hacking_point를 증가시키는 함수
