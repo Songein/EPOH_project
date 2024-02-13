@@ -16,7 +16,8 @@ public class PlayerController : MonoBehaviour
     // PlayerSound audioSource
     private AudioSource audioSource;
 
-    public AudioClip footstepClip; // 발걸음 소리(뛰기, 점프 착지)
+    public AudioClip footstepClip; // 발걸음 (점프 착지)
+    public AudioClip runningClip; // 뛰는 소리
     public AudioClip jumpClip1; // 1단 점프
     public AudioClip jumpClip2; // 2단 점프
     public AudioClip dashClip; // 대쉬
@@ -476,7 +477,7 @@ public class PlayerController : MonoBehaviour
     {
         if(!audioSource.isPlaying) // 오디오가 현재 재생 중이 아닐 때만 발소리 재생
         {
-            audioSource.clip = footstepClip; // 오디오 소스에 발소리 클립을 할당
+            audioSource.clip = runningClip; // 오디오 소스에 발소리 클립을 할당
             audioSource.Play(); // 발소리 재생
         }
         yield return new WaitForSeconds(0.1f); // 2초 동안 대기
