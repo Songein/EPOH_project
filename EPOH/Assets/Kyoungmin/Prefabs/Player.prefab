@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hacking: {fileID: 0}
-  footstepClip: {fileID: 8300000, guid: d44b7a425c51a8847a066fc637c6ee6c, type: 3}
+  footstepClip: {fileID: 8300000, guid: 4a2772599b7a7d64b98ba0c3ffbc6c19, type: 3}
   jumpClip1: {fileID: 8300000, guid: 16eb595cb84df9743b43927e6e11f487, type: 3}
   jumpClip2: {fileID: 8300000, guid: 17294eb08ece64144823d4e09b117d63, type: 3}
   dashClip: {fileID: 8300000, guid: c5dea467677cdd449a7f8190f8453783, type: 3}
@@ -348,9 +348,9 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 60
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
