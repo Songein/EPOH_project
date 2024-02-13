@@ -41,6 +41,7 @@ public class Event1Tutorial : MonoBehaviour
         player_controller.is_interacting = true; 
 
         yield return StartCoroutine(waitForKeyPress());
+
         tutorial_panel.SetActive(false); 
         player_controller.is_interacting = false;
     }
