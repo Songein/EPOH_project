@@ -479,6 +479,6 @@ public class PlayerController : MonoBehaviour
             audioSource.clip = footstepClip; // 오디오 소스에 발소리 클립을 할당
             audioSource.Play(); // 발소리 재생
         }
-        yield return new WaitForSeconds(1f); // 2초 동안 대기
+        yield return new WaitForSeconds(0.1f); // 2초 동안 대기
     }
 }
