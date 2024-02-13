@@ -88,6 +88,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd5cfcd0124f4296acb57751e391691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attack1SelectClip: {fileID: 8300000, guid: 180f35aef2ea2654086bcbb52d58ec0b, type: 3}
+  attack2SelectClip: {fileID: 8300000, guid: 62e48d51911a9294aab8284e2a117204, type: 3}
+  attack3SelectClip: {fileID: 8300000, guid: 2a5bf70b094053e44af3b5184d8af8e2, type: 3}
 --- !u!1101 &-6003890818873961011
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -710,6 +713,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd5cfcd0124f4296acb57751e391691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attack1SelectClip: {fileID: 8300000, guid: 180f35aef2ea2654086bcbb52d58ec0b, type: 3}
+  attack2SelectClip: {fileID: 8300000, guid: 62e48d51911a9294aab8284e2a117204, type: 3}
+  attack3SelectClip: {fileID: 8300000, guid: 7d176df610ca34c4c878590f3dc014a1, type: 3}
 --- !u!114 &3968817143468844942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1057,6 +1063,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd5cfcd0124f4296acb57751e391691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attack1SelectClip: {fileID: 8300000, guid: 180f35aef2ea2654086bcbb52d58ec0b, type: 3}
+  attack2SelectClip: {fileID: 8300000, guid: 62e48d51911a9294aab8284e2a117204, type: 3}
+  attack3SelectClip: {fileID: 8300000, guid: 7d176df610ca34c4c878590f3dc014a1, type: 3}
 --- !u!1102 &8869056206746597903
 AnimatorState:
   serializedVersion: 6
