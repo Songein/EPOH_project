@@ -2511,7 +2511,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 1.3100815, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &175250989
@@ -4760,7 +4760,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 1.3100815, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &368003758
@@ -19383,7 +19383,6 @@ GameObject:
   - component: {fileID: 478011699}
   - component: {fileID: 478011698}
   - component: {fileID: 478011697}
-  - component: {fileID: 478011700}
   m_Layer: 5
   m_Name: Accept Button
   m_TagString: Untagged
@@ -19468,7 +19467,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 478011700}
+      - m_Target: {fileID: 850645041}
         m_TargetAssemblyTypeName: Event4Button, Assembly-CSharp
         m_MethodName: startEvent4Talk
         m_Mode: 1
@@ -19518,24 +19517,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478011695}
   m_CullTransparentMesh: 1
---- !u!114 &478011700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 478011695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718ede70dda264a4c9a61d81ff45bdee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dog_request_panel: {fileID: 1460462795}
-  widget: {fileID: 909515331}
-  portal: {fileID: 0}
-  accept_button: {fileID: 478011697}
-  player_controller: {fileID: 0}
-  scroll_close: 0
 --- !u!1 &479466740
 GameObject:
   m_ObjectHideFlags: 0
@@ -22457,6 +22438,7 @@ GameObject:
   - component: {fileID: 850645037}
   - component: {fileID: 850645040}
   - component: {fileID: 850645039}
+  - component: {fileID: 850645041}
   m_Layer: 0
   m_Name: EventManager
   m_TagString: Untagged
@@ -22517,6 +22499,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abb5b03ce4f1c0e46b9e6b590949bde3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &850645041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850645036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718ede70dda264a4c9a61d81ff45bdee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dog_request_panel: {fileID: 1460462795}
+  widget: {fileID: 909515331}
+  portal: {fileID: 1657800979}
 --- !u!1 &861630110
 GameObject:
   m_ObjectHideFlags: 0
@@ -24793,7 +24790,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 1.3100815, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1137848684
@@ -24928,7 +24925,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1145575958
@@ -27542,7 +27539,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 1.3100815, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1460895592
@@ -27934,7 +27931,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 1.3100815, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1498150695
@@ -33149,7 +33146,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 1.3100815, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1607970479
@@ -36656,7 +36653,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 1.3100815, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1999579183
