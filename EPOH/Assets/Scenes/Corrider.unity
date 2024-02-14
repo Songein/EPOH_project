@@ -139,8 +139,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075610, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: m_Size.x
+      value: 8.045
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632130523800075610, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: m_Size.y
+      value: 6.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632130523800075610, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fceba3e2734d94a759cc5c7351fd17e6, type: 3}
+    - target: {fileID: 4632130523800075610, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632130523800075610, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075611, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: m_RootOrder
@@ -13823,9 +13839,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   if_first: 1
   story_info: 5
-  rune: 0000000000
+  tutorial_info: 0
   boss_num: -1
-  boss_clear_info: 000000
+  boss_info:
+  - Dog
+  - PartTime
+  - ForgetMeNot
+  - Criminal
+  - Hoa
   is_back: 0
 --- !u!4 &1813099314
 Transform:
