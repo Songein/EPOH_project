@@ -247,8 +247,9 @@ public class BossDog : MonoBehaviour
         Vector2 player_pos = player.transform.position;
 
         Debug.Log("[Running] : 보스가 몸을 웅크리고 으르릉 댄다.");
+        animator.SetTrigger("RunningPrecursor");
         yield return new WaitForSeconds(precursor_time); //전조 시간만큼 대기
-
+        animator.SetTrigger("RunningAttack");
 
         float run_distance; //보스가 이동할 거리
 
