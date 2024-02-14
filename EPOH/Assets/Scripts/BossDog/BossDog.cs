@@ -82,6 +82,7 @@ public class BossDog : MonoBehaviour
             if (is_track && distance > track_range && !is_skill) // 트랙 중이고 거리가 최소 거리보다 크며 스킬 사용중이 아닐 때
             {
                 CheckFlip();
+                animator.SetBool("IsRun", true);
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.transform.position.x, transform.position.y, transform.position.z), boss_speed * Time.deltaTime);
             }
         }
@@ -98,7 +99,7 @@ public class BossDog : MonoBehaviour
     {
         CheckFlip();
         Debug.Log("코루틴 시작");
-
+        animator.SetBool("IsRun", false);
         yield return new WaitForSeconds(boss_move_cooldown);
         is_track = !is_track; // 추적하는 상태와 그렇지 않은 상태를 번갈아서 반복
         StartCoroutine(MoveCooldown());
