@@ -92,7 +92,7 @@ public class BossDog : MonoBehaviour
         {
             start_attack = true;
 
-            if ( scene.phase_start2 && !scene.phase_start3)
+            if ( scene.phase_start2 && !scene.end_second_bossdog)
             {
                 StartCoroutine(MoveCooldown()); // 무브 코루틴 시작
                 StartCoroutine(SkillCooldown_SP()); // 강화된 스킬 사용 코루틴 시작
