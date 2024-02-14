@@ -44,6 +44,8 @@ public class BossDogScene : MonoBehaviour
 
     [SerializeField] private GameObject corrider_potal;
     
+    [SerializeField] public bool end_second_bossdog = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -134,6 +136,7 @@ public class BossDogScene : MonoBehaviour
 
         if (GameManager.instance.story_info == 10 && !tutorial2_end)
         {
+            end_second_bossdog = true;
             phase_transition.SetActive(false);
             
             //튜토리얼 텍스트 오브젝트 활성화
