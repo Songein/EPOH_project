@@ -227,12 +227,14 @@ public class BossDog : MonoBehaviour
         
         //충격파 오브젝트 활성화
         ShockWave.SetActive(true);
+        CircleCollider2D collider = ShockWave.GetComponent<CircleCollider2D>();
         //충격파 오브젝트 커지도록
         for (int i = 1; i <= howling_radius; i++)
         {
             //아래 시간을 조정함에 따라 충격파 발동 시간이 조절됨
             yield return new WaitForSeconds(0.05f);
-            ShockWave.transform.localScale = new Vector2(1f + 0.5f * i, 1f + 0.5f * i);
+            collider.radius += 0.9f / howling_radius;
+            ShockWave.transform.localScale = new Vector2(1f + 0.3f * i, 1f + 0.3f * i);
         }
         yield return new WaitForSeconds(0.01f);
         ShockWave.SetActive(false); //충격파 오브젝트 비활성화
