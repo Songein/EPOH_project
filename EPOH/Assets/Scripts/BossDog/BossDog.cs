@@ -161,7 +161,9 @@ public class BossDog : MonoBehaviour
     private IEnumerator Bite()
     {
         Debug.Log("[Bite] : 보스가 이빨을 드러내며 그르렁 거림.");
+        animator.SetTrigger("BitePrecursor"); //전조 애니메이션 실행
         yield return new WaitForSeconds(precursor_time); // 전조시간동안 대기
+        animator.SetTrigger("BiteAttack"); //공격 애니메이션 실행
 
         //플레이어의 현재 위치 파악
         Vector2 player_pos = player.transform.position;
