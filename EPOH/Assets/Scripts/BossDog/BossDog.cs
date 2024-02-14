@@ -218,8 +218,10 @@ public class BossDog : MonoBehaviour
     {
         CheckFlip();
         Debug.Log("[Howling.cs] : 보스가 멈추고 고개를 든다.");
+        animator.SetTrigger("HowlingPrecursor"); //전조 애니메이션 실행
         yield return new WaitForSeconds(precursor_time); //전조 시간만큼 대기
-
+        animator.SetTrigger("HowlingAttack"); //공격 애니메이션 실행
+        
         //충격파 오브젝트 활성화
         ShockWave.SetActive(true);
         //충격파 오브젝트 커지도록
