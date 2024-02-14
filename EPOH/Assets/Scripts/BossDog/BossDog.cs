@@ -21,6 +21,7 @@ public class BossDog : MonoBehaviour
 
     public GameObject player; // 플레이어 게임 오브젝트
     private int skill; // 사용하는 스킬
+    private int skill_sp; // (페이즈 변환 후) 강화된 스킬
     private BossDogScene scene; //BossDogScene 스크립트 참조
 
 
@@ -90,8 +91,19 @@ public class BossDog : MonoBehaviour
         if (scene.battle_start && !start_attack)
         {
             start_attack = true;
-            StartCoroutine(MoveCooldown()); // 무브 코루틴 시작
-            StartCoroutine(SkillCooldown()); // 스킬 사용 코루틴 시작
+
+            if ( scene.phase_start2 && !scene.phase_start3)
+            {
+                StartCoroutine(MoveCooldown()); // 무브 코루틴 시작
+                StartCoroutine(SkillCooldown_SP()); // 강화된 스킬 사용 코루틴 시작
+
+            }
+            else 
+            {
+                StartCoroutine(MoveCooldown()); // 무브 코루틴 시작
+                StartCoroutine(SkillCooldown()); // 스킬 사용 코루틴 시작
+            }
+            
         }
     }
 
@@ -125,6 +137,26 @@ public class BossDog : MonoBehaviour
         StartCoroutine(SkillCooldown());
     }
 
+    public IEnumerator SkillCooldown_SP()
+    {
+        CheckFlip();
+        Debug.Log("스킬 사용");
+        is_skill = true;
+        float distance = Vector3.Distance(transform.position, player.transform.position);
+        if(distance < close_range)
+        {
+            skill_sp = Random.Range(0, 2); // 가까울 때 모든 패턴 발생
+        }
+        else
+        {
+            skill_sp = Random.Range(2, 4); // 멀 때 2가지 패턴만 발생
+        }
+        BossSkill_SP(skill_sp);
+        yield return new WaitForSeconds(boss_skill_cooldown); // 스킬을 사용하지 않음
+        StartCoroutine(SkillCooldown_SP());
+
+    }
+
     private void OnTriggerEnter2D(Collider2D collision) // 충돌시 데미지
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -152,6 +184,28 @@ public class BossDog : MonoBehaviour
                 break;
             case 3:
                 StartCoroutine(Stomping());
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    private void BossSkill_SP(int skill_sp)
+    {
+        Debug.Log(skill + "번 스킬 사용");
+        switch (skill) {
+            case 0: 
+                StartCoroutine(secondDogBite());
+                break;
+            case 1:
+                StartCoroutine(secondDogHowling());
+                break;
+            case 2:
+                StartCoroutine(secondDogRunning());
+                break;
+            case 3:
+                StartCoroutine(secondDogStomping());
                 break;
             default:
                 break;
@@ -367,4 +421,68 @@ public class BossDog : MonoBehaviour
             //Debug.Log("오른쪽 체크");
         }
     }
+
+    private IEnumerator secondDogBite() // 보스 페이즈 전환시 Bite 2회 연속 공격
+    {
+        yield return StartCoroutine(Bite()); // 첫 번째 Bite
+        yield return new WaitForSeconds(0.1f);
+
+        CheckFlip();
+        yield return StartCoroutine(Bite()); // 두 번째 Bite
+
+    }
+
+    private IEnumerator secondDogRunning() // 보스 페이즈 전환시 Running 3회 연속 공격
+    {
+        yield return StartCoroutine(Running()); // 첫 번째 Running
+        yield return new WaitForSeconds(0.1f);
+
+        CheckFlip();
+        yield return StartCoroutine(Running()); // 두 번째 Running
+        yield return new WaitForSeconds(0.1f);
+
+        CheckFlip();
+        yield return StartCoroutine(Running()); // 세 번째 Running
+
+    }
+
+    private IEnumerator secondDogHowling() // 보스 페이즈 전환시 Howling 범위 1.5배가량 증가
+    {
+        howling_radius *= 1.5f;
+        yield return StartCoroutine(Howling()); 
+    }
+
+    private IEnumerator secondDogStomping() // 보스 페이즈 전환시 Stomping 충격파가 양쪽으로 발생
+    {
+        Debug.Log("[Stomping] : 보스가 앞발을 든다.");
+        animator.SetTrigger("StompingPrecursor");
+        yield return new WaitForSeconds(precursor_time); //전조 시간만큼 대기
+        animator.SetTrigger("StompingAttack");
+
+        //충격파 오브젝트 양쪽에서 순차적으로 발동
+        for (int i = 0; i < shock_num; i++)
+        {
+            //아래 시간을 조정함에 따라 충격파 발동 시간이 조절됨
+            yield return new WaitForSeconds(0.2f);
+            
+            //양쪽 충격파 오브젝트 활성화
+            LeftGroundShock[i].SetActive(true);
+            RightGroundShock[i].SetActive(true);
+        }
+        //충격파 오브젝트 순차적으로 꺼짐
+        for (int i = 0; i < shock_num; i++)
+        {
+            //아래 시간을 조정함에 따라 충격파 발동 시간이 조절됨
+            yield return new WaitForSeconds(0.2f);
+
+            //양쪽 충격파 오브젝트 비활성화
+            LeftGroundShock[i].SetActive(false);
+            RightGroundShock[i].SetActive(false);
+        }
+        
+        yield return new WaitForSeconds(0.1f);
+        Debug.Log("[Stomping] : 사용 완료");
+        is_skill = false;
+    }
+
 }

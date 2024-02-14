@@ -30,9 +30,9 @@ public class BossDogScene : MonoBehaviour
     [SerializeField] private Sprite[] platform_sprites; //발판 스프라이트
 
     private BossHealth boss_health;
-    [SerializeField] private bool phase_start = false; //페이즈 전환 이벤트1 트리거
-    [SerializeField] private bool phase_start2 = false; //페이즈 전환 이벤트2 트리거
-    [SerializeField] private bool phase_start3 = false; //페이즈 전환 이벤트3 트리거
+    [SerializeField] public bool phase_start = false; //페이즈 전환 이벤트1 트리거
+    [SerializeField] public bool phase_start2 = false; //페이즈 전환 이벤트2 트리거
+    [SerializeField] public bool phase_start3 = false; //페이즈 전환 이벤트3 트리거
 
     [SerializeField] private GameObject phase_transition;
     [SerializeField] private Animation transition_animation;
