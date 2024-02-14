@@ -32,6 +32,7 @@ public class BossDog : MonoBehaviour
     public GameObject bite_area; //bite 공격 범위 오브젝트
     public AnimationCurve curve; //포물선 이동을 위한 AnimationCurve 선언
     [SerializeField] float bite_duration = 0.5f; //포물선 이동에 걸리는 시간
+    [SerializeField] private GameObject[] bite_effects; //bite effect 배열
 
     //하울링 변수
     public GameObject ShockWave; //충격파 오브젝트
@@ -182,6 +183,7 @@ public class BossDog : MonoBehaviour
             sr.flipX = false;
             //공격 범위를 플레이어를 보는 방향으로 설정
             bite_area.GetComponent<BiteArea>().SetPos(false);
+            bite_effects[0].SetActive(true);
         }
         else
         {
@@ -191,6 +193,7 @@ public class BossDog : MonoBehaviour
             sr.flipX = true;
             //공격 범위를 플레이어를 보는 방향으로 설정
             bite_area.GetComponent<BiteArea>().SetPos(true);
+            bite_effects[1].SetActive(true);
         }
 
         //보스의 도착지점 위치 지정
@@ -213,6 +216,8 @@ public class BossDog : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         //Debug.Log("[Bite] : bite area 비활성화");
         bite_area.SetActive(false);
+        bite_effects[0].SetActive(false);
+        bite_effects[1].SetActive(false);
         Debug.Log("[Bite] : 사용 완료");
         is_skill = false;
     }
