@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     
     //플레이어 점프
     public float playerJumpForce = 7f; //점프 힘
-    private int player_jump_cnt = 0; //플레이어 점프 횟수
+    public int player_jump_cnt = 0; //플레이어 점프 횟수
     
     //플레이어 리지드바디 컴포넌트
     private Rigidbody2D rigid;
@@ -202,7 +202,7 @@ public class PlayerController : MonoBehaviour
             }
             else //표식을 설치하지 않은 경우
             {
-                animator.SetInteger("IsTeleport",0); //순간이동 표식 설치 애니메이션 실행
+                animator.SetBool("InstallPort",true); //순간이동 표식 설치 애니메이션 실행
                 Invoke("EndPortAni", 0.3f); //0.3초 후 순간이동 표식 설치 애니메이션 종료
                 teleport_pos = transform.position; //플레이어의 현재 위치 받아오기
                 Vector3 port_pos = new Vector3(teleport_pos.x, teleport_pos.y, port_prefab.transform.position.z);
@@ -258,7 +258,7 @@ public class PlayerController : MonoBehaviour
                     animator.SetBool("IsDoubleJump",false);
                     player_jump_cnt = 0; //바닥에 닿으면 플레이어 점프 횟수 초기화
 
-                    // 발소리 재생
+                    // (발소리) 착지 소리 재생
                     PlayFootstepSound();
 
                 }
@@ -371,26 +371,27 @@ public class PlayerController : MonoBehaviour
         can_teleport = false; //순간이동 불가능으로 설정
         is_teleporting = true; //순간이동 중으로 설정
         Destroy(port); //순간이동 표식 제거
-        gameObject.transform.position = new Vector2(teleport_pos.x, teleport_pos.y + 3f); //순간이동 표식보다 y축으로 3만큼 위로 이동
-        animator.SetBool("IsFall",true); //순간이동 끝 애니메이션 실행
-        //rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce);
-
-        //순간이동 끝
-        yield return new WaitForSeconds(teleport_time);
+        animator.SetTrigger("IsTeleport"); //순간이동 끝 애니메이션 실행
+        yield return new WaitForSeconds(0.1f);
+        gameObject.transform.position = new Vector2(teleport_pos.x, teleport_pos.y); //순간이동 표식으로 이동
+        
         is_teleporting = false; //순간이동 중 해제
     }
+    
+    
 
     void EndPortAni() //순간이동 표식 생성 애니메이션 해제
     {
-        animator.SetInteger("IsTeleport",-1);
+        animator.SetBool("InstallPort",false);
     }
 
-    // 발소리 재생 함수
+    // (발소리) 착지 재생 함수
     void PlayFootstepSound()
     {
         // footstepClip이 null이 아닌지 확인
         if (footstepClip != null && audioSource != null)
         {
+            audioSource.volume = 0.5f;
             audioSource.PlayOneShot(footstepClip);
         }
         else
@@ -478,6 +479,7 @@ public class PlayerController : MonoBehaviour
         if(!audioSource.isPlaying) // 오디오가 현재 재생 중이 아닐 때만 발소리 재생
         {
             audioSource.clip = runningClip; // 오디오 소스에 발소리 클립을 할당
+            audioSource.volume = 0.5f;
             audioSource.Play(); // 발소리 재생
         }
         yield return new WaitForSeconds(0.1f); // 2초 동안 대기
