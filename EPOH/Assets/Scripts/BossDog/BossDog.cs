@@ -42,6 +42,7 @@ public class BossDog : MonoBehaviour
     public float movement_speed = 12f; // 이동 속도
     [SerializeField] float reach_distance_long = 18f; //공격 사정 거리
     [SerializeField] float run_duration = 1.0f; //달리기 이동에 걸리는 시간
+    [SerializeField] private GameObject[] running_effects; //Running Effect 할당
 
     //충격파 변수
     public GameObject[] LeftGroundShock; //왼쪽 충격파 오브젝트
@@ -258,7 +259,7 @@ public class BossDog : MonoBehaviour
         animator.SetTrigger("RunningPrecursor");
         yield return new WaitForSeconds(precursor_time); //전조 시간만큼 대기
         animator.SetTrigger("RunningAttack");
-
+        
         float run_distance; //보스가 이동할 거리
 
         //transform.position.x - player_pos.x 값이 양수면 플레이어는 보스의 왼쪽에 위치함.
@@ -269,6 +270,7 @@ public class BossDog : MonoBehaviour
             run_distance = -1 * reach_distance_long;
             //보스의 스프라이트를 왼쪽방향으로 설정
             sr.flipX = false;
+            running_effects[0].SetActive(true);
         }
         else
         {
@@ -276,6 +278,7 @@ public class BossDog : MonoBehaviour
             run_distance = 1 * reach_distance_long;
             //보스의 스프라이트를 오른쪽 방향으로 설정
             sr.flipX = true;
+            running_effects[1].SetActive(true);
         }
 
         //보스의 도착지점 위치 지정
@@ -294,6 +297,8 @@ public class BossDog : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
         Debug.Log("[Running] : 사용 완료");
+        running_effects[0].SetActive(false);
+        running_effects[1].SetActive(false);
         is_skill = false;
         CheckFlip();
     }
