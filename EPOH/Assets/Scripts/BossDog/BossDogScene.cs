@@ -30,9 +30,9 @@ public class BossDogScene : MonoBehaviour
     [SerializeField] private Sprite[] platform_sprites; //발판 스프라이트
 
     private BossHealth boss_health;
-    [SerializeField] private bool phase_start = false; //페이즈 전환 이벤트1 트리거
-    [SerializeField] private bool phase_start2 = false; //페이즈 전환 이벤트2 트리거
-    [SerializeField] private bool phase_start3 = false; //페이즈 전환 이벤트3 트리거
+    [SerializeField] public bool phase_start = false; //페이즈 전환 이벤트1 트리거
+    [SerializeField] public bool phase_start2 = false; //페이즈 전환 이벤트2 트리거
+    [SerializeField] public bool phase_start3 = false; //페이즈 전환 이벤트3 트리거
 
     [SerializeField] private GameObject phase_transition;
     [SerializeField] private Animation transition_animation;
@@ -43,6 +43,8 @@ public class BossDogScene : MonoBehaviour
     private Vector3 player_spawn_pos;
 
     [SerializeField] private GameObject corrider_potal;
+    
+    [SerializeField] public bool end_second_bossdog = false;
     
     // Start is called before the first frame update
     void Start()
@@ -134,6 +136,7 @@ public class BossDogScene : MonoBehaviour
 
         if (GameManager.instance.story_info == 10 && !tutorial2_end)
         {
+            end_second_bossdog = true;
             phase_transition.SetActive(false);
             
             //튜토리얼 텍스트 오브젝트 활성화
