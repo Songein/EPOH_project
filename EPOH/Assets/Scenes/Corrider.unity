@@ -13963,7 +13963,8 @@ MonoBehaviour:
   before_pictures: []
   after_pictures: []
   player_left_pos: {x: -23.8, y: -3.5, z: -1}
-  player_right_pos: {x: -2, y: -3.5, z: -1}
+  player_right_pos: {x: 0, y: -3.5, z: -1}
+
 --- !u!4 &1798943349
 Transform:
   m_ObjectHideFlags: 0
