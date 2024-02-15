@@ -25,10 +25,11 @@ public class BossDogScene : MonoBehaviour
     public bool battle_start; //배틀 시작
 
     [SerializeField] private GameObject background; //배경 오브젝트
-    [SerializeField] private GameObject[] platforms; //발판 오브젝트들
     [SerializeField] private Sprite[] background_sprites; //배경 스프라이트 배열
-    [SerializeField] private Sprite[] platform_sprites; //발판 스프라이트
-
+    [SerializeField] private GameObject ground; //ground 오브젝트
+    [SerializeField] private Sprite[] ground_sprites; //Ground 스프라이트 배열
+    
+    
     private BossHealth boss_health;
     [SerializeField] public bool phase_start = false; //페이즈 전환 이벤트1 트리거
     [SerializeField] public bool phase_start2 = false; //페이즈 전환 이벤트2 트리거
@@ -185,8 +186,11 @@ public class BossDogScene : MonoBehaviour
         //대화창 이벤트
         talk_action.Action();
         //배경 변경해놓기
-        SpriteRenderer sr = background.GetComponent<SpriteRenderer>();
-        sr.sprite = background_sprites[1];
+        SpriteRenderer bg_sr = background.GetComponent<SpriteRenderer>();
+        SpriteRenderer gr_sr = ground.GetComponent<SpriteRenderer>();
+        bg_sr.sprite = background_sprites[1];
+        gr_sr.sprite = ground_sprites[1];
+        
         //플레이어랑 보스 원래 위치로 이동시키기
         player.transform.position = player_spawn_pos;
         boss.transform.position = boss_spawn_pos;
