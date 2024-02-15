@@ -19,8 +19,8 @@ public class Event3Talk : MonoBehaviour
     {
         player_controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         accept_button.gameObject.SetActive(false);
-        action = GameObject.FindGameObjectWithTag("TalkManager").GetComponent<TalkAction>();
-        
+        action = FindObjectOfType<TalkAction>();
+
     }
 
      void Update()
