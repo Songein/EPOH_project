@@ -44,6 +44,7 @@ public class BossDog : MonoBehaviour
     [SerializeField] float howling_radius = 6.0f; //하울링 반경
 
     //달리기 변수
+    [SerializeField] GameObject running_area; //running 공격 범위 오브젝트
     public float movement_speed = 12f; // 이동 속도
     [SerializeField] float reach_distance_long = 18f; //공격 사정 거리
     [SerializeField] float run_duration = 1.0f; //달리기 이동에 걸리는 시간
@@ -350,6 +351,7 @@ public class BossDog : MonoBehaviour
             //보스의 스프라이트를 왼쪽방향으로 설정
             sr.flipX = false;
             running_effects[0].SetActive(true);
+            running_area.GetComponent<RunningArea>().SetPos(false);
         }
         else
         {
@@ -358,11 +360,13 @@ public class BossDog : MonoBehaviour
             //보스의 스프라이트를 오른쪽 방향으로 설정
             sr.flipX = true;
             running_effects[1].SetActive(true);
+            running_area.GetComponent<RunningArea>().SetPos(true);
         }
 
         //보스의 도착지점 위치 지정
         Vector2 end = new Vector2(Mathf.Clamp(transform.position.x + run_distance, Dog_min_area, Dog_max_area), Dog_yposition);
-
+        //공격 범위 활성화
+        running_area.SetActive(true);
         //위치를 향해 돌진
         float time = 0f;
         float running_speed = Vector3.Distance(transform.position, end) / run_duration;
@@ -376,6 +380,7 @@ public class BossDog : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
         Debug.Log("[Running] : 사용 완료");
+        running_area.SetActive(false);
         running_effects[0].SetActive(false);
         running_effects[1].SetActive(false);
         is_skill = false;
