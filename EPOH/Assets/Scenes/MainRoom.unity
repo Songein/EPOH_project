@@ -194,10 +194,6 @@ PrefabInstance:
       propertyPath: talk_name_panel
       value: 
       objectReference: {fileID: 325030299}
-    - target: {fileID: 7894161507570188938, guid: faede9cafe37e433dbad6ab38e847544, type: 3}
-      propertyPath: player_controller
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7894161507570188939, guid: faede9cafe37e433dbad6ab38e847544, type: 3}
       propertyPath: talk_text
       value: 
@@ -233,7 +229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1564326180844969898, guid: 5dc7538251d9f42189584530b52f5f4d, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1564326180844969898, guid: 5dc7538251d9f42189584530b52f5f4d, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1210,7 +1206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &948329348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1231,7 +1227,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e8e1f6aa8c821cd47825159754b9cf3d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 50eb3b474bf5046dfbd4275b92215786, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1420,7 +1416,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 2.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1444,7 +1440,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995278969}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.36, y: -1, z: -10}
+  m_LocalPosition: {x: 7.21, y: -3.4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1472,7 +1468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5630321747331603971, guid: 616ae79b06c6046e186cd613a7841f28, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5630321747331603971, guid: 616ae79b06c6046e186cd613a7841f28, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1604,9 +1600,9 @@ MonoBehaviour:
   - {fileID: 991424681}
   cut_scenes:
   - {fileID: 948329347}
-  main_camera: {fileID: 0}
+  main_camera: {fileID: 2132822441}
   sub_camera: {fileID: 995278969}
-  camera_dest: {x: 10.44, y: -1, z: -10}
+  camera_dest: {x: -1.56, y: -3.4, z: -10}
 --- !u!4 &1152871169
 Transform:
   m_ObjectHideFlags: 0
