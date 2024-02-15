@@ -402,7 +402,6 @@ public class PlayerController : MonoBehaviour
         // footstepClip이 null이 아닌지 확인
         if (footstepClip != null && audioSource != null)
         {
-            audioSource.volume = 0.5f;
             audioSource.PlayOneShot(footstepClip);
         }
         else
