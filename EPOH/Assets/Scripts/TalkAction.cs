@@ -32,12 +32,7 @@ public class TalkAction : MonoBehaviour
     public bool is_talking = false; // 대화중인지 확인
 
     public int talk_index; // 현재 진행되고 있는 대화의 순번
-
-
-    private void Start()
-    {
-        player_controller = FindObjectOfType<PlayerController>();
-    }
+    
 
     public void Action()
     {
