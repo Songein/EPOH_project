@@ -247,6 +247,10 @@ public class BossDogScene : MonoBehaviour
 
     IEnumerator PlayerDeath()
     {
+        sub_camera.SetActive(false);
+        full_camera.SetActive(false);
+        main_camera.SetActive(true);
+        
         animator.SetTrigger("Stumble");
         yield return new WaitForSeconds(0.5f);
         animator.SetTrigger("Death");
