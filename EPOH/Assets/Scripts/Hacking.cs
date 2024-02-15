@@ -38,6 +38,8 @@ public class Hacking : MonoBehaviour
         {
             Debug.LogError("[Hacking] : Boss GameObject를 찾을 수 없습니다. 'Boss' 태그를 가진 GameObject가 씬에 있는지 확인하세요.");
         }
+
+        StartCoroutine(DecreaseHackingPointOverTime());
     }
 
     // BossManager의 hacking_point가 200에 다다랐을 시 보스전이 종료되는 함수
@@ -127,5 +129,26 @@ public class Hacking : MonoBehaviour
         }
     }
 
+    private IEnumerator DecreaseHackingPointOverTime()
+    {
+        // 무한 루프
+        while (true)
+        {
+            // 5초가 지나면
+            yield return new WaitForSeconds(5f);
 
+            // 해킹포인트가 0 보다 작지 않음
+            if (boss_manager.hacking_point > 0)
+            {
+                // hacking_point 10씩 감소
+                boss_manager.hacking_point -= 10;
+                boss_manager.hacking_point = Mathf.Max(boss_manager.hacking_point, 0);
+
+                // hacking_point 감소 후 확인
+                checkHackingPoint();
+
+            }
+        }
+
+    }
 }
