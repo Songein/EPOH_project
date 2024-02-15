@@ -233,6 +233,13 @@ public class PlayerController : MonoBehaviour
             interaction_text.transform.position = dir_pos;
         }
         
+        //전사장치를 통해 이동하여 다음 씬으로 도착한 경우
+        if (GameManager.instance.teleport_depart)
+        {
+            GameManager.instance.teleport_depart = false;
+            animator.SetTrigger("TransferDeviceArrive");
+        }
+        
     }
 
     void FixedUpdate()
