@@ -3,9 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossDogScene : MonoBehaviour
 {
+    //애니메이터 변수
+    private Animator animator;
+
+    public BossManager boss_manager; // BossManager 스크립트에 대한 참조
+
+
     [SerializeField] private GameObject main_camera; //플레이어 메인 카메라
     [SerializeField] private GameObject sub_camera; //보스 서브 카메라
     [SerializeField] private GameObject full_camera; //풀샷 카메라
@@ -69,10 +76,16 @@ public class BossDogScene : MonoBehaviour
 
         boss_spawn_pos = boss.transform.position;
         player_spawn_pos = player.transform.position;
+
+
+        // BossManager 스크립트 참조
+        boss_manager = boss.GetComponent<BossManager>();
+
         //background animator 할당
         bg_animator = background.GetComponent<Animator>();
         //full_camera_pos 할당
         full_camera_pos = full_camera.transform.position;
+
     }
     
     // Update is called once per frame
@@ -168,6 +181,12 @@ public class BossDogScene : MonoBehaviour
             GameManager.instance.boss_num++; // 보스 인덱스를 사용하도록 수정 (24.02.13)
             GameManager.instance.is_back = true;
         }
+
+        if (boss_manager.player_hp == 0 ) // 플레이어 hp 0 이 되면 비틀거리고 Corrider 씬으로 이동한 다음 부활한다.
+        {
+            StartCoroutine(PlayerDeath());
+
+        }
         
     }
 
@@ -224,6 +243,24 @@ public class BossDogScene : MonoBehaviour
         boss.SetActive(false);
         talk_action.Action();
         
+    }
+
+    IEnumerator PlayerDeath()
+    {
+        //보스 움직임 멈춤(배틀 일시정지)
+        battle_start = false;
+
+        animator.SetTrigger("Stumble");
+        yield return new WaitForSeconds(0.5f);
+        animator.SetTrigger("Death");
+
+        GameManager.instance.if_revive = true;
+
+        sub_camera.SetActive(false);
+        full_camera.SetActive(false);
+        main_camera.SetActive(true);
+
+        SceneManager.LoadScene("Corrider"); // 플레이어가 보스전 중 사망하면 Corrider 씬으로 이동하여 부활
     }
 
     void EndFullCameraMove()

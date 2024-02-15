@@ -405,17 +405,15 @@ public class PlayerController : MonoBehaviour
     }
 
     // 점프 1단 소리 재생 함수
-    void Jump1Sound()
+    IEnumerator Jump1Sound()
     {
-        // jumpClip1이 null이 아닌지 확인
-        if (jumpClip1 != null && audioSource != null)
+
+        if(!audioSource.isPlaying) // 오디오가 현재 재생 중이 아닐 때만 발소리 재생
         {
-            audioSource.PlayOneShot(jumpClip1);
+            audioSource.clip = jumpClip1; // 오디오 소스에 발소리 클립을 할당
+            audioSource.Play(); // 발소리 재생
         }
-        else
-        {
-            Debug.LogWarning("jumpClip1이나 AudioSource가 null입니다.");
-        }
+        yield return new WaitForSeconds(0.1f); // 2초 동안 대기
     }
     
     // 점프 2단 소리 재생 함수
