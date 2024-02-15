@@ -71,8 +71,11 @@ public class MainRoomManager : MonoBehaviour
 
         if (GameManager.instance.story_info == 11 && talk_action.talk_index == 3 && !robot_dog_event2_start)
         {
+            sub_camera.SetActive(false);
+            main_camera.SetActive(true);
             robot_dog_event2_start = true;
             //주인공 대화창의 초상화 부분 변경(비틀거리는 주인공)
+            player.GetComponent<Animator>().SetTrigger("Stumble");
         }
 
         if (GameManager.instance.story_info == 12 && !robot_dog_cut_scene_start)
