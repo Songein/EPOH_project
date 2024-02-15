@@ -15,12 +15,20 @@ public class EnterBossRoom : MonoBehaviour
         }*/
     }
 
+    void Update()
+    {
+        if (GameManager.instance.if_revive)
+        {
+            GameManager.instance.boss_num = 0;
+        }
+    }
+
 
     public void moveToBossRoom()
     {
         
         if (GameManager.instance != null)
-        { 
+        {
             int boss_index = GameManager.instance.boss_num;
             string boss_room_scene_name = "";
 

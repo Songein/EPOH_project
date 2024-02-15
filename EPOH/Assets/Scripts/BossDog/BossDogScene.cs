@@ -247,13 +247,18 @@ public class BossDogScene : MonoBehaviour
 
     IEnumerator PlayerDeath()
     {
-        sub_camera.SetActive(false);
-        full_camera.SetActive(false);
-        main_camera.SetActive(true);
-        
+        //보스 움직임 멈춤(배틀 일시정지)
+        battle_start = false;
+
         animator.SetTrigger("Stumble");
         yield return new WaitForSeconds(0.5f);
         animator.SetTrigger("Death");
+
+        GameManager.instance.if_revive = true;
+
+        sub_camera.SetActive(false);
+        full_camera.SetActive(false);
+        main_camera.SetActive(true);
 
         SceneManager.LoadScene("Corrider"); // 플레이어가 보스전 중 사망하면 Corrider 씬으로 이동하여 부활
     }
