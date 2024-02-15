@@ -118,7 +118,7 @@ public class Hacking : MonoBehaviour
         if (boss_health != null)
         {
             // 보스 공격 성공시마다 hacking_point 10씩 증가
-            increaseHackingPoint(10);
+            increaseHackingPoint(5);
             
         }
         else

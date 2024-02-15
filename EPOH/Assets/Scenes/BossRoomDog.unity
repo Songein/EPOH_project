@@ -4408,11 +4408,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4632130523800075602, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: combo_attack_power.Array.data[0]
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075602, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: combo_attack_power.Array.data[1]
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075602, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: combo_attack_power.Array.data[2]
@@ -4703,6 +4703,7 @@ MonoBehaviour:
   if_revive: 0
   story_info: 6
   tutorial_info: 0
+  teleport_depart: 0
   boss_num: -1
   boss_info:
   - Dog

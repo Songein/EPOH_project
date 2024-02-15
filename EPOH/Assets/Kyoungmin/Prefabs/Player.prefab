@@ -303,9 +303,9 @@ MonoBehaviour:
   is_attacking: 0
   animator: {fileID: 4632130523800075606}
   combo_attack_power:
-  - 2
-  - 4
-  - 10
+  - 30
+  - 50
+  - 80
 --- !u!114 &4632130523800075603
 MonoBehaviour:
   m_ObjectHideFlags: 0
