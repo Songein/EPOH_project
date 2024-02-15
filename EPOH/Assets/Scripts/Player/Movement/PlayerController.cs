@@ -91,9 +91,6 @@ public class PlayerController : MonoBehaviour
         attack_area = transform.GetChild(0).gameObject.GetComponent<AttackArea>();
 
         hacking = GetComponent<Hacking>();
-
-
-
         audioSource = GetComponent<AudioSource>();
    
         //TalkAction 스크립트 할당
@@ -208,6 +205,18 @@ public class PlayerController : MonoBehaviour
                 teleport_pos = transform.position; //플레이어의 현재 위치 받아오기
                 Vector3 port_pos = new Vector3(teleport_pos.x, teleport_pos.y, port_prefab.transform.position.z);
                 port = Instantiate(port_prefab, port_pos, Quaternion.identity); //표식 생성
+
+                //플레이어가 보고 있는 방향에 따라 port의 좌우 대칭 변환이 필요함.
+                SpriteRenderer port_sr = port.GetComponent<SpriteRenderer>();
+                if (is_facing_right)
+                {
+                    port_sr.flipX = false;
+                }
+                else
+                {
+                    port_sr.flipX = true;
+                }
+                
                 can_teleport = true; //순간이동 할 수 있다고 상태 변경
 
                 // 순간이동 1 소리

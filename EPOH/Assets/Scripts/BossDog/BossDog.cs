@@ -159,6 +159,7 @@ public class BossDog : MonoBehaviour
 
     }
 
+    /*
     private void OnTriggerEnter2D(Collider2D collision) // 충돌시 데미지
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -170,6 +171,7 @@ public class BossDog : MonoBehaviour
             player_health.Damage(attack_power); //보스의 공격 세기만큼 플레이어의 hp 감소
         }
     }
+    */
 
     private void BossSkill(int skill) //보스가 어떤 스킬을 사용하는가?
     {
