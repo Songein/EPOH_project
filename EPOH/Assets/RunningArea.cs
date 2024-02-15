@@ -11,6 +11,7 @@ public class RunningArea : MonoBehaviour
     {
         //콜라이더 할당
         collider = transform.GetComponent<CircleCollider2D>();
+        transform.gameObject.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

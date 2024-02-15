@@ -352,7 +352,7 @@ public class BossDog : MonoBehaviour
             //보스의 스프라이트를 왼쪽방향으로 설정
             sr.flipX = false;
             running_effects[0].SetActive(true);
-            running_area.GetComponent<RunningArea>().SetPos(false);
+            running_area.GetComponent<CircleCollider2D>().offset = new Vector2(-0.77f,0f);
         }
         else
         {
@@ -361,7 +361,7 @@ public class BossDog : MonoBehaviour
             //보스의 스프라이트를 오른쪽 방향으로 설정
             sr.flipX = true;
             running_effects[1].SetActive(true);
-            running_area.GetComponent<RunningArea>().SetPos(true);
+            running_area.GetComponent<CircleCollider2D>().offset = new Vector2(0.77f,0f);
         }
 
         //보스의 도착지점 위치 지정
