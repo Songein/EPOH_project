@@ -9,7 +9,7 @@ public class EventTalk : MonoBehaviour
 
     private void Start()
     {
-        action = GameObject.FindGameObjectWithTag("TalkManager").GetComponent<TalkAction>();
+        action = FindObjectOfType<TalkAction>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
