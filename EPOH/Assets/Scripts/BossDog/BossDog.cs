@@ -42,6 +42,7 @@ public class BossDog : MonoBehaviour
     //하울링 변수
     public GameObject ShockWave; //충격파 오브젝트
     [SerializeField] float howling_radius = 6.0f; //하울링 반경
+    [SerializeField] float howling_radius2 = 10.0f; //하울링 반경
 
     //달리기 변수
     [SerializeField] GameObject running_area; //running 공격 범위 오브젝트
@@ -488,7 +489,7 @@ public class BossDog : MonoBehaviour
 
     private IEnumerator secondDogHowling() // 보스 페이즈 전환시 Howling 범위 1.5배가량 증가
     {
-        howling_radius *= 1.5f;
+        howling_radius = howling_radius2;
         yield return StartCoroutine(Howling()); 
     }
 
