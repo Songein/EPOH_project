@@ -8,20 +8,30 @@ public class EnterBossRoom : MonoBehaviour
     /*public Button move_to_right_button; // MoveToRight device 버튼
     */
 
+    //애니메이터 변수
+    private Animator animator;
+
+    [SerializeField] private GameObject player;
+
     void Start(){
         /*
         if (move_to_right_button != null){
             move_to_right_button.onClick.AddListener(() => moveToBossRoom());
         }*/
+
+        animator = player.GetComponent<Animator>();
     }
 
     void Update()
     {
         if (GameManager.instance.if_revive)
         {
+            animator.SetTrigger("Revive");
             GameManager.instance.boss_num = 0;
             GameManager.instance.story_info = 6;
+            GameManager.instance.if_revive = false;
         }
+
     }
 
 
