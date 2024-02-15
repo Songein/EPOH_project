@@ -16,8 +16,8 @@ public class BossDogScene : MonoBehaviour
     [SerializeField] private GameObject main_camera; //플레이어 메인 카메라
     [SerializeField] private GameObject sub_camera; //보스 서브 카메라
     [SerializeField] private GameObject full_camera; //풀샷 카메라
-    [SerializeField] private GameObject tutorial_text; //튜토리얼 텍스트 오브젝트
-    [SerializeField] private GameObject tutorial_text2; //튜토리얼 텍스트 오브젝트
+    [SerializeField] private GameObject tutorial3; //튜토리얼 오브젝트
+    [SerializeField] private GameObject tutorial4; //튜토리얼 오브젝트
     
     [SerializeField] bool camera_move_event1; //개를 향해 움직이는 카메라 이벤트 트리거
     [SerializeField] bool event2_end = false; //이벤트2 끝 확인
@@ -55,7 +55,12 @@ public class BossDogScene : MonoBehaviour
     [SerializeField] private GameObject corrider_potal;
     
     [SerializeField] public bool end_second_bossdog = false;
-    
+
+    private bool space_pressed = false;
+
+    private PlayerController player_controller;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,9 +69,8 @@ public class BossDogScene : MonoBehaviour
         //메인 카메라(주인공) 비활성화, 서브 카메라(보스) 활성화
         main_camera.SetActive(false);
         sub_camera.SetActive(true);
-        tutorial_text.SetActive(false);
-        pos = tutorial_text.transform.position; //튜토리얼 텍스트 위치 값 가져오기
-        pos2 = tutorial_text2.transform.position; //튜토리얼 텍스트 위치 값 가져오기
+        tutorial3.SetActive(false);
+        tutorial4.SetActive(false);
         //카메라 움직임 이벤트1 실행
         camera_move_event1 = true;
         //튜토리얼 끝나기 전까지 battle_start 막기
@@ -76,6 +80,7 @@ public class BossDogScene : MonoBehaviour
 
         boss_spawn_pos = boss.transform.position;
         player_spawn_pos = player.transform.position;
+        player_controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
 
         // BossManager 스크립트 참조
@@ -121,14 +126,11 @@ public class BossDogScene : MonoBehaviour
             event2_end = true;
         }
 
-        if (GameManager.instance.story_info == 8 && !tutorial_end)
+        if (GameManager.instance.story_info == 8 && GameManager.instance.tutorial_info == 3)
         {
-            //튜토리얼 텍스트 오브젝트 활성화
-            tutorial_text.SetActive(true);
-            Vector3 dir_pos = pos;
-            //0.3f 거리 내에서 -1f ~ 1f 만큼 위아래로 이동 효과
-            dir_pos.y = pos.y + 0.3f * Mathf.Sin(Time.time * 1f);
-            tutorial_text.transform.position = dir_pos;
+            //튜토리얼 코루틴 활성화
+            StartCoroutine(showTutorial());
+            GameManager.instance.tutorial_info++;
         }
 
         if (boss_health.boss_hp == 0f && !phase_start)
@@ -161,16 +163,13 @@ public class BossDogScene : MonoBehaviour
         }
         
 
-        if (GameManager.instance.story_info == 10 && !tutorial2_end)
+        if (GameManager.instance.story_info == 10 && GameManager.instance.tutorial_info == 4)
         {
             end_second_bossdog = true;
-            
-            //튜토리얼 텍스트 오브젝트 활성화
-            tutorial_text2.SetActive(true);
-            Vector3 dir_pos = pos2;
-            //0.3f 거리 내에서 -1f ~ 1f 만큼 위아래로 이동 효과
-            dir_pos.y = pos.y + 0.3f * Mathf.Sin(Time.time * 1f);
-            tutorial_text2.transform.position = dir_pos;
+
+            //튜토리얼 코루틴 활성화
+            StartCoroutine(showTutorial());
+            GameManager.instance.tutorial_info++;
         }
 
         if (GameManager.instance.story_info == 11 && !port_end)
@@ -188,26 +187,36 @@ public class BossDogScene : MonoBehaviour
         {
             Debug.Log("실행");
             StartCoroutine(PlayerDeath());
-
         }
-        
+
+
+        if (Input.GetKeyDown(KeyCode.Space) && (tutorial3.activeSelf || tutorial4.activeSelf)) // 스페이스 키를 눌렀는지 체크
+        {
+            space_pressed = true;
+        }
+
     }
 
-    //튜토리얼 끝
-    public void EndTutorial()
+    //튜토리얼
+    IEnumerator showTutorial()
     {
-        if (GameManager.instance.story_info == 8)
+        yield return new WaitForSeconds(0.5f);
+        if (GameManager.instance.story_info == 8 && GameManager.instance.tutorial_info == 3)
         {
-            tutorial_text.SetActive(false);
-            tutorial_end = true;
+            tutorial3.SetActive(true);
         }
         else
         {
-            tutorial_text2.SetActive(false);
-            tutorial2_end = true;
+            tutorial4.SetActive(true);
         }
+        player_controller.is_interacting = true;
+
+        yield return StartCoroutine(waitForKeyPress());
+
+        tutorial3.SetActive(false);
+        tutorial4.SetActive(false);
+        player_controller.is_interacting = false;
         battle_start = true;
-        
     }
 
     IEnumerator PhaseTransition()
@@ -263,6 +272,14 @@ public class BossDogScene : MonoBehaviour
         main_camera.SetActive(true);
 
         SceneManager.LoadScene("Corrider"); // 플레이어가 보스전 중 사망하면 Corrider 씬으로 이동하여 부활
+    }
+    IEnumerator waitForKeyPress() // Space 키를 누르면 다음 대사로 넘어가는 함수
+    {
+        while (!space_pressed)
+        {
+            yield return null;
+        }
+        space_pressed = false; // Space 키를 눌렀다는 체크를 초기화
     }
 
     void EndFullCameraMove()

@@ -10,12 +10,12 @@ public class TutorialEndArea : MonoBehaviour
     {
         scene_manager = FindObjectOfType<BossDogScene>();
     }
-
+    /*
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             scene_manager.EndTutorial();
         }
-    }
+    }*/
 }
