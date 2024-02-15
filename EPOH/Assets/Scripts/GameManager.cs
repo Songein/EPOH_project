@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public bool if_first = true; // Start 씬의 '시작 버튼'최초 클릭 여부 기록
 
     public bool if_revive = false; // 보스전에서 플레이어가 Revive 했는지 여부
+    public bool first_revive = false; // 첫번째 페이즈에서 Revive
+    public bool second_revive = false; // 두번째 페이즈에서 Revive
 
     public int story_info = 0; // 스토리 진행 정도에 대한 정보
     public int tutorial_info = 0;
