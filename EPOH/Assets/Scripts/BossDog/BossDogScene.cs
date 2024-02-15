@@ -15,6 +15,7 @@ public class BossDogScene : MonoBehaviour
 
     [SerializeField] private GameObject main_camera; //플레이어 메인 카메라
     [SerializeField] private GameObject sub_camera; //보스 서브 카메라
+    [SerializeField] private GameObject full_camera; //풀샷 카메라
     [SerializeField] private GameObject tutorial_text; //튜토리얼 텍스트 오브젝트
     [SerializeField] private GameObject tutorial_text2; //튜토리얼 텍스트 오브젝트
     
@@ -23,6 +24,9 @@ public class BossDogScene : MonoBehaviour
     [SerializeField] bool tutorial_end = false; //튜토리얼 끝 확인
     [SerializeField] bool tutorial2_end = false; //튜토리얼 끝 확인
     [SerializeField] bool port_end = false; //전사장치 이벤트 끝 확인
+
+    private Vector3 full_camera_pos; //full camera pos 값 가져오기
+    private bool full_camera_move = false;
     
     private Vector3 pos; //튜토리얼 텍스트 위치
     private Vector3 pos2; //튜토리얼 텍스트 위치
@@ -32,17 +36,16 @@ public class BossDogScene : MonoBehaviour
     public bool battle_start; //배틀 시작
 
     [SerializeField] private GameObject background; //배경 오브젝트
-    [SerializeField] private GameObject[] platforms; //발판 오브젝트들
+    [SerializeField] private Animator bg_animator; //Background Animator 참조
     [SerializeField] private Sprite[] background_sprites; //배경 스프라이트 배열
-    [SerializeField] private Sprite[] platform_sprites; //발판 스프라이트
-
+    [SerializeField] private GameObject ground; //ground 오브젝트
+    [SerializeField] private Sprite[] ground_sprites; //Ground 스프라이트 배열
+    
+    
     private BossHealth boss_health;
     [SerializeField] public bool phase_start = false; //페이즈 전환 이벤트1 트리거
     [SerializeField] public bool phase_start2 = false; //페이즈 전환 이벤트2 트리거
     [SerializeField] public bool phase_start3 = false; //페이즈 전환 이벤트3 트리거
-
-    [SerializeField] private GameObject phase_transition;
-    [SerializeField] private Animation transition_animation;
 
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject boss;
@@ -74,8 +77,15 @@ public class BossDogScene : MonoBehaviour
         boss_spawn_pos = boss.transform.position;
         player_spawn_pos = player.transform.position;
 
+
         // BossManager 스크립트 참조
         boss_manager = boss.GetComponent<BossManager>();
+
+        //background animator 할당
+        bg_animator = background.GetComponent<Animator>();
+        //full_camera_pos 할당
+        full_camera_pos = full_camera.transform.position;
+
     }
     
     // Update is called once per frame
@@ -125,29 +135,33 @@ public class BossDogScene : MonoBehaviour
             battle_start = false;
             phase_start = true;
 
-            StartCoroutine(PhaseCloseTransition());
+            StartCoroutine(PhaseTransition());
+        }
+
+        if (full_camera_move)
+        {
+            Vector3 dir_pos = full_camera_pos;
+            //0.3f 거리 내에서 -1f ~ 1f 만큼 양 옆으로 이동 효과
+            dir_pos.x = full_camera_pos.x + 0.3f * Mathf.Sin(Time.time * 10f);
+            full_camera.transform.position = dir_pos;
+            Invoke("EndFullCameraMove",3f);
         }
 
         if (GameManager.instance.story_info == 9 && !phase_start2)
         {
             //캐릭터 쪽으로 카메라 이동
             sub_camera.SetActive(false);
+            full_camera.SetActive(false);
             main_camera.SetActive(true);
             
             phase_start2 = true;
             talk_action.Action();
         }
-
-        if (GameManager.instance.story_info == 8 && talk_action.talk_index == 2 && !phase_start3)
-        {
-            phase_start3 = true;
-            StartCoroutine(PhaseOpenTransition());
-        }
+        
 
         if (GameManager.instance.story_info == 10 && !tutorial2_end)
         {
             end_second_bossdog = true;
-            phase_transition.SetActive(false);
             
             //튜토리얼 텍스트 오브젝트 활성화
             tutorial_text2.SetActive(true);
@@ -193,31 +207,30 @@ public class BossDogScene : MonoBehaviour
         
     }
 
-    IEnumerator PhaseCloseTransition()
+    IEnumerator PhaseTransition()
     {
-        //페이즈 close 애니메이션 시작
-        transition_animation.Play("Close Transition");
-        yield return new WaitForSeconds(1.8f);
+        main_camera.SetActive(false);
+        sub_camera.SetActive(false);
+        full_camera.SetActive(true);
+
+        full_camera_move = true;
+        
+        bg_animator.SetTrigger("PhaseTransition");
+        yield return new WaitForSeconds(0.5f);
         //대화창 이벤트
         talk_action.Action();
         //배경 변경해놓기
-        SpriteRenderer sr = background.GetComponent<SpriteRenderer>();
-        sr.sprite = background_sprites[1];
+        SpriteRenderer bg_sr = background.GetComponent<SpriteRenderer>();
+        SpriteRenderer gr_sr = ground.GetComponent<SpriteRenderer>();
+        bg_sr.sprite = background_sprites[1];
+        gr_sr.sprite = ground_sprites[1];
+        
         //플레이어랑 보스 원래 위치로 이동시키기
         player.transform.position = player_spawn_pos;
         boss.transform.position = boss_spawn_pos;
         
     }
-
-    IEnumerator PhaseOpenTransition()
-    {
-        main_camera.SetActive(false);
-        sub_camera.SetActive(true);
-        
-        //페이즈 open 애니메이션 시작
-        transition_animation.Play("Open Transition");
-        yield return new WaitForSeconds(1.8f);
-    }
+    
 
     public void CompleteHacking()
     {
@@ -239,5 +252,10 @@ public class BossDogScene : MonoBehaviour
         animator.SetTrigger("Death");
 
         SceneManager.LoadScene("Corrider"); // 플레이어가 보스전 중 사망하면 Corrider 씬으로 이동하여 부활
+    }
+
+    void EndFullCameraMove()
+    {
+        full_camera_move = false;
     }
 }

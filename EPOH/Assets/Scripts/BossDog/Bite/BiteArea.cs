@@ -29,11 +29,11 @@ public class BiteArea : MonoBehaviour
     {
         if (is_player_right)
         {
-            collider.offset = new Vector2(0.2f, collider.offset.y);
+            collider.offset = new Vector2(0.98f, collider.offset.y);
         }
         else
         {
-            collider.offset = new Vector2(1.6f, collider.offset.y);
+            collider.offset = new Vector2(-0.98f, collider.offset.y);
         }
     }
 }

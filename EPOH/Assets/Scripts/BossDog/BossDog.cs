@@ -33,6 +33,7 @@ public class BossDog : MonoBehaviour
     public GameObject bite_area; //bite 공격 범위 오브젝트
     public AnimationCurve curve; //포물선 이동을 위한 AnimationCurve 선언
     [SerializeField] float bite_duration = 0.5f; //포물선 이동에 걸리는 시간
+    [SerializeField] private GameObject[] bite_effects; //bite effect 배열
 
     //하울링 변수
     public GameObject ShockWave; //충격파 오브젝트
@@ -42,6 +43,7 @@ public class BossDog : MonoBehaviour
     public float movement_speed = 12f; // 이동 속도
     [SerializeField] float reach_distance_long = 18f; //공격 사정 거리
     [SerializeField] float run_duration = 1.0f; //달리기 이동에 걸리는 시간
+    [SerializeField] private GameObject[] running_effects; //Running Effect 할당
 
     //충격파 변수
     public GameObject[] LeftGroundShock; //왼쪽 충격파 오브젝트
@@ -157,6 +159,7 @@ public class BossDog : MonoBehaviour
 
     }
 
+    /*
     private void OnTriggerEnter2D(Collider2D collision) // 충돌시 데미지
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -168,6 +171,7 @@ public class BossDog : MonoBehaviour
             player_health.Damage(attack_power); //보스의 공격 세기만큼 플레이어의 hp 감소
         }
     }
+    */
 
     private void BossSkill(int skill) //보스가 어떤 스킬을 사용하는가?
     {
@@ -236,6 +240,7 @@ public class BossDog : MonoBehaviour
             sr.flipX = false;
             //공격 범위를 플레이어를 보는 방향으로 설정
             bite_area.GetComponent<BiteArea>().SetPos(false);
+            bite_effects[0].SetActive(true);
         }
         else
         {
@@ -245,6 +250,7 @@ public class BossDog : MonoBehaviour
             sr.flipX = true;
             //공격 범위를 플레이어를 보는 방향으로 설정
             bite_area.GetComponent<BiteArea>().SetPos(true);
+            bite_effects[1].SetActive(true);
         }
 
         //보스의 도착지점 위치 지정
@@ -267,6 +273,8 @@ public class BossDog : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         //Debug.Log("[Bite] : bite area 비활성화");
         bite_area.SetActive(false);
+        bite_effects[0].SetActive(false);
+        bite_effects[1].SetActive(false);
         Debug.Log("[Bite] : 사용 완료");
         is_skill = false;
     }
@@ -307,7 +315,7 @@ public class BossDog : MonoBehaviour
         animator.SetTrigger("RunningPrecursor");
         yield return new WaitForSeconds(precursor_time); //전조 시간만큼 대기
         animator.SetTrigger("RunningAttack");
-
+        
         float run_distance; //보스가 이동할 거리
 
         //transform.position.x - player_pos.x 값이 양수면 플레이어는 보스의 왼쪽에 위치함.
@@ -318,6 +326,7 @@ public class BossDog : MonoBehaviour
             run_distance = -1 * reach_distance_long;
             //보스의 스프라이트를 왼쪽방향으로 설정
             sr.flipX = false;
+            running_effects[0].SetActive(true);
         }
         else
         {
@@ -325,6 +334,7 @@ public class BossDog : MonoBehaviour
             run_distance = 1 * reach_distance_long;
             //보스의 스프라이트를 오른쪽 방향으로 설정
             sr.flipX = true;
+            running_effects[1].SetActive(true);
         }
 
         //보스의 도착지점 위치 지정
@@ -343,6 +353,8 @@ public class BossDog : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
         Debug.Log("[Running] : 사용 완료");
+        running_effects[0].SetActive(false);
+        running_effects[1].SetActive(false);
         is_skill = false;
         CheckFlip();
     }
