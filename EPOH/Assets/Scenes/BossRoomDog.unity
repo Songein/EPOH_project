@@ -2888,10 +2888,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 822335419}
-  - component: {fileID: 822335418}
   - component: {fileID: 822335417}
   - component: {fileID: 822335416}
   - component: {fileID: 822335415}
+  - component: {fileID: 822335420}
   m_Layer: 0
   m_Name: CorriderPortal
   m_TagString: Interaction
@@ -2939,9 +2939,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 66c32ec536cce5d4d89bd64a0e6be3c7, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.8284645, a: 1}
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 790010730, guid: 1945d4bfffe694f8c8010f9f8931b633, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2977,7 +2977,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   next_scene_name: Corrider2
---- !u!61 &822335418
+--- !u!4 &822335419
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822335414}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -3, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &822335420
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2993,31 +3008,16 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 6, y: 5.25}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4.0099998, y: 5.511812}
     newSize: {x: 6, y: 5.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 11.7, y: 11.96}
+  m_Size: {x: 4.0099998, y: 5.511812}
   m_EdgeRadius: 0
---- !u!4 &822335419
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 822335414}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.79, y: -5.78, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &878042872
 GameObject:
   m_ObjectHideFlags: 0

@@ -60,6 +60,7 @@ public class BossDog : MonoBehaviour
     private bool is_track = true; // 현재 추적중인가
     private bool is_skill = false; // 현재 스킬 사용중인가
     private bool start_attack = false;
+    private bool start_phase2_attack = false;
 
     // Start is called before the first frame update
     void Start()
@@ -97,51 +98,69 @@ public class BossDog : MonoBehaviour
         if (scene.battle_start && !start_attack)
         {
             start_attack = true;
-
-            if ( scene.phase_start2 && !scene.end_second_bossdog)
-            {
-                StartCoroutine(MoveCooldown()); // 무브 코루틴 시작
-                StartCoroutine(SkillCooldown_SP()); // 강화된 스킬 사용 코루틴 시작
-
-            }
-            else 
-            {
-                StartCoroutine(MoveCooldown()); // 무브 코루틴 시작
-                StartCoroutine(SkillCooldown()); // 스킬 사용 코루틴 시작
-            }
             
+            StartCoroutine(MoveCooldown()); // 무브 코루틴 시작
+            StartCoroutine(SkillCooldown()); // 스킬 사용 코루틴 시작
+        }
+        
+        if (scene.phase_start2 && scene.end_second_bossdog && !start_phase2_attack)
+        {
+            start_phase2_attack = true;
+            Debug.Log("페이즈 2 시작 -> 강화 완료");
+            StartCoroutine(MoveCooldown()); // 무브 코루틴 시작
+            StartCoroutine(SkillCooldown_SP()); // 강화된 스킬 사용 코루틴 시작
+
         }
     }
 
     public IEnumerator MoveCooldown()
     {
-        CheckFlip();
-        Debug.Log("코루틴 시작");
-        animator.SetBool("IsRun", false);
-        yield return new WaitForSeconds(boss_move_cooldown);
-        is_track = !is_track; // 추적하는 상태와 그렇지 않은 상태를 번갈아서 반복
-        StartCoroutine(MoveCooldown());
-        
+        //battle_start일 때만 실행되도록
+        if (scene.battle_start)
+        {
+            CheckFlip();
+            Debug.Log("코루틴 시작");
+            animator.SetBool("IsRun", false);
+            yield return new WaitForSeconds(boss_move_cooldown);
+            is_track = !is_track; // 추적하는 상태와 그렇지 않은 상태를 번갈아서 반복
+            StartCoroutine(MoveCooldown());
+        }
+        else
+        {
+            Debug.Log("MoveCoolDown battle start 아닐 때");
+            yield return null;
+        }
     }
 
     public IEnumerator SkillCooldown()
     {
-        CheckFlip();
-        Debug.Log("스킬 사용");
-        is_skill = true;
-        float distance = Vector3.Distance(transform.position, player.transform.position);
-        if(distance < close_range)
+        //battle_start일 때만 실행되도록
+        if (scene.battle_start)
         {
-            skill = Random.Range(0, 2); // 가까울 때 모든 패턴 발생
+            CheckFlip();
+            Debug.Log("스킬 사용");
+            is_skill = true;
+            float distance = Vector3.Distance(transform.position, player.transform.position);
+            if (distance < close_range)
+            {
+                skill = Random.Range(0, 2); // 가까울 때 모든 패턴 발생
+            }
+            else
+            {
+                skill = Random.Range(2, 4); // 멀 때 2가지 패턴만 발생
+            }
+
+            BossSkill(skill);
+            yield return new WaitForSeconds(boss_skill_cooldown); // 스킬을 사용하지 않음
+            StartCoroutine(SkillCooldown());
         }
         else
         {
-            skill = Random.Range(2, 4); // 멀 때 2가지 패턴만 발생
+            Debug.Log("SkillCoolDown battle start 아닐 때");
+            yield return null;
         }
-        BossSkill(skill);
-        yield return new WaitForSeconds(boss_skill_cooldown); // 스킬을 사용하지 않음
-        StartCoroutine(SkillCooldown());
     }
+
 
     public IEnumerator SkillCooldown_SP()
     {
