@@ -266,7 +266,7 @@ MonoBehaviour:
   hacking: {fileID: 0}
   footstepClip: {fileID: 8300000, guid: 4a2772599b7a7d64b98ba0c3ffbc6c19, type: 3}
   runningClip: {fileID: 8300000, guid: 15ad99e885f4ee3459ae28c321c2ffbf, type: 3}
-  jumpClip1: {fileID: 8300000, guid: df83b1e32d7ad444f913411ab921753b, type: 3}
+  jumpClip1: {fileID: 8300000, guid: 65bc5fa449fd41548b4e2c21efd0eba1, type: 3}
   jumpClip2: {fileID: 8300000, guid: 17294eb08ece64144823d4e09b117d63, type: 3}
   dashClip: {fileID: 8300000, guid: c5dea467677cdd449a7f8190f8453783, type: 3}
   teleportClip1: {fileID: 8300000, guid: 991a00e228f5993478cb335089e8f722, type: 3}

@@ -68,7 +68,7 @@ public class PlayerHealth : MonoBehaviour
     public void Die()
     {
         Debug.Log("[PlayerHealth] : 플레이어 사망");
-        gameObject.SetActive(false); //플레이어 오브젝트 비활성화
+        //gameObject.SetActive(false); //플레이어 오브젝트 비활성화
     }
     
 }
