@@ -24,6 +24,10 @@ public class BossDog : MonoBehaviour
     private int skill_sp; // (페이즈 변환 후) 강화된 스킬
     private BossDogScene scene; //BossDogScene 스크립트 참조
 
+    //이동 가능 범위
+    [SerializeField] float Dog_min_area; // 최소 에어리어
+    [SerializeField] float Dog_max_area; // 최대 에어리어
+    [SerializeField] float Dog_yposition; // Y축 위치
 
     //가까운 공격
     [SerializeField] float reach_distance_short = 6f; //공격 사정 거리
@@ -86,7 +90,7 @@ public class BossDog : MonoBehaviour
             {
                 CheckFlip();
                 animator.SetBool("IsRun", true);
-                transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.transform.position.x, transform.position.y, transform.position.z), boss_speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.transform.position.x, Dog_yposition, transform.position.z), boss_speed * Time.deltaTime);
             }
         }
 
@@ -254,7 +258,7 @@ public class BossDog : MonoBehaviour
         }
 
         //보스의 도착지점 위치 지정
-        Vector2 end = new Vector2(transform.position.x + bite_distance, transform.position.y);
+        Vector2 end = new Vector2(Mathf.Clamp(transform.position.x + bite_distance, Dog_min_area, Dog_max_area), Dog_yposition);
         //bite area 오브젝트 활성화(공격 범위 활성화)
         bite_area.SetActive(true);
 
@@ -338,7 +342,7 @@ public class BossDog : MonoBehaviour
         }
 
         //보스의 도착지점 위치 지정
-        Vector2 end = new Vector2(transform.position.x + run_distance, transform.position.y);
+        Vector2 end = new Vector2(Mathf.Clamp(transform.position.x + run_distance, Dog_min_area, Dog_max_area), Dog_yposition);
 
         //위치를 향해 돌진
         float time = 0f;
