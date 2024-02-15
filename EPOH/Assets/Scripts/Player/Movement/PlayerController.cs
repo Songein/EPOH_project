@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
     public float teleport_time = 0.3f; //순간이동 지속 타임
     public GameObject port_prefab; //순간이동 포트 프리팹
     private GameObject port; //순간이동 포트
+    public bool is_installing = false; //port 설치 중인지
     
     //공격
     public bool is_attacking = false; //공격 중일 때 플레이어 이동 막기 위한 변수
@@ -104,7 +105,7 @@ public class PlayerController : MonoBehaviour
     {
         //대쉬 | 상호작용 | 순간이동 | 대화 중이면 다른 작업 이루어지지 않도록
         if (is_interacting && is_talking) {} // 상호작용 중에 대화가 발생할 경우 Talk 진행을 위해 넘김
-        else if (is_dashing || is_interacting || is_teleporting || is_attacking)
+        else if (is_dashing || is_interacting || is_teleporting || is_attacking || is_installing)
         {
             return;
         }
@@ -202,8 +203,8 @@ public class PlayerController : MonoBehaviour
             }
             else //표식을 설치하지 않은 경우
             {
-                animator.SetBool("InstallPort",true); //순간이동 표식 설치 애니메이션 실행
-                Invoke("EndPortAni", 0.3f); //0.3초 후 순간이동 표식 설치 애니메이션 종료
+                is_installing = true;
+                animator.SetTrigger("InstallPort"); //순간이동 표식 설치 애니메이션 실행
                 teleport_pos = transform.position; //플레이어의 현재 위치 받아오기
                 Vector3 port_pos = new Vector3(teleport_pos.x, teleport_pos.y, port_prefab.transform.position.z);
                 port = Instantiate(port_prefab, port_pos, Quaternion.identity); //표식 생성
@@ -228,7 +229,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         //대쉬 | 상호작용 | 순간이동 | 대화 중이면 다른 작업 이루어지지 않도록
-        if (is_dashing || is_interacting || is_teleporting || is_talking || is_attacking)
+        if (is_dashing || is_interacting || is_teleporting || is_talking || is_attacking || is_installing)
         {
             return;
         }
@@ -378,12 +379,6 @@ public class PlayerController : MonoBehaviour
         is_teleporting = false; //순간이동 중 해제
     }
     
-    
-
-    void EndPortAni() //순간이동 표식 생성 애니메이션 해제
-    {
-        animator.SetBool("InstallPort",false);
-    }
 
     // (발소리) 착지 재생 함수
     void PlayFootstepSound()
