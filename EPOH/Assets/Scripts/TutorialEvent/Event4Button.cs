@@ -15,7 +15,7 @@ public class Event4Button : MonoBehaviour
 
     void Start()
     {
-        action = FindObjectOfType<TalkAction>();
+        action = GameObject.FindGameObjectWithTag("TalkManager").GetComponent<TalkAction>();
         player_controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         portal.SetActive(false);
     }

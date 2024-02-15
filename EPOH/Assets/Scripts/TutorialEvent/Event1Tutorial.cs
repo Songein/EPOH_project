@@ -17,7 +17,7 @@ public class Event1Tutorial : MonoBehaviour
     {
         tutorial_panel.SetActive(false);
         player_controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        action = FindObjectOfType<TalkAction>();
+        action = GameObject.FindGameObjectWithTag("TalkManager").GetComponent<TalkAction>();
     }
 
     private void Update()
