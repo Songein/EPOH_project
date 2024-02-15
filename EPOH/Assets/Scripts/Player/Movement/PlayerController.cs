@@ -255,18 +255,18 @@ public class PlayerController : MonoBehaviour
         
         //땅 감지 레이캐스트 디버그
         //Debug.DrawRay(rigid.position, Vector2.down, Color.cyan);
-        Debug.DrawRay(rigid.position, Vector2.down * 3f, Color.red);
+        Debug.DrawRay(rigid.position, Vector2.down * 4f, Color.red);
         //플레이어가 떨어지는 경우
         if (rigid.velocity.y < 0f)
         {
             animator.SetBool("IsFall", true);
             
-            RaycastHit2D groundRayHit = Physics2D.Raycast(rigid.position, Vector2.down, 3f, LayerMask.GetMask("Ground"));
+            RaycastHit2D groundRayHit = Physics2D.Raycast(rigid.position, Vector2.down, 4f, LayerMask.GetMask("Ground"));
             //땅을 감지하고
             if (groundRayHit.collider != null)
             {
                 //거리가 0.5 미만이면
-                if (groundRayHit.distance < 2.8f)
+                if (groundRayHit.distance < 3.8f)
                 {
                     //Debug.Log("2.8f 미만");
                     //점프 애니메이션 해제
