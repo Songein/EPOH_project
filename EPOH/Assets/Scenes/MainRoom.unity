@@ -2256,7 +2256,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &266624392
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2544,6 +2544,14 @@ PrefabInstance:
       propertyPath: player_controller
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7894161507570188938, guid: faede9cafe37e433dbad6ab38e847544, type: 3}
+      propertyPath: talk_panel_sprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: fe0e071de58214d6f89f1e5805d95d2a, type: 3}
+    - target: {fileID: 7894161507570188938, guid: faede9cafe37e433dbad6ab38e847544, type: 3}
+      propertyPath: talk_name_panel_sprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: b73765d400fe14634b2fbb258be9ac03, type: 3}
     - target: {fileID: 7894161507570188939, guid: faede9cafe37e433dbad6ab38e847544, type: 3}
       propertyPath: talk_text
       value: 
@@ -4866,7 +4874,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &515036349
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8456,7 +8464,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 2.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -8480,7 +8488,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995278969}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.36, y: -1, z: -10}
+  m_LocalPosition: {x: 7.39, y: -3.4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9417,9 +9425,9 @@ MonoBehaviour:
   - {fileID: 991424681}
   cut_scenes:
   - {fileID: 948329347}
-  main_camera: {fileID: 0}
+  main_camera: {fileID: 2132822441}
   sub_camera: {fileID: 995278969}
-  camera_dest: {x: 10.44, y: -1, z: -10}
+  camera_dest: {x: -1.56, y: -3.4, z: -10}
 --- !u!4 &1152871169
 Transform:
   m_ObjectHideFlags: 0
@@ -16635,7 +16643,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 785e5567cd888ff4297830d587bb7096, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
