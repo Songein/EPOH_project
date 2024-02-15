@@ -5155,6 +5155,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4632130523800075596, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: player_hp
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075602, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: combo_attack_power.Array.data[0]
       value: 20
@@ -5302,6 +5306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0841f2af0a9b488581325eb84df90f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boss_manager: {fileID: 0}
   main_camera: {fileID: 294923652}
   sub_camera: {fileID: 397698506}
   full_camera: {fileID: 1747786360}
@@ -5372,6 +5377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   if_first: 1
+  if_revive: 0
   story_info: 6
   tutorial_info: 0
   boss_num: -1
