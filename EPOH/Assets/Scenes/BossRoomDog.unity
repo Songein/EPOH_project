@@ -2829,7 +2829,7 @@ Transform:
   m_GameObject: {fileID: 689365958}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1, y: 1.2, z: -1}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 294119314}
@@ -5029,7 +5029,7 @@ Transform:
   m_GameObject: {fileID: 1103123852}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1, y: 1.2, z: -1}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 294119314}
@@ -5302,6 +5302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0841f2af0a9b488581325eb84df90f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boss_manager: {fileID: 0}
   main_camera: {fileID: 294923652}
   sub_camera: {fileID: 397698506}
   full_camera: {fileID: 1747786360}
@@ -5372,6 +5373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   if_first: 1
+  if_revive: 0
   story_info: 6
   tutorial_info: 0
   boss_num: -1
