@@ -91,9 +91,6 @@ public class PlayerController : MonoBehaviour
         attack_area = transform.GetChild(0).gameObject.GetComponent<AttackArea>();
 
         hacking = GetComponent<Hacking>();
-
-
-
         audioSource = GetComponent<AudioSource>();
    
         //TalkAction 스크립트 할당
