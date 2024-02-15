@@ -12,7 +12,7 @@ public class Event2Talk : MonoBehaviour
 
     private void Start()
     {
-        action = GameObject.FindGameObjectWithTag("TalkManager").GetComponent<TalkAction>();
+        action = FindObjectOfType<TalkAction>();
         player_controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
