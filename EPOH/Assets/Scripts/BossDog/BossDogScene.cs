@@ -88,8 +88,6 @@ public class BossDogScene : MonoBehaviour
 
         //background animator 할당
         bg_animator = background.GetComponent<Animator>();
-
-        animator = player.GetComponent<Animator>();
         //full_camera_pos 할당
         full_camera_pos = full_camera.transform.position;
 
@@ -183,9 +181,8 @@ public class BossDogScene : MonoBehaviour
             GameManager.instance.is_back = true;
         }
 
-        if (battle_start && boss_manager.player_hp == 0) // 플레이어 hp 0 이 되면 비틀거리고 Corrider 씬으로 이동한 다음 부활한다.
+        if (boss_manager.player_hp == 0 ) // 플레이어 hp 0 이 되면 비틀거리고 Corrider 씬으로 이동한 다음 부활한다.
         {
-            Debug.Log("실행");
             StartCoroutine(PlayerDeath());
         }
 
@@ -262,8 +259,9 @@ public class BossDogScene : MonoBehaviour
         //보스 움직임 멈춤(배틀 일시정지)
         battle_start = false;
 
+        animator.SetTrigger("Stumble");
+        yield return new WaitForSeconds(0.5f);
         animator.SetTrigger("Death");
-        yield return new WaitForSeconds(1.08f);
 
         GameManager.instance.if_revive = true;
 

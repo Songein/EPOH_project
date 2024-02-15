@@ -20,7 +20,6 @@ public class EnterBossRoom : MonoBehaviour
         if (GameManager.instance.if_revive)
         {
             GameManager.instance.boss_num = 0;
-            GameManager.instance.story_info = 6;
         }
     }
 
