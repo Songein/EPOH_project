@@ -254,7 +254,7 @@ public class BossDogScene : MonoBehaviour
         battle_start = false;
 
         animator.SetTrigger("Death");
-        yield return new WaitForSeconds(1.083f);
+        yield return new WaitForSeconds(1.08f);
 
         GameManager.instance.if_revive = true;
 
