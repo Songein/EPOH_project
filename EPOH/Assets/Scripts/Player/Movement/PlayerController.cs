@@ -233,6 +233,13 @@ public class PlayerController : MonoBehaviour
             interaction_text.transform.position = dir_pos;
         }
         
+        //전사장치를 통해 이동하여 다음 씬으로 도착한 경우
+        if (GameManager.instance.teleport_depart)
+        {
+            GameManager.instance.teleport_depart = false;
+            animator.SetTrigger("TransferDeviceArrive");
+        }
+        
     }
 
     void FixedUpdate()
@@ -395,7 +402,6 @@ public class PlayerController : MonoBehaviour
         // footstepClip이 null이 아닌지 확인
         if (footstepClip != null && audioSource != null)
         {
-            audioSource.volume = 0.5f;
             audioSource.PlayOneShot(footstepClip);
         }
         else
@@ -412,6 +418,7 @@ public class PlayerController : MonoBehaviour
         {
             audioSource.clip = jumpClip1; // 오디오 소스에 발소리 클립을 할당
             audioSource.Play(); // 발소리 재생
+            yield return new WaitForSeconds(0.1f);
         }
         yield return new WaitForSeconds(0.1f); // 2초 동안 대기
     }
@@ -484,6 +491,6 @@ public class PlayerController : MonoBehaviour
             audioSource.volume = 0.5f;
             audioSource.Play(); // 발소리 재생
         }
-        yield return new WaitForSeconds(0.1f); // 2초 동안 대기
+        yield return new WaitForSeconds(0.1f); // 0.1초 동안 대기
     }
 }

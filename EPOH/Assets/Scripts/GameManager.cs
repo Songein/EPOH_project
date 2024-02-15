@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public int story_info = 0; // 스토리 진행 정도에 대한 정보
     public int tutorial_info = 0;
 
+    public bool teleport_depart = false;
+
     public int boss_num = 0; // 진행중인 보스의 인덱스
     public const int boss_cnt = 5; // 존재하는 보스의 개수
     
