@@ -164,8 +164,6 @@ public class BossDogScene : MonoBehaviour
 
         if (GameManager.instance.story_info == 10 && GameManager.instance.tutorial_info == 3)
         {
-            end_second_bossdog = true;
-
             //튜토리얼 코루틴 활성화
             StartCoroutine(showTutorial());
             GameManager.instance.tutorial_info++;
@@ -216,6 +214,10 @@ public class BossDogScene : MonoBehaviour
         tutorial4.SetActive(false);
         player_controller.is_interacting = false;
         battle_start = true;
+        if (GameManager.instance.story_info == 10 && GameManager.instance.tutorial_info == 4)
+        {
+            end_second_bossdog = true;
+        }
     }
 
     IEnumerator PhaseTransition()
@@ -237,9 +239,13 @@ public class BossDogScene : MonoBehaviour
         gr_sr.sprite = ground_sprites[1];
         
         //플레이어랑 보스 원래 위치로 이동시키기
+        boss.GetComponent<Animator>().SetBool("IsRun",false);
+        boss.GetComponent<Animator>().Play("Idle");
+        boss.GetComponent<SpriteRenderer>().flipX = false;
+        
         player.transform.position = player_spawn_pos;
         boss.transform.position = boss_spawn_pos;
-        
+
     }
     
 
