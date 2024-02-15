@@ -124,7 +124,7 @@ public class BossDogScene : MonoBehaviour
             event2_end = true;
         }
 
-        if (GameManager.instance.story_info == 8 && GameManager.instance.tutorial_info == 3)
+        if (GameManager.instance.story_info == 8 && GameManager.instance.tutorial_info == 2)
         {
             //튜토리얼 코루틴 활성화
             StartCoroutine(showTutorial());
@@ -161,7 +161,7 @@ public class BossDogScene : MonoBehaviour
         }
         
 
-        if (GameManager.instance.story_info == 10 && GameManager.instance.tutorial_info == 4)
+        if (GameManager.instance.story_info == 10 && GameManager.instance.tutorial_info == 3)
         {
             end_second_bossdog = true;
 
