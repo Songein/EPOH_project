@@ -100,6 +100,7 @@ public class BossDogScene : MonoBehaviour
         //카메라 이벤트 1 : 보스룸 입장과 동시에 보스 쪽으로 카메라 빠르게 이동
         if (camera_move_event1)
         {
+            player_controller.is_interacting = true;
             if (sub_camera.transform.position.x >= destination.x - 0.1f)
             {
                 camera_move_event1 = false;
@@ -123,6 +124,7 @@ public class BossDogScene : MonoBehaviour
             //대화창 이벤트 실행
             talk_action.Action();
             event2_end = true;
+            player_controller.is_interacting = false;
         }
 
         if (GameManager.instance.story_info == 8 && GameManager.instance.tutorial_info == 2)
@@ -197,6 +199,7 @@ public class BossDogScene : MonoBehaviour
     //튜토리얼
     IEnumerator showTutorial()
     {
+        player_controller.is_interacting = true;
         yield return new WaitForSeconds(0.5f);
         if (GameManager.instance.story_info == 8 && GameManager.instance.tutorial_info == 3)
         {
@@ -206,7 +209,6 @@ public class BossDogScene : MonoBehaviour
         {
             tutorial4.SetActive(true);
         }
-        player_controller.is_interacting = true;
 
         yield return StartCoroutine(waitForKeyPress());
 
