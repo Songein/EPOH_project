@@ -12,6 +12,8 @@ public class Hacking : MonoBehaviour
 
     private BossDogScene boss_dog_scene;
 
+    private bool isCoroutineRunning = false;
+
     private void Start()
     {
         
@@ -39,8 +41,25 @@ public class Hacking : MonoBehaviour
             Debug.LogError("[Hacking] : Boss GameObject를 찾을 수 없습니다. 'Boss' 태그를 가진 GameObject가 씬에 있는지 확인하세요.");
         }
 
-        StartCoroutine(DecreaseHackingPointOverTime());
+
     }
+
+    void Update() 
+    {
+        if (boss_dog_scene.battle_start && !isCoroutineRunning) 
+        {
+            isCoroutineRunning = true;
+            StartCoroutine(DecreaseHackingPointOverTime());
+            Debug.Log("hp 감소 코루틴 시작");
+        }
+        else if (!boss_dog_scene.battle_start && isCoroutineRunning)
+        {
+            StopCoroutine(DecreaseHackingPointOverTime());
+            isCoroutineRunning = false;
+            Debug.Log("hp 감소 코루틴 정지");
+        }
+    }
+
 
     // BossManager의 hacking_point가 200에 다다랐을 시 보스전이 종료되는 함수
     public void checkHackingPoint()
@@ -132,7 +151,7 @@ public class Hacking : MonoBehaviour
     private IEnumerator DecreaseHackingPointOverTime()
     {
         // 무한 루프
-        while (true)
+        while (isCoroutineRunning)
         {
             // 5초가 지나면
             yield return new WaitForSeconds(5f);

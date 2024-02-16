@@ -162,7 +162,7 @@ public class PlayerController : MonoBehaviour
         */
         
         //대쉬 버튼을 누르면
-        if (Input.GetButtonDown("Dash") && can_dash)
+        if (Input.GetButtonDown("Dash") && can_dash && !is_talking)
         {
             StartCoroutine(Dash());
             

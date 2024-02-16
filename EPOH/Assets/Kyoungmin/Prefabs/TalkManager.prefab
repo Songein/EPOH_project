@@ -68,10 +68,10 @@ MonoBehaviour:
   talk_name_panel_sprites:
   - {fileID: 21300000, guid: f3892c3a0f7104ffe94cb4bb5850dc86, type: 3}
   - {fileID: 21300000, guid: b80a469226adf4fdfb072835880d272a, type: 3}
-  - {fileID: 21300000, guid: f3892c3a0f7104ffe94cb4bb5850dc86, type: 3}
+  - {fileID: 21300000, guid: b73765d400fe14634b2fbb258be9ac03, type: 3}
   talk_panel_sprites:
   - {fileID: 21300000, guid: 63aca8ae829924c229b994b3a76e504c, type: 3}
-  - {fileID: 21300000, guid: 63aca8ae829924c229b994b3a76e504c, type: 3}
+  - {fileID: 21300000, guid: fe0e071de58214d6f89f1e5805d95d2a, type: 3}
   is_talking: 0
   talk_index: 0
 --- !u!114 &7894161507570188939

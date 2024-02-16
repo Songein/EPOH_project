@@ -100,6 +100,7 @@ public class BossDogScene : MonoBehaviour
         //카메라 이벤트 1 : 보스룸 입장과 동시에 보스 쪽으로 카메라 빠르게 이동
         if (camera_move_event1)
         {
+            player_controller.is_interacting = true;
             if (sub_camera.transform.position.x >= destination.x - 0.1f)
             {
                 camera_move_event1 = false;
@@ -136,6 +137,7 @@ public class BossDogScene : MonoBehaviour
             }
             
             event2_end = true;
+            player_controller.is_interacting = false;
         }
 
         if (GameManager.instance.story_info == 8 && GameManager.instance.tutorial_info == 2)
@@ -190,8 +192,6 @@ public class BossDogScene : MonoBehaviour
 
         if (GameManager.instance.story_info == 10 && GameManager.instance.tutorial_info == 3)
         {
-            end_second_bossdog = true;
-
             //튜토리얼 코루틴 활성화
             StartCoroutine(showTutorial());
             GameManager.instance.tutorial_info++;
@@ -225,6 +225,7 @@ public class BossDogScene : MonoBehaviour
     //튜토리얼
     IEnumerator showTutorial()
     {
+        player_controller.is_interacting = true;
         yield return new WaitForSeconds(0.5f);
         if (GameManager.instance.story_info == 8 && GameManager.instance.tutorial_info == 3)
         {
@@ -234,7 +235,6 @@ public class BossDogScene : MonoBehaviour
         {
             tutorial4.SetActive(true);
         }
-        player_controller.is_interacting = true;
 
         yield return StartCoroutine(waitForKeyPress());
 
@@ -242,6 +242,10 @@ public class BossDogScene : MonoBehaviour
         tutorial4.SetActive(false);
         player_controller.is_interacting = false;
         battle_start = true;
+        if (GameManager.instance.story_info == 10 && GameManager.instance.tutorial_info == 4)
+        {
+            end_second_bossdog = true;
+        }
     }
 
     IEnumerator PhaseTransition()
@@ -271,9 +275,13 @@ public class BossDogScene : MonoBehaviour
         gr_sr.sprite = ground_sprites[1];
         
         //플레이어랑 보스 원래 위치로 이동시키기
+        boss.GetComponent<Animator>().SetBool("IsRun",false);
+        boss.GetComponent<Animator>().Play("Idle");
+        boss.GetComponent<SpriteRenderer>().flipX = false;
+        
         player.transform.position = player_spawn_pos;
         boss.transform.position = boss_spawn_pos;
-        
+
     }
     
 

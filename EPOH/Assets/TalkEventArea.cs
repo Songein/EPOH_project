@@ -16,8 +16,14 @@ public class TalkEventArea : MonoBehaviour
     {
         if (collision.CompareTag("Player") && GameManager.instance.story_info == 5)
         {
-            action.Action();
-            this.gameObject.SetActive(false);
+            StartCoroutine(EventStart());
         }
+    }
+
+    IEnumerator EventStart()
+    {
+        action.Action();
+        yield return (new WaitForSeconds(0.5f));
+        this.gameObject.SetActive(false);
     }
 }
