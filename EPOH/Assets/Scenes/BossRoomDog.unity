@@ -6631,6 +6631,7 @@ GameObject:
   - component: {fileID: 2022877471}
   - component: {fileID: 2022877473}
   - component: {fileID: 2022877472}
+  - component: {fileID: 2022877474}
   m_Layer: 5
   m_Name: HackFill
   m_TagString: Untagged
@@ -6678,8 +6679,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 27a4f8543c4494c1abfd04617d39d45e, type: 3}
-  m_Type: 3
+  m_Sprite: {fileID: 21300000, guid: a5519296926be41d480fb1bf61966e7b, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
@@ -6696,6 +6697,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2022877470}
   m_CullTransparentMesh: 1
+--- !u!95 &2022877474
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022877470}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d6da0c1147fe345c5845fea054e1ea5a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2046520855 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1564326182398825567, guid: 5dc7538251d9f42189584530b52f5f4d, type: 3}
