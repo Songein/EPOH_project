@@ -3524,6 +3524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsWalkClip: {fileID: 8300000, guid: 622f42e8d781b8a44b119174e4ed9708, type: 3}
+  BiteClip: {fileID: 8300000, guid: 66aa2f3dfbc3ad248a0b03d667bb65fd, type: 3}
   boss_speed: 3
   boss_skill_cooldown: 5
   boss_move_cooldown: 3

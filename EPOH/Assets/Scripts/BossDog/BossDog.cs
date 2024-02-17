@@ -9,6 +9,7 @@ public class BossDog : MonoBehaviour
     // BossDogSound audioSource
     private AudioSource audioSource;
     public AudioClip IsWalkClip; // Dog 애니메이션 "IsWalk" 효과음
+    public AudioClip BiteClip; // Dog 애니메이션 "Bite" 효과음
 
     private PlayerHealth player_health; //PlayerHealth 스크립트 참조
     private SpriteRenderer sr; //Boss의 SpriteRenderer 참조
@@ -254,8 +255,10 @@ public class BossDog : MonoBehaviour
     {
         Debug.Log("[Bite] : 보스가 이빨을 드러내며 그르렁 거림.");
         animator.SetTrigger("BitePrecursor"); //전조 애니메이션 실행
+        BiteDogSound();
         yield return new WaitForSeconds(precursor_time); // 전조시간동안 대기
         animator.SetTrigger("BiteAttack"); //공격 애니메이션 실행
+        
 
         //플레이어의 현재 위치 파악
         Vector2 player_pos = player.transform.position;
@@ -536,7 +539,6 @@ public class BossDog : MonoBehaviour
 
     IEnumerator IsWalkDogSound()
     {
-
         if(!audioSource.isPlaying) // 오디오가 현재 재생 중이 아닐 때만 IsWalk 재생
         {
             audioSource.clip = IsWalkClip; // 오디오 소스에 IsWalk 클립을 할당
@@ -545,5 +547,20 @@ public class BossDog : MonoBehaviour
         }
         yield return new WaitForSeconds(0.1f); // 0.1초 동안 대기
     }
+
+    void BiteDogSound()
+    {
+        if (BiteClip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(BiteClip);
+        }
+        else
+        {
+            Debug.LogWarning("BiteClip이나 AudioSource가 null입니다.");
+        }
+
+    }
+
+
 
 }
