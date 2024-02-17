@@ -11,6 +11,7 @@ public class BossDog : MonoBehaviour
     public AudioClip IsWalkClip; // Dog 애니메이션 "IsWalk" 효과음
     public AudioClip BiteClip; // Dog 애니메이션 "Bite" 효과음
     public AudioClip HowlingClip; // Dog 애니메이션 "Howling" 효과음
+    public AudioClip RunningClip; // Dog 애니메이션 "Running" 효과음
 
     private PlayerHealth player_health; //PlayerHealth 스크립트 참조
     private SpriteRenderer sr; //Boss의 SpriteRenderer 참조
@@ -353,6 +354,7 @@ public class BossDog : MonoBehaviour
         animator.SetTrigger("RunningPrecursor");
         yield return new WaitForSeconds(precursor_time); //전조 시간만큼 대기
         animator.SetTrigger("RunningAttack");
+        StartCoroutine("RunningDogSound"); // Dog Running 효과음 시작
         
         float run_distance; //보스가 이동할 거리
 
@@ -394,11 +396,13 @@ public class BossDog : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
         Debug.Log("[Running] : 사용 완료");
+        StopCoroutine("RunningDogSound"); // Dog Running 효과음 중지
         running_area.SetActive(false);
         running_effects[0].SetActive(false);
         running_effects[1].SetActive(false);
         is_skill = false;
         CheckFlip();
+
     }
 
     private IEnumerator Stomping()
@@ -562,7 +566,6 @@ public class BossDog : MonoBehaviour
         }
 
     }
-    
 
     void HowlingDogSound()
     {
@@ -574,7 +577,17 @@ public class BossDog : MonoBehaviour
         {
             Debug.LogWarning("HowlingClip이나 AudioSource가 null입니다.");
         }
+    }
 
+    IEnumerator RunningDogSound()
+    {
+        if(!audioSource.isPlaying) // 오디오가 현재 재생 중이 아닐 때만 IsWalk 재생
+        {
+            audioSource.clip = RunningClip; // 오디오 소스에 IsWalk 클립을 할당
+            audioSource.Play(); // IsWalk 재생
+            yield return new WaitForSeconds(0.1f);
+        }
+        yield return new WaitForSeconds(0.1f); // 0.1초 동안 대기
     }
 
 
