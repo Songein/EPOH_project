@@ -3574,7 +3574,7 @@ MonoBehaviour:
   - {fileID: 1103123852}
   ShockWave: {fileID: 86525576}
   howling_radius: 6
-  howling_radius2: 10
+  howling_radius2: 8
   running_area: {fileID: 125474521}
   movement_speed: 12
   reach_distance_long: 18
