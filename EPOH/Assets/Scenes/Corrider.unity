@@ -9788,7 +9788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cde4d108c063f794fb2495e3b680d259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portalSelectClip: {fileID: 0}
+  portalSelectClip: {fileID: 8300000, guid: 788b9829b5e33c542a07bc4e5530dcd9, type: 3}
 --- !u!114 &1490377669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9801,7 +9801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1507d79337d4ec04ca2e2ea984514143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  next_scene_name: MainRoom
+  next_scene_name: Tutorial MainRoom2
 --- !u!61 &1490377670
 BoxCollider2D:
   m_ObjectHideFlags: 0
