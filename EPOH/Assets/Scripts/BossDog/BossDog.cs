@@ -10,6 +10,7 @@ public class BossDog : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip IsWalkClip; // Dog 애니메이션 "IsWalk" 효과음
     public AudioClip BiteClip; // Dog 애니메이션 "Bite" 효과음
+    public AudioClip HowlingClip; // Dog 애니메이션 "Howling" 효과음
 
     private PlayerHealth player_health; //PlayerHealth 스크립트 참조
     private SpriteRenderer sr; //Boss의 SpriteRenderer 참조
@@ -98,7 +99,7 @@ public class BossDog : MonoBehaviour
             {
                 CheckFlip();
                 animator.SetBool("IsRun", true);
-                StartCoroutine("IsWalkDogSound");
+                StartCoroutine("IsWalkDogSound"); // Dog Walk 효과음 시작
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.transform.position.x, Dog_yposition, transform.position.z), boss_speed * Time.deltaTime);
                 
             }
@@ -130,7 +131,7 @@ public class BossDog : MonoBehaviour
             CheckFlip();
             Debug.Log("코루틴 시작");
             animator.SetBool("IsRun", false);
-            StopCoroutine("IsWalkDogSound");
+            StopCoroutine("IsWalkDogSound"); // Dog Walk 효과음 중지
             yield return new WaitForSeconds(boss_move_cooldown);
             is_track = !is_track; // 추적하는 상태와 그렇지 않은 상태를 번갈아서 반복
             StartCoroutine(MoveCooldown());
@@ -255,7 +256,7 @@ public class BossDog : MonoBehaviour
     {
         Debug.Log("[Bite] : 보스가 이빨을 드러내며 그르렁 거림.");
         animator.SetTrigger("BitePrecursor"); //전조 애니메이션 실행
-        BiteDogSound();
+        BiteDogSound(); // Dog Bite 효과음
         yield return new WaitForSeconds(precursor_time); // 전조시간동안 대기
         animator.SetTrigger("BiteAttack"); //공격 애니메이션 실행
         
@@ -320,6 +321,7 @@ public class BossDog : MonoBehaviour
         CheckFlip();
         Debug.Log("[Howling.cs] : 보스가 멈추고 고개를 든다.");
         animator.SetTrigger("HowlingPrecursor"); //전조 애니메이션 실행
+        HowlingDogSound(); // Dog Howling 효과음
         yield return new WaitForSeconds(precursor_time); //전조 시간만큼 대기
         animator.SetTrigger("HowlingAttack"); //공격 애니메이션 실행
         
@@ -560,6 +562,22 @@ public class BossDog : MonoBehaviour
         }
 
     }
+    
+
+    void HowlingDogSound()
+    {
+        if (HowlingClip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(HowlingClip);
+        }
+        else
+        {
+            Debug.LogWarning("HowlingClip이나 AudioSource가 null입니다.");
+        }
+
+    }
+
+
 
 
 
