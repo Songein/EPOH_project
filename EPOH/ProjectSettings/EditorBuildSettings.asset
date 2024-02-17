@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Setting.unity
     guid: 55f80fb6953e8dd4298668c6b10efc87
   - enabled: 1
-    path: Assets/Scenes/MainRoom.unity
+    path: Assets/Scenes/MainRoom_Before.unity
     guid: 2dbc4e57308a01246872e4696186ea6c
   - enabled: 1
     path: Assets/Scenes/Corrider.unity
