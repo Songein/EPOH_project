@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public BossManager boss_manager; // BossManager 스크립트 참조
+    private Animator animator; //player Animator 참조
+    private PlayerController pc; //PlayerController 참조
 
     public float player_hp = 200; //플레이어의 목숨
     private SpriteRenderer sp; //플레이어 SpriteRenderer 참조
@@ -18,7 +20,11 @@ public class PlayerHealth : MonoBehaviour
 
         boss_manager = FindObjectOfType<BossManager>();
 
-        
+        //player Animator 할당
+        animator = GetComponent<Animator>();
+        //PlayerController 할당
+        pc = GetComponent<PlayerController>();
+
     }
     
     //플레이어 데미지 관련
@@ -50,10 +56,18 @@ public class PlayerHealth : MonoBehaviour
     {
         //오브젝트의 레이어를 PlayerDamaged로 변경
         //gameObject.layer = 8;
+        //피격 애니메이션 실행
+        animator.SetTrigger("IsHit");
+        
+        //KnockBack
+
+        transform.position = Vector2.Lerp(transform.position, new Vector2(1f,1f), Time.deltaTime);
+        
+        
         //무적 여부를 담고 있는 is_invincible 변수를 true로 변경
         is_invincible = true;
         //오브젝트의 색 변경(하얀 투명색)
-        sp.color = new Color(1, 1, 1, 0.4f);
+        sp.color = new Color(1, 1, 1, 0.6f);
 
         yield return new WaitForSeconds(2f); //무적시간 2초
         //오브젝트의 레이어를 Player로 변경
@@ -70,5 +84,10 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("[PlayerHealth] : 플레이어 사망");
         //gameObject.SetActive(false); //플레이어 오브젝트 비활성화
     }
-    
+
+    public bool CheckAttackDirection()
+    {
+        
+        return true;
+    }
 }
