@@ -6,7 +6,7 @@ public class PortalInteract : Interaction
 {
     MoveToNextScene moveToNextScene;
 
-    // PlayerSound audioSource
+    // audioSource
     private AudioSource audioSource;
     public AudioClip portalSelectClip; // 코어 선택음
 
