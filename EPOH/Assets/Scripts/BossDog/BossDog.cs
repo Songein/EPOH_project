@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class BossDog : MonoBehaviour
 {
+    // BossDogSound audioSource
+    private AudioSource audioSource;
+    public AudioClip IsWalkClip; // Dog 애니메이션 "IsWalk" 효과음
 
     private PlayerHealth player_health; //PlayerHealth 스크립트 참조
     private SpriteRenderer sr; //Boss의 SpriteRenderer 참조
@@ -71,6 +74,7 @@ public class BossDog : MonoBehaviour
         sr = GetComponent<SpriteRenderer>(); //SpriteRenderer 할당
         scene = FindObjectOfType<BossDogScene>(); //BossDogScene 스크립트 할당
         animator = GetComponent<Animator>(); //Animator 할당
+        audioSource = GetComponent<AudioSource>(); // AudioSource 할당
         
         //스킬의 공격 범위 비활성화
         bite_area.SetActive(false); //Bite의 공격 범위 비활성화
@@ -93,7 +97,9 @@ public class BossDog : MonoBehaviour
             {
                 CheckFlip();
                 animator.SetBool("IsRun", true);
+                StartCoroutine("IsWalkDogSound");
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.transform.position.x, Dog_yposition, transform.position.z), boss_speed * Time.deltaTime);
+                
             }
         }
 
@@ -123,9 +129,11 @@ public class BossDog : MonoBehaviour
             CheckFlip();
             Debug.Log("코루틴 시작");
             animator.SetBool("IsRun", false);
+            StopCoroutine("IsWalkDogSound");
             yield return new WaitForSeconds(boss_move_cooldown);
             is_track = !is_track; // 추적하는 상태와 그렇지 않은 상태를 번갈아서 반복
             StartCoroutine(MoveCooldown());
+            
         }
         else
         {
@@ -524,6 +532,18 @@ public class BossDog : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         Debug.Log("[Stomping] : 사용 완료");
         is_skill = false;
+    }
+
+    IEnumerator IsWalkDogSound()
+    {
+
+        if(!audioSource.isPlaying) // 오디오가 현재 재생 중이 아닐 때만 IsWalk 재생
+        {
+            audioSource.clip = IsWalkClip; // 오디오 소스에 IsWalk 클립을 할당
+            audioSource.Play(); // IsWalk 재생
+            yield return new WaitForSeconds(0.1f);
+        }
+        yield return new WaitForSeconds(0.1f); // 0.1초 동안 대기
     }
 
 }
