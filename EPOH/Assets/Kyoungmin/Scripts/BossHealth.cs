@@ -73,12 +73,23 @@ public class BossHealth :MonoBehaviour
         //공격 당시 보스의 위치 - 플레이어 위치가 양수면 보스는 오른쪽에 위치함
         if (transform.position.x - player.x >= 0)
         {
-            attack_direction = new Vector2(transform.position.x + 1f * knockback_speed, -3f);
+            float pos = transform.position.x + 1f * knockback_speed;
+            if (pos >= 13f)
+            {
+                pos = 13f;
+            }
+            attack_direction = new Vector2(pos, -3f);
             Debug.Log("공격방향 왼쪽");
         }
         else
         {
-            attack_direction = new Vector2(transform.position.x + (-1f) * knockback_speed, -3f);
+            float pos = transform.position.x + (-1f) * knockback_speed;
+            
+            if (pos <= -15.5f)
+            {
+                pos = 15.5f;
+            }
+            attack_direction = new Vector2(pos, -3f);
             Debug.Log("공격방향 오른쪽");
         }
 
