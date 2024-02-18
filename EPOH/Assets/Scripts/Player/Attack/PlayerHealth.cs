@@ -63,7 +63,6 @@ public class PlayerHealth : MonoBehaviour
         animator.SetTrigger("IsHit");
         
         //KnockBack
-
         transform.position = Vector2.Lerp(transform.position, attack_direction, 5 * Time.deltaTime);
         
         

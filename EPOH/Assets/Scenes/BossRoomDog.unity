@@ -400,7 +400,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &125474522
 Transform:
   m_ObjectHideFlags: 0
@@ -3412,6 +3412,7 @@ MonoBehaviour:
   boss_manager: {fileID: 956072250}
   hacking: {fileID: 956072251}
   boss_hp: 1000
+  knockback_speed: 10
 --- !u!61 &956072247
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4331,7 +4332,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4632130523800075596, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: knockback_speed
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075608, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: m_Name
