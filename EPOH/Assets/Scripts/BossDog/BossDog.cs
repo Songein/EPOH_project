@@ -116,7 +116,7 @@ public class BossDog : MonoBehaviour
             StartCoroutine(SkillCooldown()); // 스킬 사용 코루틴 시작
         }
         
-        if (scene.phase_start2 && scene.end_second_bossdog && !start_phase2_attack)
+        if (scene.battle_start && scene.end_second_bossdog && !start_phase2_attack)
         {
             start_phase2_attack = true;
             Debug.Log("페이즈 2 시작 -> 강화 완료");
@@ -235,8 +235,8 @@ public class BossDog : MonoBehaviour
 
     private void BossSkill_SP(int skill_sp)
     {
-        Debug.Log(skill + "번 스킬 사용");
-        switch (skill) {
+        Debug.Log(skill_sp + "번 스킬 사용");
+        switch (skill_sp) {
             case 0: 
                 StartCoroutine(secondDogBite());
                 break;
