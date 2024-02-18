@@ -836,6 +836,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   if_first: 1
   if_revive: 0
+  first_revive: 0
+  second_revive: 0
   story_info: 5
   tutorial_info: 0
   teleport_depart: 0
@@ -13887,6 +13889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 623531929}
+  talk_event_area: {fileID: 445774925}
 --- !u!61 &1772821535
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class EnterBossRoom : MonoBehaviour
     private Animator animator;
 
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject talk_event_area;
 
     void Start(){
         /*
@@ -30,6 +31,9 @@ public class EnterBossRoom : MonoBehaviour
             GameManager.instance.boss_num = 0;
             GameManager.instance.story_info = 6;
             GameManager.instance.if_revive = false;
+            talk_event_area.SetActive(false);
+
+
         }
 
     }
