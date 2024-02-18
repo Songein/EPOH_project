@@ -106,20 +106,23 @@ public class BossDogScene : MonoBehaviour
                 camera_move_event1 = false;
                 //화난 개의 모습을 보여주기
                 Debug.Log("그르렁거리는 개");
+
                 Debug.Log("first_revive = " + GameManager.instance.first_revive);
                 Debug.Log("second_revive = " + GameManager.instance.second_revive);
+
                 //첫번째, 두번째 Revive인 경우
-                if (GameManager.instance.first_revive || GameManager.instance.second_revive)
+                if (GameManager.instance.first_revive || GameManager.instance.second_revive) 
                 {
-                    Debug.Log("Revive condition met. Moving the camera...");
-                    //도착 지점까지 카메라 이동하기
-                    sub_camera.transform.position = Vector3.Lerp(sub_camera.transform.position, destination, 0.01f);
+                    sub_camera.SetActive(false);
+                    main_camera.SetActive(true);
+                    GameManager.instance.story_info = 8;
+                    GameManager.instance.tutorial_info = 3;
+                    player_controller.is_interacting = false;
+                    battle_start = true;
                 }
-                else
+                else // Revive 아닌 경우 대화창 이벤트 실행
                 {
-                    Debug.Log("Revive condition not met.");
-                    //주인공의 대사 이벤트 실행
-                    talk_action.Action();    
+                    talk_action.Action(); 
                 }
                  
             }
@@ -136,27 +139,17 @@ public class BossDogScene : MonoBehaviour
             sub_camera.SetActive(false);
             main_camera.SetActive(true);
 
-            //첫번째, 두번째 Revive인 경우
-            if (GameManager.instance.first_revive || GameManager.instance.second_revive){}
-            else
-            {
-                //대화창 이벤트 실행
-                talk_action.Action();
-            }
-            
+            //대화창 이벤트 실행
+            talk_action.Action();
+           
             event2_end = true;
             player_controller.is_interacting = false;
         }
 
         if (GameManager.instance.story_info == 8 && GameManager.instance.tutorial_info == 2)
         {
-            //첫번째, 두번째 Revive인 경우
-            if (GameManager.instance.first_revive || GameManager.instance.second_revive){}
-            else
-            {
-                //튜토리얼 코루틴 활성화
-                StartCoroutine(showTutorial());
-            }
+            //튜토리얼 코루틴 활성화
+            StartCoroutine(showTutorial());
             
             GameManager.instance.tutorial_info++;
         }
@@ -188,21 +181,34 @@ public class BossDogScene : MonoBehaviour
             
             phase_start2 = true;
 
-            //두번째 Revive인 경우
-            if (GameManager.instance.second_revive){}
+            //두 번째 Revive인 경우
+            if (GameManager.instance.second_revive)
+            {
+                GameManager.instance.story_info = 10;
+            }
             else
             {
                 talk_action.Action();
             }
-            talk_action.Action();
+        
         }
         
 
         if (GameManager.instance.story_info == 10 && GameManager.instance.tutorial_info == 3)
         {
-            //튜토리얼 코루틴 활성화
-            StartCoroutine(showTutorial());
-            GameManager.instance.tutorial_info++;
+            if (GameManager.instance.second_revive)
+            {
+                battle_start = true;
+                end_second_bossdog = true;
+                GameManager.instance.tutorial_info++;
+            }
+            else
+            {
+                //튜토리얼 코루틴 활성화
+                StartCoroutine(showTutorial());
+                GameManager.instance.tutorial_info++;
+            }
+            
         }
 
         if (GameManager.instance.story_info == 11 && !port_end)
@@ -250,7 +256,7 @@ public class BossDogScene : MonoBehaviour
         tutorial4.SetActive(false);
         player_controller.is_interacting = false;
         battle_start = true;
-        if (GameManager.instance.story_info == 10 && GameManager.instance.tutorial_info == 4)
+        if (GameManager.instance.story_info == 10 && GameManager.instance.tutorial_info == 3)
         {
             end_second_bossdog = true;
         }
@@ -267,9 +273,17 @@ public class BossDogScene : MonoBehaviour
         bg_animator.SetTrigger("PhaseTransition");
         yield return new WaitForSeconds(0.5f);
 
-        //두번째 Revive인 경우
-        if (GameManager.instance.second_revive){}
-        else
+        //두 번째 Revive인 경우
+        if (GameManager.instance.second_revive && GameManager.instance.story_info == 8)
+        {
+            GameManager.instance.story_info = 9;
+        }
+        else if (GameManager.instance.second_revive && GameManager.instance.story_info == 10)
+        {
+            GameManager.instance.story_info = 11;
+        }
+        // 첫 번째 Revive & 첫 플레이인 경우
+        else 
         {
             //대화창 이벤트
             talk_action.Action();
