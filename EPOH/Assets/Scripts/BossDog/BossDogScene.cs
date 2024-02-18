@@ -200,14 +200,15 @@ public class BossDogScene : MonoBehaviour
             {
                 battle_start = true;
                 end_second_bossdog = true;
-                GameManager.instance.tutorial_info++;
+                Debug.Log("second revive 페이즈2 보스전 시작");
             }
             else
             {
                 //튜토리얼 코루틴 활성화
                 StartCoroutine(showTutorial());
-                GameManager.instance.tutorial_info++;
             }
+            
+            GameManager.instance.tutorial_info++;
             
         }
 
@@ -248,6 +249,7 @@ public class BossDogScene : MonoBehaviour
         else
         {
             tutorial4.SetActive(true);
+            
         }
 
         yield return StartCoroutine(waitForKeyPress());
@@ -256,10 +258,8 @@ public class BossDogScene : MonoBehaviour
         tutorial4.SetActive(false);
         player_controller.is_interacting = false;
         battle_start = true;
-        if (GameManager.instance.story_info == 10 && GameManager.instance.tutorial_info == 3)
-        {
-            end_second_bossdog = true;
-        }
+        end_second_bossdog = true;
+       
     }
 
     IEnumerator PhaseTransition()
