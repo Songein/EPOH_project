@@ -8297,6 +8297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 26051370}
+  talk_event_area: {fileID: 0}
 --- !u!114 &866969020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12304,7 +12305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cde4d108c063f794fb2495e3b680d259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portalSelectClip: {fileID: 0}
+  portalSelectClip: {fileID: 8300000, guid: 788b9829b5e33c542a07bc4e5530dcd9, type: 3}
 --- !u!82 &959818396
 AudioSource:
   m_ObjectHideFlags: 0
@@ -13812,6 +13813,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   if_first: 1
   if_revive: 0
+  first_revive: 0
+  second_revive: 0
   story_info: 5
   tutorial_info: 0
   teleport_depart: 0
