@@ -13,6 +13,7 @@ public class ShockWave : MonoBehaviour
         {
             //플레이어에게 충격파 세기 만큼의 데미지 입힘
             PlayerHealth player_health = other.GetComponent<PlayerHealth>();
+            player_health.CheckAttackDirection(transform.position);
             player_health.Damage(power);
         }
     }

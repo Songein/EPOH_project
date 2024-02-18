@@ -20,6 +20,7 @@ public class BiteArea : MonoBehaviour
         {
             //플레이어 hp를 관리하는 스크립트 할당하여 Damage 메서드 접근
             PlayerHealth player_health = other.GetComponent<PlayerHealth>();
+            player_health.CheckAttackDirection(transform.position);
             player_health.Damage(power);
         }
     }
