@@ -106,14 +106,22 @@ public class BossDogScene : MonoBehaviour
                 camera_move_event1 = false;
                 //화난 개의 모습을 보여주기
                 Debug.Log("그르렁거리는 개");
+                Debug.Log("first_revive = " + GameManager.instance.first_revive);
+                Debug.Log("second_revive = " + GameManager.instance.second_revive);
                 //첫번째, 두번째 Revive인 경우
-                if (GameManager.instance.first_revive || GameManager.instance.second_revive){}
+                if (GameManager.instance.first_revive || GameManager.instance.second_revive)
+                {
+                    Debug.Log("Revive condition met. Moving the camera...");
+                    //도착 지점까지 카메라 이동하기
+                    sub_camera.transform.position = Vector3.Lerp(sub_camera.transform.position, destination, 0.01f);
+                }
                 else
                 {
+                    Debug.Log("Revive condition not met.");
                     //주인공의 대사 이벤트 실행
-                    talk_action.Action();
+                    talk_action.Action();    
                 }
-                
+                 
             }
             else
             {
