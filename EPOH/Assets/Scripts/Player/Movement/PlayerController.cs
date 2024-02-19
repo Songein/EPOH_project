@@ -276,7 +276,7 @@ public class PlayerController : MonoBehaviour
                     player_jump_cnt = 0; //바닥에 닿으면 플레이어 점프 횟수 초기화
 
                     // (발소리) 착지 소리 재생
-                    PlayFootstepSound();
+                    StartCoroutine(PlayFootstepSound());
 
                 }
 
@@ -397,27 +397,27 @@ public class PlayerController : MonoBehaviour
     
 
     // (발소리) 착지 재생 함수
-    void PlayFootstepSound()
+    IEnumerator PlayFootstepSound()
     {
-        // footstepClip이 null이 아닌지 확인
-        if (footstepClip != null && audioSource != null)
+       
+       if(!audioSource.isPlaying) // 오디오가 현재 재생 중이 아닐 때만 발소리 재생
         {
-            audioSource.PlayOneShot(footstepClip);
+            yield return new WaitForSeconds(0.1f);
+            audioSource.clip = footstepClip; // 오디오 소스에 발소리 클립을 할당
+            audioSource.Play(); // 발소리 재생
+            yield return new WaitForSeconds(0.1f);
         }
-        else
-        {
-            Debug.LogWarning("Footstep AudioClip이나 AudioSource가 null입니다.");
-        }
+        yield return new WaitForSeconds(0.1f); // 2초 동안 대기
     }
 
     // 점프 1단 소리 재생 함수
     IEnumerator Jump1Sound()
     {
 
-        if(!audioSource.isPlaying) // 오디오가 현재 재생 중이 아닐 때만 발소리 재생
+        if(!audioSource.isPlaying) // 오디오가 현재 재생 중이 아닐 때만 jump 소리 재생
         {
-            audioSource.clip = jumpClip1; // 오디오 소스에 발소리 클립을 할당
-            audioSource.Play(); // 발소리 재생
+            audioSource.clip = jumpClip1; // 오디오 소스에 jump 소리 클립을 할당
+            audioSource.Play(); // jump 소리 재생
             yield return new WaitForSeconds(0.1f);
         }
         yield return new WaitForSeconds(0.1f); // 2초 동안 대기
