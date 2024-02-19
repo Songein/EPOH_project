@@ -1599,7 +1599,7 @@ MonoBehaviour:
   - {fileID: 8528917}
   cut_scenes:
   - {fileID: 1191292890}
-  main_camera: {fileID: 0}
+  main_camera: {fileID: 751617457}
   sub_camera: {fileID: 262062773}
   camera_dest: {x: -1.56, y: -3.4, z: -10}
 --- !u!4 &1147690153
@@ -2171,7 +2171,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 785e5567cd888ff4297830d587bb7096, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
