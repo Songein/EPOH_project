@@ -335,9 +335,9 @@ public class BossDogScene : MonoBehaviour
     {
         //보스 움직임 멈춤(배틀 일시정지)
         battle_start = false;
-
+        player_controller.is_death = true;
         animator.SetTrigger("Death");
-        yield return new WaitForSeconds(1.08f);
+        yield return new WaitForSeconds(2.3f);
 
         GameManager.instance.if_revive = true;
 
@@ -357,6 +357,7 @@ public class BossDogScene : MonoBehaviour
         full_camera.SetActive(false);
         main_camera.SetActive(true);
 
+        player_controller.is_death = false;
         SceneManager.LoadScene("Corrider"); // 플레이어가 보스전 중 사망하면 Corrider 씬으로 이동하여 부활
     }
     IEnumerator waitForKeyPress() // Space 키를 누르면 다음 대사로 넘어가는 함수
