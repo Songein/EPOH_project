@@ -60,6 +60,8 @@ public class BossDogScene : MonoBehaviour
 
     private PlayerController player_controller;
 
+    public bool is_complete; //미션 클리어 여부
+
 
     // Start is called before the first frame update
     void Start()
@@ -92,6 +94,8 @@ public class BossDogScene : MonoBehaviour
         full_camera_pos = full_camera.transform.position;
 
         animator = player.GetComponent<Animator>();
+
+        is_complete = false;
     }
     
     // Update is called once per frame
@@ -315,21 +319,31 @@ public class BossDogScene : MonoBehaviour
 
     }
     
-
-    public IEnumerator CompleteHacking()
+    public void CompleteHacking()
     {
+        battle_start = false;
+        is_complete = true;
+
+        boss_manager.hacking_point = 200f;
+        
         main_camera.SetActive(false);
         Vector3 camera_pos = new Vector3(boss.transform.position.x, sub_camera.transform.position.y, sub_camera.transform.position.z);
         sub_camera.transform.position = camera_pos;
         sub_camera.SetActive(true);
-        //개가 개 집으로 끌려들어감.
-        animator.SetTrigger("IsDie");
-        Debug.Log("개가 개집으로 끌려 들어감.");
 
-        yield return new WaitForSeconds(3f);
-        talk_action.Action();
+        //개가 개 집으로 끌려들어감.
+        boss.GetComponent<Animator>().SetTrigger("IsDie");
+        Debug.Log("개가 개집으로 끌려 들어감.");
+        boss_manager.hacking_point = 200f;
         
+        Invoke("StartEndNotice",2f);
     }
+
+    void StartEndNotice()
+    {
+        talk_action.Action();
+    }
+
 
     IEnumerator PlayerDeath()
     {
