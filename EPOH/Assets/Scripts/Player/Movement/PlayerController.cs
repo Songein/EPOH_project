@@ -229,8 +229,8 @@ public class PlayerController : MonoBehaviour
         {
             Vector2 dir_pos = pos;
             //0.3f 거리 내에서 -1f ~ 1f 만큼 위아래로 이동 효과
-            dir_pos.y = pos.y + 0.3f * Mathf.Sin(Time.time * 1f);
-            interaction_text.transform.position = dir_pos;
+            dir_pos.y = pos.y + 0.5f + 0.15f * Mathf.Sin(Time.time * 1f);
+            interaction_text.transform.position = new Vector3(dir_pos.x, dir_pos.y, -3f);
         }
         
         //전사장치를 통해 이동하여 다음 씬으로 도착한 경우
