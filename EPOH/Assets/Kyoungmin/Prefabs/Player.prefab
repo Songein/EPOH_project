@@ -272,7 +272,7 @@ MonoBehaviour:
   teleportClip1: {fileID: 8300000, guid: 991a00e228f5993478cb335089e8f722, type: 3}
   teleportClip2: {fileID: 8300000, guid: 788b9829b5e33c542a07bc4e5530dcd9, type: 3}
   player_speed: 8
-  playerJumpForce: 13
+  playerJumpForce: 15
   player_jump_cnt: 0
   is_interacting: 0
   interaction_text_prefab: {fileID: 6573491135781661511, guid: 7a84a7c48542f465f8869f0e55416d7a, type: 3}
@@ -288,6 +288,7 @@ MonoBehaviour:
   port_prefab: {fileID: 8089051319890647574, guid: 389390a4264eb42b986a804feca4cbc2, type: 3}
   is_installing: 0
   is_attacking: 0
+  is_death: 0
 --- !u!114 &4632130523800075602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,6 +333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss_manager: {fileID: 0}
   player_hp: 200
+  knockback_speed: 0
 --- !u!82 &-6903009059111086536
 AudioSource:
   m_ObjectHideFlags: 0
