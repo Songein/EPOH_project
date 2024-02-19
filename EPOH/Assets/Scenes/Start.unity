@@ -1286,6 +1286,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   if_first: 1
   if_revive: 0
+  first_revive: 0
+  second_revive: 0
   story_info: 0
   tutorial_info: 0
   teleport_depart: 0
@@ -1465,6 +1467,7 @@ MonoBehaviour:
   BGM_List:
   - {fileID: 8300000, guid: 5ee47f90a761213409b95527b8af2d8e, type: 3}
   - {fileID: 8300000, guid: 2e72b28350884c8448c5152469cb175c, type: 3}
+  - {fileID: 8300000, guid: 747724173c366b142b367d6d59458d94, type: 3}
 --- !u!82 &916159831
 AudioSource:
   m_ObjectHideFlags: 0
