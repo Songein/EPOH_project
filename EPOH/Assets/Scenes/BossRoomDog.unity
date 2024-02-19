@@ -3325,7 +3325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsWalkClip: {fileID: 8300000, guid: 622f42e8d781b8a44b119174e4ed9708, type: 3}
   BiteClip: {fileID: 8300000, guid: 66aa2f3dfbc3ad248a0b03d667bb65fd, type: 3}
-  HowlingClip: {fileID: 8300000, guid: 51148535a91679c4e80dd771b14c54d2, type: 3}
+  HowlingClip: {fileID: 8300000, guid: 288cb47236103a9428324c7bfa030678, type: 3}
   RunningClip: {fileID: 8300000, guid: 8c2ecbab1b0df4bc9bba331782a2f4b6, type: 3}
   StompingClip: {fileID: 8300000, guid: c0b32fb873ab6214a9e5ccd0e3138b8b, type: 3}
   boss_speed: 3
@@ -4656,6 +4656,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   if_first: 1
   if_revive: 0
+  first_revive: 0
+  second_revive: 0
   story_info: 6
   tutorial_info: 0
   teleport_depart: 0
