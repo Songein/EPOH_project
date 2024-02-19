@@ -11,6 +11,8 @@ public class MainRoomManager : MonoBehaviour
     [SerializeField] private GameObject main_camera;
     [SerializeField] private GameObject sub_camera;
     [SerializeField] private Vector3 camera_dest;
+    [SerializeField] private GameObject ending_black;
+    [SerializeField] private GameObject Logo;
 
     private TalkAction talk_action;
     private GameObject player;
@@ -19,6 +21,7 @@ public class MainRoomManager : MonoBehaviour
     private bool robot_dog_event2_start = false;
     private bool robot_dog_cut_scene_start = false;
     private bool camera_move = false;
+    private bool to_be_continue = false;
     
     // Start is called before the first frame update
     void Start()
@@ -97,5 +100,23 @@ public class MainRoomManager : MonoBehaviour
             cut_scenes[0].SetActive(false);
             talk_action.Action();
         }
+
+        if (GameManager.instance.story_info == 26 && !to_be_continue)
+        {
+            to_be_continue = true;
+            player.GetComponent<PlayerController>().is_interacting = true;
+            Invoke("ToBeContinue",0.5f);
+        }
+    }
+
+    void ToBeContinue()
+    {
+        ending_black.SetActive(true);
+        Invoke("TurnLogo",0.7f);
+    }
+
+    void TurnLogo()
+    {
+        Logo.SetActive(true);
     }
 }
