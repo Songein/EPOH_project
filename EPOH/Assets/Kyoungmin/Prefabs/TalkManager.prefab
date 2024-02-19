@@ -68,7 +68,7 @@ MonoBehaviour:
   talk_name_panel_sprites:
   - {fileID: 21300000, guid: 168a8fec3c13cea42a4fef8f7c871714, type: 3}
   - {fileID: 21300000, guid: 168a8fec3c13cea42a4fef8f7c871714, type: 3}
-  - {fileID: 21300000, guid: b73765d400fe14634b2fbb258be9ac03, type: 3}
+  - {fileID: 21300000, guid: ee698ccd885354587b71090d991ea381, type: 3}
   talk_panel_sprites:
   - {fileID: 21300000, guid: 26707412ce6665548859faa846ea464a, type: 3}
   - {fileID: 21300000, guid: fe0e071de58214d6f89f1e5805d95d2a, type: 3}
