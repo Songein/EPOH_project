@@ -30,7 +30,7 @@ public class BossDogScene : MonoBehaviour
     
     private Vector3 pos; //튜토리얼 텍스트 위치
     private Vector3 pos2; //튜토리얼 텍스트 위치
-    private Vector3 destination = new Vector3(5.8f, -3f, -10f); //서브 카메라 도착 위치
+    private Vector3 destination = new Vector3(9f, -2.2f, -10f); //서브 카메라 도착 위치
     private TalkAction talk_action; //TalkAction 스크립트 참조
 
     public bool battle_start; //배틀 시작
@@ -133,7 +133,7 @@ public class BossDogScene : MonoBehaviour
             else
             {
                 //도착 지점까지 카메라 이동하기
-                sub_camera.transform.position = Vector3.Lerp(sub_camera.transform.position, destination, 0.01f);
+                sub_camera.transform.position = Vector3.Lerp(sub_camera.transform.position, destination, 0.03f);
             }
         }
 
