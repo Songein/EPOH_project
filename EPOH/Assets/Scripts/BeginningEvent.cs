@@ -34,7 +34,7 @@ public class BeginningEvent : MonoBehaviour
             for (int i = 0; i < message.Length; i++)
             {
                 b_text.text += message[i]; // Add one character at a time
-                yield return new WaitForSeconds(0.04f); // adjust speed here
+                yield return new WaitForSeconds(0.02f); // adjust speed here
             }
             if (j < messages.Length - 1) // Don't add newline at the end
             {

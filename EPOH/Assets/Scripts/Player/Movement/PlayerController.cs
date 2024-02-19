@@ -75,7 +75,8 @@ public class PlayerController : MonoBehaviour
     //공격
     public bool is_attacking = false; //공격 중일 때 플레이어 이동 막기 위한 변수
     
-    
+    //사망
+    public bool is_death; //사망 관련 변수
 
     void Start()
     {
@@ -102,7 +103,7 @@ public class PlayerController : MonoBehaviour
     {
         //대쉬 | 상호작용 | 순간이동 | 대화 중이면 다른 작업 이루어지지 않도록
         if (is_interacting && is_talking) {} // 상호작용 중에 대화가 발생할 경우 Talk 진행을 위해 넘김
-        else if (is_dashing || is_interacting || is_teleporting || is_attacking || is_installing)
+        else if (is_dashing || is_interacting || is_teleporting || is_attacking || is_installing || is_death)
         {
             return;
         }
@@ -229,8 +230,8 @@ public class PlayerController : MonoBehaviour
         {
             Vector2 dir_pos = pos;
             //0.3f 거리 내에서 -1f ~ 1f 만큼 위아래로 이동 효과
-            dir_pos.y = pos.y + 0.3f * Mathf.Sin(Time.time * 1f);
-            interaction_text.transform.position = dir_pos;
+            dir_pos.y = pos.y + 0.5f + 0.15f * Mathf.Sin(Time.time * 1f);
+            interaction_text.transform.position = new Vector3(dir_pos.x, dir_pos.y, -3f);
         }
         
         //전사장치를 통해 이동하여 다음 씬으로 도착한 경우
@@ -245,7 +246,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         //대쉬 | 상호작용 | 순간이동 | 대화 중이면 다른 작업 이루어지지 않도록
-        if (is_dashing || is_interacting || is_teleporting || is_talking || is_attacking || is_installing)
+        if (is_dashing || is_interacting || is_teleporting || is_talking || is_attacking || is_installing || is_death)
         {
             return;
         }

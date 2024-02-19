@@ -46,13 +46,13 @@ public class Hacking : MonoBehaviour
 
     void Update() 
     {
-        if (boss_dog_scene.battle_start && !isCoroutineRunning) 
+        if (boss_dog_scene.battle_start && !isCoroutineRunning && !boss_dog_scene.is_complete) 
         {
             isCoroutineRunning = true;
             StartCoroutine(DecreaseHackingPointOverTime());
             Debug.Log("hp 감소 코루틴 시작");
         }
-        else if (!boss_dog_scene.battle_start && isCoroutineRunning)
+        else if (!boss_dog_scene.battle_start && isCoroutineRunning && !boss_dog_scene.is_complete)
         {
             StopCoroutine(DecreaseHackingPointOverTime());
             isCoroutineRunning = false;
@@ -71,7 +71,7 @@ public class Hacking : MonoBehaviour
     }
 
     // 보스전 종료 함수
-    public void endBossBattle()
+    void endBossBattle()
     {
         // hacking_point= 200 이 되고 boss_hp = 0 이 되면 임무완료 씬으로 이동
         //SceneManager.LoadScene("MissionClear");
@@ -93,7 +93,7 @@ public class Hacking : MonoBehaviour
     // hacking_point를 증가시키는 함수
     public void increaseHackingPoint(int amount)
     {
-        if (boss_manager != null)
+        if (boss_manager != null && !boss_dog_scene.is_complete)
         {
             // 해킹포인트가 200 초과하지 않음
             if (boss_manager.hacking_point < 200)
@@ -114,7 +114,7 @@ public class Hacking : MonoBehaviour
     // hacking_point를 감소시키는 함수
     public void decreaseHackingPoint(int amount)
     {
-        if (boss_manager != null)
+        if (boss_manager != null && !boss_dog_scene.is_complete)
         {
             // 해킹포인트가 0 보다 작지 않음
             if (boss_manager.hacking_point > 0)
@@ -139,8 +139,7 @@ public class Hacking : MonoBehaviour
         if (boss_health != null)
         {
             // 보스 공격 성공시마다 hacking_point 10씩 증가
-            increaseHackingPoint(5);
-            
+            increaseHackingPoint(8);            
         }
         else
         {
@@ -151,7 +150,7 @@ public class Hacking : MonoBehaviour
     private IEnumerator DecreaseHackingPointOverTime()
     {
         // 무한 루프
-        while (isCoroutineRunning)
+        while (isCoroutineRunning && !boss_dog_scene.is_complete)
         {
             // 5초가 지나면
             yield return new WaitForSeconds(5f);
@@ -160,7 +159,7 @@ public class Hacking : MonoBehaviour
             if (boss_manager.hacking_point > 0)
             {
                 // hacking_point 10씩 감소
-                boss_manager.hacking_point -= 10;
+                boss_manager.hacking_point -= 8;
                 boss_manager.hacking_point = Mathf.Max(boss_manager.hacking_point, 0);
 
                 // hacking_point 감소 후 확인

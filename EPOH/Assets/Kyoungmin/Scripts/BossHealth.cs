@@ -41,7 +41,6 @@ public class BossHealth :MonoBehaviour
             //Invoke("ReturnColor",1f);
             if (boss_hp <= 0)
             {
-                Die();
                 boss_hp = 0;
                 boss_manager.boss_hp = boss_hp;
                 hacking.checkHackingPoint();
@@ -55,7 +54,7 @@ public class BossHealth :MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         Debug.Log("[Enemy] : " + gameObject.name + " 사망");
         //gameObject.SetActive(false);

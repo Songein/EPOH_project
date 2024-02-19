@@ -60,6 +60,8 @@ public class BossDogScene : MonoBehaviour
 
     private PlayerController player_controller;
 
+    public bool is_complete; //미션 클리어 여부
+
 
     // Start is called before the first frame update
     void Start()
@@ -92,6 +94,8 @@ public class BossDogScene : MonoBehaviour
         full_camera_pos = full_camera.transform.position;
 
         animator = player.GetComponent<Animator>();
+
+        is_complete = false;
     }
     
     // Update is called once per frame
@@ -315,27 +319,39 @@ public class BossDogScene : MonoBehaviour
 
     }
     
-
     public void CompleteHacking()
     {
+        battle_start = false;
+        is_complete = true;
+
+        boss_manager.hacking_point = 200f;
+        
         main_camera.SetActive(false);
         Vector3 camera_pos = new Vector3(boss.transform.position.x, sub_camera.transform.position.y, sub_camera.transform.position.z);
         sub_camera.transform.position = camera_pos;
         sub_camera.SetActive(true);
+
         //개가 개 집으로 끌려들어감.
+        boss.GetComponent<Animator>().SetTrigger("IsDie");
         Debug.Log("개가 개집으로 끌려 들어감.");
-        boss.SetActive(false);
-        talk_action.Action();
+        boss_manager.hacking_point = 200f;
         
+        Invoke("StartEndNotice",2f);
     }
+
+    void StartEndNotice()
+    {
+        talk_action.Action();
+    }
+
 
     IEnumerator PlayerDeath()
     {
         //보스 움직임 멈춤(배틀 일시정지)
         battle_start = false;
-
+        player_controller.is_death = true;
         animator.SetTrigger("Death");
-        yield return new WaitForSeconds(1.08f);
+        yield return new WaitForSeconds(2.3f);
 
         GameManager.instance.if_revive = true;
 
@@ -355,6 +371,7 @@ public class BossDogScene : MonoBehaviour
         full_camera.SetActive(false);
         main_camera.SetActive(true);
 
+        player_controller.is_death = false;
         SceneManager.LoadScene("Corrider"); // 플레이어가 보스전 중 사망하면 Corrider 씬으로 이동하여 부활
     }
     IEnumerator waitForKeyPress() // Space 키를 누르면 다음 대사로 넘어가는 함수
