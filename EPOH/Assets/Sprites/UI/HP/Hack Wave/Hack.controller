@@ -8,7 +8,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Hack Wave
-  m_Speed: 0.6
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -20,7 +20,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2c647002a021d4356bacc4e3d5c08686, type: 2}
+  m_Motion: {fileID: 7400000, guid: d56bf2a9cd95d4e00a7cdd3f5b94d503, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
