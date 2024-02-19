@@ -7731,18 +7731,6 @@ PrefabInstance:
       propertyPath: player_controller
       value: 
       objectReference: {fileID: 1031765312}
-    - target: {fileID: 7894161507570188938, guid: faede9cafe37e433dbad6ab38e847544, type: 3}
-      propertyPath: talk_panel_sprites.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: 26707412ce6665548859faa846ea464a, type: 3}
-    - target: {fileID: 7894161507570188938, guid: faede9cafe37e433dbad6ab38e847544, type: 3}
-      propertyPath: talk_name_panel_sprites.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: 168a8fec3c13cea42a4fef8f7c871714, type: 3}
-    - target: {fileID: 7894161507570188938, guid: faede9cafe37e433dbad6ab38e847544, type: 3}
-      propertyPath: talk_name_panel_sprites.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: 168a8fec3c13cea42a4fef8f7c871714, type: 3}
     - target: {fileID: 7894161507570188939, guid: faede9cafe37e433dbad6ab38e847544, type: 3}
       propertyPath: talk_text
       value: 
