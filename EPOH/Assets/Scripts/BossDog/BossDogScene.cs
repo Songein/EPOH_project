@@ -316,15 +316,17 @@ public class BossDogScene : MonoBehaviour
     }
     
 
-    public void CompleteHacking()
+    public IEnumerator CompleteHacking()
     {
         main_camera.SetActive(false);
         Vector3 camera_pos = new Vector3(boss.transform.position.x, sub_camera.transform.position.y, sub_camera.transform.position.z);
         sub_camera.transform.position = camera_pos;
         sub_camera.SetActive(true);
         //개가 개 집으로 끌려들어감.
+        animator.SetTrigger("IsDie");
         Debug.Log("개가 개집으로 끌려 들어감.");
-        boss.SetActive(false);
+
+        yield return new WaitForSeconds(3f);
         talk_action.Action();
         
     }

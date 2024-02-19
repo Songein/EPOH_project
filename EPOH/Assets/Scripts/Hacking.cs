@@ -71,11 +71,11 @@ public class Hacking : MonoBehaviour
     }
 
     // 보스전 종료 함수
-    public void endBossBattle()
+    void endBossBattle()
     {
         // hacking_point= 200 이 되고 boss_hp = 0 이 되면 임무완료 씬으로 이동
         //SceneManager.LoadScene("MissionClear");
-        boss_dog_scene.CompleteHacking();
+        StartCoroutine(boss_dog_scene.CompleteHacking());
 
         Debug.Log("보스전 종료");
     }
