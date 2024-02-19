@@ -77,6 +77,9 @@ public class PlayerController : MonoBehaviour
     
     //사망
     public bool is_death; //사망 관련 변수
+    
+    //인트로
+    [SerializeField] private GameObject event1Area; //이벤트1영역
 
     void Start()
     {
@@ -493,5 +496,13 @@ public class PlayerController : MonoBehaviour
             audioSource.Play(); // 발소리 재생
         }
         yield return new WaitForSeconds(0.1f); // 0.1초 동안 대기
+    }
+
+    public void AfterIntroHit()
+    {
+        GameObject introTransition = GameObject.Find("IntroTransition");
+        introTransition.SetActive(false);
+        
+        event1Area.SetActive(true);
     }
 }
