@@ -139,8 +139,7 @@ public class Hacking : MonoBehaviour
         if (boss_health != null)
         {
             // 보스 공격 성공시마다 hacking_point 10씩 증가
-            increaseHackingPoint(5);
-            
+            increaseHackingPoint(8);            
         }
         else
         {
@@ -160,7 +159,7 @@ public class Hacking : MonoBehaviour
             if (boss_manager.hacking_point > 0)
             {
                 // hacking_point 10씩 감소
-                boss_manager.hacking_point -= 10;
+                boss_manager.hacking_point -= 8;
                 boss_manager.hacking_point = Mathf.Max(boss_manager.hacking_point, 0);
 
                 // hacking_point 감소 후 확인
