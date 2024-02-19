@@ -16,6 +16,7 @@ public class MainRoomManager : MonoBehaviour
 
     private TalkAction talk_action;
     private GameObject player;
+    private SoundManager sound_manager;
 
     private bool robot_dog_event1_start = false;
     private bool robot_dog_event2_start = false;
@@ -28,6 +29,7 @@ public class MainRoomManager : MonoBehaviour
     {
         player = FindObjectOfType<PlayerController>().gameObject;
         talk_action = FindObjectOfType<TalkAction>();
+        sound_manager = FindObjectOfType<SoundManager>();
         if (GameManager.instance.is_back)
         {
             player.transform.position = player_right_pos;
@@ -85,6 +87,7 @@ public class MainRoomManager : MonoBehaviour
         {
             robot_dog_cut_scene_start = true;
             cut_scenes[0].SetActive(true);
+            sound_manager.PlayBGM(2);
             talk_action.Action();
         }
 
