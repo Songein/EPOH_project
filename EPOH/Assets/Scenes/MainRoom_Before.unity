@@ -2056,8 +2056,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad8e8142ac61f074f95595ed6744e482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minCameraBoundary: {x: 0.08, y: -1.96}
-  maxCameraBoundary: {x: 6.15, y: 1.4}
+  minCameraBoundary: {x: 1.29, y: -1.49}
+  maxCameraBoundary: {x: 5.44, y: 1.15}
 --- !u!81 &1355416333
 AudioListener:
   m_ObjectHideFlags: 0
