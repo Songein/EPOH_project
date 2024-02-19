@@ -1307,6 +1307,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TalkWindow
       objectReference: {fileID: 0}
+    - target: {fileID: 1564326180844969897, guid: 5dc7538251d9f42189584530b52f5f4d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1564326180844969898, guid: 5dc7538251d9f42189584530b52f5f4d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
