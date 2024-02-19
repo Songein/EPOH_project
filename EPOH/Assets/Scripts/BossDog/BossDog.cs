@@ -20,6 +20,7 @@ public class BossDog : MonoBehaviour
 
     [SerializeField] float boss_speed; // 보스의 이동 속도
     [SerializeField] float boss_skill_cooldown; // 보스 스킬 사용 쿨타임
+    [SerializeField] float boss_skill2_cooldown; // 보스 스킬 사용 쿨타임
     [SerializeField] float boss_move_cooldown; // 보스 이동 쿨타임
 
     [SerializeField] float attack_power = 10f; // 보스 공격 세기
@@ -192,7 +193,7 @@ public class BossDog : MonoBehaviour
             skill_sp = Random.Range(2, 4); // 멀 때 2가지 패턴만 발생
         }
         BossSkill_SP(skill_sp);
-        yield return new WaitForSeconds(boss_skill_cooldown); // 스킬을 사용하지 않음
+        yield return new WaitForSeconds(boss_skill2_cooldown); // 스킬을 사용하지 않음
         StartCoroutine(SkillCooldown_SP());
 
     }
@@ -213,7 +214,7 @@ public class BossDog : MonoBehaviour
 
     private void BossSkill(int skill) //보스가 어떤 스킬을 사용하는가?
     {
-        Debug.Log(skill + "번 스킬 사용");
+        Debug.Log(skill + "번 기본 스킬 사용");
         switch (skill) {
             case 0: 
                 StartCoroutine(Bite());
@@ -235,7 +236,7 @@ public class BossDog : MonoBehaviour
 
     private void BossSkill_SP(int skill_sp)
     {
-        Debug.Log(skill_sp + "번 스킬 사용");
+        Debug.Log(skill_sp + "번 강화 스킬 사용");
         switch (skill_sp) {
             case 0: 
                 StartCoroutine(secondDogBite());
@@ -330,21 +331,20 @@ public class BossDog : MonoBehaviour
         
         //충격파 오브젝트 활성화
         ShockWave.SetActive(true);
-        CircleCollider2D collider = ShockWave.GetComponent<CircleCollider2D>();
+        //CircleCollider2D collider = ShockWave.GetComponent<CircleCollider2D>();
         //충격파 오브젝트 커지도록
         for (int i = 1; i <= howling_radius; i++)
         {
             //아래 시간을 조정함에 따라 충격파 발동 시간이 조절됨
             yield return new WaitForSeconds(0.05f);
-            collider.radius += 0.9f / howling_radius;
-            ShockWave.transform.localScale = new Vector2(1f + 0.3f * i, 1f + 0.3f * i);
+            //collider.radius += 0.9f / howling_radius;
+            ShockWave.transform.localScale = new Vector2(1f + howling_radius/20 * i, 1f + howling_radius/20 * i);
         }
         yield return new WaitForSeconds(0.01f);
         ShockWave.SetActive(false); //충격파 오브젝트 비활성화
         //충격파 오브젝트 크기 원래대로 초기화
         ShockWave.transform.localScale = new Vector2(1f, 1f);
         is_skill = false; //스킬 중 해제
-        CheckFlip();
     }
 
     private IEnumerator Running()
@@ -403,7 +403,6 @@ public class BossDog : MonoBehaviour
         running_effects[0].SetActive(false);
         running_effects[1].SetActive(false);
         is_skill = false;
-        CheckFlip();
 
     }
 
@@ -489,9 +488,9 @@ public class BossDog : MonoBehaviour
     private IEnumerator secondDogBite() // 보스 페이즈 전환시 Bite 2회 연속 공격
     {
         yield return StartCoroutine(Bite()); // 첫 번째 Bite
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(1f);
 
-        CheckFlip();
+        //CheckFlip();
         yield return StartCoroutine(Bite()); // 두 번째 Bite
 
     }
@@ -499,13 +498,13 @@ public class BossDog : MonoBehaviour
     private IEnumerator secondDogRunning() // 보스 페이즈 전환시 Running 3회 연속 공격
     {
         yield return StartCoroutine(Running()); // 첫 번째 Running
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(1.5f);
 
-        CheckFlip();
+        //CheckFlip();
         yield return StartCoroutine(Running()); // 두 번째 Running
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(1.5f);
 
-        CheckFlip();
+        //CheckFlip();
         yield return StartCoroutine(Running()); // 세 번째 Running
 
     }
