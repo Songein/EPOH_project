@@ -489,30 +489,30 @@ public class BossDog : MonoBehaviour
     private IEnumerator secondDogBite() // 보스 페이즈 전환시 Bite 2회 연속 공격
     {
         yield return StartCoroutine(Bite()); // 첫 번째 Bite
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
 
         //CheckFlip();
-        yield return StartCoroutine(Bite()); // 두 번째 Bite
+        //yield return StartCoroutine(Bite()); // 두 번째 Bite
 
     }
 
     private IEnumerator secondDogRunning() // 보스 페이즈 전환시 Running 3회 연속 공격
     {
         yield return StartCoroutine(Running()); // 첫 번째 Running
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.1f);
 
-        //CheckFlip();
-        yield return StartCoroutine(Running()); // 두 번째 Running
-        yield return new WaitForSeconds(1.5f);
+        // //CheckFlip();
+        // yield return StartCoroutine(Running()); // 두 번째 Running
+        // yield return new WaitForSeconds(1.5f);
 
-        //CheckFlip();
-        yield return StartCoroutine(Running()); // 세 번째 Running
+        // //CheckFlip();
+        // yield return StartCoroutine(Running()); // 세 번째 Running
 
     }
 
     private IEnumerator secondDogHowling() // 보스 페이즈 전환시 Howling 범위 1.5배가량 증가
     {
-        howling_radius = howling_radius2;
+        //howling_radius = howling_radius2;
         yield return StartCoroutine(Howling()); 
     }
 

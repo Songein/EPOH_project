@@ -3602,7 +3602,7 @@ MonoBehaviour:
   StompingClip: {fileID: 8300000, guid: c0b32fb873ab6214a9e5ccd0e3138b8b, type: 3}
   boss_speed: 3
   boss_skill_cooldown: 5
-  boss_skill2_cooldown: 9
+  boss_skill2_cooldown: 3
   boss_move_cooldown: 3
   attack_power: 10
   track_range: 1.5
