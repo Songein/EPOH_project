@@ -29,7 +29,9 @@ public class BossHealth :MonoBehaviour
     {
         //피격 애니 실행
         CheckAttackDirection(FindObjectOfType<PlayerController>().transform.position);
-        animator.SetTrigger("IsHit");
+        //animator.SetTrigger("IsHit");
+        sr.color = new Color(1, 0, 0, 0.6f); // 보스의 스프라이트 색을 투명한 빨강색으로 변경
+        Invoke("ReturnColor",1f);
         //KnockBack
         transform.position = Vector2.Lerp(transform.position, attack_direction, 5 * Time.deltaTime);
         // Ensure boss_hp doesn't go below 0
@@ -37,8 +39,7 @@ public class BossHealth :MonoBehaviour
         {
         
             boss_hp -= power; //파라미터로 받은 공격 세기에 따라 목숨 감소
-            //sr.color = new Color(1, 0, 0, 0.6f); // 보스의 스프라이트 색을 투명한 빨강색으로 변경
-            //Invoke("ReturnColor",1f);
+            
             if (boss_hp <= 0)
             {
                 boss_hp = 0;

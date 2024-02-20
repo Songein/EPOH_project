@@ -159,7 +159,7 @@ public class Hacking : MonoBehaviour
             if (boss_manager.hacking_point > 0)
             {
                 // hacking_point 10씩 감소
-                boss_manager.hacking_point -= 8;
+                boss_manager.hacking_point -= 6;
                 boss_manager.hacking_point = Mathf.Max(boss_manager.hacking_point, 0);
 
                 // hacking_point 감소 후 확인
