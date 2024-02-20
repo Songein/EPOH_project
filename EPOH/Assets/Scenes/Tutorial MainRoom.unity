@@ -1086,6 +1086,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4632130523800075601, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: dash_power
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632130523800075601, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: event1Area
       value: 
       objectReference: {fileID: 1431872989}
@@ -2157,7 +2161,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1614172867}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.40085846
+  m_Size: 0.40085852
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
