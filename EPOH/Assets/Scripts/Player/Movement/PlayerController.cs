@@ -248,12 +248,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        //대쉬 | 상호작용 | 순간이동 | 대화 중이면 다른 작업 이루어지지 않도록
-        if (is_dashing || is_interacting || is_teleporting || is_talking || is_attacking || is_installing || is_death)
-        {
-            return;
-        }
-        
         //수평값에 따른 이동
         rigid.velocity = new Vector2(horizontal * player_speed, rigid.velocity.y);
         
@@ -267,6 +261,7 @@ public class PlayerController : MonoBehaviour
             
             RaycastHit2D groundRayHit = Physics2D.Raycast(rigid.position, Vector2.down, 4f, LayerMask.GetMask("Ground"));
             //땅을 감지하고
+
             if (groundRayHit.collider != null)
             {
                 //거리가 0.5 미만이면
@@ -287,7 +282,11 @@ public class PlayerController : MonoBehaviour
                 //Debug.Log(groundRayHit.collider.name);
             }
         }
-        
+        //대쉬 | 상호작용 | 순간이동 | 대화 중이면 다른 작업 이루어지지 않도록
+        if (is_dashing || is_interacting || is_teleporting || is_talking || is_attacking || is_installing || is_death)
+        {
+            return;
+        }        
     }
 
     void OnTriggerEnter2D(Collider2D other)
