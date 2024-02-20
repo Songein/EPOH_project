@@ -120,6 +120,7 @@ public class BossDog : MonoBehaviour
         if (scene.battle_start && scene.end_second_bossdog && !start_phase2_attack)
         {
             start_phase2_attack = true;
+            StopCoroutine(SkillCooldown());
             Debug.Log("페이즈 2 시작 -> 강화 완료");
             StartCoroutine(MoveCooldown()); // 무브 코루틴 시작
             StartCoroutine(SkillCooldown_SP()); // 강화된 스킬 사용 코루틴 시작
