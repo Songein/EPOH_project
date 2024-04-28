@@ -112,15 +112,6 @@ public class PlayerController : MonoBehaviour
             
         }
         
-        /*
-        //점프 도중 점프버튼에서 손을 뗀 경우
-        if (Input.GetButtonUp("Jump") && rigid.velocity.y > 0f)
-        {
-            //점프 속도 절반으로 감소
-            rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * 0.5f);
-            
-        }
-        */
         
         //대쉬 버튼을 누르면
         if (Input.GetButtonDown("Dash") && can_dash)
@@ -197,8 +188,6 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("거리 0.3f 미만");
 
                 }
-
-                //Debug.Log(groundRayHit.collider.name);
             }
         }
         
