@@ -7,14 +7,17 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public bool is_attacking = false; //현재 공격 중인지
+    public float[] combo_attack_power = { 20f, 40f, 100f }; //콤보 별 공격 세기
+
     public Animator animator; //플레이어 애니메이터 변수
     public static PlayerAttack instance;
-    public float[] combo_attack_power = { 20f, 40f, 100f }; //콤보 별 공격 세기
     private GameObject attack_area; //공격범위 오브젝트 참조 변수
 
     void Start()
     {
-        animator = GetComponent<Animator>(); //플레이어 애니메이터 할당
+        //플레이어 애니메이터 할당
+        animator = GetComponent<Animator>();
+
         //공격 범위 참조 후 비활성화
         attack_area = transform.GetChild(0).gameObject;
         attack_area.SetActive(is_attacking);
@@ -36,6 +39,7 @@ public class PlayerAttack : MonoBehaviour
         
     }
 
+    //공격 함수
     void Attack()
     {
         is_attacking = true;

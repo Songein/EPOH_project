@@ -6,9 +6,10 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public float player_hp = 200; //플레이어의 목숨
-    private SpriteRenderer sp; //플레이어 SpriteRenderer 참조
     private bool is_invincible; //무적 여부
     
+    private SpriteRenderer sp; //플레이어 SpriteRenderer 참조
+
     void Start()
     {
         //SpriteRenderer 할당하기
@@ -22,7 +23,9 @@ public class PlayerHealth : MonoBehaviour
         if (!is_invincible)
         {
             Debug.Log("[PlayerHealth] : 플레이어가 공격 받음");
-            player_hp -= power; //파라미터로 입력받은 power 만큼 hp가 감소함.
+
+            //파라미터로 입력받은 power 만큼 hp가 감소함.
+            player_hp -= power;
             Debug.Log("[PlayerHealth] : 남은 hp " + player_hp);
 
             if (player_hp <= 0) //플레이어 목숨이 0이하라면
