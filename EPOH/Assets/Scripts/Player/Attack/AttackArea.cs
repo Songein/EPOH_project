@@ -41,12 +41,13 @@ public class AttackArea : MonoBehaviour
             }
 
             Debug.Log("[AttackArea] :  Before calling onBossHealthDecrease");
+            
             // Hacking 스크립트의 onBossHealthDecrease 호출
             hacking.onBossHealthDecrease(attack_power);
         }
         else
         {
-            //Debug.Log("[AttackArea] : 충돌 주체가 적이 아님");
+            Debug.Log("[AttackArea] : 충돌 주체가 적이 아님");
         }
     }
 
