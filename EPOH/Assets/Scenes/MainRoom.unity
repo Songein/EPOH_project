@@ -3764,7 +3764,7 @@ MonoBehaviour:
   rune: 0000000000
   boss_num: 0
   boss_clear_info: 000000
-  office_room: 2
+  office_room: 0
 --- !u!4 &363333356
 Transform:
   m_ObjectHideFlags: 0
