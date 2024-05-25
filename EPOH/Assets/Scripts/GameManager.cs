@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     public bool[] boss_clear_info = new bool[boss_cnt]; // 보스 클리어 여부 확인
 
+    public int office_room = 0; // 플레이어가 입장하는 회사공간
+
     private void Awake()
     {
         instance = this;
