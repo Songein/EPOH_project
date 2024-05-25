@@ -25413,8 +25413,7 @@ GameObject:
   - component: {fileID: 1493410615}
   - component: {fileID: 1493410614}
   - component: {fileID: 1493410618}
-  - component: {fileID: 1493410617}
-  - component: {fileID: 1493410616}
+  - component: {fileID: 1493410619}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Interaction
@@ -25463,39 +25462,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1493410616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493410613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cb03fa24ae02ba41997c184c5ae9b70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1493410617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493410613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f787812182d531740893adf679e3f3d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mission1_button: {fileID: 394593732}
-  mission2_button: {fileID: 151050948}
-  mission3_button: {fileID: 1283320720}
-  mission_decision_popup: {fileID: 471311612}
-  yes_button: {fileID: 966437595}
-  no_button: {fileID: 1452843023}
-  widget_return_button: {fileID: 1461112182}
-  last_clicked_button: {fileID: 0}
-  canInteractWithPortal: 0
 --- !u!114 &1493410618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25509,6 +25475,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   next_scene_name: Corrider
+--- !u!114 &1493410619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493410613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde4d108c063f794fb2495e3b680d259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1509176517
 GameObject:
   m_ObjectHideFlags: 0
@@ -31498,11 +31476,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_attacking: 0
-  animator: {fileID: 0}
   combo_attack_power:
   - 2
   - 4
   - 10
+  animator: {fileID: 0}
 --- !u!114 &1740969177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31516,10 +31494,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_speed: 8
-  playerJumpForce: 13
+  player_jump_force: 7
   is_interacting: 0
   is_talking: 0
-  talkaction: {fileID: 892681761}
+  talk_action: {fileID: 0}
   tr: {fileID: 0}
   dash_power: 20
   dash_time: 0.3
