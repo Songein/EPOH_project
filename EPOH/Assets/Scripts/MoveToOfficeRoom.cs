@@ -5,19 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class MoveToOfficeRoom : MonoBehaviour
 {
+    PlayerController playerController;
     public void officeSceneChange()
     {
-        string[] OR = {"OfficeRoom2", "OfficeRoom3"}; 
+        playerController = GetComponent<PlayerController>();
 
-        if (GameManager.instance != null && GameManager.instance.office_room >= 0 && GameManager.instance.office_room < OR.Length)
+        // 현재 활성화된 씬 가져오기
+        Scene current_scene = SceneManager.GetActiveScene();
+
+        if (GameManager.instance != null && current_scene.name == "OfficeRoom1" && GameManager.instance.boss_clear_info[1])
         {
-            string office_scene_name = OR[GameManager.instance.office_room];
-
-            SceneManager.LoadScene(office_scene_name);
+            SceneManager.LoadScene("OfficeRoom2");
+        }
+        else if (GameManager.instance != null && current_scene.name == "OfficeRoom2" && GameManager.instance.boss_clear_info[3])
+        {
+            SceneManager.LoadScene("OfficeRoom3");
+        }
+        else if (GameManager.instance != null && current_scene.name == "OfficeRoom1" && GameManager.instance.boss_clear_info[3])
+        {
+            SceneManager.LoadScene("OfficeRoom4");
         }
         else
         {
-            Debug.LogError("Invalid office_room index or GameManager instance is null.");
+            playerController.is_interacting = false;
         }
         
     }
