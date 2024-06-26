@@ -1322,11 +1322,11 @@ GameObject:
   m_Component:
   - component: {fileID: 125945310}
   - component: {fileID: 125945309}
-  - component: {fileID: 125945312}
-  - component: {fileID: 125945313}
   - component: {fileID: 125945314}
+  - component: {fileID: 125945316}
+  - component: {fileID: 125945315}
   m_Layer: 0
-  m_Name: OfficePortal
+  m_Name: OfficeRoom1Portal
   m_TagString: Interaction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1399,30 +1399,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &125945312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125945308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a67133298560e4775ad3f7927d82eb49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &125945313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125945308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9b670293973444fabb82d0625301db5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &125945314
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1449,6 +1425,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2964354, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &125945315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125945308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde4d108c063f794fb2495e3b680d259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &125945316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125945308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1507d79337d4ec04ca2e2ea984514143, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next_scene_name: OfficeRoom1
 --- !u!1 &151050946
 GameObject:
   m_ObjectHideFlags: 0

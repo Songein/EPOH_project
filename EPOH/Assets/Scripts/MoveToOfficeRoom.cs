@@ -7,7 +7,7 @@ public class MoveToOfficeRoom : MonoBehaviour
 {
     public void officeSceneChange()
     {
-        string[] OR = {"OfficeRoom1", "OfficeRoom2", "OfficeRoom3"}; 
+        string[] OR = {"OfficeRoom2", "OfficeRoom3"}; 
 
         if (GameManager.instance != null && GameManager.instance.office_room >= 0 && GameManager.instance.office_room < OR.Length)
         {
