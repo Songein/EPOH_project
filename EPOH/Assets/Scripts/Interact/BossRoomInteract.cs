@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BossRoomInteract : Interaction
+public class CorriderRightInteract : Interaction
 {
     EnterBossRoom enterBossRoom;
     
