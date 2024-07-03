@@ -12,10 +12,11 @@ public class MoveToOfficeRoom : MonoBehaviour
 
         // 현재 활성화된 씬 가져오기
         Scene current_scene = SceneManager.GetActiveScene();
-
+    
         if (GameManager.instance != null && current_scene.name == "OfficeRoom1" && GameManager.instance.boss_clear_info[2])
         {
             SceneManager.LoadScene("OfficeRoom2");
+
         }
         else if (GameManager.instance != null && current_scene.name == "OfficeRoom2" && GameManager.instance.boss_clear_info[4])
         {
