@@ -68,4 +68,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ending/TrueEnding.unity
     guid: 1457a2dfcd74e4543af3cb1970146338
+  - enabled: 1
+    path: Assets/Scenes/FirstEvent.unity
+    guid: 39066a96b4ef2414e9d8867c26466d32
   m_configObjects: {}
