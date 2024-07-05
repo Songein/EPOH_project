@@ -15,7 +15,8 @@ public class BossRoomInteract : Interaction
 
     public override void Interact()
     {
-       enterBossRoom.moveToBossRoom();
+        enterBossRoom.setInteractingObjectName(this.gameObject.name);
+        enterBossRoom.moveToBossRoom();
     }
     
 
