@@ -20,6 +20,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     { 
         instance = this;
-        DontDestroyOnLoad(gameObject);    
+        DontDestroyOnLoad(gameObject);
+        boss_clear_info[0] = true;
+        boss_clear_info[1] = false;
+        boss_clear_info[2] = false;
+        boss_clear_info[3] = false;
+        boss_clear_info[4] = false;
+
     }
 }
