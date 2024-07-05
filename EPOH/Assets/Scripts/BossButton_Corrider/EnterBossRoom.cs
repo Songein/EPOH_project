@@ -30,7 +30,7 @@ public class EnterBossRoom : MonoBehaviour
             Debug.Log("BossRoomDog Scene으로 이동");
         }
             
-        else if (GameManager.instance != null && current_scene.name == "OfficeRoom1" && GameManager.instance.boss_clear_info[1])
+        else if (GameManager.instance != null && current_scene.name == "OfficeRoom1" && GameManager.instance.boss_clear_info[1] && interacting_object == "BossPartTime")
         {
             Debug.Log("BossPartTime과 상호작용했습니다.");
             // 보스룸으로 이동
@@ -38,7 +38,7 @@ public class EnterBossRoom : MonoBehaviour
             Debug.Log("BossRoomPartTime Scene으로 이동");
         }
         
-        else if (GameManager.instance != null && current_scene.name == "OfficeRoom2" && GameManager.instance.boss_clear_info[2])
+        else if (GameManager.instance != null && current_scene.name == "OfficeRoom2" && GameManager.instance.boss_clear_info[2] && interacting_object == "BossForgetMeNot")
         {
             Debug.Log("BossForgetMeNot과 상호작용했습니다.");
             // 보스룸으로 이동
@@ -46,7 +46,7 @@ public class EnterBossRoom : MonoBehaviour
             Debug.Log("BossRoomForgetMeNot Scene으로 이동");
         }
         
-        else if (GameManager.instance != null && current_scene.name == "OfficeRoom2" && GameManager.instance.boss_clear_info[3])
+        else if (GameManager.instance != null && current_scene.name == "OfficeRoom2" && GameManager.instance.boss_clear_info[3] && interacting_object == "BossCriminal")
         {
             Debug.Log("BossCriminal과 상호작용했습니다.");
             // 보스룸으로 이동
@@ -54,7 +54,7 @@ public class EnterBossRoom : MonoBehaviour
             Debug.Log("BossRoomCriminal Scene으로 이동");
         }
     
-        else if (GameManager.instance != null && current_scene.name == "OfficeRoom3" && GameManager.instance.boss_clear_info[4])
+        else if (GameManager.instance != null && current_scene.name == "OfficeRoom3" && GameManager.instance.boss_clear_info[4] && interacting_object == "BossHoa")
         {       
             Debug.Log("BossHoa와 상호작용했습니다.");
             // 보스룸으로 이동

@@ -12817,7 +12817,7 @@ GameObject:
   - component: {fileID: 1554213500}
   m_Layer: 0
   m_Name: BossCriminal
-  m_TagString: Untagged
+  m_TagString: Interaction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13172,7 +13172,7 @@ GameObject:
   - component: {fileID: 1977706646}
   m_Layer: 0
   m_Name: BossForgetMeNot
-  m_TagString: Untagged
+  m_TagString: Interaction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
