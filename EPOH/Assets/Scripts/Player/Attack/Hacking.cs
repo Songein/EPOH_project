@@ -41,14 +41,15 @@ public class Hacking : MonoBehaviour
     // BossManager의 hacking_point가 200에 다다랐을 시 보스전이 종료되는 함수
     public void checkHackingPoint()
     {
-        if (boss_manager.hacking_point == 200 && boss_health.boss_hp == 0)
+        if (boss_manager.hacking_point == 200 && boss_manager.boss_hp == 0)
         {
-            endBossBattle();
-            updateBossClearInfo();
+            //endBossBattle();
+            //updateBossClearInfo();
         }
     }
 
     // 보스전 종료 함수
+    /*
     public void endBossBattle()
     {
         // hacking_point= 200 이 되고 boss_hp = 0 이 되면 임무완료 씬으로 이동
@@ -70,6 +71,7 @@ public class Hacking : MonoBehaviour
             
         }
     }
+    */
 
     // hacking_point를 증가시키는 함수
     public void increaseHackingPoint(int amount)
