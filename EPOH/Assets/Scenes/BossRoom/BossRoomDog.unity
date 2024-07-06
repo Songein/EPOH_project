@@ -785,9 +785,9 @@ GameObject:
   - component: {fileID: 956072247}
   - component: {fileID: 956072245}
   - component: {fileID: 956072243}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boss_Dog
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
