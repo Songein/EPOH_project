@@ -215,6 +215,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+--- !u!1 &779432039 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4632130523800075608, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+  m_PrefabInstance: {fileID: 779432038}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &779432040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779432039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81cb41220e038a04d874468fbc249007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss_manager: {fileID: 0}
+  game_manager: {fileID: 0}
+  boss_health: {fileID: 0}
 --- !u!1 &974775531
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,6 +785,8 @@ GameObject:
   - component: {fileID: 2131468236}
   - component: {fileID: 2131468235}
   - component: {fileID: 2131468234}
+  - component: {fileID: 2131468239}
+  - component: {fileID: 2131468238}
   m_Layer: 7
   m_Name: BossHoa
   m_TagString: Boss
@@ -880,3 +902,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2131468238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131468233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81cb41220e038a04d874468fbc249007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss_manager: {fileID: 0}
+  game_manager: {fileID: 0}
+  boss_health: {fileID: 0}
+--- !u!114 &2131468239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131468233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 355606f8fb30bca4a856e2880bf8da9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss_hp: 1000
+  player_hp: 200
+  hacking_point: 0
