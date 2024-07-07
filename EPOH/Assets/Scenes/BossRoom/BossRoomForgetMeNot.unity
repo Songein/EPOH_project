@@ -251,6 +251,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4632130523800075602, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: combo_attack_power.Array.data[0]
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632130523800075602, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: combo_attack_power.Array.data[1]
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632130523800075602, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: combo_attack_power.Array.data[2]
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075608, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: m_Name
       value: Player
