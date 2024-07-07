@@ -11,13 +11,26 @@ public class BossDogScene : MonoBehaviour
     public bool battle_start; // 배틀 시작
     public bool hacking_complete; // 해킹 완료
 
-
+    private GameObject boss;
+    private GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
-        boss_manager = GetComponent<BossManager>();
-        hacking = GetComponent<Hacking>();
+        boss = GameObject.FindWithTag("Boss");
+
+        if (boss != null)
+        {
+            boss_manager = boss.GetComponent<BossManager>();
+        }
+
+        player = GameObject.FindWithTag("Player");
+
+        if (player != null)
+        {
+            hacking = player.GetComponent<Hacking>();
+        }
+        
         battle_start = true;
         hacking_complete = false;
     }
