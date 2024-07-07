@@ -43,6 +43,8 @@ public class BossDogScene : MonoBehaviour
             GameManager.instance.boss_clear_info[0] = false;
             GameManager.instance.boss_clear_info[1] = true;
 
+            missionClear();
+
             hacking.endBossBattle();
 
             Debug.Log("Boss Dog 클리어!");
@@ -69,7 +71,7 @@ public class BossDogScene : MonoBehaviour
 
     void phase2()
     {
-        Debug.Log("Boss Dog 페이즈1 연출");
+        Debug.Log("Boss Dog 페이즈2 연출");
     }
 
     void missionClear()

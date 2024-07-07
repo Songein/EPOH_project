@@ -93,7 +93,7 @@ public class Hacking : MonoBehaviour
                 boss_manager.hacking_point += amount;
                 boss_manager.hacking_point = Mathf.Min(boss_manager.hacking_point, 200);
 
-                Debug.Log("해킹 포인트 증가합니다");
+                Debug.Log("해킹 포인트가 증가합니다");
                 // hacking_point 증가 후 확인
                 checkHackingPoint();
             }
