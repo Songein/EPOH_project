@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public bool is_attacking = false; //현재 공격 중인지
-    public float[] combo_attack_power = { 20f, 40f, 100f }; //콤보 별 공격 세기
+    public float[] combo_attack_power = { 30f, 50f, 80f }; //콤보 별 공격 세기
 
     public Animator animator; //플레이어 애니메이터 변수
     public static PlayerAttack instance;
