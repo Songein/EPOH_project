@@ -43,7 +43,7 @@ public class Hacking : MonoBehaviour
     {
         if (boss_manager.hacking_point == 200 && boss_manager.boss_hp == 0)
         {
-            //endBossBattle();
+            endBossBattle();
             //updateBossClearInfo();
         }
     }
