@@ -13,6 +13,7 @@ public class OfficePortalInteract : Interaction
 
     public override void Interact()
     {
+        moveToOfficeRoom.setInteractingObjectName(this.gameObject.name);
         moveToOfficeRoom.officeSceneChange();
     }
 }
