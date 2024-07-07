@@ -8,7 +8,7 @@ public class FirstPressStartButton : MonoBehaviour
         if (GameManager.instance.if_first) // 게임 실행 후 '시작 버튼' 첫 클릭시
         {
             GameManager.instance.if_first = false; // GameManager에 시작버튼 첫 클릭 기록
-            SceneManager.LoadScene("BeginningEvent"); // Beginning 씬으로 이동
+            SceneManager.LoadScene("Beginning"); // Beginning 씬으로 이동
         }
         else
         {
