@@ -12,7 +12,6 @@ public class BossDogScene : MonoBehaviour
     public bool hacking_complete; // 해킹 완료
 
     private GameObject boss;
-    private GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -22,13 +21,7 @@ public class BossDogScene : MonoBehaviour
         if (boss != null)
         {
             boss_manager = boss.GetComponent<BossManager>();
-        }
-
-        player = GameObject.FindWithTag("Player");
-
-        if (player != null)
-        {
-            hacking = player.GetComponent<Hacking>();
+            hacking = boss.GetComponent<Hacking>();
         }
         
         battle_start = true;
@@ -44,23 +37,25 @@ public class BossDogScene : MonoBehaviour
             return;
         }
     
-        if (battle_start && boss_manager.boss_hp == 0 && boss_manager.hacking_point == 200)
+        if (battle_start && boss_manager.hacking_point == 200)
         {
             battle_start = false;
+            GameManager.instance.boss_clear_info[0] = false;
             GameManager.instance.boss_clear_info[1] = true;
+
+            hacking.endBossBattle();
 
             Debug.Log("Boss Dog 클리어!");
         }
 
         if (battle_start && boss_manager.player_hp == 0)
         {
-            battle_start = false;
             playerDeath();
         }
     }
 
 
-    public void playerDeath()
+    void playerDeath()
     {
         battle_start = false;
         SceneManager.LoadScene("OfficeRoom1");

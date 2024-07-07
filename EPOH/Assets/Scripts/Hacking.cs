@@ -38,6 +38,10 @@ public class Hacking : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+
+    }
     // BossManager의 hacking_point가 200에 다다랐을 시 보스전이 종료되는 함수
     public void checkHackingPoint()
     {
@@ -55,7 +59,7 @@ public class Hacking : MonoBehaviour
         {
             GameManager.instance.office_room = 1;
         }
-        
+
         // hacking_point= 200 이 되고 boss_hp = 0 이 되면 임무완료 씬으로 이동
         SceneManager.LoadScene("OfficeRoom" + GameManager.instance.office_room);
 
@@ -89,6 +93,7 @@ public class Hacking : MonoBehaviour
                 boss_manager.hacking_point += amount;
                 boss_manager.hacking_point = Mathf.Min(boss_manager.hacking_point, 200);
 
+                Debug.Log("해킹 포인트 증가합니다");
                 // hacking_point 증가 후 확인
                 checkHackingPoint();
             }
