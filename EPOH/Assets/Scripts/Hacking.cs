@@ -60,6 +60,11 @@ public class Hacking : MonoBehaviour
             GameManager.instance.office_room = 1;
         }
 
+        else if (GameManager.instance.boss_clear_info[3] || GameManager.instance.boss_clear_info[4])
+        {
+            GameManager.instance.office_room = 2;
+        }
+
         // hacking_point= 200 이 되고 boss_hp = 0 이 되면 임무완료 씬으로 이동
         SceneManager.LoadScene("OfficeRoom" + GameManager.instance.office_room);
 
