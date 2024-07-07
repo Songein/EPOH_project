@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance; // 싱글톤으로 사용할 수 있도록 static 선언
 
+    public bool if_first; // Start 씬의 '시작 버튼'최초 클릭 여부 기록
+
     public int story_info = 0; // 스토리 진행 정도에 대한 정보
     public bool[] rune = new bool[5]; // 룬이 활성화 되었는가에 대한 정보. 순서대로 Anger, Fear, Humiliation, Sorrow, Regret
 
@@ -19,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     { 
+        if_first = true;
+        
         instance = this;
         DontDestroyOnLoad(gameObject);
         boss_clear_info[0] = true;
