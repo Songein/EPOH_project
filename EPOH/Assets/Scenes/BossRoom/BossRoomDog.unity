@@ -800,6 +800,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 419800111}
+  - component: {fileID: 419800112}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -822,6 +823,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &419800112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419800110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 485c18a605f4043f99b4b9622afe0ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss_manager: {fileID: 956072250}
+  hacking: {fileID: 1175084303}
+  battle_start: 0
 --- !u!1 &453627712
 GameObject:
   m_ObjectHideFlags: 0
@@ -1860,6 +1876,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4632130523800075596, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: boss_manager
+      value: 
+      objectReference: {fileID: 956072250}
     - target: {fileID: 4632130523800075608, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: m_Name
       value: Player
