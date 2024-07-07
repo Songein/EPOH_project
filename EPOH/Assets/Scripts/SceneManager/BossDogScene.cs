@@ -61,4 +61,19 @@ public class BossDogScene : MonoBehaviour
         SceneManager.LoadScene("OfficeRoom1");
         
     }
+
+    void phase1()
+    {
+        Debug.Log("Boss Dog 페이즈1 연출");
+    }
+
+    void phase2()
+    {
+        Debug.Log("Boss Dog 페이즈1 연출");
+    }
+
+    void missionClear()
+    {
+        Debug.Log("Boss Dog 미션 클리어 연출");
+    }
 }
