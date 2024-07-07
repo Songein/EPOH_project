@@ -1384,10 +1384,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   if_first: 1
+  items_all_collected: 0
+  office_room: 0
   story_info: 0
-  rune: 0000000000
   boss_num: 0
-  boss_clear_info: 0000000000
+  boss_clear_info: 000000000000
 --- !u!4 &1628936354
 Transform:
   m_ObjectHideFlags: 0
