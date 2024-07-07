@@ -26,7 +26,6 @@ public class BossForgetMeNotScene : MonoBehaviour
         
         battle_start = true;
         hacking_complete = false;
-        
     }
 
     // Update is called once per frame
