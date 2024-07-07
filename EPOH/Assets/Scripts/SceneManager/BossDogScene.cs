@@ -47,16 +47,14 @@ public class BossDogScene : MonoBehaviour
         if (battle_start && boss_manager.boss_hp == 0 && boss_manager.hacking_point == 200)
         {
             battle_start = false;
-            GameManager.instance.office_room = 1;
-            
-            SceneManager.LoadScene("OfficeRoom" + GameManager.instance.office_room);
+            GameManager.instance.boss_clear_info[1] = true;
 
-            //hacking.endBossBattle();
             Debug.Log("Boss Dog 클리어!");
         }
 
         if (battle_start && boss_manager.player_hp == 0)
         {
+            battle_start = false;
             playerDeath();
         }
     }

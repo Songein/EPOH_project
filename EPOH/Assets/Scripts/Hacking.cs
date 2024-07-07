@@ -51,6 +51,11 @@ public class Hacking : MonoBehaviour
     // 보스전 종료 함수
     public void endBossBattle()
     {
+        if (GameManager.instance.boss_clear_info[0] || GameManager.instance.boss_clear_info[1])
+        {
+            GameManager.instance.office_room = 1;
+        }
+        
         // hacking_point= 200 이 되고 boss_hp = 0 이 되면 임무완료 씬으로 이동
         SceneManager.LoadScene("OfficeRoom" + GameManager.instance.office_room);
 
