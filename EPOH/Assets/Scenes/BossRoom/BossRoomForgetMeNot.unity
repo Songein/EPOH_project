@@ -1158,7 +1158,7 @@ GameObject:
   - component: {fileID: 1023138403}
   - component: {fileID: 1023138402}
   m_Layer: 7
-  m_Name: BossForgetMeNot
+  m_Name: Boss_ForgetMeNot
   m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

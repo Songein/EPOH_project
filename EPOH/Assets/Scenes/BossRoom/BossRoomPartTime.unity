@@ -1097,7 +1097,7 @@ GameObject:
   - component: {fileID: 846187097}
   - component: {fileID: 846187096}
   m_Layer: 7
-  m_Name: BossPartTime
+  m_Name: Boss_PartTime
   m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

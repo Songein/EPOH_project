@@ -1014,7 +1014,7 @@ GameObject:
   - component: {fileID: 1002530080}
   - component: {fileID: 1002530079}
   m_Layer: 7
-  m_Name: BossCriminal
+  m_Name: Boss_Criminal
   m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

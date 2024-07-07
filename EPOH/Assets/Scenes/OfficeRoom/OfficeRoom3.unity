@@ -8727,7 +8727,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.8679245, g: 0.68369526, b: 0.68369526, a: 1}
+  m_Color: {r: 0.7372549, g: 0.7176471, b: 0.5372549, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -12677,6 +12677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5492f69f317ce4ffa832b60bb8c81636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boss_manager: {fileID: 0}
   player_hp: 200
 --- !u!114 &1856216985
 MonoBehaviour:
