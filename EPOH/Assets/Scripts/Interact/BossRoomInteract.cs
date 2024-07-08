@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CorriderRightInteract : Interaction
+public class BossRoomInteract : Interaction
 {
     EnterBossRoom enterBossRoom;
     
@@ -15,7 +15,8 @@ public class CorriderRightInteract : Interaction
 
     public override void Interact()
     {
-       enterBossRoom.moveToBossRoom();
+        enterBossRoom.setInteractingObjectName(this.gameObject.name);
+        enterBossRoom.moveToBossRoom();
     }
     
 

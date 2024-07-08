@@ -5,19 +5,38 @@ using UnityEngine.SceneManagement;
 
 public class MoveToOfficeRoom : MonoBehaviour
 {
+    PlayerController playerController;
+    private string interacting_object;
+
+    public void setInteractingObjectName(string object_name)
+    {
+        interacting_object = object_name;
+    }
+
     public void officeSceneChange()
     {
-        string[] OR = {"OfficeRoom1", "OfficeRoom2", "OfficeRoom3"}; 
+        playerController = GetComponent<PlayerController>();
 
-        if (GameManager.instance != null && GameManager.instance.office_room >= 0 && GameManager.instance.office_room < OR.Length)
+        // 현재 활성화된 씬 가져오기
+        Scene current_scene = SceneManager.GetActiveScene();
+        Debug.Log("Current scene: " + current_scene.name);
+    
+        if (GameManager.instance != null && current_scene.name == "OfficeRoom1" && (GameManager.instance.boss_clear_info[2] || GameManager.instance.boss_clear_info[3] || GameManager.instance.boss_clear_info[4]) && interacting_object == "StairsToOfficeRoom2")
         {
-            string office_scene_name = OR[GameManager.instance.office_room];
+            SceneManager.LoadScene("OfficeRoom2");
 
-            SceneManager.LoadScene(office_scene_name);
+        }
+        else if (GameManager.instance != null && current_scene.name == "OfficeRoom2" && GameManager.instance.boss_clear_info[4] && interacting_object == "ElevatorToOfficeRoom3")
+        {
+            SceneManager.LoadScene("OfficeRoom3");
+        }
+        else if (GameManager.instance != null && current_scene.name == "OfficeRoom1" && GameManager.instance.boss_clear_info[4] && interacting_object == "ElevatorToOfficeRoom4")
+        {
+            SceneManager.LoadScene("OfficeRoom4");
         }
         else
         {
-            Debug.LogError("Invalid office_room index or GameManager instance is null.");
+            playerController.is_interacting = false;
         }
         
     }
