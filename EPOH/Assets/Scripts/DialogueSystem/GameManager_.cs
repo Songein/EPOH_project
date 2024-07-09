@@ -34,7 +34,8 @@ public class GameManager_ : MonoBehaviour
     public enum EndingState
     {
         NormalEnding,
-        BadEnding
+        BadEnding,
+        HiddenEnding
     }
     
     // Start is called before the first frame update
