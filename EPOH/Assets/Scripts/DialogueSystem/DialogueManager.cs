@@ -7,14 +7,12 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
-    private DialogueLine currentLine;
-
-    public Image characterPortrait;
+    public string currentLine;
+    
+    //public Image characterPortrait;
     public TextMeshProUGUI characterName;
     public TextMeshProUGUI dialogueArea;
-
-    private Queue<DialogueLine> _lines = new Queue<DialogueLine>();
-
+    
     public bool isDialogueActive = false;
     public bool isTyping = false;
     public bool isLineEnd = false;
@@ -23,7 +21,7 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] GameObject dialoguePanel;
     
-    void Start()
+    void Awake()
     {
         if (Instance == null)
         {
@@ -38,7 +36,7 @@ public class DialogueManager : MonoBehaviour
         {
             StopAllCoroutines();
             isTyping = false;
-            dialogueArea.text = currentLine.line;
+            dialogueArea.text = currentLine;
             Invoke("ChangeLineTime", lineChangeSpeed);
         }
 
@@ -53,19 +51,20 @@ public class DialogueManager : MonoBehaviour
     {
         isDialogueActive = true;
         dialoguePanel.SetActive(true);
-        Debug.Log(_lines);
-        _lines.Clear();
-
+        //Debug.Log(_lines);
+        //_lines.Clear();
+        /*
         foreach (DialogueLine dialogueLine in dialogue.dialogueLines)
         {
             _lines.Enqueue(dialogueLine);
         }
-
+        */
         DisplayNextDialogueLine();
     }
 
     public void DisplayNextDialogueLine()
     {
+        /*
         if (_lines.Count == 0)
         {
             EndDialogue();
@@ -79,8 +78,10 @@ public class DialogueManager : MonoBehaviour
         StopAllCoroutines();
 
         StartCoroutine(TypeSentence(currentLine));
+        */
     }
 
+    /*
     IEnumerator TypeSentence(DialogueLine dialogueLine)
     {
         dialogueArea.text = "";
@@ -94,7 +95,7 @@ public class DialogueManager : MonoBehaviour
         isTyping = false;
         Invoke("ChangeLineTime",lineChangeSpeed);
     }
-
+*/
     void ChangeLineTime()
     {
         isLineEnd = true;
