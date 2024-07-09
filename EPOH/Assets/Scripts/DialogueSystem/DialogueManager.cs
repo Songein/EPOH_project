@@ -49,24 +49,12 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(DialogueList dialogueList)
+    public void StartDialogue(Dialogue dialogue)
     {
         isDialogueActive = true;
         dialoguePanel.SetActive(true);
         Debug.Log(_lines);
         _lines.Clear();
-        Dialogue dialogue;
-        dialogue = dialogueList.dialogues[0];
-        /*
-        if (GameManager.Instance.GetCurrentState() == GameManager.GameState.NotMissionAssign)
-        {
-            dialogue = dialogueList.dialogues[0];
-        }
-        else
-        {
-            dialogue = dialogueList.dialogues[1];
-        }
-        */
 
         foreach (DialogueLine dialogueLine in dialogue.dialogueLines)
         {

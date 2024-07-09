@@ -21,19 +21,13 @@ public class Dialogue
 {
     public List<DialogueLine> dialogueLines = new List<DialogueLine>();
 }
-
-[System.Serializable]
-public class DialogueList
-{
-    public List<Dialogue> dialogues = new List<Dialogue>();
-}
 public class DialogueTrigger : MonoBehaviour
 {
-    public DialogueList dialogueList;
+    public Dialogue dialogue;
 
     public void TriggerDialogue()
     {
-        DialogueManager.Instance.StartDialogue(dialogueList);
+        DialogueManager.Instance.StartDialogue(dialogue);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager_ : MonoBehaviour
 {
     public static GameManager_ Instance;
+    public int storyNum;
     public GameState gameState;
     public BossRoomState bossRoomState;
     public EndingState endingState;
