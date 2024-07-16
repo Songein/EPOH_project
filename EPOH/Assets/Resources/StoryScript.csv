@@ -1,0 +1,195 @@
+﻿StoryID,Name,Content,GameState,EndingState
+1,,(주인공이 클로즈업 된 상태로 시작한다. 주인공이 눈을 깜빡인다.),Tutorial,
+2,주인공,여긴...?,Tutorial,
+3,,(화면 풀샷이 잡힌다. 사무실 안이 드러난다.),Tutorial,
+4,,(주인공이 앞으로 걸어가다 비틀거린다.),Tutorial,
+5,주인공,윽... 아무것도 기억나지 않아...,Tutorial,
+6,안내음,좌우 방향키로 이동할 수 있습니다. Z키로 점프할 수 있습니다. 점프는 최대 2번까지 연속으로 가능합니다.,Tutorial,
+7,,(캐릭터가 특정 범위로 들어가야 함),Tutorial,
+8,안내음,의식 접속 확인,Tutorial,
+,,직원 코드 H-00. 의뢰가 할당되었습니다. 업무에 임해주시기 바랍니다.,Tutorial,
+,주인공,의뢰? 업무? 저쪽에 빛나고 있는 것을 조작하면 되는 건가?,Tutorial,
+,안내음,space로 상호작용이 가능합니다.,Tutorial,
+9,,(Dog 의뢰서 확인),Dog,
+10,주인공,기억을 지워...? 내가 기억을 지우는 일을 했다는 건가?,Dog,
+,,... 그랬던 것 같기도 한데@ 자세한 것들이 하나도 기억나지 않아.,Dog,
+,,이 '의뢰'를 해결하면 무언가 더 기억이 날까...,Dog,
+11,,(의뢰서의 ACCEPT 버튼 클릭),Dog,
+12,안내음,의뢰가 수리되었습니다. 의뢰인의 기억과 연결합니다.,Dog,
+,,......,Dog,
+,,연결 완료. 업무 대기 공간을 나가 조정 룸에 입장해주시기 바랍니다.,Dog,
+13,,(Dog),Dog,
+14,주인공,개에게 물린 기억을 지우면 개를 더이상 두려워하지 않을 수 있다니@ 좋은걸.,Dog,
+15,,(사무실에 등장한 로봇 개 인형이 클로즈업 된다.),Dog,
+16,주인공,저건... 뭐지? 가기 전에도 저런 게 있었던가?,Dog,
+17,,(주인공이 비틀거린다.),Dog,
+18,주인공,윽...!,Dog,
+19,,(과거 회상),Dog,
+20,호아,불쌍해... 우리가 키울 수는 없을까?,Dog,
+,주인공,괜찮겠어@ 호아? 너 개를 무서워하잖아.,Dog,
+,호아,괘@ 괜찮… 흐아악!,Dog,
+,주인공,하나도 안 괜찮아 보이는데…,Dog,
+,호아,어릴 적에 큰 개한테 물린 기억이 있거든. 작은 강아지면 괜찮을 줄 알았는데…,Dog,
+,주인공,이 녀석이 얼마나 더 클지 모르는걸. 무리하지 마.,Dog,
+,호아,……,Dog,
+,주인공,주인을 찾는 공고를 올리면 어쩌면 사람이 금방 와줄지도 모르고…,Dog,
+,호아,있잖아.,Dog,
+,,혹시@ 우리가 연구하고 있는 기억 절제술로 개에 물렸던 기억을 지우면 더이상 개를 두려워하지 않을 수 있지 않을까?,Dog,
+,주인공,뭐?,Dog,
+,호아,…어차피 임상 실험이 필요한 시기잖아.,Dog,
+,주인공,그래도@ 어떻게 될지 모르는데…,Dog,
+,호아,괜찮아@ 나는 동료들을 믿으니까.,Dog,
+,,내 기억을 지워보는게 어때?,Dog,
+21,,(회상 끝),Dog,
+22,주인공,이건...,Dog,
+,,내... 기억?,Dog,
+23,,(PartTime 의뢰),PartTime,
+24,,(사무실에 등장한 다이어리가 클로즈업 된다),PartTime,
+25,주인공,이번엔 뭐지? 다이어리인가?,PartTime,
+26,,(과거 회상 시작),PartTime,
+27,포피,오늘 회사 사이트에 악성 후기가 올라왔다.,PartTime,
+,,회사에서 실수했던 기억을 지우고 싶다고 해서 지워줬더니@ 회사에서 실수가 늘었다고 했다.,PartTime,
+,,도대체 자기 머리에 무슨 짓을 했냐면서 기억 절제술 때문에 지능이 낮아진 거 아니냐고 욕을 해댔다.,PartTime,
+,,바보 아냐?,PartTime,
+,,실수했던 경험을 잊어버리면 당연히 같은 실수를 하게 되지.,PartTime,
+,,기억 절제술을 받기 전부터 멍청한게 티가 났다고 선배들한테 막 욕을 했다.,PartTime,
+,,올리브 선배는 안내사항을 추가해야 겠다고 말했다. 저 선배는 너무 착해서 탈이다.,PartTime,
+,,에드거는 그렇게 하면 무서워서 누가 기억 절제술을 받겠냐고 뭐라 했다. 흠@ 회사 운영 면에서는 저게 맞긴 하지.,PartTime,
+,,호아 선배는 모든 말을 듣더니 좀 더 고민해보고 결정하겠다고 했다. 회사가 커지면서 바쁜 것 같던데...,PartTime,
+,,우리가 고민하건 말건@ 정작 기억 절제술의 1등 기여자는 피곤하다며 낮잠이나 자고 있다.,PartTime,
+,,절제술을 실행하는 내내 몸은 수면 상태인데@ 거기서 더 잠이 오나?,PartTime,
+,,하여튼 저 선배는 과하게 태평하다.,PartTime,
+28,,(회상 끝),PartTime,
+29,주인공,어쩐지 익숙한 내용인데...,PartTime,
+,,과하게 태평하다는 그 선배가 나는 아니겠지?,PartTime,
+30,,(ForgetMeNot),PartTime,
+31,,(사무실에 등장한 액자가 클로즈업 된다),PartTime,
+32,주인공,이건...,PartTime,
+33,,(주인공이 액자로 다가간다),PartTime,
+34,,(컷씬 등장),PartTime,
+35,주인공,나는 이 사람들을... 알고 있어?,PartTime,
+36,,(과거 회상 시작),PartTime,
+37,올리브,기억 절제술은 잘 끝났어?,PartTime,
+,주인공,... 응.,PartTime,
+,,설마 호프(개)에 대한 기억을 전부 잊겠다고 할 줄은 몰랐는데...,PartTime,
+,올리브,그만큼 호프가 떠난 게 괴로웠던 거겠지.,PartTime,
+,주인공,언젠간 이별하게 될 걸 알고 있었을 텐데.,PartTime,
+,올리브,비오는 날 호프를 주운 게 5년 전이었던가?,PartTime,
+,,아무리 개와 인간의 수명이 달라도@ 5년보단 더 살 거라고 기대했을 테니 많이 힘들겠지.,PartTime,
+,주인공,... 올리브. 넌 이 방식이 옳다고 생각해?,PartTime,
+,올리브,글쎄...,PartTime,
+,,그 기억이 아픈 것은 그만큼 이전의 기억이 소중하고 행복했기 때문일텐데@,PartTime,
+,,그걸 잊으면 과연 행복해질 수 있을까?,PartTime,
+,,... 라는 생각이 들긴 해.,PartTime,
+,,그러니까 호아를 위해 우리가 더 애써야지.,PartTime,
+38,,(과거 회상 끝),PartTime,
+39,주인공,... ...,PartTime,
+,,이 기억은 뭘까. 왜 이런 게 생각나는 거지...,PartTime,
+,,누가@ 나에게 뭘 전하고 싶어서...,PartTime,
+40,,(Criminal),Criminal,
+41,주인공,찝찝하다 했더니@ 이건 범죄자의 기억이잖아!,Criminal,
+,,그런 사람들의 기억까지 지워줘도 되는 거야?,Criminal,
+42,,(비틀거리는 주인공),Criminal,
+43,주인공,윽@ 머리가...,Criminal,
+44,,(에드가의 초콜릿이 클로즈업 된다.),Criminal,
+45,,(과거 회상 시작),Criminal,
+46,주인공,아으으@ 머리야...,Criminal,
+47,,(컷씬 등장),Criminal,
+48,주인공,뭐야? 초콜릿?,Criminal,
+,에드가,선배는 범죄자들 의뢰를 수행하고 나면 꼭 편두통이 생기잖아요.,Criminal,
+,,단거라도 먹고 기분 풀어요.,Criminal,
+,주인공,섬세하긴.,Criminal,
+,에드가,선배. 진짜 이대로 둘 거예요?,Criminal,
+,주인공,뭐가.,Criminal,
+,에드가,회사요. 범죄자들 의뢰까지 들어준다니 이게 말이 돼요?,Criminal,
+,,우리가 그 기술을 개발한 이유가 뭔데요. 사람들이 괴로운 기억에서 벗어나 행복할 수 있었으면 좋겠다는 거였잖아요.,Criminal,
+,주인공,... ...,Criminal,
+,에드가,그런데 그런 범죄자들의 죄책감 덜어주기에나 이용되고 있다니...,Criminal,
+,,호아 선배한테 뭐라고 말좀 해 봐요.,Criminal,
+,주인공,해 봤어.,Criminal,
+,에드가,뭐라고 하는데요?,Criminal,
+,주인공,회사를 키우기 위해서는 어쩔 수 없다고 하더라.,Criminal,
+,에드가,허. 그게 무슨... 누가 키워 달랬대요?,Criminal,
+,주인공,에드가@ 호아는 우리를 위해서...,Criminal,
+,에드가,웃기지 말라고 해요! 그게 무슨 우리를 위한 거야.,Criminal,
+,,역시 그 때 기억 절제술을 해주면 안됐어.,Criminal,
+,,호프가 죽고 나서부터 호아 선배가 이상해졌다는 거@ 다들 알잖아요.,Criminal,
+,,우리의 기술이@ 기억을 스스로 극복할 기회를 앗아간 거예요.,Criminal,
+,주인공,... ...,Criminal,
+,에드가,우리가 호아 선배를 다시 돌려놔야 해요.,Criminal,
+,,그게 아니라면@ 최소한 이 회사라도 원상태로 돌려야죠.,Criminal,
+,주인공,... 에드가. 있잖아...,Criminal,
+49,,(회상 끝),Criminal,
+50,주인공,... (그 뒤에 어떻게 되었지? 젠장@ 기억이...),Criminal,
+51,,,GetOffWork,
+52,안내음,규정 업무 시간이 완료되었습니다.,GetOffWork,
+,,직원 분들은 모두 퇴근해주시기 바랍니다.,GetOffWork,
+,,반복합니다.,GetOffWork,
+,,직원 분들은 모두 회사 1층의 엘리베이터를 타고 지하로 퇴근해주시기 바랍니다.,GetOffWork,
+,주인공,안 돼@ 아직 기억이 전부 돌아오지 않았는데...,GetOffWork,
+,,어떡하지? 이대로 퇴근할까?,GetOffWork,
+,,이 회사를 나가면@ 다시 모든 것을 잊어버릴 것만 같아.,GetOffWork,
+,,기억을 잊지 않을 방법은 없나?,GetOffWork,
+53,,(오브젝트 챙길지 말지에 따라 엔딩 분기),GetOffWork,
+,,챙기지 않고 나감 -> StoryID 54,,
+,,다 챙기고 나감 -> StoryID 55,,
+,,CEO실에 진입 -> StoryID 66,,
+54,안내음,직원 코드 H-00. 식별되었습니다.,Ending,BadEnding
+,,특수 프로토콜을 실행합니다.,Ending,BadEnding
+,,(뇌 활동량 확인),Ending,BadEnding
+,,(기억 삭제 여파 계산),Ending,BadEnding
+,,(약물 투여량 결정),Ending,BadEnding
+,,(의식 둔화 약물 투여),Ending,BadEnding
+,,(수면제 투여),Ending,BadEnding
+,,... ...,Ending,BadEnding
+,,특수 프로토콜이 완료되었습니다.,Ending,BadEnding
+,,직원 코드 H-00@ 퇴근 처리가 완료됩니다.,Ending,BadEnding
+55,안내음,직원 코드 H-00. 식별되었습니다.,Ending,NormalEnding
+,,특수 프로토콜을 실행합니다.,Ending,NormalEnding
+,,(뇌 활동량 확인),Ending,NormalEnding
+,,(기억 삭제 여파 계산),Ending,NormalEnding
+,,... ...,Ending,NormalEnding
+,,오류 발생.,Ending,NormalEnding
+,,뇌파 활동이 규정치를 크게 벗어납니다.,Ending,NormalEnding
+,,비상 프로토콜을 실행합니다.,Ending,NormalEnding
+,,캡슐 잠금이 해제됩니다.,Ending,NormalEnding
+56,,(안내음 후 효과),Ending,NormalEnding
+57,???,... ....배!,Ending,NormalEnding
+,,....선배!,Ending,NormalEnding
+58,,(주인공을 바라보고 있는 포피@ 에드가@ 올리브),Ending,NormalEnding
+59,포피,선배! 괜찮아요?,Ending,NormalEnding
+,에드가,방금 _어나서 혼란스러울 건 알아요. 그래도@ 어서 여기서 나가야 해요.,Ending,NormalEnding
+,포피,맞아요@ 호아 선배가 알면 우릴 가만두지 않을 테니까.,Ending,NormalEnding
+,에드가,자@ 어서요!,Ending,NormalEnding
+60,,(효과가 있을 것 같음),Ending,NormalEnding
+61,주인공,(나는 그들의 손에 이끌려 허겁지겁 건물 밖으로 나갔다.),Ending,NormalEnding
+,,(얼마나 오래 걷지 않았는지@ 한 걸음을 내딛는 것도 쉽지 않았다.),Ending,NormalEnding
+,,(나는 대체 저 안에서 무슨 짓을 당하고 있었던 걸까.),Ending,NormalEnding
+,,(주삿바늘이 빠져나간 자리로 느껴지는 통증이 그게 무엇이든 바른 일은 아니었음을 증명하며 나를 종용했다.),Ending,NormalEnding
+,,(얼마나 걸었을까@ 마침내 눈 앞에 빛이 보이고 우린 문을 나섰다.),Ending,NormalEnding
+,,(거대한 것 같았던 회사는 생각보다 작고 초라했다.),Ending,NormalEnding
+,,(디지털 속 공간과는 달리 따갑게 내리쬐는 햇살에 눈이 부셨다.),Ending,NormalEnding
+62,,(회사 밖 컷씬),Ending,NormalEnding
+63,올리브,아직 기억이 온전히 돌아온 건 아닐 거야.,Ending,NormalEnding
+,,그래도... 우리와 함께 지내다보면 금방 기억나지 않을까 생각해.,Ending,NormalEnding
+,,이런 방식이 된 건 미안. 우리 셋이 모였는데도 쉽지 않더라.,Ending,NormalEnding
+,,너는 어떻게 우리 모두를 구할 수 있었는지...,Ending,NormalEnding
+,주인공,내가@ 너희들을@ 구해?,Ending,NormalEnding
+,올리브,... 응.,Ending,NormalEnding
+,주인공,... 기억이 안 나.,Ending,NormalEnding
+,포피,그렇겠죠. 선배가 전부 덤터기 쓰고 그 대가로 기억을 잃었으니까.,Ending,NormalEnding
+,에드거,강제로 노동력을 착취당했다는 것도 추가해야지.,Ending,NormalEnding
+,포피,말 하려고 했어!,Ending,NormalEnding
+,에드거,아무튼@ 호아 선배는 명백히 선을 넘었어요.,Ending,NormalEnding
+,,호아 선배를 막지는 못했지만@ 우리들이 없으면 저 회사도 제대로 굴러가진 않겠죠.,Ending,NormalEnding
+,포피,빨리 망해버리라지.,Ending,NormalEnding
+,올리브,우리@ 다시 시작하자. 저 회사 밖에서.,Ending,NormalEnding
+64,,(뭔가 효과가 들어갈 느낌),Ending,NormalEnding
+65,주인공,(그리 말하는 그들의 목소리에는 약간의 통쾌함@ 해방감@ 그리고 기대감이 깃들어 있었다.),Ending,NormalEnding
+,주인공,(활짝 웃는 그들을 보며@ 나도 옅은 미소를 지어보였다.),Ending,NormalEnding
+,주인공,(하지만@ 정말 이걸로 다 잘 된 걸까?),Ending,NormalEnding
+,주인공,(줄곧 무언가가 마음에 걸린다.),Ending,NormalEnding
+,주인공,(소중한 무언가를 두고 온 것 같은 기분.),Ending,NormalEnding
+66,호아,... 여길 찾아오다니@ 배짱이 대단한가봐?,Ending,HiddenEnding
+,,아니면 착한 척이라도 하고 싶은 거야?,Ending,HiddenEnding
+67,,(게임 종료),GameEnd,

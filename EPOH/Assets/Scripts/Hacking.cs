@@ -38,25 +38,41 @@ public class Hacking : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+
+    }
     // BossManager의 hacking_point가 200에 다다랐을 시 보스전이 종료되는 함수
     public void checkHackingPoint()
     {
-        if (boss_manager.hacking_point == 200 && boss_health.boss_hp == 0)
+        if (boss_manager.hacking_point == 200 && boss_manager.boss_hp == 0)
         {
             endBossBattle();
-            updateBossClearInfo();
+            //updateBossClearInfo();
         }
     }
 
     // 보스전 종료 함수
     public void endBossBattle()
     {
+        if (GameManager.instance.boss_clear_info[0] || GameManager.instance.boss_clear_info[1])
+        {
+            GameManager.instance.office_room = 1;
+        }
+
+        else if (GameManager.instance.boss_clear_info[3] || GameManager.instance.boss_clear_info[4])
+        {
+            GameManager.instance.office_room = 2;
+        }
+
         // hacking_point= 200 이 되고 boss_hp = 0 이 되면 임무완료 씬으로 이동
-        SceneManager.LoadScene("MissionClear");
+        SceneManager.LoadScene("OfficeRoom" + GameManager.instance.office_room);
 
         Debug.Log("보스전 종료");
     }
 
+
+    /*
     // 보스 클리어 정보 갱신
     private void updateBossClearInfo()
     {
@@ -70,6 +86,7 @@ public class Hacking : MonoBehaviour
             
         }
     }
+    */
 
     // hacking_point를 증가시키는 함수
     public void increaseHackingPoint(int amount)
@@ -82,6 +99,7 @@ public class Hacking : MonoBehaviour
                 boss_manager.hacking_point += amount;
                 boss_manager.hacking_point = Mathf.Min(boss_manager.hacking_point, 200);
 
+                Debug.Log("해킹 포인트가 증가합니다");
                 // hacking_point 증가 후 확인
                 checkHackingPoint();
             }

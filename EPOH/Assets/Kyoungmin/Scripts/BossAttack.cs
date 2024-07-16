@@ -6,11 +6,13 @@ using UnityEngine;
 public class BossAttack : MonoBehaviour
 {
     private PlayerHealth player_health; //PlayerHealth 스크립트 참조
+    private BossManager boss_manager;
     public float attack_power = 30f; //보스의 공격 세기
+
     
     void Start()
     {
-        
+        boss_manager = FindObjectOfType<BossManager>(); // BossDogScene 스크립트 할당
     }
 
     // Update is called once per frame
@@ -28,6 +30,8 @@ public class BossAttack : MonoBehaviour
             //PlayerHealth 스크립트 할당
             player_health = other.gameObject.GetComponent<PlayerHealth>();
             player_health.Damage(attack_power); //보스의 공격 세기만큼 플레이어의 hp 감소
+
         }
+
     }
 }

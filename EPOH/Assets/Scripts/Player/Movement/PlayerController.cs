@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private AttackArea attack_area; //AttackArea 스크립트(AttackArea의 좌우반전을 위해)
     
     //플레이어 점프
-    public float playerJumpForce = 7f; //점프 힘
+    public float player_jump_force = 7f; //점프 힘
     private int player_jump_cnt = 0; //플레이어 점프 횟수
     
     //플레이어 리지드바디 컴포넌트
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
     //플레이어 대화
     public bool is_talking = false;
-    public TalkAction talkaction;
+    public TalkAction talk_action;
 
     //플레이어 대쉬
     [SerializeField] private TrailRenderer tr; //대쉬 효과
@@ -99,11 +99,11 @@ public class PlayerController : MonoBehaviour
             switch (player_jump_cnt)
             {
                 case 0 : //첫 점프일 때
-                    rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce);
+                    rigid.velocity = new Vector2(rigid.velocity.x, player_jump_force);
                     animator.SetBool("IsJump", true);
                     break;
                 case 1 : //2단 점프일 때
-                    rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce * 1.5f); //2단 점프는 좀 더 높이 점프
+                    rigid.velocity = new Vector2(rigid.velocity.x, player_jump_force * 1.5f); //2단 점프는 좀 더 높이 점프
                     animator.SetBool("IsDoubleJump",true);
                     break;
                     
@@ -112,15 +112,6 @@ public class PlayerController : MonoBehaviour
             
         }
         
-        /*
-        //점프 도중 점프버튼에서 손을 뗀 경우
-        if (Input.GetButtonUp("Jump") && rigid.velocity.y > 0f)
-        {
-            //점프 속도 절반으로 감소
-            rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * 0.5f);
-            
-        }
-        */
         
         //대쉬 버튼을 누르면
         if (Input.GetButtonDown("Dash") && can_dash)
@@ -132,7 +123,7 @@ public class PlayerController : MonoBehaviour
         {
             if (is_talking) // 대화 중이면
             {
-                talkaction.Action(); //다음 대화
+                talk_action.Action(); //다음 대화
             }
             else if (interact_obj != null) // 대화 중이 아니고 상호작용 할 오브젝트가 있을 경우
             {
@@ -173,7 +164,6 @@ public class PlayerController : MonoBehaviour
         rigid.velocity = new Vector2(horizontal * player_speed, rigid.velocity.y);
         
         //땅 감지 레이캐스트 디버그
-        //Debug.DrawRay(rigid.position, Vector2.down, Color.cyan);
         Debug.DrawRay(rigid.position, Vector2.down * 3f, Color.red);
         //플레이어가 떨어지는 경우
         if (rigid.velocity.y < 0f)
@@ -187,18 +177,16 @@ public class PlayerController : MonoBehaviour
                 //거리가 0.5 미만이면
                 if (groundRayHit.distance < 2.5f)
                 {
-                    Debug.Log("땅");
+                    //Debug.Log("땅");
                     //점프 애니메이션 해제
                     animator.SetBool("IsFall", false);
                     animator.SetBool("IsJump",false);
                     animator.SetBool("IsDoubleJump",false);
                     player_jump_cnt = 0; //바닥에 닿으면 플레이어 점프 횟수 초기화
                     
-                    Debug.Log("거리 0.3f 미만");
+                    //Debug.Log("거리 0.3f 미만");
 
                 }
-
-                //Debug.Log(groundRayHit.collider.name);
             }
         }
         
