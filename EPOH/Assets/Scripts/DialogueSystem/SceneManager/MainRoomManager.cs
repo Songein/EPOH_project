@@ -101,6 +101,82 @@ public class MainRoomManager : MonoBehaviour
                     gm.story_info++;
                     gm.eventFlag = false;
                     break;
+                case 36:
+                    DialogueTrigger.TriggerDialogue(36,36);
+                    break;
+                case 37:
+                    gm.eventFlag = true;
+                    Debug.Log("PartTime 의뢰");
+                    gm.story_info++;
+                    gm.eventFlag = false;
+                    break;
+                case 38:
+                    gm.eventFlag = true;
+                    Debug.Log("사무실에 등장한 다이어리 클로즈업");
+                    gm.story_info++;
+                    gm.eventFlag = false;
+                    break;
+                case 39:
+                    DialogueTrigger.TriggerDialogue(39,39);
+                    break;
+                case 40:
+                    gm.eventFlag = true;
+                    Debug.Log("과거 회상");
+                    SceneManager.LoadScene("CutScene2");
+                    WaitForSec(2f);
+                    gm.story_info++;
+                    gm.eventFlag = false;
+                    break;
+                case 43:
+                    DialogueTrigger.TriggerDialogue(43,43);
+                    break;
+                case 44:
+                    gm.eventFlag = true;
+                    Debug.Log("ForgetNotMe 의뢰");
+                    gm.story_info++;
+                    gm.eventFlag = false;
+                    break;
+                case 45:
+                    gm.eventFlag = true;
+                    Debug.Log("사무실에 등장한 액자 클로즈업");
+                    gm.story_info++;
+                    gm.eventFlag = false;
+                    break;
+                case 46:
+                    DialogueTrigger.TriggerDialogue(46,46);
+                    break;
+                case 47:
+                    gm.eventFlag = true;
+                    Debug.Log("주인공이 액자로 다가간다.");
+                    gm.story_info++;
+                    gm.eventFlag = false;
+                    break;
+                case 48:
+                    gm.eventFlag = true;
+                    Debug.Log("과거 회상");
+                    SceneManager.LoadScene("CutScene3");
+                    WaitForSec(2f);
+                    gm.story_info++;
+                    gm.eventFlag = false;
+                    break;
+                case 59:
+                    DialogueTrigger.TriggerDialogue(59,59);
+                    break;
+                case 60:
+                    gm.eventFlag = true;
+                    Debug.Log("Criminal 의뢰");
+                    gm.story_info++;
+                    gm.eventFlag = false;
+                    break;
+                case 61:
+                    DialogueTrigger.TriggerDialogue(61,61);
+                    break;
+                case 62:
+                    gm.eventFlag = true;
+                    Debug.Log("비틀거리는 주인공");
+                    gm.story_info++;
+                    gm.eventFlag = false;
+                    break;
                 default:
                     break;
             }
