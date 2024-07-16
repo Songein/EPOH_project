@@ -7,16 +7,31 @@ using UnityEngine.SceneManagement;
 public class BossDogScene : MonoBehaviour
 {
     public BossManager boss_manager;
+    public PlayerController player_controller;
     public Hacking hacking;
     public bool battle_start; // 배틀 시작
     public bool hacking_complete; // 해킹 완료
 
+    [SerializeField] public bool phase1_start = false; //페이즈1 시작
+    [SerializeField] public bool phase2_start = false; //페이즈2 시작
+
+    [SerializeField] private GameObject phase1_object; //페이즈1 오브젝트
+    [SerializeField] private GameObject phase2_object; //페이즈2 오브젝트
+
+
+
     private GameObject boss;
+
+    private bool space_pressed = false;
 
     // Start is called before the first frame update
     void Start()
     {
         boss = GameObject.FindWithTag("Boss");
+        player_controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+
+        phase1_object.SetActive(false);
+        phase2_object.SetActive(false);
 
         if (boss != null)
         {
@@ -36,6 +51,27 @@ public class BossDogScene : MonoBehaviour
             // Prevent further execution if dependencies are not set
             return;
         }
+
+        if (Input.GetKeyDown(KeyCode.Space) && (phase1_object.activeSelf || phase2_object.activeSelf))
+        {
+            space_pressed = true;
+        }
+
+        if (battle_start && !phase1_start && boss_manager.hacking_point == 70) // 페이즈 1 시작
+        {
+            //보스 움직임 멈춤(배틀 일시정지)
+            battle_start = false;
+            phase1_start = true;
+            bossDogPhase1();
+        }
+
+        if (battle_start && !phase2_start && boss_manager.hacking_point == 140) // 페이즈 2 시작
+        {
+            //보스 움직임 멈춤(배틀 일시정지)
+            battle_start = false;
+            phase2_start = true;
+            bossDogPhase2();
+        }
     
         if (battle_start && boss_manager.hacking_point == 200)
         {
@@ -43,7 +79,7 @@ public class BossDogScene : MonoBehaviour
             GameManager.instance.boss_clear_info[0] = false;
             GameManager.instance.boss_clear_info[1] = true;
 
-            missionClear();
+            bossDogMissionClear();
 
             hacking.endBossBattle();
 
@@ -64,18 +100,51 @@ public class BossDogScene : MonoBehaviour
         
     }
 
-    void phase1()
+    void bossDogPhase1()
     {
         Debug.Log("Boss Dog 페이즈1 연출");
+        StartCoroutine(showPhaseObject());
     }
 
-    void phase2()
+    void bossDogPhase2()
     {
         Debug.Log("Boss Dog 페이즈2 연출");
+        StartCoroutine(showPhaseObject());
     }
 
-    void missionClear()
+    void bossDogMissionClear()
     {
         Debug.Log("Boss Dog 미션 클리어 연출");
+    }
+
+    IEnumerator showPhaseObject()
+    {
+        player_controller.is_interacting = true;
+        yield return new WaitForSeconds(0.5f);
+        if (phase1_start && !phase2_start)
+        {
+            phase1_object.SetActive(true);
+        }
+        else if (phase2_start)
+        {
+            phase2_object.SetActive(true);
+            
+        }
+
+        yield return StartCoroutine(waitForKeyPress());
+
+        phase1_object.SetActive(false);
+        phase2_object.SetActive(false);
+        player_controller.is_interacting = false;
+        battle_start = true;
+    }
+
+    IEnumerator waitForKeyPress() // Space 키를 누르면 다음 대사, 오브젝트로 넘어가는 함수
+    {
+        while (!space_pressed)
+        {
+            yield return null;
+        }
+        space_pressed = false; // Space 키를 눌렀다는 체크를 초기화
     }
 }
