@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class BossDogScene : MonoBehaviour
 {
+    private PlayerHealth player_health; //PlayerHealth 스크립트 참조
     public BossManager boss_manager;
     public PlayerController player_controller;
     public Hacking hacking;
@@ -23,7 +24,7 @@ public class BossDogScene : MonoBehaviour
     {
         boss = GameObject.FindWithTag("Boss");
         player_controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-
+        player_health = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         phase1_object.SetActive(false);
         phase2_object.SetActive(false);
 
@@ -96,12 +97,14 @@ public class BossDogScene : MonoBehaviour
 
     void bossDogPhase1()
     {
+        player_health.is_invincible = true;
         Debug.Log("Boss Dog 페이즈1 연출");
         StartCoroutine(showPhaseObject());
     }
 
     void bossDogPhase2()
     {
+        player_health.is_invincible = true;
         Debug.Log("Boss Dog 페이즈2 연출");
         StartCoroutine(showPhaseObject());
     }
@@ -130,6 +133,7 @@ public class BossDogScene : MonoBehaviour
         phase1_object.SetActive(false);
         phase2_object.SetActive(false);
         player_controller.is_interacting = false;
+        player_health.is_invincible = false;
         boss_manager.battle_start = true;
     }
 

@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour
     public BossManager boss_manager;
 
     public float player_hp = 200; //플레이어의 목숨
-    private bool is_invincible; //무적 여부
+    public bool is_invincible; //무적 여부
     
     private SpriteRenderer sp; //플레이어 SpriteRenderer 참조
 
@@ -42,10 +42,9 @@ public class PlayerHealth : MonoBehaviour
             }  
         }
 
-        if (!is_invincible && !boss_manager.battle_start && (boss_manager.phase1_start || boss_manager.phase2_start))
+        if (!boss_manager.battle_start && (boss_manager.phase1_start || boss_manager.phase2_start))
         {
-            gameObject.layer = 8;
-            is_invincible = true;
+            gameObject.layer = 9;
         }
     }
     //플레이어 무적시간
