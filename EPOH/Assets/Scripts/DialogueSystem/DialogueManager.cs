@@ -68,7 +68,6 @@ public class DialogueManager : MonoBehaviour
         {
             _dialogues.Enqueue(dialogue);
         }
-        Debug.Log("숫자 : " + _dialogues.Count);
         dialogueCnt = _dialogues.Count;
         
         DisplayNextDialogueLine();
@@ -139,7 +138,6 @@ public class DialogueManager : MonoBehaviour
         isDialogueActive = false;
         dialogueUI.CloseUI();
         GameManager.instance.story_info += dialogueCnt;
-        Debug.Log("여기서 추가되는건가?????");
         GameManager.instance.eventFlag = false;
     }
 }

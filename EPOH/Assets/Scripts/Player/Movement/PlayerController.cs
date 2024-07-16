@@ -177,14 +177,14 @@ public class PlayerController : MonoBehaviour
                 //거리가 0.5 미만이면
                 if (groundRayHit.distance < 2.5f)
                 {
-                    Debug.Log("땅");
+                    //Debug.Log("땅");
                     //점프 애니메이션 해제
                     animator.SetBool("IsFall", false);
                     animator.SetBool("IsJump",false);
                     animator.SetBool("IsDoubleJump",false);
                     player_jump_cnt = 0; //바닥에 닿으면 플레이어 점프 횟수 초기화
                     
-                    Debug.Log("거리 0.3f 미만");
+                    //Debug.Log("거리 0.3f 미만");
 
                 }
             }
