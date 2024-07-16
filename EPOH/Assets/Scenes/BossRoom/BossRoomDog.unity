@@ -992,7 +992,6 @@ MonoBehaviour:
   boss_manager: {fileID: 956072250}
   player_controller: {fileID: 1175084307}
   hacking: {fileID: 1175084303}
-  battle_start: 0
   hacking_complete: 0
   phase1_start: 0
   phase2_start: 0
@@ -1662,7 +1661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a06733a94cce544d1ad187e99f10cbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss_manager: {fileID: 0}
+  boss_manager: {fileID: 956072250}
   hacking: {fileID: 0}
   boss_hp: 1000
 --- !u!61 &956072247
@@ -1775,6 +1774,7 @@ MonoBehaviour:
   boss_hp: 1000
   player_hp: 200
   hacking_point: 0
+  battle_start: 0
 --- !u!114 &956072251
 MonoBehaviour:
   m_ObjectHideFlags: 0

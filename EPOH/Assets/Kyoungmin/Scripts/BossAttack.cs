@@ -26,18 +26,10 @@ public class BossAttack : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (boss_manager.battle_start)
-            {
-                Debug.Log("[BossAttack] : 플레이어를 공격하였습니다.");
-                //PlayerHealth 스크립트 할당
-                player_health = other.gameObject.GetComponent<PlayerHealth>();
-                player_health.Damage(attack_power); //보스의 공격 세기만큼 플레이어의 hp 감소
-            }
-
-            else
-            {
-
-            }
+            Debug.Log("[BossAttack] : 플레이어를 공격하였습니다.");
+            //PlayerHealth 스크립트 할당
+            player_health = other.gameObject.GetComponent<PlayerHealth>();
+            player_health.Damage(attack_power); //보스의 공격 세기만큼 플레이어의 hp 감소
 
         }
 

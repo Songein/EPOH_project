@@ -16,12 +16,13 @@ public class PlayerHealth : MonoBehaviour
     {
         //SpriteRenderer 할당하기
         sp = GetComponent<SpriteRenderer>();
+        boss_manager = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossManager>();
     }
     
     //플레이어 데미지 관련
     public void Damage(float power)
     {
-        //무적시간이 아닌 경우
+        //무적시간이 아닌 경우 
         if (!is_invincible)
         {
             Debug.Log("[PlayerHealth] : 플레이어가 공격 받음");
@@ -39,6 +40,12 @@ public class PlayerHealth : MonoBehaviour
             {
                 StartCoroutine(Invincible()); //무적시간 호출
             }  
+        }
+
+        if (!is_invincible && !boss_manager.battle_start && (boss_manager.phase1_start || boss_manager.phase2_start))
+        {
+            gameObject.layer = 8;
+            is_invincible = true;
         }
     }
     //플레이어 무적시간

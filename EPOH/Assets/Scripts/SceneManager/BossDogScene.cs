@@ -11,9 +11,6 @@ public class BossDogScene : MonoBehaviour
     public Hacking hacking;
     public bool hacking_complete; // 해킹 완료
 
-    [SerializeField] public bool phase1_start = false; //페이즈1 시작
-    [SerializeField] public bool phase2_start = false; //페이즈2 시작
-
     [SerializeField] private GameObject phase1_object; //페이즈1 오브젝트
     [SerializeField] private GameObject phase2_object; //페이즈2 오브젝트
 
@@ -54,19 +51,19 @@ public class BossDogScene : MonoBehaviour
             space_pressed = true;
         }
 
-        if (boss_manager.battle_start && !phase1_start && boss_manager.hacking_point == 70) // 페이즈 1 시작
+        if (boss_manager.battle_start && !boss_manager.phase1_start && boss_manager.hacking_point == 70) // 페이즈 1 시작
         {
             //보스 움직임 멈춤(배틀 일시정지)
             boss_manager.battle_start = false;
-            phase1_start = true;
+            boss_manager.phase1_start = true;
             bossDogPhase1();
         }
 
-        if (boss_manager.battle_start && !phase2_start && boss_manager.hacking_point == 140) // 페이즈 2 시작
+        if (boss_manager.battle_start && !boss_manager.phase2_start && boss_manager.hacking_point == 140) // 페이즈 2 시작
         {
             //보스 움직임 멈춤(배틀 일시정지)
             boss_manager.battle_start = false;
-            phase2_start = true;
+            boss_manager.phase2_start = true;
             bossDogPhase2();
         }
     
@@ -118,11 +115,11 @@ public class BossDogScene : MonoBehaviour
     {
         player_controller.is_interacting = true;
         yield return new WaitForSeconds(0.5f);
-        if (phase1_start && !phase2_start)
+        if (boss_manager.phase1_start && !boss_manager.phase2_start)
         {
             phase1_object.SetActive(true);
         }
-        else if (phase2_start)
+        else if (boss_manager.phase2_start)
         {
             phase2_object.SetActive(true);
             
