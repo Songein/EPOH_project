@@ -7,19 +7,23 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
+    public Dialogue currentDialogue;
     public string currentLine;
     
     //public Image characterPortrait;
     public TextMeshProUGUI characterName;
     public TextMeshProUGUI dialogueArea;
-    
-    public bool isDialogueActive = false;
-    public bool isTyping = false;
-    public bool isLineEnd = false;
-    public float typingSpeed = 0.2f;
-    public float lineChangeSpeed = 1f;
 
-    [SerializeField] GameObject dialoguePanel;
+    private Queue<Dialogue> _dialogues = new Queue<Dialogue>();
+    private Queue<string> _lines = new Queue<string>();
+    
+    [SerializeField] bool isDialogueActive = false;
+    [SerializeField] bool isTyping = false;
+    [SerializeField] bool isLineEnd = false;
+    [SerializeField] float typingSpeed = 0.1f;
+    [SerializeField] float lineChangeSpeed = 0.5f;
+
+    DialogueUIController dialogueUI;
     
     void Awake()
     {
@@ -47,46 +51,62 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(Dialogue[] p_dialogues)
     {
         isDialogueActive = true;
-        dialoguePanel.SetActive(true);
-        //Debug.Log(_lines);
-        //_lines.Clear();
-        /*
-        foreach (DialogueLine dialogueLine in dialogue.dialogueLines)
+        //대사 UI창 열기
+        dialogueUI = GameObject.Find("Canvas").transform.GetChild(0).GetComponent<DialogueUIController>();
+        characterName = dialogueUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        dialogueArea = dialogueUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        dialogueUI.OpenUI();
+        
+        //대화 큐에 대화 넣기
+        _dialogues.Clear();
+        foreach (Dialogue dialogue in p_dialogues)
         {
-            _lines.Enqueue(dialogueLine);
+            _dialogues.Enqueue(dialogue);
         }
-        */
+        
         DisplayNextDialogueLine();
     }
 
     public void DisplayNextDialogueLine()
     {
-        /*
-        if (_lines.Count == 0)
+        //대화 수가 0이면 대화 종료
+        if (_dialogues.Count == 0)
         {
             EndDialogue();
             return;
         }
 
+        //대사 큐 수가 0이면
+        if (_lines.Count == 0)
+        {
+            //대화 큐에서 대화 하나 뽑아오기
+            currentDialogue = _dialogues.Dequeue();
+            characterName.text = currentDialogue.name;
+        
+            //해당 대화 내 대사들을 대사 큐에 저장하기
+            _lines.Clear();
+            foreach (string line in currentDialogue.contents)
+            {
+                _lines.Enqueue(line);
+            }
+        }
+        //대사 큐에서 대사 하나 뽑아오기
         currentLine= _lines.Dequeue();
-        characterPortrait.sprite = currentLine.character.portrait;
-        characterName.text = currentLine.character.name;
         
         StopAllCoroutines();
 
         StartCoroutine(TypeSentence(currentLine));
-        */
+        
     }
-
-    /*
-    IEnumerator TypeSentence(DialogueLine dialogueLine)
+    
+    IEnumerator TypeSentence(string dialogueLine)
     {
         dialogueArea.text = "";
 
-        foreach (char letter in dialogueLine.line.ToCharArray())
+        foreach (char letter in dialogueLine.ToCharArray())
         {
             isTyping = true;
             dialogueArea.text += letter;
@@ -95,7 +115,7 @@ public class DialogueManager : MonoBehaviour
         isTyping = false;
         Invoke("ChangeLineTime",lineChangeSpeed);
     }
-*/
+    
     void ChangeLineTime()
     {
         isLineEnd = true;
@@ -104,6 +124,6 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         isDialogueActive = false;
-        dialoguePanel.SetActive(false);
+        dialogueUI.CloseUI();
     }
 }

@@ -5,11 +5,17 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public Dialogue dialogue;
+    [SerializeField] private DialogueEvent dialogue;
 
     public void TriggerDialogue()
     {
-        DialogueManager.Instance.StartDialogue(dialogue);
+        dialogue.dialogues = CsvManager.Instance.GetDialogue((int)dialogue.line.x, (int)dialogue.line.y);
+        DialogueManager.Instance.StartDialogue(dialogue.dialogues);
+    }
+
+    public static void TriggerDialogue(int _start, int _end)
+    {
+        DialogueManager.Instance.StartDialogue(CsvManager.Instance.GetDialogue(_start,_end));
     }
 
     private void OnTriggerEnter2D(Collider2D other)

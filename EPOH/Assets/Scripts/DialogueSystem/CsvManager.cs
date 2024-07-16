@@ -26,7 +26,7 @@ public class CsvManager : MonoBehaviour
             isCSVReadFinish = true;
             if (isCSVReadFinish)
             {
-                Debug.Log("딕셔너리에 저장된 대화 수 : " + dialogueDic.Count);
+                Debug.Log("CSV READ FINISH");
             }
         }
     }
