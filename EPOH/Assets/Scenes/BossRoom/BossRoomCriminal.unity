@@ -1323,9 +1323,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss_manager: {fileID: 0}
+  player_controller: {fileID: 0}
   hacking: {fileID: 0}
-  battle_start: 0
   hacking_complete: 0
+  phase1_object: {fileID: 1173706570}
+  phase2_object: {fileID: 632138269}
+  phase3_object: {fileID: 1589475777}
 --- !u!1 &985314431
 GameObject:
   m_ObjectHideFlags: 0

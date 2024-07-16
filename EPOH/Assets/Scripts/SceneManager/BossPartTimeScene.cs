@@ -98,20 +98,20 @@ public class BossPartTimeScene : MonoBehaviour
      void bossPartTimePhase1()
     {
         player_health.is_invincible = true;
-        Debug.Log("Boss Dog 페이즈1 연출");
+        Debug.Log("Boss PartTime 페이즈1 연출");
         StartCoroutine(showPhaseObject());
     }
 
     void bossPartTimePhase2()
     {
         player_health.is_invincible = true;
-        Debug.Log("Boss Dog 페이즈2 연출");
+        Debug.Log("Boss PartTime 페이즈2 연출");
         StartCoroutine(showPhaseObject());
     }
 
     void bossPartTimeMissionClear()
     {
-        Debug.Log("Boss Dog 미션 클리어 연출");
+        Debug.Log("Boss PartTime 미션 클리어 연출");
     }
 
     IEnumerator showPhaseObject()
@@ -136,7 +136,7 @@ public class BossPartTimeScene : MonoBehaviour
         player_health.is_invincible = false;
         boss_manager.battle_start = true;
     }
-    
+
     IEnumerator waitForKeyPress() // Space 키를 누르면 다음 대사, 오브젝트로 넘어가는 함수
     {
         while (!space_pressed)
