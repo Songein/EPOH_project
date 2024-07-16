@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
@@ -24,6 +25,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] float lineChangeSpeed = 0.5f;
 
     DialogueUIController dialogueUI;
+    private int dialogueCnt;
     
     void Awake()
     {
@@ -66,6 +68,8 @@ public class DialogueManager : MonoBehaviour
         {
             _dialogues.Enqueue(dialogue);
         }
+        Debug.Log("숫자 : " + _dialogues.Count);
+        dialogueCnt = _dialogues.Count;
         
         DisplayNextDialogueLine();
     }
@@ -73,7 +77,7 @@ public class DialogueManager : MonoBehaviour
     public void DisplayNextDialogueLine()
     {
         //대화 수가 0이면 대화 종료
-        if (_dialogues.Count == 0)
+        if (_dialogues.Count == 0 && _lines.Count == 0)
         {
             EndDialogue();
             return;
@@ -109,7 +113,16 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in dialogueLine.ToCharArray())
         {
             isTyping = true;
-            dialogueArea.text += letter;
+            
+            //csv 파일 내 @을 , 로 변경하여 출력
+            if (letter.Equals('@'))
+            {
+                dialogueArea.text += ',';
+            }
+            else
+            {
+                dialogueArea.text += letter;
+            }
             yield return new WaitForSeconds(typingSpeed);
         }
         isTyping = false;
@@ -125,5 +138,8 @@ public class DialogueManager : MonoBehaviour
     {
         isDialogueActive = false;
         dialogueUI.CloseUI();
+        GameManager.instance.story_info += dialogueCnt;
+        Debug.Log("여기서 추가되는건가?????");
+        GameManager.instance.eventFlag = false;
     }
 }

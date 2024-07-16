@@ -20,10 +20,11 @@ public class DialogueParser : MonoBehaviour
             //헤더(StoryId, Name, Content, GameState, EndingState) 별로 쪼개기
             string[] header = data[i].Split(new char[] { ',' });
             Dialogue dialogue = new Dialogue();
-
+            
+            /*
             if (header[0] != "")
             {
-                Debug.Log(header[0]);
+                //Debug.Log(header[0]);
                 if (header[1] == "")
                 {
                     Debug.Log("효과 : " + header[2]);
@@ -31,8 +32,9 @@ public class DialogueParser : MonoBehaviour
                     continue;
                 }
             }
+            */
             //이름 값 저장
-            Debug.Log(header[1]);
+            //Debug.Log(header[0]);
             dialogue.name = header[1];
             
             //대사내용 저정하기 위한 List 생성(대사 내용 수가 유동적이기에 List로 관리)
@@ -41,7 +43,7 @@ public class DialogueParser : MonoBehaviour
             do
             {
                 contentList.Add(header[2]);
-                Debug.Log(header[2]);
+                //Debug.Log(header[2]);
                 if (++i < data.Length)
                 {
                     //저장하고 data 내에 남은 줄이 있다면 다음 줄 읽어들이기
@@ -54,7 +56,7 @@ public class DialogueParser : MonoBehaviour
 
             } while ((header[0] == "") && (header[1] == ""));
 
-            Debug.Log("대화리스트에 대화 하나 추가");
+            //Debug.Log("대화리스트에 대화 하나 추가");
             dialogue.contents = contentList.ToArray();
             dialogueList.Add(dialogue);
         }

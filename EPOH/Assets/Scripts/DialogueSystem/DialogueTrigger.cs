@@ -15,6 +15,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public static void TriggerDialogue(int _start, int _end)
     {
+        GameManager.instance.eventFlag = true;
         DialogueManager.Instance.StartDialogue(CsvManager.Instance.GetDialogue(_start,_end));
     }
 

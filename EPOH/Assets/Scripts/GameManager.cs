@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     public int office_room;
     public int boss_num = 0;
     public const int boss_cnt = 5; // 존재하는 보스의 개수
+    
+    //씬 전반적인 이벤트 관리 변수
+    public bool eventFlag;
 
     // 보스 정보. 이름, 속성으로 이루어짐.
     public string[,] boss_info = new string[,] { { "Dog" , "1" }, { "PartTime", "2" }, { "ForgetMeNot", "3" }, {"Criminal", "4"}, {"Hoa", "5"} }; 

@@ -13,7 +13,6 @@ public class DialogueUIController : MonoBehaviour
 
     public void OpenUI()
     {
-        Debug.Log("오픈 ui 실행");
         gameObject.SetActive(true);
     }
 
