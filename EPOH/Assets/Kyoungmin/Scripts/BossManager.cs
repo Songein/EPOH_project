@@ -7,4 +7,6 @@ public class BossManager : MonoBehaviour
     public float boss_hp = 1000f;
     public float player_hp = 200f;
     public float hacking_point = 0f;
+
+    public bool battle_start; // 배틀 시작
 }

@@ -9,7 +9,6 @@ public class BossDogScene : MonoBehaviour
     public BossManager boss_manager;
     public PlayerController player_controller;
     public Hacking hacking;
-    public bool battle_start; // 배틀 시작
     public bool hacking_complete; // 해킹 완료
 
     [SerializeField] public bool phase1_start = false; //페이즈1 시작
@@ -17,8 +16,6 @@ public class BossDogScene : MonoBehaviour
 
     [SerializeField] private GameObject phase1_object; //페이즈1 오브젝트
     [SerializeField] private GameObject phase2_object; //페이즈2 오브젝트
-
-
 
     private GameObject boss;
 
@@ -39,7 +36,7 @@ public class BossDogScene : MonoBehaviour
             hacking = boss.GetComponent<Hacking>();
         }
         
-        battle_start = true;
+        boss_manager.battle_start = true;
         hacking_complete = false;
     }
 
@@ -57,25 +54,25 @@ public class BossDogScene : MonoBehaviour
             space_pressed = true;
         }
 
-        if (battle_start && !phase1_start && boss_manager.hacking_point == 70) // 페이즈 1 시작
+        if (boss_manager.battle_start && !phase1_start && boss_manager.hacking_point == 70) // 페이즈 1 시작
         {
             //보스 움직임 멈춤(배틀 일시정지)
-            battle_start = false;
+            boss_manager.battle_start = false;
             phase1_start = true;
             bossDogPhase1();
         }
 
-        if (battle_start && !phase2_start && boss_manager.hacking_point == 140) // 페이즈 2 시작
+        if (boss_manager.battle_start && !phase2_start && boss_manager.hacking_point == 140) // 페이즈 2 시작
         {
             //보스 움직임 멈춤(배틀 일시정지)
-            battle_start = false;
+            boss_manager.battle_start = false;
             phase2_start = true;
             bossDogPhase2();
         }
     
-        if (battle_start && boss_manager.hacking_point == 200)
+        if (boss_manager.battle_start && boss_manager.hacking_point == 200)
         {
-            battle_start = false;
+            boss_manager.battle_start = false;
             GameManager.instance.boss_clear_info[0] = false;
             GameManager.instance.boss_clear_info[1] = true;
 
@@ -86,7 +83,7 @@ public class BossDogScene : MonoBehaviour
             Debug.Log("Boss Dog 클리어!");
         }
 
-        if (battle_start && boss_manager.player_hp == 0)
+        if (boss_manager.battle_start && boss_manager.player_hp == 0)
         {
             playerDeath();
         }
@@ -95,7 +92,7 @@ public class BossDogScene : MonoBehaviour
 
     void playerDeath()
     {
-        battle_start = false;
+        boss_manager.battle_start = false;
         SceneManager.LoadScene("OfficeRoom1");
         
     }
@@ -136,7 +133,7 @@ public class BossDogScene : MonoBehaviour
         phase1_object.SetActive(false);
         phase2_object.SetActive(false);
         player_controller.is_interacting = false;
-        battle_start = true;
+        boss_manager.battle_start = true;
     }
 
     IEnumerator waitForKeyPress() // Space 키를 누르면 다음 대사, 오브젝트로 넘어가는 함수

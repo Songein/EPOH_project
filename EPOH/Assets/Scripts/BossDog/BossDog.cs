@@ -18,7 +18,7 @@ public class BossDog : MonoBehaviour
 
     public GameObject player; // 플레이어 게임 오브젝트
     private int skill; // 사용하는 스킬
-    private BossDogScene scene; // BossDogScene 스크립트 참조
+    private BossManager boss_manager; // BossDogScene 스크립트 참조
 
 
     //가까운 공격
@@ -49,7 +49,7 @@ public class BossDog : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player"); // 플레이어가 있는지 확인
         bite_area.SetActive(false);
-        scene = FindObjectOfType<BossDogScene>(); // BossDogScene 스크립트 할당
+        boss_manager = FindObjectOfType<BossManager>(); // BossDogScene 스크립트 할당
         if (player != null)
         {
             Debug.Log("플레이어 발견");
@@ -62,7 +62,7 @@ public class BossDog : MonoBehaviour
     void Update()
     {
          //배틀이 시작되기 전까지는 보스는 움직이면 안됨.
-        if (scene.battle_start)
+        if (boss_manager.battle_start)
         {
             float distance = Vector3.Distance(transform.position, player.transform.position);
             if (is_track && distance > track_range && !is_skill) // 트랙 중이고 거리가 최소 거리보다 크며 스킬 사용중이 아닐 때
@@ -71,7 +71,7 @@ public class BossDog : MonoBehaviour
             }
         }
 
-        if (scene.battle_start && !start_attack)
+        if (boss_manager.battle_start && !start_attack)
         {
             start_attack = true;
             
@@ -79,7 +79,7 @@ public class BossDog : MonoBehaviour
             StartCoroutine(SkillCooldown()); // 스킬 사용 코루틴 시작
         }
 
-        if (scene.battle_start && !start_phase2_attack)
+        if (boss_manager.battle_start && !start_phase2_attack)
         {
             start_phase2_attack = true;
             StopCoroutine(SkillCooldown());
@@ -92,7 +92,7 @@ public class BossDog : MonoBehaviour
     public IEnumerator MoveCooldown()
     {
         //battle_start일 때만 실행되도록
-        if (scene.battle_start)
+        if (boss_manager.battle_start)
         {
             Debug.Log("코루틴 시작");
             yield return new WaitForSeconds(boss_move_cooldown);
@@ -109,7 +109,7 @@ public class BossDog : MonoBehaviour
     public IEnumerator SkillCooldown()
     {
         //battle_start일 때만 실행되도록
-        if (scene.battle_start)
+        if (boss_manager.battle_start)
         {
             Debug.Log("스킬 사용");
             is_skill = true;
