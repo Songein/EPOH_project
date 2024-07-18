@@ -21,18 +21,6 @@ public class DialogueParser : MonoBehaviour
             string[] header = data[i].Split(new char[] { ',' });
             Dialogue dialogue = new Dialogue();
             
-            /*
-            if (header[0] != "")
-            {
-                //Debug.Log(header[0]);
-                if (header[1] == "")
-                {
-                    Debug.Log("효과 : " + header[2]);
-                    ++i;
-                    continue;
-                }
-            }
-            */
             //이름 값 저장
             //Debug.Log(header[0]);
             dialogue.name = header[1];

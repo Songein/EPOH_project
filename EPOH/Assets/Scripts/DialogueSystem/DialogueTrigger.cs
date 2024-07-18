@@ -28,9 +28,6 @@ public class DialogueTrigger : MonoBehaviour
                 case 7:
                     GameManager.instance.story_info = 8;
                     break;
-                default:
-                    TriggerDialogue();
-                    break;
             }
         }
     }
