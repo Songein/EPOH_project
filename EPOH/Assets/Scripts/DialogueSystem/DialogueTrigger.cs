@@ -23,7 +23,15 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            TriggerDialogue();
+            switch (GameManager.instance.story_info)
+            {
+                case 7:
+                    GameManager.instance.story_info = 8;
+                    break;
+                default:
+                    TriggerDialogue();
+                    break;
+            }
         }
     }
 }
