@@ -15,6 +15,9 @@ public class BossPartTimeScene : MonoBehaviour
     [SerializeField] private GameObject phase1_object; //페이즈1 오브젝트
     [SerializeField] private GameObject phase2_object; //페이즈2 오브젝트
 
+    [SerializeField] private GameObject phase1_item_prefab; //페이즈1 아이템 프리팹
+
+    private GameObject phase1_item_instance; //페이즈1 아이템 인스턴스
     private GameObject boss;
 
     private bool space_pressed = false;
@@ -55,10 +58,19 @@ public class BossPartTimeScene : MonoBehaviour
 
         if (boss_manager.battle_start && !boss_manager.phase1_start && boss_manager.hacking_point == 70) // 페이즈 1 시작
         {
+            /*
             //보스 움직임 멈춤(배틀 일시정지)
             boss_manager.battle_start = false;
             boss_manager.phase1_start = true;
             bossPartTimePhase1();
+            */
+            if (phase1_item_instance == null)
+            {
+                Debug.Log("Phase 1 start condition met");
+                phase1_item_instance = Instantiate(phase1_item_prefab, new Vector3(-5, -3, 0), Quaternion.identity);
+
+            }
+
         }
 
         if (boss_manager.battle_start && !boss_manager.phase2_start && boss_manager.hacking_point == 140) // 페이즈 2 시작

@@ -8,13 +8,17 @@ public class Hacking : MonoBehaviour
     public BossManager boss_manager; // BossManager 스크립트에 대한 참조
     public GameManager game_manager; // GameManager 스크립트에 대한 참조
     public BossHealth boss_health;
+    public PhaseItem phase_item; // PhaseItem 스크립트 참조
 
     private GameObject boss;
+    private GameObject boss_phase_item;
 
     private void Start()
     {
         
         boss = GameObject.FindWithTag("Boss");
+        boss_phase_item = GameObject.FindWithTag("BossPhaseItem");
+
 
         if (boss != null)
         {
@@ -31,10 +35,21 @@ public class Hacking : MonoBehaviour
             {
                 Debug.LogError("[Hacking] : BossHealth 스크립트를 찾을 수 없습니다.");
             }
+
+            else
+            {
+                Debug.LogError("[Hacking] : Boss GameObject를 찾을 수 없습니다. 'Boss' 태그를 가진 GameObject가 씬에 있는지 확인하세요.");
+            }
         }
-         else
+
+        if (phase_item != null)
         {
-            Debug.LogError("[Hacking] : Boss GameObject를 찾을 수 없습니다. 'Boss' 태그를 가진 GameObject가 씬에 있는지 확인하세요.");
+            phase_item = boss_phase_item.GetComponent<PhaseItem>();
+            
+            if (phase_item == null)
+            {
+                Debug.LogError("[Hacking] : PhaseItem 스크립트를 찾을 수 없습니다.");
+            }
         }
     }
 
@@ -114,17 +129,18 @@ public class Hacking : MonoBehaviour
     public void onBossHealthDecrease(float damage)
     {
 
-        if (boss_health != null)
+        if (boss_health != null || phase_item.phase_item_hp != null)
         {
             // 보스 공격 성공시마다 hacking_point 10씩 증가
             increaseHackingPoint(10);
-            
         }
         else
         {
             Debug.LogError("[Hacking] : BossHealth 컴포넌트를 찾을 수 없습니다.");
         }
     }
+
+
 
 
 }
