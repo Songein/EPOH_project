@@ -1298,11 +1298,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075611, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.81
+      value: -16.68
       objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075611, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.37
+      value: 2.3
       objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075611, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2215,7 +2215,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.47694
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2239,7 +2239,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1453578612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.2, y: 0.14, z: -10}
+  m_LocalPosition: {x: -10.08, y: 2.85, z: -10}
   m_LocalScale: {x: 1.4773, y: 1.4773, z: 1.4773}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2258,8 +2258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad8e8142ac61f074f95595ed6744e482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minCameraBoundary: {x: -11, y: 0}
-  maxCameraBoundary: {x: 11, y: 5}
+  minCameraBoundary: {x: -11, y: 2}
+  maxCameraBoundary: {x: 11, y: 3}
 --- !u!1 &1512034109
 GameObject:
   m_ObjectHideFlags: 0
