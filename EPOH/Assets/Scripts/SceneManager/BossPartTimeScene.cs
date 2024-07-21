@@ -66,6 +66,8 @@ public class BossPartTimeScene : MonoBehaviour
             */
             if (phase1_item_instance == null)
             {
+                boss_manager.battle_start = false;
+                boss_manager.phase1_start = true;
                 Debug.Log("Phase 1 start condition met");
                 phase1_item_instance = Instantiate(phase1_item_prefab, new Vector3(-5, -3, 0), Quaternion.identity);
 
