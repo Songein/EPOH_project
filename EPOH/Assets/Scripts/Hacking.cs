@@ -70,7 +70,7 @@ public class Hacking : MonoBehaviour
     // 보스전 종료 함수
     public void endBossBattle()
     {
-        if (GameManager.instance.boss_clear_info[0] || GameManager.instance.boss_clear_info[1])
+        if (GameManager.instance.boss_clear_info[0] || GameManager.instance.boss_clear_info[1] || GameManager.instance.boss_clear_info[2] )
         {
             GameManager.instance.office_room = 1;
         }
