@@ -19,8 +19,6 @@ public class BossPartTimeScene : MonoBehaviour
     private GameObject phase2_object_instance; //페이즈2 오브젝트 인스턴스
     private GameObject boss;
 
-    private bool space_pressed = false;
-
     // Start is called before the first frame update
     void Start()
     {
