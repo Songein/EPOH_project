@@ -36,7 +36,7 @@ public class MoveToOfficeRoom : MonoBehaviour
         }
         else
         {
-            playerController.is_interacting = false;
+            PlayerInteract.instance.is_interacting = false;
         }
         
     }

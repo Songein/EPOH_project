@@ -133,7 +133,7 @@ public class BossCriminalScene : MonoBehaviour
 
     IEnumerator showPhaseObject()
     {
-        player_controller.is_interacting = true;
+        PlayerInteract.instance.is_interacting = true;
         yield return new WaitForSeconds(0.5f);
         if (boss_manager.phase1_start && !boss_manager.phase2_start)
         {
@@ -154,7 +154,7 @@ public class BossCriminalScene : MonoBehaviour
         phase1_object.SetActive(false);
         phase2_object.SetActive(false);
         phase3_object.SetActive(false);
-        player_controller.is_interacting = false;
+        PlayerInteract.instance.is_interacting = false;
         player_health.is_invincible = false;
         boss_manager.battle_start = true;
     }

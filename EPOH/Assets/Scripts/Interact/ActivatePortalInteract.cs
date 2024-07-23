@@ -18,17 +18,17 @@ public class ActivatePortalInteract : Interaction
     private void Update()
     {
         // 플레이어가 상호작용 중이면서 Portal이 비활성화된 상태일때
-        if (player_controller.is_interacting && !missionDecisionCorrider.canInteractWithPortal && missionDecisionCorrider.last_clicked_button == null)
+        if (PlayerInteract.instance.is_interacting && !missionDecisionCorrider.canInteractWithPortal && missionDecisionCorrider.last_clicked_button == null)
         {
-            player_controller.is_interacting = false;
+            PlayerInteract.instance.is_interacting = false;
         }
     }
 
     public override void Interact()
     {
-        if (player_controller.is_interacting && !missionDecisionCorrider.canInteractWithPortal)
+        if (PlayerInteract.instance.is_interacting && !missionDecisionCorrider.canInteractWithPortal)
         {
-            player_controller.is_interacting = false;
+            PlayerInteract.instance.is_interacting = false;
         }
         if (missionDecisionCorrider != null && missionDecisionCorrider.canInteractWithPortal && moveToNextScene != null)
         {
