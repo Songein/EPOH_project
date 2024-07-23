@@ -10,22 +10,23 @@ using Vector2 = UnityEngine.Vector2;
 
 public class PlayerController : MonoBehaviour
 {
-    //플레이어 좌우 이동
-    private float horizontal; //수평 값
-    public float player_speed = 8f; //이동 속도
-    private bool is_facing_right = true; //플레이어가 오른쪽을 쳐다보고 있는지
-    private AttackArea attack_area; //AttackArea 스크립트(AttackArea의 좌우반전을 위해)
-    
-    //플레이어 점프
-    public float player_jump_force = 7f; //점프 힘
-    private int player_jump_cnt = 0; //플레이어 점프 횟수
-    
     //플레이어 리지드바디 컴포넌트
     private Rigidbody2D rigid;
     //플레이어 애니메이터
     private Animator animator;
     //스프라이트 렌더러 컴포넌트
     private SpriteRenderer sr;
+    
+    //플레이어 좌우 이동
+    private float horizontal; //수평 값
+    [SerializeField] float player_speed; //이동 속도
+    private bool is_facing_right = true; //플레이어가 오른쪽을 쳐다보고 있는지
+    private AttackArea attack_area; //AttackArea 스크립트(AttackArea의 좌우반전을 위해)
+    
+    //플레이어 점프
+    [SerializeField] float player_jump_force; //점프 힘
+    [SerializeField] float second_jump_force; //두번째 점프 힘
+    private int player_jump_cnt = 0; //플레이어 점프 횟수
     
     //플레이어 상호작용
     private GameObject interact_obj; //플레이어가 상호작용할 오브젝트
@@ -72,7 +73,7 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        //대쉬 | 상호작용 | 순간이동 | 대화 중이면 다른 작업 이루어지지 않도록
+        //대쉬, 상호작용, 순간이동, 공격 중일 때에는 이동 금지
         if (is_dashing || is_interacting || is_teleporting || is_attacking)
         {
             return;
@@ -103,7 +104,7 @@ public class PlayerController : MonoBehaviour
                     animator.SetBool("IsJump", true);
                     break;
                 case 1 : //2단 점프일 때
-                    rigid.velocity = new Vector2(rigid.velocity.x, player_jump_force * 1.5f); //2단 점프는 좀 더 높이 점프
+                    rigid.velocity = new Vector2(rigid.velocity.x, player_jump_force * second_jump_force); //2단 점프는 좀 더 높이 점프
                     animator.SetBool("IsDoubleJump",true);
                     break;
                     
@@ -177,7 +178,7 @@ public class PlayerController : MonoBehaviour
                 //거리가 0.5 미만이면
                 if (groundRayHit.distance < 2.5f)
                 {
-                    //Debug.Log("땅");
+                    Debug.Log("땅");
                     //점프 애니메이션 해제
                     animator.SetBool("IsFall", false);
                     animator.SetBool("IsJump",false);
