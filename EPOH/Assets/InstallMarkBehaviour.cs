@@ -8,6 +8,7 @@ public class InstallMarkBehaviour : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        //마크 설치 애니메이션 파라미터 비활성화
         animator.SetBool("IsInstallMark", false);    
     }
 
