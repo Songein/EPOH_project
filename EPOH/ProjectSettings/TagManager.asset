@@ -7,6 +7,7 @@ TagManager:
   - Interaction
   - OneWayPlatform
   - Boss
+  - BossPhaseItem
   layers:
   - Default
   - TransparentFX

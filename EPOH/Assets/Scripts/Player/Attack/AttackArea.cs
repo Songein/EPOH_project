@@ -10,6 +10,8 @@ public class AttackArea : MonoBehaviour
     private float attack_power; //공격 세기
     private CircleCollider2D collider; //AttackArea의 collider;
     private BossHealth boss_health; //BossHealth 참조
+    private PhaseItem phase_item; // PhaseItem 스크립트 참조
+
     private Hacking hacking;
     
     void Awake()
@@ -22,7 +24,7 @@ public class AttackArea : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D other)
     {
-        //공격 범위와 트리거 충돌 주체의 태그가 Enemy이면
+        //공격 범위와 트리거 충돌 주체의 태그가 Boss 이면
         if (other.CompareTag("Boss"))
         {
             Debug.Log("[AttackArea] : 충돌");
@@ -44,6 +46,35 @@ public class AttackArea : MonoBehaviour
             
             // Hacking 스크립트의 onBossHealthDecrease 호출
             hacking.onBossHealthDecrease(attack_power);
+        }
+
+        //공격 범위와 트리거 충돌 주체의 태그가 BossPhaseItem 이면
+
+        else if (other.CompareTag("BossPhaseItem"))
+        {
+            Debug.Log("[AttackArea] : 충돌");
+
+            //PhaseItem 스크립트 참조
+            phase_item = other.GetComponent<PhaseItem>();
+            
+            if (phase_item.phase_item_hp != null)
+            {
+                //상대를 공격하기
+                phase_item.phaseItemDamage(10);
+                
+                if (phase_item.phase_item_hp <= 0)
+                {
+                    // Hacking 스크립트의 onBossHealthDecrease 호출
+                    hacking.onBossHealthDecrease(10);
+                }
+
+            }
+            else
+            {
+                Debug.LogError("[AttackArea] : PhaseItem 컴포넌트를 찾을 수 없습니다.");
+            }
+            
+
         }
         else
         {
