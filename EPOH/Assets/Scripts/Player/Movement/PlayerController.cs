@@ -27,15 +27,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpForce; //점프 힘
     [SerializeField] float doubleJumpForce; //두번째 점프 힘
     private int player_jump_cnt = 0; //플레이어 점프 횟수
-    
-    //플레이어 상호작용
-    private GameObject interact_obj; //플레이어가 상호작용할 오브젝트
-    public bool is_interacting = false; //플레이어가 상호작용 중인지
-    private Interaction interaction; //플레이어가 상호작용할 오브젝트에 부착된 Interact 스크립트
-
-    //플레이어 대화
-    public bool is_talking = false;
-    private TalkAction talk_action;
 
     //플레이어 대쉬
     [SerializeField] private TrailRenderer tr; //대쉬 효과
@@ -70,8 +61,8 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        //대쉬, 상호작용, 순간이동, 공격 중일 때에는 이동 금지
-        if (is_dashing || is_interacting || is_teleporting || PlayerAttack.instance.is_attacking)
+        //대쉬, 순간이동, 대화, 상호작용, 공격 중일 때에는 이동 금지
+        if (is_dashing || is_teleporting || PlayerInteract.instance.is_interacting || PlayerInteract.instance.is_talking || PlayerAttack.instance.is_attacking)
         {
             return;
         }
@@ -110,25 +101,10 @@ public class PlayerController : MonoBehaviour
             
         }
         
-        
         //대쉬 버튼을 누르면
         if (Input.GetButtonDown("Dash") && can_dash)
         {
             StartCoroutine(Dash());
-        }
-
-        if (Input.GetButtonDown("Interact")) // 상호작용
-        {
-            if (is_talking) // 대화 중이면
-            {
-                talk_action.Action(); //다음 대화
-            }
-            else if (interact_obj != null) // 대화 중이 아니고 상호작용 할 오브젝트가 있을 경우
-            {
-                Debug.Log(interact_obj.name + "과 상호작용 시작");
-                interaction.Interact();
-                is_interacting = true;
-            }
         }
         
         //순간이동 버튼을 누르면
@@ -150,8 +126,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        //대쉬 | 상호작용 | 순간이동 | 대화 중이면 다른 작업 이루어지지 않도록
-        if (is_dashing || is_interacting || is_teleporting || is_talking || PlayerAttack.instance.is_attacking)
+        //대쉬, 순간이동, 대화, 상호작용, 공격 중일 때에는 이동 금지
+        if (is_dashing || is_teleporting || PlayerInteract.instance.is_interacting || PlayerInteract.instance.is_talking || PlayerAttack.instance.is_attacking)
         {
             return;
         }
@@ -187,32 +163,7 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        //트리거 충돌한 오브젝트가 Interaction 태그를 갖고 있는 오브젝트일 경우
-        if (other.CompareTag("Interaction"))
-        {
-            //상호작용 할 오브젝트에 트리거 충돌 오브젝트를 할당
-            interact_obj = other.gameObject;
-            interaction = interact_obj.GetComponent<Interaction>(); // 충돌한 오브젝트의 Interaction 할당
-            Debug.Log("[PlayerController] : " + other.name + "과 상호작용 가능");
-        }
-    }
     
-    void OnTriggerExit2D(Collider2D other)
-    {
-        //트리거 충돌 오브젝트에게서 멀어질 때
-        if (interact_obj != null)
-        {
-            //상호작용 할 오브젝트에 null 할당
-            interact_obj = null;
-            Debug.Log("[PlayerController] : " + other.name + "과 상호작용 불가능");
-        }
-        
-    }
-
-
     //플레이어 스프라이트 뒤집기
     void Flip()
     {
@@ -277,6 +228,7 @@ public class PlayerController : MonoBehaviour
         is_teleporting = false; //순간이동 중 해제
     }
 
+    //순간이동 마크 설치 함수
     public void InstallMark()
     {
         mark = Instantiate(mark_prefab, new Vector2(teleport_pos.x, teleport_pos.y), Quaternion.identity); //표식 생성
