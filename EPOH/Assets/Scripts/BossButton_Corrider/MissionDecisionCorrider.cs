@@ -198,7 +198,7 @@ public class MissionDecisionCorrider : MonoBehaviour
         else
         {
             // 상호작용 시작 시 is_interacting을 false로 설정
-            PlayerInteract.instance.is_interacting = false;
+            player_controller.is_interacting = false;
             Debug.Log("상호작용이 불가능한 상태입니다.");
         }
 

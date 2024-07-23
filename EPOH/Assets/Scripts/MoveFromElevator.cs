@@ -17,7 +17,7 @@ public class MoveFromElevator : MonoBehaviour
         }
         else
         {
-            PlayerInteract.instance.is_interacting = false;
+            playerController.is_interacting = false;
         }
     }
 }

@@ -8,7 +8,8 @@ public class PlayerAttack : MonoBehaviour
 {
     //인스턴스화
     public static PlayerAttack instance;
-    
+
+    private PlayerController pr; //PlayerController 참조
     public bool is_attacking = false; //현재 공격 중인지
     public float[] combo_attack_power = { 30f, 50f}; //콤보 별 공격 세기
     private GameObject attack_area; //공격범위 오브젝트 참조 변수
@@ -20,12 +21,15 @@ public class PlayerAttack : MonoBehaviour
         //공격 범위 참조 후 비활성화
         attack_area = transform.Find("AttackArea").gameObject;
         attack_area.SetActive(is_attacking);
+        
+        //PlayerController 할당
+        pr = transform.GetComponent<PlayerController>();
     }
 
     void Update()
     {
         //공격 버튼을 누르고 공격 중이지 않으면
-        if (Input.GetButtonDown("Attack") && !is_attacking && !PlayerInteract.instance.is_interacting && !PlayerInteract.instance.is_talking)
+        if (Input.GetButtonDown("Attack") && !is_attacking && !pr.is_interacting && !pr.is_talking)
         {
             //공격 함수 호출
             Attack();

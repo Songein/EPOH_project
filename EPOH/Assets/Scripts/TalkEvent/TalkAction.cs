@@ -21,7 +21,7 @@ public class TalkAction : MonoBehaviour
     {
         Talk(game_manager.story_info);
         talk_panel.SetActive(is_talking);
-        PlayerInteract.instance.is_talking = is_talking;
+        player_controller.is_talking = is_talking;
     }
 
     void Talk(int id)
