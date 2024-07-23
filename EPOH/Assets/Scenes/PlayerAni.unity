@@ -330,6 +330,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4632130523800075601, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: jumpForce
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632130523800075601, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: moveSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632130523800075601, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: mark_prefab
+      value: 
+      objectReference: {fileID: 8433638777037277523, guid: acf264dcdeb4e468da143a10910c7aa3, type: 3}
+    - target: {fileID: 4632130523800075601, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: port_prefab
+      value: 
+      objectReference: {fileID: 8433638777037277523, guid: acf264dcdeb4e468da143a10910c7aa3, type: 3}
+    - target: {fileID: 4632130523800075601, guid: 6533cbff165824e039977611200fc9d8, type: 3}
+      propertyPath: doubleJumpForce
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632130523800075601, guid: 6533cbff165824e039977611200fc9d8, type: 3}
       propertyPath: player_jump_force
       value: 30
       objectReference: {fileID: 0}

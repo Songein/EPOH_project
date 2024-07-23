@@ -19,13 +19,13 @@ public class PlayerController : MonoBehaviour
     
     //플레이어 좌우 이동
     private float horizontal; //수평 값
-    [SerializeField] float player_speed; //이동 속도
+    [SerializeField] float moveSpeed; //이동 속도
     private bool is_facing_right = true; //플레이어가 오른쪽을 쳐다보고 있는지
     private AttackArea attack_area; //AttackArea 스크립트(AttackArea의 좌우반전을 위해)
     
     //플레이어 점프
-    [SerializeField] float player_jump_force; //점프 힘
-    [SerializeField] float second_jump_force; //두번째 점프 힘
+    [SerializeField] float jumpForce; //점프 힘
+    [SerializeField] float doubleJumpForce; //두번째 점프 힘
     private int player_jump_cnt = 0; //플레이어 점프 횟수
     
     //플레이어 상호작용
@@ -50,8 +50,8 @@ public class PlayerController : MonoBehaviour
     private bool can_teleport = false; //순간이동할 수 있는지
     public bool is_teleporting = false; //순간이동 중인지
     private float teleport_time = 0.3f; //순간이동 지속 타임
-    private GameObject port_prefab; //순간이동 포트 프리팹
-    private GameObject port; //순간이동 포트
+    [SerializeField] GameObject mark_prefab; //순간이동 포트 프리팹
+    private GameObject mark; //순간이동 포트
     
     //공격
     public bool is_attacking = false; //공격 중일 때 플레이어 이동 막기 위한 변수
@@ -100,11 +100,11 @@ public class PlayerController : MonoBehaviour
             switch (player_jump_cnt)
             {
                 case 0 : //첫 점프일 때
-                    rigid.velocity = new Vector2(rigid.velocity.x, player_jump_force);
+                    rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
                     animator.SetBool("IsJump", true);
                     break;
                 case 1 : //2단 점프일 때
-                    rigid.velocity = new Vector2(rigid.velocity.x, player_jump_force * second_jump_force); //2단 점프는 좀 더 높이 점프
+                    rigid.velocity = new Vector2(rigid.velocity.x, jumpForce * doubleJumpForce); //2단 점프는 좀 더 높이 점프
                     animator.SetBool("IsDoubleJump", true);
                     break;
                     
@@ -143,10 +143,8 @@ public class PlayerController : MonoBehaviour
             }
             else //표식을 설치하지 않은 경우
             {
-                animator.SetInteger("IsTeleport",0); //순간이동 표식 설치 애니메이션 실행
-                Invoke("EndPortAni", 0.3f); //0.3초 후 순간이동 표식 설치 애니메이션 종료
+                animator.SetBool("IsInstallMark", true); //순간이동 표식 설치 애니메이션 실행
                 teleport_pos = transform.position; //플레이어의 현재 위치 받아오기
-                port = Instantiate(port_prefab, new Vector2(teleport_pos.x, teleport_pos.y), Quaternion.identity); //표식 생성
                 can_teleport = true; //순간이동 할 수 있다고 상태 변경
             }
         }
@@ -162,7 +160,7 @@ public class PlayerController : MonoBehaviour
         }
         
         //수평값에 따른 이동
-        rigid.velocity = new Vector2(horizontal * player_speed, rigid.velocity.y);
+        rigid.velocity = new Vector2(horizontal * moveSpeed, rigid.velocity.y);
         
         //땅 감지 레이캐스트 디버그
         Debug.DrawRay(rigid.position, Vector2.down * 3f, Color.red);
@@ -274,19 +272,22 @@ public class PlayerController : MonoBehaviour
         //순간이동 시작 시
         can_teleport = false; //순간이동 불가능으로 설정
         is_teleporting = true; //순간이동 중으로 설정
-        Destroy(port); //순간이동 표식 제거
+        Destroy(mark); //순간이동 표식 제거
         gameObject.transform.position = new Vector2(teleport_pos.x, teleport_pos.y + 2f); //순간이동 표식보다 y축으로 2만큼 위로 이동
-        animator.SetBool("IsFall",true); //순간이동 끝 애니메이션 실행
-        //rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce);
 
         //순간이동 끝
         yield return new WaitForSeconds(teleport_time);
         is_teleporting = false; //순간이동 중 해제
     }
 
-    void EndPortAni() //순간이동 표식 생성 애니메이션 해제
+    public void InstallMark()
     {
-        animator.SetInteger("IsTeleport",-1);
+        mark = Instantiate(mark_prefab, new Vector2(teleport_pos.x, teleport_pos.y), Quaternion.identity); //표식 생성
+        if (!is_facing_right)
+        {
+            mark.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        
     }
     
 }
