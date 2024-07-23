@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
                     break;
                 case 1 : //2단 점프일 때
                     rigid.velocity = new Vector2(rigid.velocity.x, player_jump_force * second_jump_force); //2단 점프는 좀 더 높이 점프
-                    animator.SetBool("IsDoubleJump",true);
+                    animator.SetBool("IsDoubleJump", true);
                     break;
                     
             }
