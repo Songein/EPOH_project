@@ -35,22 +35,22 @@ public class PlayerController : MonoBehaviour
 
     //플레이어 대화
     public bool is_talking = false;
-    public TalkAction talk_action;
+    private TalkAction talk_action;
 
     //플레이어 대쉬
     [SerializeField] private TrailRenderer tr; //대쉬 효과
     private bool can_dash = true; //플레이어가 대쉬를 할 수 있는지
-    public float dash_power = 20f; //대쉬 파워
-    private bool is_dashing = false; //플레이어가 대쉬 중인지
-    public float dash_time = 0.3f; //대쉬 지속 타임
-    public float dash_cool_time = 2f; //대쉬 쿨타임
+    [SerializeField] float dash_power; //대쉬 파워
+    public bool is_dashing = false; //플레이어가 대쉬 중인지
+    [SerializeField] float dash_time; //대쉬 지속 타임
+    [SerializeField] float dash_cool_time; //대쉬 쿨타임
     
     //순간이동
     private Vector2 teleport_pos; //순간이동할 위치
-    public bool can_teleport = false; //순간이동할 수 있는지
+    private bool can_teleport = false; //순간이동할 수 있는지
     public bool is_teleporting = false; //순간이동 중인지
-    public float teleport_time = 0.3f; //순간이동 지속 타임
-    public GameObject port_prefab; //순간이동 포트 프리팹
+    private float teleport_time = 0.3f; //순간이동 지속 타임
+    private GameObject port_prefab; //순간이동 포트 프리팹
     private GameObject port; //순간이동 포트
     
     //공격
