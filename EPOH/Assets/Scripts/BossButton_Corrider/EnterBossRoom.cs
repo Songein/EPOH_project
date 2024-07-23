@@ -64,7 +64,7 @@ public class EnterBossRoom : MonoBehaviour
 
         else
         {
-            playerController.is_interacting = false;
+            PlayerInteract.instance.is_interacting = false;
             Debug.LogWarning("조건에 맞지 않거나 GameManager instance를 찾을 수 없습니다.");
         }
         

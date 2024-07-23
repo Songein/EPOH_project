@@ -59,6 +59,26 @@ public class CutSceneManager : MonoBehaviour
                     gm.story_info++;
                     gm.eventFlag = false;
                     break;
+                case 66:
+                    DialogueTrigger.TriggerDialogue(66,66);
+                    break;
+                case 67:
+                    gm.eventFlag = true;
+                    Debug.Log("(초콜렛을 건네주는 컷씬)");
+                    gm.story_info++;
+                    gm.eventFlag = false;
+                    break;
+                case 68:
+                    DialogueTrigger.TriggerDialogue(68,84);
+                    break;
+                case 85:
+                    gm.eventFlag = true;
+                    Debug.Log("과거 회상 끝");
+                    SceneManager.LoadScene("MainRoom");
+                    WaitForSec(2f);
+                    gm.story_info++;
+                    gm.eventFlag = false;
+                    break;
                 default :
                     break;
             }

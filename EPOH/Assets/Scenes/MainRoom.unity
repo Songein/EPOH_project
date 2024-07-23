@@ -18976,9 +18976,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1719950669}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1534f0ed5bdf64d609aab708c8c47e4a, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ba0b6a68fb77446785818db81290939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogue:
+    name: 
+    line: {x: 0, y: 0}
+    dialogues: []
 --- !u!1 &1740969173
 GameObject:
   m_ObjectHideFlags: 0
@@ -19018,6 +19022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss_manager: {fileID: 0}
   player_hp: 200
+  is_invincible: 0
 --- !u!114 &1740969175
 MonoBehaviour:
   m_ObjectHideFlags: 0

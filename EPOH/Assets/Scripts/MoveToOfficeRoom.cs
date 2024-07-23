@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MoveToOfficeRoom : MonoBehaviour
 {
-    PlayerController playerController;
     private string interacting_object;
 
     public void setInteractingObjectName(string object_name)
@@ -15,7 +14,6 @@ public class MoveToOfficeRoom : MonoBehaviour
 
     public void officeSceneChange()
     {
-        playerController = GetComponent<PlayerController>();
 
         // 현재 활성화된 씬 가져오기
         Scene current_scene = SceneManager.GetActiveScene();
@@ -36,7 +34,7 @@ public class MoveToOfficeRoom : MonoBehaviour
         }
         else
         {
-            playerController.is_interacting = false;
+            PlayerInteract.instance.is_interacting = false;
         }
         
     }
