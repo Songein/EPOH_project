@@ -1090,6 +1090,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 800943640}
   attack_power: 10
+  reach_distance_short: 0
+  Dog_min_area: 0
+  Dog_max_area: 0
+  Dog_yposition: 0
   shadow_prefab: {fileID: 7001229360130489691, guid: 7685437a3f42e49c7b36d3a967f79a7e, type: 3}
   shadow_speed: 8
   warning_duration: 3
@@ -1099,6 +1103,16 @@ MonoBehaviour:
   tracking_eye_prefab: {fileID: 8982902104962463404, guid: 9fbf317a58a6c4c32b10965c738a5457, type: 3}
   tracking_effect_prefab: {fileID: 8982902104962463404, guid: 39d2cad1bf8bf4dc79f9abf933e22a3c, type: 3}
   tracking_effect_speed: 5
+  bite_area: {fileID: 8306289788758409414, guid: 3e497db4f0f1640c3863e291ea34da9d, type: 3}
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  bite_duration: 0.5
+  bite_effects: []
+  bite_renderer: {fileID: 846187092}
 --- !u!1 &912342901
 GameObject:
   m_ObjectHideFlags: 0
@@ -2108,7 +2122,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1778277531}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 846187098}
+        m_TargetAssemblyTypeName: BossMinJu, Assembly-CSharp
+        m_MethodName: Bite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1778277531
 MonoBehaviour:
   m_ObjectHideFlags: 0
