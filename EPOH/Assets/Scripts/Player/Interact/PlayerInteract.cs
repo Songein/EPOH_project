@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
+    //인스턴스화
     public static PlayerInteract instance;
     
     //플레이어 상호작용
@@ -20,14 +21,7 @@ public class PlayerInteract : MonoBehaviour
     {
         PlayerInteract.instance = this;
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (Input.GetButtonDown("Interact")) // 상호작용

@@ -9,7 +9,8 @@ public class InstallMarkBehaviour : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //마크 설치 애니메이션 파라미터 비활성화
-        animator.SetBool("IsInstallMark", false);    
+        animator.SetBool("IsInstallMark", false);
+        animator.GetComponent<PlayerController>().is_teleporting = true;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -22,6 +23,7 @@ public class InstallMarkBehaviour : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.GetComponent<PlayerController>().InstallMark();
+        animator.GetComponent<PlayerController>().is_teleporting = false;
         Debug.Log("install mark");
     }
 
