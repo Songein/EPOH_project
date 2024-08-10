@@ -624,7 +624,7 @@ GameObject:
   - component: {fileID: 449175597}
   - component: {fileID: 449175596}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Scratching
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -695,13 +695,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 846187091}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 846187098}
+        m_TargetAssemblyTypeName: BossMinJu, Assembly-CSharp
+        m_MethodName: Scratch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1008,7 +1008,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 846187091}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.64, y: -2.92, z: 0}
+  m_LocalPosition: {x: -7.11, y: -2.92, z: 0}
   m_LocalScale: {x: 2.246, y: 2.1422, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1094,6 +1094,8 @@ MonoBehaviour:
   shadow_speed: 8
   warning_duration: 3
   warning_color: {r: 1, g: 0, b: 0, a: 1}
+  scratch_prefab: {fileID: 8306289788758409414, guid: f77f81680eeb342e291d842f96fea4d7, type: 3}
+  scratch_particle_prefab: {fileID: 8306289788758409414, guid: d488f94c0043d4fefa4c8655cfd8a49e, type: 3}
 --- !u!1 &912342901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1554,7 +1556,7 @@ GameObject:
   - component: {fileID: 1443541388}
   - component: {fileID: 1443541387}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: Tracking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2021,7 +2023,7 @@ GameObject:
   - component: {fileID: 1778277531}
   - component: {fileID: 1778277530}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: Biting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
