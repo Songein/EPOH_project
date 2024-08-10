@@ -273,7 +273,11 @@ public class BossMinJu : MonoBehaviour
             bite_renderer.flipX = false;
             //공격 범위를 플레이어를 보는 방향으로 설정
             bite_area.GetComponent<BiteArea>().SetPos(false);
-            bite_effects[0].SetActive(true);
+            // 안전하게 배열에 접근
+            if (bite_effects.Length > 0)
+            {
+                bite_effects[0].SetActive(true);
+            }
         }
         else
         {
@@ -283,11 +287,15 @@ public class BossMinJu : MonoBehaviour
             bite_renderer.flipX = true;
             //공격 범위를 플레이어를 보는 방향으로 설정
             bite_area.GetComponent<BiteArea>().SetPos(true);
-            bite_effects[1].SetActive(true);
+            // 안전하게 배열에 접근
+            if (bite_effects.Length > 1)
+            {
+                bite_effects[1].SetActive(true);
+            }
         }
 
-        //보스의 도착지점 위치 지정
-        Vector2 end = new Vector2(Mathf.Clamp(transform.position.x + bite_distance, Dog_min_area, Dog_max_area), Dog_yposition);
+        // 보스의 도착지점 위치 지정
+        Vector2 end = new Vector2(player_pos.x, Dog_yposition);
         //bite area 오브젝트 활성화(공격 범위 활성화)
         bite_area.SetActive(true);
 
@@ -303,11 +311,30 @@ public class BossMinJu : MonoBehaviour
             transform.position = Vector2.Lerp(start, end, linearT) + new Vector2(0.0f, height);
             yield return null;
         }
+        // 보스를 y축 -4로 내려오도록 설정
+        Vector2 groundPosition = new Vector2(transform.position.x, -4f);
+        while (transform.position.y > -4f)
+        {
+            transform.position = new Vector2(transform.position.x, Mathf.MoveTowards(transform.position.y, -4f, Time.deltaTime * 10.0f));
+            yield return null;
+        }
+        
+
+        // 땅에 도착한 후 잠시 대기
         yield return new WaitForSeconds(0.1f);
-        //Debug.Log("[Bite] : bite area 비활성화");
+        
+        // bite area 비활성화
         bite_area.SetActive(false);
-        bite_effects[0].SetActive(false);
-        bite_effects[1].SetActive(false);
+
+        if (bite_effects.Length > 0)
+        {
+            bite_effects[0].SetActive(false);
+        }
+
+        if (bite_effects.Length > 1)
+        {
+            bite_effects[1].SetActive(false);
+        }
 
     }
     
