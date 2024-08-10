@@ -127,6 +127,10 @@ public class BossMinJu : MonoBehaviour
 
     for (int i = 0; i < scratch_count; i++)
     {
+        // 할퀸 자국이 플레이어 x축 위치로부터 -10, 10 이내에서만 생성되도록 설정
+        float minX = Mathf.Max(leftEdge.x, player.transform.position.x - 10f);
+        float maxX = Mathf.Min(rightEdge.x, player.transform.position.x + 10f);
+        
         // 할퀸 자국 프리팹 생성
         Vector3 scratch_position = new Vector3(Random.Range(leftEdge.x, rightEdge.x), player.transform.position.y, 0);
         GameObject scratch_object = Instantiate(scratch_prefab, scratch_position, Quaternion.identity); // 프리팹 사용
