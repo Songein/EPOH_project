@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     //스프라이트 렌더러 컴포넌트
     private SpriteRenderer sr;
+    //땅 레이캐스트 충돌
+    public RaycastHit2D groundRayHit;
     
     //플레이어 좌우 이동
     private float horizontal; //수평 값
@@ -142,7 +144,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("IsFall", true);
             
-            RaycastHit2D groundRayHit = Physics2D.Raycast(rigid.position, Vector2.down, 3f, LayerMask.GetMask("Ground"));
+            groundRayHit = Physics2D.Raycast(rigid.position, Vector2.down, 3f, LayerMask.GetMask("Ground"));
             //땅을 감지하고
             if (groundRayHit.collider != null)
             {

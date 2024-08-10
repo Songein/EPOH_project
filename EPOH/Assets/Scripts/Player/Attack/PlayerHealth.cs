@@ -29,7 +29,7 @@ public class PlayerHealth : MonoBehaviour
 
             //파라미터로 입력받은 power 만큼 hp가 감소함.
             player_hp -= power;
-            boss_manager.player_hp = player_hp;
+            //boss_manager.player_hp = player_hp;
             Debug.Log("[PlayerHealth] : 남은 hp " + player_hp);
 
             if (player_hp <= 0) //플레이어 목숨이 0이하라면

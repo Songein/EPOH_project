@@ -8,6 +8,7 @@ TagManager:
   - OneWayPlatform
   - Boss
   - BossPhaseItem
+  - Ground
   layers:
   - Default
   - TransparentFX
