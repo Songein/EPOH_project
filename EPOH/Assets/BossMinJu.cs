@@ -25,6 +25,13 @@ public class BossMinJu : MonoBehaviour
     public GameObject scratch_prefab; // 할퀸 자국 프리팹
     public GameObject scratch_particle_prefab; // 할퀸 자국 폭발 이펙트 프리팹
 
+    //추적 변수
+    public GameObject tracking_eye_prefab; // 추적 눈동자 프리팹
+    public GameObject tracking_effect_prefab; // 추적 이펙트 프리팹
+    public float tracking_effect_speed = 5.0f; // 추적 이펙트의 속도
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -197,7 +204,7 @@ public class BossMinJu : MonoBehaviour
         }
     }
     }
-    /*
+    
     public void Track()
     {
         StartCoroutine(Tracking());
@@ -205,9 +212,36 @@ public class BossMinJu : MonoBehaviour
 
     private IEnumerator Tracking()
     {
+        // 플레이어 위치의 y축 2에 추적 눈동자 프리팹 생성
+        Vector3 eyePosition = new Vector3(player.transform.position.x, player.transform.position.y + 2, player.transform.position.z);
+        GameObject tracking_eye = Instantiate(tracking_eye_prefab, eyePosition, Quaternion.identity);
+
+        // 플레이어가 바라보는 방향 뒤쪽에 추적 이펙트 프리팹 생성
+        Vector3 effectSpawnPosition = player.transform.position - player.transform.right * 2.0f; // 플레이어 뒤쪽에 2단위 거리로 생성
+        GameObject tracking_effect = Instantiate(tracking_effect_prefab, effectSpawnPosition, Quaternion.identity);
+
+        float elapsedTime = 0f;
+        float duration = 5.0f; // 추적 이펙트가 플레이어를 따라다니는 시간
+
+        while (elapsedTime < duration)
+        {
+            tracking_eye.transform.position = new Vector3(player.transform.position.x, tracking_eye.transform.position.y, tracking_eye.transform.position.z);
+
+            // 추적 이펙트가 플레이어의 방향으로 일정 속도로 따라가도록 설정
+            Vector3 directionToPlayer = (player.transform.position - tracking_effect.transform.position).normalized;
+            tracking_effect.transform.position += directionToPlayer * tracking_effect_speed * Time.deltaTime;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // 5초 후 추적 눈동자와 이펙트 제거
+        Destroy(tracking_eye);
+        Destroy(tracking_effect);
 
     }
 
+    /*
 
     public void Bite()
     {
