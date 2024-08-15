@@ -9,8 +9,6 @@ public class BossBiting : MonoBehaviour
     [SerializeField] float attack_power = 10f; // 보스 공격 세기
 
     [SerializeField] float reach_distance_short; // 포물선 이동 거리
-    [SerializeField] float Dog_min_area; // 이동 가능 최소 x 위치
-    [SerializeField] float Dog_max_area; // 이동 가능 최대 x 위치
     [SerializeField] float Dog_yposition; // 이동할 y 위치
 
     public GameObject shadow_prefab; // 그림자 오브젝트 프리팹
