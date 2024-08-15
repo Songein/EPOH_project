@@ -26,6 +26,7 @@ public class StompingNew : MonoBehaviour
     [SerializeField] private float rockFallPower; //돌 낙하 힘
     [SerializeField] private float rockSetDuration = 1.5f; //세트 간 간격
     [SerializeField] private Vector3 rockStartSpawn; //돌 스폰 위치 기준의 시작
+    [SerializeField] private Vector3 rockMiddleSpawn; //돌 스폰 위치 기준의 중간
     [SerializeField] private Vector3 rockEndSpawn; //돌 스폰 위치 기준의 끝
     [SerializeField] private GameObject rockPrefab; //돌 프리팹
     private List<GameObject> rockList = new List<GameObject>(); //돌 리스트
@@ -125,13 +126,27 @@ public class StompingNew : MonoBehaviour
     {
         if (curSet >= 4)
         {
+            curSet = 0;
+            rockList.Clear();
             yield break;
         }
-        for (int i = 0; i < rockCnt; i++)
+        for (int i = 0; i < rockCnt/2; i++)
         {
-            float randX = Random.Range(rockStartSpawn.x, rockEndSpawn.x);
-            float randY = Random.Range(rockStartSpawn.y, rockEndSpawn.y);
-            rockList.Add(Instantiate(rockPrefab, new Vector2(randX,randY),Quaternion.identity));
+            float randX = Random.Range(rockStartSpawn.x, rockMiddleSpawn.x);
+            float randY = Random.Range(rockStartSpawn.y, rockMiddleSpawn.y);
+            GameObject rock = Instantiate(rockPrefab, new Vector2(randX, randY), Quaternion.identity);
+            float randGravity = Random.Range(1, 3);
+            rock.GetComponent<Rigidbody2D>().gravityScale = randGravity;
+            rockList.Add(rock);
+        }
+        for (int i = 0; i < rockCnt/2; i++)
+        {
+            float randX = Random.Range(rockMiddleSpawn.x, rockEndSpawn.x);
+            float randY = Random.Range(rockMiddleSpawn.y, rockEndSpawn.y);
+            GameObject rock = Instantiate(rockPrefab, new Vector2(randX, randY), Quaternion.identity);
+            float randGravity = Random.Range(1, 3);
+            rock.GetComponent<Rigidbody2D>().gravityScale = randGravity;
+            rockList.Add(rock);
         }
         curSet++;
         yield return new WaitForSeconds(1.5f);
