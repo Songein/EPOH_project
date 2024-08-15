@@ -19,6 +19,7 @@ public class ExplosionWave : MonoBehaviour
 
     public void SetActiveFalse()
     {
+        Destroy(transform.parent.gameObject);
         gameObject.SetActive(false);
     }
 }

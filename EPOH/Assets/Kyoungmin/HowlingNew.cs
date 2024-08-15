@@ -74,6 +74,10 @@ public class HowlingNew : MonoBehaviour
     //강화 하울링 호출 함수
     public void Howling2()
     {
+        //보스 리스트 및 absorb 플래그 초기화
+        bossList.Clear();
+        absorbFlag = false;
+        //양 쪽 맵 중 한 곳에서 랜덤으로 등장
         int randValue = Random.Range(0, 2);
         if (randValue == 0)
         {
@@ -128,9 +132,6 @@ public class HowlingNew : MonoBehaviour
         yield return new WaitForSeconds(explosionStartTime);
         
         bossList[0].transform.GetChild(1).gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        Destroy(bossList[0]);
-        bossList.Clear();
     }
     bool IsPlayerRight()
     {
