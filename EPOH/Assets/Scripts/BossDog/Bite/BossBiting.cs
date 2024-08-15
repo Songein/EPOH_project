@@ -50,15 +50,43 @@ public class BossBiting : MonoBehaviour
 
     private IEnumerator Biting()
     {
+        // 그림자 오브젝트 생성
+        Vector3 shadowStartPosition = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z); // y 축 위치를 0.5 아래로 설정
+        GameObject shadow_object = Instantiate(shadow_prefab, shadowStartPosition, Quaternion.identity);
+        Debug.Log("왼쪽으로 무는 이펙트");
+
+        // 처음에는 그림자를 그대로 둠
+        shadow_object.transform.localScale = new Vector3(Mathf.Abs(shadow_object.transform.localScale.x), shadow_object.transform.localScale.y, shadow_object.transform.localScale.z);
+
+        // 그림자가 잠시 나타난 후 반전시킴
+        yield return new WaitForSeconds(0.8f); // 0.5초 후 반전
+        shadow_object.transform.localScale = new Vector3(-shadow_object.transform.localScale.x, shadow_object.transform.localScale.y, shadow_object.transform.localScale.z); // 그림자 반전
+        Debug.Log("오른쪽으로 무는 이펙트");
+
+        // 그림자가 반전된 후 다시 0.5초 동안 기다림
+        yield return new WaitForSeconds(0.8f);
+
+        // 플레이어 위치에 따라 그림자를 반전시킴
+        if (player.transform.position.x > shadowStartPosition.x)
+        {
+            shadow_object.transform.localScale = new Vector3(-Mathf.Abs(shadow_object.transform.localScale.x), shadow_object.transform.localScale.y, shadow_object.transform.localScale.z); // 그림자 반전
+        }
+        else
+        {
+            shadow_object.transform.localScale = new Vector3(Mathf.Abs(shadow_object.transform.localScale.x), shadow_object.transform.localScale.y, shadow_object.transform.localScale.z); // 그림자 그대로
+        }
+
+        // 반전된 상태에서 1초 동안 대기
+        yield return new WaitForSeconds(1.5f);
+        Debug.Log("플레이어를 바라보며 으르렁대는 모션");
+        
         //플레이어의 현재 위치 파악
         Vector2 player_pos = player.transform.position;
-        //보스의 시작 위치 파악
-        Vector2 start = transform.position;
-        float bite_distance = 0f; //보스가 이동할 거리
+        //그림자의 시작 위치 파악
+        Vector2 start = shadow_object.transform.position;
+        float bite_distance = 0f; //그림자가 이동할 거리
 
-        //transform.position.x - player_pos.x 값이 양수면 플레이어는 보스의 왼쪽에 위치함.
-        //반대로, 음수면 플레이어는 보스의 오른쪽에 위치함을 알 수 있음.
-        if (transform.position.x - player_pos.x >= 0f)
+        if (shadow_object.transform.position.x - player_pos.x >= 0f)
         {
             //포물선 이동을 왼쪽으로 사정거리만큼 하도록 설정
             bite_distance = -1 * reach_distance_short;
@@ -87,12 +115,12 @@ public class BossBiting : MonoBehaviour
             }
         }
 
-        // 보스의 도착지점 위치 지정
+        // 그림자의 도착지점 위치 지정
         Vector2 end = new Vector2(player_pos.x, Dog_yposition);
         //bite area 오브젝트 활성화(공격 범위 활성화)
         bite_area.SetActive(true);
 
-        //해당 위치로 아치형을 그리며 돌진
+        //해당 위치로 아치형을 그리며 그림자를 돌진
         float time = 0f;
         while (time < bite_duration)
         {
@@ -101,14 +129,15 @@ public class BossBiting : MonoBehaviour
             float heightT = curve.Evaluate(linearT);
             float height = Mathf.Lerp(0.0f, 10f, heightT);
 
-            transform.position = Vector2.Lerp(start, end, linearT) + new Vector2(0.0f, height);
+            shadow_object.transform.position = Vector2.Lerp(start, end, linearT) + new Vector2(0.0f, height);
             yield return null;
         }
-        // 보스를 y축 -4로 내려오도록 설정
-        Vector2 groundPosition = new Vector2(transform.position.x, -4f);
-        while (transform.position.y > -4f)
+
+        // 그림자를 y축 -4로 내려오도록 설정
+        Vector2 groundPosition = new Vector2(shadow_object.transform.position.x, -4f);
+        while (shadow_object.transform.position.y > -4f)
         {
-            transform.position = new Vector2(transform.position.x, Mathf.MoveTowards(transform.position.y, -4f, Time.deltaTime * 10.0f));
+            shadow_object.transform.position = new Vector2(shadow_object.transform.position.x, Mathf.MoveTowards(shadow_object.transform.position.y, -4f, Time.deltaTime * 10.0f));
             yield return null;
         }
         
@@ -129,6 +158,8 @@ public class BossBiting : MonoBehaviour
             bite_effects[1].SetActive(false);
         }
 
+        // 그림자 오브젝트 삭제
+        Destroy(shadow_object);
     }
     
 

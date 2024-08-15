@@ -862,11 +862,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1651805684219966640, guid: 1798fccc825e741998eadc340af4ab3c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.9
+      value: -19.25
       objectReference: {fileID: 0}
     - target: {fileID: 1651805684219966640, guid: 1798fccc825e741998eadc340af4ab3c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.2
+      value: 0.28
       objectReference: {fileID: 0}
     - target: {fileID: 1651805684219966640, guid: 1798fccc825e741998eadc340af4ab3c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -990,7 +990,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 846187091}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.05, y: -2.83, z: 0}
+  m_LocalPosition: {x: -8.25, y: -2.92, z: 0}
   m_LocalScale: {x: 2.246, y: 2.1422, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1152,7 +1152,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   bite_duration: 0.5
   bite_effects: []
-  bite_renderer: {fileID: 846187092}
+  bite_renderer: {fileID: 5950484199248453705, guid: 9692569e776a14ba5a22d56fabeecfa4, type: 3}
 --- !u!1 &912342901
 GameObject:
   m_ObjectHideFlags: 0
