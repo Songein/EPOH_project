@@ -426,9 +426,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 846187098}
-        m_TargetAssemblyTypeName: BossMinJu, Assembly-CSharp
-        m_MethodName: Run
+      - m_Target: {fileID: 846187099}
+        m_TargetAssemblyTypeName: BossRunning, Assembly-CSharp
+        m_MethodName: Activate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -695,9 +695,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 846187098}
-        m_TargetAssemblyTypeName: BossMinJu, Assembly-CSharp
-        m_MethodName: Scratch
+      - m_Target: {fileID: 846187100}
+        m_TargetAssemblyTypeName: BossScratching, Assembly-CSharp
+        m_MethodName: Activate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -862,11 +862,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1651805684219966640, guid: 1798fccc825e741998eadc340af4ab3c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -19.25
       objectReference: {fileID: 0}
     - target: {fileID: 1651805684219966640, guid: 1798fccc825e741998eadc340af4ab3c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.28
       objectReference: {fileID: 0}
     - target: {fileID: 1651805684219966640, guid: 1798fccc825e741998eadc340af4ab3c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -919,7 +919,10 @@ GameObject:
   - component: {fileID: 846187094}
   - component: {fileID: 846187095}
   - component: {fileID: 846187097}
-  - component: {fileID: 846187098}
+  - component: {fileID: 846187099}
+  - component: {fileID: 846187100}
+  - component: {fileID: 846187101}
+  - component: {fileID: 846187102}
   m_Layer: 7
   m_Name: Boss
   m_TagString: Boss
@@ -987,11 +990,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 846187091}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.11, y: -2.92, z: 0}
+  m_LocalPosition: {x: -8.25, y: -2.92, z: 0}
   m_LocalScale: {x: 2.246, y: 2.1422, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1752370952}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1056,7 +1058,7 @@ MonoBehaviour:
   phase3_start: 0
   phase4_start: 0
   battle_start: 0
---- !u!114 &846187098
+--- !u!114 &846187099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1065,25 +1067,67 @@ MonoBehaviour:
   m_GameObject: {fileID: 846187091}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c0ab6212b4da421f92fa86b5f99057d, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bd022644227bb64399ca95d13aa2c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  attack_power: 10
+  shadow_prefab: {fileID: 3798098871553349891, guid: 9692569e776a14ba5a22d56fabeecfa4, type: 3}
+  shadow_speed: 10
+  warning_duration: 3
+  warning_color: {r: 1, g: 0, b: 0, a: 1}
+  bossIconPrefab: {fileID: 5474589133209643891, guid: 25afa047b0bbf461ea93ff28d8b23a53, type: 3}
+--- !u!114 &846187100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846187091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f562463bfe46e49b69b912c67b03cd15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  attack_power: 10
+  scratch_prefab: {fileID: 8306289788758409414, guid: f77f81680eeb342e291d842f96fea4d7, type: 3}
+  scratch_pop: {fileID: 8306289788758409414, guid: 579c13866060b42229503eb52e37784f, type: 3}
+--- !u!114 &846187101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846187091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d057c2ceeef0e4795b4992efdf8df596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  attack_power: 10
+  tracking_eye_prefab: {fileID: 8982902104962463404, guid: 9fbf317a58a6c4c32b10965c738a5457, type: 3}
+  tracking_effect_prefab: {fileID: 8982902104962463404, guid: 39d2cad1bf8bf4dc79f9abf933e22a3c, type: 3}
+  tracking_pop_prefab: {fileID: 8982902104962463404, guid: 453fb190e6d7a44b0bb8958ba82ffb68, type: 3}
+--- !u!114 &846187102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846187091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebdb7ef74db4844c2bc93c6fb8f3aaca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   attack_power: 10
   reach_distance_short: 0
-  Dog_min_area: 0
-  Dog_max_area: 0
   Dog_yposition: 0
-  shadow_prefab: {fileID: 7001229360130489691, guid: 7685437a3f42e49c7b36d3a967f79a7e, type: 3}
-  shadow_speed: 8
-  warning_duration: 3
-  warning_color: {r: 1, g: 0, b: 0, a: 1}
-  scratch_prefab: {fileID: 8306289788758409414, guid: f77f81680eeb342e291d842f96fea4d7, type: 3}
-  scratch_particle_prefab: {fileID: 8306289788758409414, guid: d488f94c0043d4fefa4c8655cfd8a49e, type: 3}
-  tracking_eye_prefab: {fileID: 8982902104962463404, guid: 9fbf317a58a6c4c32b10965c738a5457, type: 3}
-  tracking_effect_prefab: {fileID: 8982902104962463404, guid: 39d2cad1bf8bf4dc79f9abf933e22a3c, type: 3}
-  tracking_effect_speed: 5
-  bite_area: {fileID: 1752370951}
+  shadow_prefab: {fileID: 3798098871553349891, guid: 9692569e776a14ba5a22d56fabeecfa4, type: 3}
+  shadow_speed: 10
   curve:
     serializedVersion: 2
     m_Curve: []
@@ -1092,7 +1136,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   bite_duration: 0.5
   bite_effects: []
-  bite_renderer: {fileID: 846187092}
+  bite_renderer: {fileID: 5950484199248453705, guid: 9692569e776a14ba5a22d56fabeecfa4, type: 3}
 --- !u!1 &912342901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1624,9 +1668,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 846187098}
-        m_TargetAssemblyTypeName: BossMinJu, Assembly-CSharp
-        m_MethodName: Track
+      - m_Target: {fileID: 846187101}
+        m_TargetAssemblyTypeName: BossTracking, Assembly-CSharp
+        m_MethodName: Activate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2019,68 +2063,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minCameraBoundary: {x: -11, y: 0}
   maxCameraBoundary: {x: 11, y: 5}
---- !u!1 &1752370951
+--- !u!1 &1461546386 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1651805684219966643, guid: 1798fccc825e741998eadc340af4ab3c, type: 3}
+  m_PrefabInstance: {fileID: 800038584}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1752370952}
-  - component: {fileID: 1752370954}
-  - component: {fileID: 1752370953}
-  m_Layer: 7
-  m_Name: BiteArea
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1752370952
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1752370951}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.373, y: 0.025, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 846187093}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &1752370953
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1752370951}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.06669436, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.43330568
---- !u!114 &1752370954
+--- !u!114 &1461546397
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1752370951}
+  m_GameObject: {fileID: 1461546386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 771d54faeafac410d8c3b800712d43a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 5492f69f317ce4ffa832b60bb8c81636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 10
+  boss_manager: {fileID: 0}
+  player_hp: 200
+  is_invincible: 0
 --- !u!1 &1778277528
 GameObject:
   m_ObjectHideFlags: 0
@@ -2165,9 +2167,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 846187098}
-        m_TargetAssemblyTypeName: BossMinJu, Assembly-CSharp
-        m_MethodName: Bite
+      - m_Target: {fileID: 846187102}
+        m_TargetAssemblyTypeName: BossBiting, Assembly-CSharp
+        m_MethodName: Activate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
