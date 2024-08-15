@@ -20,7 +20,6 @@ public class BossBiting : MonoBehaviour
     private Vector3 rightEdge;
 
     //물기 변수
-    public GameObject bite_area; //bite 공격 범위 오브젝트
     public AnimationCurve curve; //포물선 이동을 위한 AnimationCurve 선언
     [SerializeField] float bite_duration = 0.5f; //포물선 이동에 걸리는 시간
     [SerializeField] private GameObject[] bite_effects; //bite effect 배열
@@ -92,13 +91,6 @@ public class BossBiting : MonoBehaviour
             bite_distance = -1 * reach_distance_short;
             //보스의 스프라이트를 왼쪽 방향으로 설정
             bite_renderer.flipX = false;
-            //공격 범위를 플레이어를 보는 방향으로 설정
-            bite_area.GetComponent<BiteArea>().SetPos(false);
-            // 안전하게 배열에 접근
-            if (bite_effects.Length > 0)
-            {
-                bite_effects[0].SetActive(true);
-            }
         }
         else
         {
@@ -106,19 +98,10 @@ public class BossBiting : MonoBehaviour
             bite_distance = 1 * reach_distance_short;
             //보스의 스프라이트를 오른쪽 방향으로 설정
             bite_renderer.flipX = true;
-            //공격 범위를 플레이어를 보는 방향으로 설정
-            bite_area.GetComponent<BiteArea>().SetPos(true);
-            // 안전하게 배열에 접근
-            if (bite_effects.Length > 1)
-            {
-                bite_effects[1].SetActive(true);
-            }
         }
 
         // 그림자의 도착지점 위치 지정
         Vector2 end = new Vector2(player_pos.x, Dog_yposition);
-        //bite area 오브젝트 활성화(공격 범위 활성화)
-        bite_area.SetActive(true);
 
         //해당 위치로 아치형을 그리며 그림자를 돌진
         float time = 0f;
@@ -145,18 +128,6 @@ public class BossBiting : MonoBehaviour
         // 땅에 도착한 후 잠시 대기
         yield return new WaitForSeconds(0.1f);
         
-        // bite area 비활성화
-        bite_area.SetActive(false);
-
-        if (bite_effects.Length > 0)
-        {
-            bite_effects[0].SetActive(false);
-        }
-
-        if (bite_effects.Length > 1)
-        {
-            bite_effects[1].SetActive(false);
-        }
 
         // 그림자 오브젝트 삭제
         Destroy(shadow_object);
