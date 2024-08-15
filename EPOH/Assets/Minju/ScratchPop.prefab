@@ -10,13 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1524046688814431272}
   - component: {fileID: 6775924501499535384}
-  - component: {fileID: 8631778438355002439}
-  - component: {fileID: -429624944808705542}
-  - component: {fileID: 4993834212491286283}
-  - component: {fileID: -919733613344074731}
-  m_Layer: 7
-  m_Name: ScratchParticles
-  m_TagString: Boss
+  - component: {fileID: -4505056680732098834}
+  - component: {fileID: -8639894503606056461}
+  m_Layer: 0
+  m_Name: ScratchPop
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8306289788758409414}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.6748, y: -12.6143, z: 0}
-  m_LocalScale: {x: 1.63513, y: 1.2247072, z: 1}
+  m_LocalPosition: {x: -6.8422, y: -10.819, z: 0}
+  m_LocalScale: {x: 3.262807, y: 3.2674122, z: 0.4469262}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.8113208, g: 0.53960484, b: 0.53960484, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -88,8 +86,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &8631778438355002439
-BoxCollider2D:
+--- !u!58 &-4505056680732098834
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -101,55 +99,10 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0.0020825765, y: 0.0029376773}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &-429624944808705542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8306289788758409414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a06733a94cce544d1ad187e99f10cbe1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boss_manager: {fileID: 0}
-  hacking: {fileID: 0}
-  boss_hp: 1000
---- !u!114 &4993834212491286283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8306289788758409414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 355606f8fb30bca4a856e2880bf8da9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boss_hp: 1000
-  player_hp: 200
-  hacking_point: 0
-  phase1_start: 0
-  phase2_start: 0
-  phase3_start: 0
-  phase4_start: 0
-  battle_start: 0
---- !u!114 &-919733613344074731
+  m_Radius: 0.49166924
+--- !u!114 &-8639894503606056461
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,7 +120,4 @@ MonoBehaviour:
   Dog_min_area: 0
   Dog_max_area: 0
   Dog_yposition: 0
-  shadow_prefab: {fileID: 7001229360130489691, guid: 7685437a3f42e49c7b36d3a967f79a7e, type: 3}
-  shadow_speed: 10
-  scratch_prefab: {fileID: 8306289788758409414, guid: f77f81680eeb342e291d842f96fea4d7, type: 3}
-  scratch_particle_prefab: {fileID: 8306289788758409414}
+  scratch_prefab: {fileID: 0}

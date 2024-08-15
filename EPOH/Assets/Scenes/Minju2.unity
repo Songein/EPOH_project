@@ -1100,10 +1100,8 @@ MonoBehaviour:
   Dog_min_area: 0
   Dog_max_area: 0
   Dog_yposition: 0
-  shadow_prefab: {fileID: 7001229360130489691, guid: 7685437a3f42e49c7b36d3a967f79a7e, type: 3}
-  shadow_speed: 10
   scratch_prefab: {fileID: 8306289788758409414, guid: f77f81680eeb342e291d842f96fea4d7, type: 3}
-  scratch_particle_prefab: {fileID: 8306289788758409414, guid: d488f94c0043d4fefa4c8655cfd8a49e, type: 3}
+  scratch_pop: {fileID: 8306289788758409414, guid: 579c13866060b42229503eb52e37784f, type: 3}
 --- !u!114 &846187101
 MonoBehaviour:
   m_ObjectHideFlags: 0
