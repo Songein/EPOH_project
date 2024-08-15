@@ -36,7 +36,7 @@ public class BossTracking : MonoBehaviour
             Debug.Log("플레이어 발견");
         }
 
-        // 씬의 가장 왼쪽과 오른쪽 좌표를 설정 (카메라 뷰포트를 기준으로 계산)
+        // Scene의 가장 왼쪽과 오른쪽 좌표를 설정
         leftEdge = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, 0));
         rightEdge = Camera.main.ViewportToWorldPoint(new Vector3(1, 0.5f, 0));
         
@@ -59,6 +59,9 @@ public class BossTracking : MonoBehaviour
 
         float elapsedTime = 0f;
         float duration = 5.0f; // 추적 이펙트가 플레이어를 따라다니는 시간
+        float blinkInterval = 0.8f; // 이펙트가 보였다가 사라지는 간격
+        bool isEffectVisible = true; // 이펙트의 초기 상태 (보이는 상태)
+
 
         while (elapsedTime < duration)
         {
@@ -67,6 +70,24 @@ public class BossTracking : MonoBehaviour
             // 추적 이펙트가 플레이어의 방향으로 일정 속도로 따라가도록 설정
             Vector3 directionToPlayer = (player.transform.position - tracking_effect.transform.position).normalized;
             tracking_effect.transform.position += directionToPlayer * tracking_effect_speed * Time.deltaTime;
+
+            // 1초마다 이펙트를 보였다가 사라지게 함
+            if (elapsedTime % (blinkInterval * 2) < blinkInterval)
+            {
+                if (!isEffectVisible)
+                {
+                    tracking_effect.SetActive(true);
+                    isEffectVisible = true;
+                }
+            }
+            else
+            {
+                if (isEffectVisible)
+                {
+                    tracking_effect.SetActive(false);
+                    isEffectVisible = false;
+                }
+            }
 
             elapsedTime += Time.deltaTime;
             yield return null;
