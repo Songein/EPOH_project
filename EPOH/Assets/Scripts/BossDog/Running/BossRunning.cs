@@ -23,6 +23,9 @@ public class BossRunning : MonoBehaviour
     public float warning_duration = 3.0f; // 전조 영역 지속 시간
     public Color warning_color = Color.red; // 전조 영역 색상
 
+    // 보스 표식 스프라이트
+    public GameObject bossIconPrefab;
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +38,7 @@ public class BossRunning : MonoBehaviour
             Debug.Log("플레이어 발견");
         }
 
-        // 씬의 가장 왼쪽과 오른쪽 좌표를 설정 (카메라 뷰포트를 기준으로 계산)
+        // Scene의 가장 왼쪽과 오른쪽 좌표를 설정
         leftEdge = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, 0));
         rightEdge = Camera.main.ViewportToWorldPoint(new Vector3(1, 0.5f, 0));
     }
@@ -52,8 +55,11 @@ public class BossRunning : MonoBehaviour
         Vector3 targetPosition = objTransform.position.x < (rightEdge.x + leftEdge.x) / 2 ? rightEdge : leftEdge;
         Vector3 startPosition = objTransform.position;
         
+        GameObject warningContainer = new GameObject("WarningContainer");
+
         // 전조 영역 생성 및 유지
         GameObject warning_area = new GameObject("WarningArea");
+        warning_area.transform.SetParent(warningContainer.transform); // 부모 오브젝트의 자식으로 설정
         warning_area.transform.position = new Vector3((startPosition.x + targetPosition.x) / 2, objTransform.position.y, objTransform.position.z);
         warning_renderer = warning_area.AddComponent<SpriteRenderer>();
 
@@ -67,9 +73,16 @@ public class BossRunning : MonoBehaviour
         float warning_width = Mathf.Abs(targetPosition.x - startPosition.x);
         warning_renderer.transform.localScale = new Vector3(warning_width, objTransform.localScale.y, 1);
 
+        // 보스 표식 추가
+        if (bossIconPrefab != null)
+        {
+            GameObject bossIcon = Instantiate(bossIconPrefab, warningContainer.transform);
+            bossIcon.transform.position = new Vector3(warning_area.transform.position.x, warning_area.transform.position.y, warning_area.transform.position.z);
+        }
+        
         yield return new WaitForSeconds(warning_duration); // 전조 영역 유지
 
-        Destroy(warning_area); // 전조 영역 삭제
+        Destroy(warningContainer); // 전조 영역 삭제
 
         // 그림자 오브젝트 생성 및 이동
         GameObject shadow_object = Instantiate(shadow_prefab, objTransform.position, Quaternion.identity);

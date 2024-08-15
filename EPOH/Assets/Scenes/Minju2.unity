@@ -1078,9 +1078,10 @@ MonoBehaviour:
   Dog_max_area: 0
   Dog_yposition: 0
   shadow_prefab: {fileID: 7001229360130489691, guid: 7685437a3f42e49c7b36d3a967f79a7e, type: 3}
-  shadow_speed: 15
+  shadow_speed: 10
   warning_duration: 3
   warning_color: {r: 1, g: 0, b: 0, a: 1}
+  bossIconPrefab: {fileID: 5474589133209643891, guid: 25afa047b0bbf461ea93ff28d8b23a53, type: 3}
 --- !u!114 &846187100
 MonoBehaviour:
   m_ObjectHideFlags: 0
