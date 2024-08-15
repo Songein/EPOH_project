@@ -37,7 +37,7 @@ public class BossBiting : MonoBehaviour
             Debug.Log("플레이어 발견");
         }
 
-        // 씬의 가장 왼쪽과 오른쪽 좌표를 설정 (카메라 뷰포트를 기준으로 계산)
+        // Scene의 가장 왼쪽과 오른쪽 좌표를 설정
         leftEdge = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, 0));
         rightEdge = Camera.main.ViewportToWorldPoint(new Vector3(1, 0.5f, 0));
         

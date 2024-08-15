@@ -85,15 +85,27 @@ public class BossRunning : MonoBehaviour
         Destroy(warningContainer); // 전조 영역 삭제
 
         // 그림자 오브젝트 생성 및 이동
-        GameObject shadow_object = Instantiate(shadow_prefab, objTransform.position, Quaternion.identity);
+        Vector3 shadowStartPosition = new Vector3(objTransform.position.x, objTransform.position.y - 0.5f, objTransform.position.z); // y 축 위치를 0.5 아래로 설정
+        GameObject shadow_object = Instantiate(shadow_prefab, shadowStartPosition, Quaternion.identity);
+
+        // 이동 방향에 따른 스프라이트 플립 설정
+        if (targetPosition.x > shadowStartPosition.x)
+        {
+            shadow_object.transform.localScale = new Vector3(-Mathf.Abs(shadow_object.transform.localScale.x), shadow_object.transform.localScale.y, shadow_object.transform.localScale.z); // 왼쪽에서 오른쪽으로 이동 시 뒤집기
+        }
+        else
+        {
+            shadow_object.transform.localScale = new Vector3(Mathf.Abs(shadow_object.transform.localScale.x), shadow_object.transform.localScale.y, shadow_object.transform.localScale.z); // 오른쪽에서 왼쪽으로 이동 시 그대로 사용
+        }
+
         Vector3 shadow_target_position = new Vector3(targetPosition.x, shadow_object.transform.position.y, shadow_object.transform.position.z);
         
         // 그림자의 y 좌표를 고정하여 수평으로만 이동하도록 설정
-        float fixedY = objTransform.position.y;
+        float fixedY = shadowStartPosition.y;
 
         while (Vector3.Distance(shadow_object.transform.position, shadow_target_position) > 0.1f)
         {
-            shadow_object.transform.position = Vector3.MoveTowards(shadow_object.transform.position, new Vector3(shadow_target_position.x, fixedY, shadow_target_position.z), shadow_speed * Time.deltaTime);
+            shadow_object.transform.position = Vector3.MoveTowards(shadow_object.transform.position, shadow_target_position, shadow_speed * Time.deltaTime);
             yield return null;
         }
 

@@ -990,7 +990,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 846187091}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.11, y: -2.92, z: 0}
+  m_LocalPosition: {x: -19.05, y: -2.83, z: 0}
   m_LocalScale: {x: 2.246, y: 2.1422, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1077,7 +1077,7 @@ MonoBehaviour:
   Dog_min_area: 0
   Dog_max_area: 0
   Dog_yposition: 0
-  shadow_prefab: {fileID: 7001229360130489691, guid: 7685437a3f42e49c7b36d3a967f79a7e, type: 3}
+  shadow_prefab: {fileID: 3798098871553349891, guid: 9692569e776a14ba5a22d56fabeecfa4, type: 3}
   shadow_speed: 10
   warning_duration: 3
   warning_color: {r: 1, g: 0, b: 0, a: 1}
@@ -1120,8 +1120,6 @@ MonoBehaviour:
   Dog_min_area: 0
   Dog_max_area: 0
   Dog_yposition: 0
-  shadow_prefab: {fileID: 7001229360130489691, guid: 7685437a3f42e49c7b36d3a967f79a7e, type: 3}
-  shadow_speed: 10
   tracking_eye_prefab: {fileID: 8982902104962463404, guid: 9fbf317a58a6c4c32b10965c738a5457, type: 3}
   tracking_effect_prefab: {fileID: 8982902104962463404, guid: 39d2cad1bf8bf4dc79f9abf933e22a3c, type: 3}
   tracking_effect_speed: 5
@@ -1143,7 +1141,7 @@ MonoBehaviour:
   Dog_min_area: 0
   Dog_max_area: 0
   Dog_yposition: 0
-  shadow_prefab: {fileID: 7001229360130489691, guid: 7685437a3f42e49c7b36d3a967f79a7e, type: 3}
+  shadow_prefab: {fileID: 3798098871553349891, guid: 9692569e776a14ba5a22d56fabeecfa4, type: 3}
   shadow_speed: 10
   bite_area: {fileID: 1752370951}
   curve:

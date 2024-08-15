@@ -13,9 +13,6 @@ public class BossTracking : MonoBehaviour
     [SerializeField] float Dog_max_area; // 이동 가능 최대 x 위치
     [SerializeField] float Dog_yposition; // 이동할 y 위치
 
-    public GameObject shadow_prefab; // 그림자 오브젝트 프리팹
-    public float shadow_speed = 10.0f; // 그림자 이동 속도
-
     private Vector3 leftEdge;
     private Vector3 rightEdge;
 
