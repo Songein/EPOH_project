@@ -1,207 +1,115 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class BossRunning : MonoBehaviour
 {
-    [SerializeField] float precursor_time = 1.5f; //전조 시간
-    private GameObject player;
-    private PlayerController player_controller;
-    public float movement_speed = 12f; // 이동 속도
-    public float start_chasing_range = 6f; // 플레이어를 쫓기 시작할 거리
+    public GameObject player; // 플레이어 게임 오브젝트
+    private PlayerHealth player_health; //PlayerHealth 스크립트 참조
+    [SerializeField] float attack_power = 10f; // 보스 공격 세기
 
-    private bool is_chasing = false; // 플레이어를 쫓는 중인지 여부
-    public float distance_to_player; // 보스와 플레이어 간의 거리
-    private float time_since_last_player_move = 0f; // 플레이어의 마지막 움직임 기록
-    public float delay_before_chasing = 5f; // 플레이어 위치 이동 후 플레이어 쫓기 전 보스 딜레이 시간
+    [SerializeField] float reach_distance_short; // 포물선 이동 거리
+    [SerializeField] float Dog_min_area; // 이동 가능 최소 x 위치
+    [SerializeField] float Dog_max_area; // 이동 가능 최대 x 위치
+    [SerializeField] float Dog_yposition; // 이동할 y 위치
 
-    private Vector3 player_initial_position; // 플레이어의 초기 위치
+    public GameObject shadow_prefab; // 그림자 오브젝트 프리팹
+    public float shadow_speed = 10.0f; // 그림자 이동 속도
 
-    public GameObject damage_effect_prefab; // 데미지 효과 프리팹
-    public float effect_duration = 1.0f; // 데미지 효과의 지속 시간
+    //달리기 변수
+    private Vector3 leftEdge;
+    private Vector3 rightEdge;
+    private SpriteRenderer warning_renderer;
+    public float warning_duration = 3.0f; // 전조 영역 지속 시간
+    public Color warning_color = Color.red; // 전조 영역 색상
 
+
+    // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        player_controller = player.GetComponent<PlayerController>();
+        player = GameObject.FindWithTag("Player"); // 플레이어가 있는지 확인
 
-        if (player == null)
+        
+        if (player != null)
         {
-            Debug.LogError("플레이어 오브젝트를 찾을 수 없습니다!");
+            Debug.Log("플레이어 발견");
         }
 
-        // Make the boss object a trigger
-        GetComponent<Collider2D>().isTrigger = true;
-
-        // Make the boss object kinematic
-        GetComponent<Rigidbody2D>().isKinematic = true;
-
-        // Disable gravity for the boss object
-        GetComponent<Rigidbody2D>().gravityScale = 0;
+        // 씬의 가장 왼쪽과 오른쪽 좌표를 설정 (카메라 뷰포트를 기준으로 계산)
+        leftEdge = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, 0));
+        rightEdge = Camera.main.ViewportToWorldPoint(new Vector3(1, 0.5f, 0));
     }
 
-    /*
-    void Update()
+    public void Run()
     {
-        // player 및 player_controller가 초기화되어 있는지 확인
-        if (player != null && player_controller != null)
-        {
-            // 보스와 플레이어 간의 거리 계산
-            distance_to_player = Vector3.Distance(transform.position, player.transform.position);
-
-
-            // 플레이어를 쫓는 상태가 아니고, 플레이어와의 거리가 지정한 범위보다 큰 경우
-            if (!is_chasing && distance_to_player >= start_chasing_range)
-            {
-                //쫓기 시작
-                startChasing();
-            }
-
-            // 플레이어를 쫓는 상태이고, 플레이어와의 거리가 0 이상인 경우
-            else if(is_chasing && distance_to_player > 0)
-            {
-                // 계속해서 플레이어를 쫓음
-                continueChasing();
-
-                 // 플레이어와의 거리가 1.2 이하인 경우
-                if(distance_to_player <= 1.2f)
-                {
-                    // 플레이어에게 데미지 전달, 데미지 효과 생성
-                    PlayerHealth player_health = player.GetComponent<PlayerHealth>();
-                    if (player_health != null)
-                    {
-                        player_health.Damage(10f); // 플레이어에게 데미지 10을 입힘
-                        createDamageEffect(); //데미지 시각효과
-                    }
-                    // 쫓기 중지
-                    stopChasing();
-                }
-            }
-            
-            // 플레이어의 마지막 움직임 시간 업데이트
-            time_since_last_player_move += Time.deltaTime;
-
-            
-        }    
+        StartCoroutine(Running());
     }
 
-    void startChasing()
+    private IEnumerator Running()
     {
-        // Check if enough time has passed since the player's last movement
-        if (time_since_last_player_move >= delay_before_chasing)
-        {
-            is_chasing = true;
-            
+        // 현재 오브젝트의 위치에 따라 이동할 방향을 결정
+        Transform objTransform = this.transform;
+        Vector3 targetPosition = objTransform.position.x < (rightEdge.x + leftEdge.x) / 2 ? rightEdge : leftEdge;
+        Vector3 startPosition = objTransform.position;
+        
+        // 전조 영역 생성 및 유지
+        GameObject warning_area = new GameObject("WarningArea");
+        warning_area.transform.position = new Vector3((startPosition.x + targetPosition.x) / 2, objTransform.position.y, objTransform.position.z);
+        warning_renderer = warning_area.AddComponent<SpriteRenderer>();
 
-            // 쫓기 시작할 때 플레이어의 초기 위치 기록
-            if (player != null)
-            {
-                player_initial_position = player.transform.position;
-            }
+        // 전조 영역의 색상 
+        Color warningColorWithAlpha = new Color(warning_color.r, warning_color.g, warning_color.b, 0.5f); // 알파값 0.5 설정
+        warning_renderer.color = warningColorWithAlpha;
+        warning_renderer.sortingOrder = 20; // 오브젝트 위로 표시되도록 순서 설정
+        warning_renderer.sprite = CreateWarningSprite(); // 
+        
+        // 전조 영역의 크기 설정 (오브젝트가 이동할 거리만큼)
+        float warning_width = Mathf.Abs(targetPosition.x - startPosition.x);
+        warning_renderer.transform.localScale = new Vector3(warning_width, objTransform.localScale.y, 1);
+
+        yield return new WaitForSeconds(warning_duration); // 전조 영역 유지
+
+        Destroy(warning_area); // 전조 영역 삭제
+
+        // 그림자 오브젝트 생성 및 이동
+        GameObject shadow_object = Instantiate(shadow_prefab, objTransform.position, Quaternion.identity);
+        Vector3 shadow_target_position = new Vector3(targetPosition.x, shadow_object.transform.position.y, shadow_object.transform.position.z);
+        
+        // 그림자의 y 좌표를 고정하여 수평으로만 이동하도록 설정
+        float fixedY = objTransform.position.y;
+
+        while (Vector3.Distance(shadow_object.transform.position, shadow_target_position) > 0.1f)
+        {
+            shadow_object.transform.position = Vector3.MoveTowards(shadow_object.transform.position, new Vector3(shadow_target_position.x, fixedY, shadow_target_position.z), shadow_speed * Time.deltaTime);
+            yield return null;
+        }
+
+        Destroy(shadow_object); // 그림자 오브젝트 삭제
+    }
+
+    // 기본 사각형 스프라이트 생성 함수
+    private Sprite CreateWarningSprite()
+    {
+        Texture2D texture = new Texture2D(1, 1);
+        texture.SetPixel(0, 0, Color.red);
+        texture.Apply();
+
+        Rect rect = new Rect(0.0f, 0.0f, 1.0f, 1.0f);
+        Vector2 pivot = new Vector2(0.5f, 0.5f);
+
+        return Sprite.Create(texture, rect, pivot, 1.0f);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) // 충돌시 데미지
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("충돌");
+
+            //PlayerHealth 스크립트 할당
+            player_health = collision.gameObject.GetComponent<PlayerHealth>();
+            player_health.Damage(attack_power); //보스의 공격 세기만큼 플레이어의 hp 감소
         }
     }
 
-    void continueChasing()
-    {
-        // 일정 시간 후에 쫓기 시작
-        StartCoroutine(chaseWithDelay());
-    }
-
-    IEnumerator chaseWithDelay()
-    {
-        yield return new WaitForSeconds(5f); // 전조 행동을 위한 5초 대기시간
-
-         // 플레이어의 초기 위치를 향해 이동하는 벡터 계산
-        Vector3 direction_to_player = (player_initial_position - transform.position).normalized;
-
-        // x 축 방향으로만 이동
-        transform.Translate(new Vector3(direction_to_player.x, 0, 0) * movement_speed * Time.deltaTime);
-    }
-    
-    
-    
-    void stopChasing()
-    {
-        // 쫓기 상태 비활성화
-        is_chasing = false;
-    }
-
-    //데미지 효과 생성
-    void createDamageEffect()
-    {
-        if (damage_effect_prefab != null)
-        {
-            GameObject damage_effect = Instantiate(damage_effect_prefab, player.transform.position, Quaternion.identity);
-            
-            Rigidbody2D rb = damage_effect.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                rb.isKinematic = true;
-            }
-            
-            Destroy(damage_effect, effect_duration);
-        }
-    }
-    */
-
-    IEnumerator StartRunning()
-    {
-        Debug.Log("[Running] : 보스가 몸을 웅크림.");
-        //is_attacking = true;
-        yield return new WaitForSeconds(precursor_time);
-
-        // player 및 player_controller가 초기화되어 있는지 확인
-        if (player != null && player_controller != null)
-        {
-            // 보스와 플레이어 간의 거리 계산
-            distance_to_player = Vector3.Distance(transform.position, player.transform.position);
-
-            // 플레이어를 쫓는 상태가 아니고, 플레이어와의 거리가 지정한 범위보다 큰 경우
-            if (!is_chasing && distance_to_player >= start_chasing_range)
-            {
-                //쫓기 시작
-                // Check if enough time has passed since the player's last movement
-                if (time_since_last_player_move >= delay_before_chasing)
-                {
-                    is_chasing = true;
-                    
-
-                    // 쫓기 시작할 때 플레이어의 초기 위치 기록
-                    if (player != null)
-                    {
-                        player_initial_position = player.transform.position;
-                    }
-                }
-            }
-
-            // 플레이어를 쫓는 상태이고, 플레이어와의 거리가 0 이상인 경우
-            else if(is_chasing && distance_to_player > 0)
-            {
-                // 계속해서 플레이어를 쫓음
-                yield return new WaitForSeconds(precursor_time); // 전조시간동안 대기
-
-                // 플레이어의 초기 위치를 향해 이동하는 벡터 계산
-                Vector3 direction_to_player = (player_initial_position - transform.position).normalized;
-
-                // x 축 방향으로만 이동
-                transform.Translate(new Vector3(direction_to_player.x, 0, 0) * movement_speed * Time.deltaTime);
-
-                // 플레이어와의 거리가 1.2 이하인 경우
-                if(distance_to_player <= 1.2f)
-                {
-                    // 플레이어에게 데미지 전달, 데미지 효과 생성
-                    PlayerHealth player_health = player.GetComponent<PlayerHealth>();
-                    if (player_health != null)
-                    {
-                        player_health.Damage(10f); // 플레이어에게 데미지 10을 입힘
-                    }
-                    // 쫓기 상태 비활성화
-                    is_chasing = false;
-                }
-                
-            }
-            // 플레이어의 마지막 움직임 시간 업데이트
-            time_since_last_player_move += Time.deltaTime;
-
-        }
-    }
 }
