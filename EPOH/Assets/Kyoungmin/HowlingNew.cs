@@ -10,16 +10,11 @@ public class HowlingNew : MonoBehaviour
     [SerializeField] private Vector3 spawnPoint2; //스폰 포인트2(왼쪽)
     [SerializeField] private Vector3 spawnPoint3; //스폰 포인트3(오른쪽)
     [SerializeField] private float shockWaveStartTime = 2f; //충격파 발생까지의 시간
-    [SerializeField] private float maxScaleSize = 10f; //충격파 최대크기
-    [SerializeField] private float minScaleSize = 0f; //충격파 최소크기
-    [SerializeField] private float scaleSpeed = 0.01f; //충격파 스케일 스피드
-    [SerializeField] private int scaleParam = 20; //스케일 속도
 
     [SerializeField] private float absorbingDuration = 5f; //플레이어를 빨아들이는 스킬 지속시간
     [SerializeField] private float absorbPower; //빨아들이는 힘
     private bool absorbFlag; //빨아드리는 스킬 플래그
     [SerializeField] private float explosionStartTime = 0.5f; //폭발 시작까지의 시간
-    [SerializeField] private float explosionSize = 15f; //폭발 이펙트 크기
     
     private int random; //등장 위치를 결정할 난수(하울링1)
     [SerializeField] private GameObject bossPrefab; //boss prefab
@@ -91,47 +86,18 @@ public class HowlingNew : MonoBehaviour
     {
         //충격파 전조 시간이 지나고
         yield return new WaitForSeconds(shockWaveStartTime);
-        float d = (minScaleSize + maxScaleSize) / scaleParam; //scaleUp 간격
-        float scaleValue = minScaleSize;
         //충격파 발생
         if (bossList.Count == 1)
         {
             bossList[0].transform.GetChild(0).gameObject.SetActive(true);
-            for (int i = 1; i <= scaleParam-1; i++)
-            {
-                //아래 시간을 조정함에 따라 충격파 발동 시간이 조절됨
-                yield return new WaitForSeconds(scaleSpeed);
-                scaleValue += d;
-                bossList[0].transform.GetChild(0).localScale = new Vector2(scaleValue, scaleValue);
-            }
-            yield return new WaitForSeconds(scaleSpeed);
-            
-            bossList[0].transform.GetChild(0).localScale = new Vector2(minScaleSize, minScaleSize);
-            
-            bossList[0].transform.GetChild(0).gameObject.SetActive(false);
         }
         else
         {
             bossList[0].transform.GetChild(0).gameObject.SetActive(true);
             bossList[1].transform.GetChild(0).gameObject.SetActive(true);
-            for (int i = 1; i <= scaleParam-1; i++)
-            {
-                //아래 시간을 조정함에 따라 충격파 발동 시간이 조절됨
-                yield return new WaitForSeconds(scaleSpeed);
-                scaleValue += d;
-                bossList[0].transform.GetChild(0).localScale = new Vector2(scaleValue, scaleValue);
-                bossList[1].transform.GetChild(0).localScale = new Vector2(scaleValue, scaleValue);
-            }
-            yield return new WaitForSeconds(scaleSpeed);
-            
-            bossList[0].transform.GetChild(0).localScale = new Vector2(minScaleSize, minScaleSize);
-            bossList[1].transform.GetChild(0).localScale = new Vector2(minScaleSize, minScaleSize);
-            
-            bossList[0].transform.GetChild(0).gameObject.SetActive(false);
-            bossList[1].transform.GetChild(0).gameObject.SetActive(false);
         }
-        
-        yield return new WaitForSeconds(scaleSpeed);
+
+        yield return new WaitForSeconds(0.41f);
         for (int i = 0; i < bossList.Count; i++)
         {
             Destroy(bossList[i]);
@@ -145,20 +111,8 @@ public class HowlingNew : MonoBehaviour
         absorbFlag = false;
         yield return new WaitForSeconds(explosionStartTime);
         
-        float d = (explosionSize + maxScaleSize) / scaleParam; //scaleUp 간격
-        float scaleValue = minScaleSize;
         GameObject explosionWave = transform.GetChild(1).gameObject;
         explosionWave.SetActive(true);
-        for (int i = 1; i <= scaleParam-1; i++)
-        {
-            //아래 시간을 조정함에 따라 충격파 발동 시간이 조절됨
-            yield return new WaitForSeconds(scaleSpeed);
-            scaleValue += d;
-            explosionWave.transform.localScale = new Vector2(scaleValue, scaleValue);
-        }
-        yield return new WaitForSeconds(scaleSpeed);
-        explosionWave.transform.localScale = new Vector2(minScaleSize, minScaleSize);
-        explosionWave.SetActive(false);
     }
     bool IsPlayerRight()
     {
