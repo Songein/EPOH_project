@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShockWave : MonoBehaviour
+public class ExplosionWave : MonoBehaviour
 {
     //충격파 세기
     [SerializeField] float power = 10f;
@@ -19,7 +19,6 @@ public class ShockWave : MonoBehaviour
 
     public void SetActiveFalse()
     {
-        Destroy(transform.parent.gameObject);
         gameObject.SetActive(false);
     }
 }

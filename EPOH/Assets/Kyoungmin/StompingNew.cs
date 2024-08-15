@@ -1,12 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class StompingNew : MonoBehaviour
 {
     private GameObject player;
+    [SerializeField] private Vector3 spawnPoint;
+    private GameObject boss;
+    [SerializeField] GameObject bossPrefab;
     private Vector2 playerPos;
     private SpriteRenderer sr;
     private bool facingRight;
@@ -44,7 +48,7 @@ public class StompingNew : MonoBehaviour
     {
         //개 그림자가 플레이어 위치에 생성
         playerPos = player.transform.position;
-        transform.position = playerPos;
+        boss = Instantiate(bossPrefab, playerPos, quaternion.identity);
         //플레이어를 바라본다
         StartCoroutine(FacingPlayer());
         //폭발 이펙트 생성하기
@@ -56,6 +60,17 @@ public class StompingNew : MonoBehaviour
     public void Stomping2()
     {
         //개 그림자 등장
+        int random = Random.Range(0, 2);
+        if (random == 0)
+        {
+            boss = Instantiate(bossPrefab, spawnPoint, quaternion.identity);
+            boss.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            boss = Instantiate(bossPrefab, spawnPoint, quaternion.identity);
+            boss.GetComponent<SpriteRenderer>().flipX = false;
+        }
         //두 발로 서는 애니메이
         Debug.Log("두 발로 선다.");
         //2초 후 땅을 내리친다. 땅 전체에 붉은색 전조(땅에 딛고 있으면 피해를 받음)
@@ -104,6 +119,7 @@ public class StompingNew : MonoBehaviour
             {
                 Destroy(explosionList[i]);
             } 
+            Destroy(boss);
         }
         else
         {
@@ -128,6 +144,7 @@ public class StompingNew : MonoBehaviour
         {
             curSet = 0;
             rockList.Clear();
+            Destroy(boss);
             yield break;
         }
         for (int i = 0; i < rockCnt/2; i++)
