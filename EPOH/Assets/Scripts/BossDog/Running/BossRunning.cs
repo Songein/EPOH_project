@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossRunning : MonoBehaviour
+public class BossRunning : MonoBehaviour, BossSkillInterface
 {
     public GameObject player; // 플레이어 게임 오브젝트
     private PlayerHealth player_health; //PlayerHealth 스크립트 참조
@@ -38,7 +38,7 @@ public class BossRunning : MonoBehaviour
         rightEdge = Camera.main.ViewportToWorldPoint(new Vector3(1, 0.5f, 0));
     }
 
-    public void Run()
+    public void Activate()
     {
         StartCoroutine(Running());
     }

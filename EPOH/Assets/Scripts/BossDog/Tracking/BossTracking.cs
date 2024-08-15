@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossTracking : MonoBehaviour
+public class BossTracking : MonoBehaviour, BossSkillInterface
 {
     public GameObject player; // 플레이어 게임 오브젝트
     private PlayerHealth player_health; //PlayerHealth 스크립트 참조
@@ -51,7 +51,7 @@ public class BossTracking : MonoBehaviour
         }
     }
 
-    public void Track()
+    public void Activate()
     {
         tracking_eye.SetActive(true); // 추적 눈동자 활성화
         StartCoroutine(Tracking());

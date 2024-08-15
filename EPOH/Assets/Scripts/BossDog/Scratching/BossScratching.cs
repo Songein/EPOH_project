@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossScratching : MonoBehaviour
+public class BossScratching : MonoBehaviour, BossSkillInterface
 {
     public GameObject player; // 플레이어 게임 오브젝트
     private PlayerHealth player_health; //PlayerHealth 스크립트 참조
@@ -32,7 +32,7 @@ public class BossScratching : MonoBehaviour
         
     }
 
-    public void Scratch()
+    public void Activate()
     {
         StartCoroutine(Scratching());
     }

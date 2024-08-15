@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossBiting : MonoBehaviour
+public class BossBiting : MonoBehaviour, BossSkillInterface
 {
     public GameObject player; // 플레이어 게임 오브젝트
     private PlayerHealth player_health; //PlayerHealth 스크립트 참조
@@ -40,7 +40,7 @@ public class BossBiting : MonoBehaviour
         
     }
 
-    public void Bite()
+    public void Activate()
     {
         StartCoroutine(Biting());
     }
