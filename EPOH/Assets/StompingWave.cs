@@ -5,19 +5,24 @@ using UnityEngine;
 
 public class StompingWave : MonoBehaviour
 {
-    private GameObject boss;
-    private void Start()
+    //충격파 세기
+    [SerializeField] float power = 10f;
+    void OnTriggerEnter2D(Collider2D other)
     {
-        boss = GameObject.FindWithTag("Boss");
+        //충격파가 플레이어와 충돌한 경우
+        if (other.CompareTag("Player"))
+        {
+            //플레이어에게 충격파 세기 만큼의 데미지 입힘
+            PlayerHealth player_health = other.GetComponent<PlayerHealth>();
+            player_health.Damage(power);
+        }
     }
 
-    public void GenerateExplosion()
+    /*
+    public void SetActiveFalse()
     {
-        boss.GetComponent<StompingNew>().GenerateExplosion();
+        Destroy(transform.parent.parent.gameObject);
+        gameObject.SetActive(false);
     }
-
-    public void DestroyExplosion()
-    {
-        StartCoroutine(boss.GetComponent<StompingNew>().DestroyExplosion());
-    }
+    */
 }
