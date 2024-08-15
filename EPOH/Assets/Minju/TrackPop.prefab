@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.3584906, g: 0.34327164, b: 0.34327164, a: 1}
+  m_Color: {r: 0.1981132, g: 0.17848878, b: 0.17848878, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -94,8 +94,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7706862311863421935}
   - component: {fileID: 2664136746018642423}
+  - component: {fileID: 5470897244559569420}
   m_Layer: 0
-  m_Name: TrackEffect
+  m_Name: TrackPop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,3 +144,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5470897244559569420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8982902104962463404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d057c2ceeef0e4795b4992efdf8df596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  attack_power: 10
+  reach_distance_short: 0
+  Dog_min_area: 0
+  Dog_max_area: 0
+  Dog_yposition: 0
+  tracking_eye_prefab: {fileID: 8982902104962463404, guid: 9fbf317a58a6c4c32b10965c738a5457, type: 3}
+  tracking_effect_prefab: {fileID: 8982902104962463404}
+  tracking_pop_prefab: {fileID: 8982902104962463404}

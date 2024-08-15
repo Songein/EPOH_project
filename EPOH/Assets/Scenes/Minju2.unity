@@ -1122,7 +1122,7 @@ MonoBehaviour:
   Dog_yposition: 0
   tracking_eye_prefab: {fileID: 8982902104962463404, guid: 9fbf317a58a6c4c32b10965c738a5457, type: 3}
   tracking_effect_prefab: {fileID: 8982902104962463404, guid: 39d2cad1bf8bf4dc79f9abf933e22a3c, type: 3}
-  tracking_effect_speed: 5
+  tracking_pop_prefab: {fileID: 8982902104962463404, guid: 453fb190e6d7a44b0bb8958ba82ffb68, type: 3}
 --- !u!114 &846187102
 MonoBehaviour:
   m_ObjectHideFlags: 0
