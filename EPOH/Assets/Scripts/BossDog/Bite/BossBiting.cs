@@ -4,41 +4,30 @@ using UnityEngine;
 
 public class BossBiting : MonoBehaviour, BossSkillInterface
 {
+    private BossDogController dog; //BossDogController 참조
+
     public GameObject player; // 플레이어 게임 오브젝트
     private PlayerHealth player_health; //PlayerHealth 스크립트 참조
     [SerializeField] float attack_power = 10f; // 보스 공격 세기
 
-    [SerializeField] float reach_distance_short; // 포물선 이동 거리
-    [SerializeField] float Dog_yposition; // 이동할 y 위치
-
-    public GameObject shadow_prefab; // 그림자 오브젝트 프리팹
     public float shadow_speed = 10.0f; // 그림자 이동 속도
 
-    private Vector3 leftEdge;
-    private Vector3 rightEdge;
-
     //물기 변수
-    public AnimationCurve curve; //포물선 이동을 위한 AnimationCurve 선언
+    [SerializeField] float reach_distance_short; // 포물선 이동 거리
+    [SerializeField] float Dog_yposition; // 이동할 y 위치
     [SerializeField] float bite_duration = 0.5f; //포물선 이동에 걸리는 시간
     [SerializeField] private GameObject[] bite_effects; //bite effect 배열
     [SerializeField] SpriteRenderer bite_renderer;
 
-    // Start is called before the first frame update
-    void Start()
+    public AnimationCurve curve; //포물선 이동을 위한 AnimationCurve 선언
+
+    private void Awake()
     {
-        player = GameObject.FindWithTag("Player"); // 플레이어가 있는지 확인
-
-        
-        if (player != null)
-        {
-            Debug.Log("플레이어 발견");
-        }
-
-        // Scene의 가장 왼쪽과 오른쪽 좌표를 설정
-        leftEdge = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, 0));
-        rightEdge = Camera.main.ViewportToWorldPoint(new Vector3(1, 0.5f, 0));
+        dog = GetComponent<BossDogController>();
+        player = dog._player;
         
     }
+
 
     public void Activate()
     {
@@ -49,7 +38,7 @@ public class BossBiting : MonoBehaviour, BossSkillInterface
     {
         // 그림자 오브젝트 생성
         Vector3 shadowStartPosition = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z); // y 축 위치를 0.5 아래로 설정
-        GameObject shadow_object = Instantiate(shadow_prefab, shadowStartPosition, Quaternion.identity);
+        GameObject shadow_object = Instantiate(dog.bossPrefab, shadowStartPosition, Quaternion.identity);
         Debug.Log("왼쪽으로 무는 이펙트");
 
         // 처음에는 그림자를 그대로 둠
@@ -64,14 +53,7 @@ public class BossBiting : MonoBehaviour, BossSkillInterface
         yield return new WaitForSeconds(0.8f);
 
         // 플레이어 위치에 따라 그림자를 반전시킴
-        if (player.transform.position.x > shadowStartPosition.x)
-        {
-            shadow_object.transform.localScale = new Vector3(-Mathf.Abs(shadow_object.transform.localScale.x), shadow_object.transform.localScale.y, shadow_object.transform.localScale.z); // 그림자 반전
-        }
-        else
-        {
-            shadow_object.transform.localScale = new Vector3(Mathf.Abs(shadow_object.transform.localScale.x), shadow_object.transform.localScale.y, shadow_object.transform.localScale.z); // 그림자 그대로
-        }
+        dog.IsPlayerRight(shadow_object);
 
         // 반전된 상태에서 1초 동안 대기
         yield return new WaitForSeconds(1.5f);
