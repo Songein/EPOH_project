@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     private GameObject mark; //순간이동 포트
     
 
-    void Start()
+    void Awake()
     {
         //Rigidbody2D 컴포넌트 할당
         rigid = GetComponent<Rigidbody2D>();
@@ -177,7 +177,7 @@ public class PlayerController : MonoBehaviour
             //sprite renderer flipx 값 변경하기
             sr.flipX = !is_facing_right;
             //공격 범위도 뒤집기
-            attack_area.Flip(is_facing_right);
+            attack_area.Flip();
         }
     }
 

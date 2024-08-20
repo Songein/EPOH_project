@@ -18,7 +18,6 @@ public class AttackArea : MonoBehaviour
     {
         //공격 범위 콜라이더 할당
         collider = GetComponent<PolygonCollider2D>();
-
         hacking = GetComponentInParent<Hacking>();
     }
     
@@ -90,14 +89,18 @@ public class AttackArea : MonoBehaviour
     }
 
     //플레이어 이동에 따라 공격범위 뒤집기
-    public void Flip(bool is_facing_right)
+    public void Flip()
     {
+        var points = collider.points;
         //플레이어가 오른쪽을 쳐다보고 있으면 collider offset의 x 값을 1, 아니면 -1로 설정
-        for (int i = 0; i < collider.points.Length; i++)
+        for (int i = 0; i < points.Length; i++)
         {
-            Debug.Log(collider.points[i].x);
-            collider.points[i].x *= (-1f);
+            float prevX = points[i].x;
+            Debug.Log("prev : " + prevX);
+            points[i] = new Vector2(prevX * (-1f), points[i].y);
+            Debug.Log("after : " + points[i].x);
         }
+        collider.points = points;
     }
 
     
