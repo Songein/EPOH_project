@@ -101,5 +101,18 @@ public class AttackArea : MonoBehaviour
         collider.points = points;
     }
 
+    public void Flip(bool value)
+    {
+        var points = collider.points;
+        float direction = value ? 1f : (-1f);
+        //플레이어가 오른쪽을 쳐다보고 있으면 collider offset의 x 값을 1, 아니면 -1로 설정
+        for (int i = 0; i < points.Length; i++)
+        {
+            float prevX = points[i].x;
+            points[i] = new Vector2(prevX * direction, points[i].y);
+        }
+        collider.points = points;
+    }
+
     
 }

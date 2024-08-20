@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
     private float horizontal; //수평 값
     [SerializeField] float moveSpeed; //이동 속도
     private bool is_facing_right = true; //플레이어가 오른쪽을 쳐다보고 있는지
-    private AttackArea attack_area; //AttackArea 스크립트(AttackArea의 좌우반전을 위해)
     
     //플레이어 점프
     [SerializeField] float jumpForce; //점프 힘
@@ -46,7 +45,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject mark_prefab; //순간이동 포트 프리팹
     private GameObject mark; //순간이동 포트
     
-
     void Awake()
     {
         //Rigidbody2D 컴포넌트 할당
@@ -57,8 +55,6 @@ public class PlayerController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         //Trail Renderer 컴포넌트 할당
         tr = GetComponent<TrailRenderer>();
-        //AttackArea 오브젝트의 컴포넌트 할당
-        attack_area = transform.GetChild(0).gameObject.GetComponent<AttackArea>();
     }
     
     void Update()
@@ -177,13 +173,14 @@ public class PlayerController : MonoBehaviour
             //sprite renderer flipx 값 변경하기
             sr.flipX = !is_facing_right;
             //공격 범위도 뒤집기
-            attack_area.Flip();
+            PlayerAttack.instance.attack_area.GetComponent<AttackArea>().Flip();
         }
     }
 
     public void Flip(bool value)
     {
         sr.flipX = value;
+        PlayerAttack.instance.attack_area.GetComponent<AttackArea>().Flip(value);
     }
 
     //대쉬
