@@ -167,7 +167,7 @@ public class PlayerController : MonoBehaviour
     }
     
     //플레이어 스프라이트 뒤집기
-    void Flip()
+    public void Flip()
     {
         //오른쪽을 보고 있는데 왼쪽으로 이동하거나 왼쪽을 보고 있는데 오른쪽으로 이동할 경우
         if (is_facing_right && horizontal < 0f || !is_facing_right && horizontal > 0f)
@@ -179,6 +179,11 @@ public class PlayerController : MonoBehaviour
             //공격 범위도 뒤집기
             attack_area.Flip(is_facing_right);
         }
+    }
+
+    public void Flip(bool value)
+    {
+        sr.flipX = value;
     }
 
     //대쉬

@@ -550,10 +550,8 @@ GameObject:
   - component: {fileID: 7958450969201160625}
   - component: {fileID: 7958450969201160622}
   - component: {fileID: 7958450969201160623}
-  - component: {fileID: 7958450969201160620}
-  - component: {fileID: 7958450969201160624}
-  - component: {fileID: 7958450969201160627}
-  m_Layer: 0
+  - component: {fileID: 1174004129068476786}
+  m_Layer: 7
   m_Name: Dog
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -619,12 +617,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 245fa5a79448f4775a55c85d1c2a777d, type: 3}
   m_Color: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -651,8 +649,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &7958450969201160620
-CapsuleCollider2D:
+--- !u!61 &1174004129068476786
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -665,53 +663,18 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
-  m_Direction: 0
---- !u!114 &7958450969201160624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7958450969201160621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed9517dba0a5b494bb9dca3811efda45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bossPrefab: {fileID: 7958450969201160621}
-  spawnMiddlePoint: {x: 0, y: 0, z: 0}
-  spawnLeftPoint: {x: 0, y: 0, z: 0}
-  spawnRightPoint: {x: 0, y: 0, z: 0}
-  shockWaveStartTime: 2
-  absorbingDuration: 5
-  absorbPower: 30
-  explosionStartTime: 0.5
---- !u!114 &7958450969201160627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7958450969201160621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07f074fec0e2e4a4d860ad87e3ba4824, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bossPrefab: {fileID: 7958450969201160621}
-  facingTime: 0.5
-  precursorTime: 2
-  spawnMiddlePoint: {x: 0, y: 0, z: 0}
-  stomping2Time: 2
-  rockCnt: 10
-  rockSet: 4
-  rockFallPower: 0
-  rockSetDuration: 1.5
-  rockStartSpawn: {x: -11.29, y: 2.86, z: 0}
-  rockMiddleSpawn: {x: -0.2, y: 6.2, z: 0}
-  rockEndSpawn: {x: 9.48, y: 6.2, z: 0}
-  rockPrefab: {fileID: 302933162801217857, guid: 249ab7dc4eba346cbab86b812a0cd602, type: 3}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 2.56}
+    newSize: {x: 2.56, y: 2.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.56, y: 1.45}
+  m_EdgeRadius: 0
 --- !u!1 &7958450969819303586
 GameObject:
   m_ObjectHideFlags: 0
