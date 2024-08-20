@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class AttackArea : MonoBehaviour
 {
-    private float attackPower; //공격 세기
     private PolygonCollider2D collider; //AttackArea의 collider;
+    private float attackPower; //공격 세기
     private BossHealth bossHealth; //BossHealth 참조
     private PhaseItem phaseItem; // PhaseItem 스크립트 참조
 
@@ -96,9 +96,7 @@ public class AttackArea : MonoBehaviour
         for (int i = 0; i < points.Length; i++)
         {
             float prevX = points[i].x;
-            Debug.Log("prev : " + prevX);
             points[i] = new Vector2(prevX * (-1f), points[i].y);
-            Debug.Log("after : " + points[i].x);
         }
         collider.points = points;
     }
