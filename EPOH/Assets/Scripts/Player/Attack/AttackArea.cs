@@ -7,17 +7,17 @@ using UnityEngine;
 
 public class AttackArea : MonoBehaviour
 {
-    private float attack_power; //공격 세기
-    private CircleCollider2D collider; //AttackArea의 collider;
-    private BossHealth boss_health; //BossHealth 참조
-    private PhaseItem phase_item; // PhaseItem 스크립트 참조
+    private float attackPower; //공격 세기
+    private PolygonCollider2D collider; //AttackArea의 collider;
+    private BossHealth bossHealth; //BossHealth 참조
+    private PhaseItem phaseItem; // PhaseItem 스크립트 참조
 
     private Hacking hacking;
     
     void Awake()
     {
         //공격 범위 콜라이더 할당
-        collider = GetComponent<CircleCollider2D>();
+        collider = GetComponent<PolygonCollider2D>();
 
         hacking = GetComponentInParent<Hacking>();
     }
@@ -30,12 +30,12 @@ public class AttackArea : MonoBehaviour
             Debug.Log("[AttackArea] : 충돌");
 
             //상대의 Enemy 스크립트 참조
-            boss_health = other.GetComponent<BossHealth>();
+            bossHealth = other.GetComponent<BossHealth>();
             
-            if (boss_health != null)
+            if (bossHealth != null)
             {
             //상대를 공격하기
-            boss_health.Damage(attack_power);
+            bossHealth.Damage(attackPower);
             }
             else
             {
@@ -45,7 +45,7 @@ public class AttackArea : MonoBehaviour
             Debug.Log("[AttackArea] :  Before calling onBossHealthDecrease");
             
             // Hacking 스크립트의 onBossHealthDecrease 호출
-            hacking.onBossHealthDecrease(attack_power);
+            hacking.onBossHealthDecrease(attackPower);
         }
 
         //공격 범위와 트리거 충돌 주체의 태그가 BossPhaseItem 이면
@@ -55,14 +55,14 @@ public class AttackArea : MonoBehaviour
             Debug.Log("[AttackArea] : 충돌");
 
             //PhaseItem 스크립트 참조
-            phase_item = other.GetComponent<PhaseItem>();
+            phaseItem = other.GetComponent<PhaseItem>();
             
-            if (phase_item.phase_item_hp != null)
+            if (phaseItem.phase_item_hp != null)
             {
                 //상대를 공격하기
-                phase_item.phaseItemDamage(10);
+                phaseItem.phaseItemDamage(10);
                 
-                if (phase_item.phase_item_hp <= 0)
+                if (phaseItem.phase_item_hp <= 0)
                 {
                     // Hacking 스크립트의 onBossHealthDecrease 호출
                     hacking.onBossHealthDecrease(10);
@@ -86,14 +86,18 @@ public class AttackArea : MonoBehaviour
     public void SetAttackPower(float power)
     {
         Debug.Log("[AttackArea] : 공격 세기를 " + power + "로 설정");
-        attack_power = power;
+        attackPower = power;
     }
 
     //플레이어 이동에 따라 공격범위 뒤집기
     public void Flip(bool is_facing_right)
     {
         //플레이어가 오른쪽을 쳐다보고 있으면 collider offset의 x 값을 1, 아니면 -1로 설정
-        collider.offset = new Vector2(is_facing_right ? 1f : -1f, collider.offset.y);
+        for (int i = 0; i < collider.points.Length; i++)
+        {
+            Debug.Log(collider.points[i].x);
+            collider.points[i].x *= (-1f);
+        }
     }
 
     

@@ -16,4 +16,10 @@ public class ShockWave : MonoBehaviour
             player_health.Damage(power);
         }
     }
+
+    public void SetActiveFalse()
+    {
+        Destroy(transform.parent.gameObject);
+        gameObject.SetActive(false);
+    }
 }

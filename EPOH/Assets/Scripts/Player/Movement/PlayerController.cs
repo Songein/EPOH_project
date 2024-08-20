@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
                 //거리가 0.5 미만이면
                 if (groundRayHit.distance < 2.5f)
                 {
-                    Debug.Log("땅");
+                    //Debug.Log("땅");
                     //점프 애니메이션 해제
                     animator.SetBool("IsFall", false);
                     animator.SetBool("IsJump",false);
@@ -167,7 +167,7 @@ public class PlayerController : MonoBehaviour
     }
     
     //플레이어 스프라이트 뒤집기
-    void Flip()
+    public void Flip()
     {
         //오른쪽을 보고 있는데 왼쪽으로 이동하거나 왼쪽을 보고 있는데 오른쪽으로 이동할 경우
         if (is_facing_right && horizontal < 0f || !is_facing_right && horizontal > 0f)
@@ -179,6 +179,11 @@ public class PlayerController : MonoBehaviour
             //공격 범위도 뒤집기
             attack_area.Flip(is_facing_right);
         }
+    }
+
+    public void Flip(bool value)
+    {
+        sr.flipX = value;
     }
 
     //대쉬

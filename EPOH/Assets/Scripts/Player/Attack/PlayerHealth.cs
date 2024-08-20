@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
     {
         //SpriteRenderer 할당하기
         sp = GetComponent<SpriteRenderer>();
-        boss_manager = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossManager>();
+        //boss_manager = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossManager>();
     }
     
     //플레이어 데미지 관련
@@ -42,11 +42,13 @@ public class PlayerHealth : MonoBehaviour
             }  
         }
 
+        /*
         if (!boss_manager.battle_start && (boss_manager.phase1_start || boss_manager.phase2_start || boss_manager.phase3_start || boss_manager.phase4_start))
         {
             //오브젝트의 레이어를 Invincible로 변경
             gameObject.layer = 9;
         }
+        */
     }
     //플레이어 무적시간
     private IEnumerator Invincible()

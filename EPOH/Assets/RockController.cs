@@ -1,18 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RockController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float damagePower;
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (other.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<PlayerHealth>().Damage(damagePower);
+            Debug.Log("돌과 플레이어 충돌");
+            Destroy(this.gameObject);
+        }
+        else if (other.CompareTag("Ground"))
+        {
+            Debug.Log("돌과 땅 충돌");
+            Destroy(this.gameObject);
+        }
     }
 }
