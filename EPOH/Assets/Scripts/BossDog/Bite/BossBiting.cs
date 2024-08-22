@@ -37,7 +37,7 @@ public class BossBiting : MonoBehaviour, BossSkillInterface
     private IEnumerator Biting()
     {
         // 그림자 오브젝트 생성
-        Vector3 shadowStartPosition = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z); // y 축 위치를 0.5 아래로 설정
+        Vector3 shadowStartPosition = dog.spawnMiddlePoint;
         GameObject shadow_object = Instantiate(dog.bossPrefab, shadowStartPosition, Quaternion.identity);
         Debug.Log("왼쪽으로 무는 이펙트");
 
