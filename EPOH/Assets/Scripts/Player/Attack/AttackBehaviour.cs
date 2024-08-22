@@ -11,24 +11,31 @@ public class AttackBehaviour : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //Attack Area 오브젝트 찾기(비활성화 오브젝트이기에 부모 오브젝트인 Player 오브젝트를 통해 접근
-        GameObject attack_area = animator.transform.Find("AttackArea").gameObject;
-        
-        //공격 상태 진입하면 Attac Area 오브젝트 활성화
-        attack_area.SetActive(true);
         //공격 상태 true로 변경
         PlayerAttack.instance.is_attacking = true;
         //콤보 공격 여부 false로 초기화
         isComboAttack = false;
         
+        //Attack Area 오브젝트 찾기(비활성화 오브젝트이기에 부모 오브젝트인 Player 오브젝트를 통해 접근
+        //공격 상태 진입하면 Attac Area 오브젝트 활성화
+        GameObject attackAreaParent = animator.transform.GetChild(0).gameObject;
+        attackAreaParent.SetActive(true);
+        
         //공격 상태 종류에 따라 공격 세기 설정
         if (stateInfo.IsName("Attack One"))
         {
-            attack_area.GetComponent<AttackArea>().SetAttackPower(PlayerAttack.instance.combo_attack_power[0]);
+            attackAreaParent.transform.GetChild(0).gameObject.SetActive(true);
+            attackAreaParent.transform.GetChild(1).gameObject.SetActive(false);
+            PlayerAttack.instance.attack_area = attackAreaParent.transform.GetChild(0).gameObject;
+            PlayerAttack.instance.attack_area.GetComponent<AttackArea>().SetAttackPower(PlayerAttack.instance.combo_attack_power[0]);
         }
-        else if (stateInfo.IsName("Attack Second"))
+        else if (stateInfo.IsName("Attack Two"))
         {
-            attack_area.GetComponent<AttackArea>().SetAttackPower(PlayerAttack.instance.combo_attack_power[1]);
+            Debug.Log("여기 실행?");
+            attackAreaParent.transform.GetChild(1).gameObject.SetActive(true);
+            attackAreaParent.transform.GetChild(0).gameObject.SetActive(false);
+            PlayerAttack.instance.attack_area = attackAreaParent.transform.GetChild(1).gameObject;
+            PlayerAttack.instance.attack_area.GetComponent<AttackArea>().SetAttackPower(PlayerAttack.instance.combo_attack_power[1]);
         }
     }
     

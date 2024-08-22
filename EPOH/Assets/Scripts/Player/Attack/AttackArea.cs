@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class AttackArea : MonoBehaviour
 {
-    private float attackPower; //공격 세기
     private PolygonCollider2D collider; //AttackArea의 collider;
+    private float attackPower; //공격 세기
     private BossHealth bossHealth; //BossHealth 참조
     private PhaseItem phaseItem; // PhaseItem 스크립트 참조
 
@@ -18,7 +18,6 @@ public class AttackArea : MonoBehaviour
     {
         //공격 범위 콜라이더 할당
         collider = GetComponent<PolygonCollider2D>();
-
         hacking = GetComponentInParent<Hacking>();
     }
     
@@ -90,14 +89,29 @@ public class AttackArea : MonoBehaviour
     }
 
     //플레이어 이동에 따라 공격범위 뒤집기
-    public void Flip(bool is_facing_right)
+    public void Flip()
     {
+        var points = collider.points;
         //플레이어가 오른쪽을 쳐다보고 있으면 collider offset의 x 값을 1, 아니면 -1로 설정
-        for (int i = 0; i < collider.points.Length; i++)
+        for (int i = 0; i < points.Length; i++)
         {
-            Debug.Log(collider.points[i].x);
-            collider.points[i].x *= (-1f);
+            float prevX = points[i].x;
+            points[i] = new Vector2(prevX * (-1f), points[i].y);
         }
+        collider.points = points;
+    }
+
+    public void Flip(bool value)
+    {
+        var points = collider.points;
+        float direction = value ? 1f : (-1f);
+        //플레이어가 오른쪽을 쳐다보고 있으면 collider offset의 x 값을 1, 아니면 -1로 설정
+        for (int i = 0; i < points.Length; i++)
+        {
+            float prevX = points[i].x;
+            points[i] = new Vector2(prevX * direction, points[i].y);
+        }
+        collider.points = points;
     }
 
     
