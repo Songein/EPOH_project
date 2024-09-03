@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class BossTracking : MonoBehaviour, BossSkillInterface
 {
+    private BossDogController dog; //BossDogController 참조
+
     public GameObject player; // 플레이어 게임 오브젝트
     private PlayerHealth player_health; //PlayerHealth 스크립트 참조
     [SerializeField] float attack_power = 10f; // 보스 공격 세기
 
+    /*
     private Vector3 leftEdge;
     private Vector3 rightEdge;
+    */
 
     //추적 변수
     public GameObject tracking_eye_prefab; // 추적 눈동자 프리팹
@@ -19,21 +23,16 @@ public class BossTracking : MonoBehaviour, BossSkillInterface
     private GameObject tracking_eye; // 추적 눈동자 오브젝트
 
 
+    private void Awake()
+    {
+        dog = GetComponent<BossDogController>();
+        player = dog._player;
+        
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player"); // 플레이어가 있는지 확인
-
-        
-        if (player != null)
-        {
-            Debug.Log("플레이어 발견");
-        }
-
-        // Scene의 가장 왼쪽과 오른쪽 좌표를 설정
-        leftEdge = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, 0));
-        rightEdge = Camera.main.ViewportToWorldPoint(new Vector3(1, 0.5f, 0));
         
         // 추적 눈동자 생성
         Vector3 eyePosition = new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z);

@@ -695,7 +695,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 637215276}
         m_TargetAssemblyTypeName: BossScratching, Assembly-CSharp
         m_MethodName: Activate
         m_Mode: 1
@@ -925,10 +925,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f562463bfe46e49b69b912c67b03cd15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 800038585}
   attack_power: 10
-  scratch_prefab: {fileID: 0}
-  scratch_pop: {fileID: 0}
+  scratch_prefab: {fileID: 8306289788758409414, guid: f77f81680eeb342e291d842f96fea4d7, type: 3}
+  scratch_pop: {fileID: 8306289788758409414, guid: 579c13866060b42229503eb52e37784f, type: 3}
 --- !u!114 &637215277
 MonoBehaviour:
   m_ObjectHideFlags: 0

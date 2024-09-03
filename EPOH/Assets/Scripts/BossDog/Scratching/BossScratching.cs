@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BossScratching : MonoBehaviour, BossSkillInterface
 {
+    private BossDogController dog; //BossDogController 참조
+
     public GameObject player; // 플레이어 게임 오브젝트
     private PlayerHealth player_health; //PlayerHealth 스크립트 참조
     [SerializeField] float attack_power = 10f; // 보스 공격 세기
@@ -15,21 +17,19 @@ public class BossScratching : MonoBehaviour, BossSkillInterface
     public GameObject scratch_prefab; // 할퀸 자국 프리팹
     public GameObject scratch_pop; // 폭발 프리팹
 
+    private void Awake()
+    {
+        dog = GetComponent<BossDogController>();
+        player = dog._player;
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player"); // 플레이어가 있는지 확인
-
-        
-        if (player != null)
-        {
-            Debug.Log("플레이어 발견");
-        }
-
         // Scene의 가장 왼쪽과 오른쪽 좌표를 설정
         leftEdge = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, 0));
         rightEdge = Camera.main.ViewportToWorldPoint(new Vector3(1, 0.5f, 0));
-        
     }
 
     public void Activate()
