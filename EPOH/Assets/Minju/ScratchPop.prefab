@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6775924501499535384}
   - component: {fileID: -4505056680732098834}
   - component: {fileID: -8639894503606056461}
+  - component: {fileID: 2168259840699528646}
   m_Layer: 0
   m_Name: ScratchPop
   m_TagString: Untagged
@@ -116,8 +117,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   attack_power: 10
-  reach_distance_short: 0
-  Dog_min_area: 0
-  Dog_max_area: 0
-  Dog_yposition: 0
   scratch_prefab: {fileID: 0}
+  scratch_pop: {fileID: 0}
+--- !u!114 &2168259840699528646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8306289788758409414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef3479fcfad4e4dba8462b439a4913e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _power: 10

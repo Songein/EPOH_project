@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class BossRunning : MonoBehaviour, BossSkillInterface
 {
+    private BossDogController dog; //BossDogController 참조
+
     public GameObject player; // 플레이어 게임 오브젝트
-    private PlayerHealth player_health; //PlayerHealth 스크립트 참조
     [SerializeField] float attack_power = 10f; // 보스 공격 세기
 
-    public GameObject shadow_prefab; // 그림자 오브젝트 프리팹
     public float shadow_speed = 10.0f; // 그림자 이동 속도
 
     //달리기 변수
-    private Vector3 leftEdge;
-    private Vector3 rightEdge;
     private SpriteRenderer warning_renderer;
     public float warning_duration = 3.0f; // 전조 영역 지속 시간
     public Color warning_color = Color.red; // 전조 영역 색상
@@ -22,20 +20,11 @@ public class BossRunning : MonoBehaviour, BossSkillInterface
     public GameObject bossIconPrefab;
 
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        player = GameObject.FindWithTag("Player"); // 플레이어가 있는지 확인
-
+        dog = GetComponent<BossDogController>();
+        player = dog._player;
         
-        if (player != null)
-        {
-            Debug.Log("플레이어 발견");
-        }
-
-        // Scene의 가장 왼쪽과 오른쪽 좌표를 설정
-        leftEdge = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, 0));
-        rightEdge = Camera.main.ViewportToWorldPoint(new Vector3(1, 0.5f, 0));
     }
 
     public void Activate()
@@ -45,17 +34,15 @@ public class BossRunning : MonoBehaviour, BossSkillInterface
 
     private IEnumerator Running()
     {
-        // 현재 오브젝트의 위치에 따라 이동할 방향을 결정
-        Transform objTransform = this.transform;
-        Vector3 targetPosition = objTransform.position.x < (rightEdge.x + leftEdge.x) / 2 ? rightEdge : leftEdge;
-        Vector3 startPosition = objTransform.position;
+        Vector3 targetPosition = player.transform.position;;
+        Vector3 startPosition = dog.spawnMiddlePoint;
         
         GameObject warningContainer = new GameObject("WarningContainer");
 
         // 전조 영역 생성 및 유지
         GameObject warning_area = new GameObject("WarningArea");
         warning_area.transform.SetParent(warningContainer.transform); // 부모 오브젝트의 자식으로 설정
-        warning_area.transform.position = new Vector3((startPosition.x + targetPosition.x) / 2, objTransform.position.y, objTransform.position.z);
+        warning_area.transform.position = new Vector3((startPosition.x + targetPosition.x) / 2, startPosition.y, startPosition.z);
         warning_renderer = warning_area.AddComponent<SpriteRenderer>();
 
         // 전조 영역의 색상 
@@ -66,7 +53,7 @@ public class BossRunning : MonoBehaviour, BossSkillInterface
         
         // 전조 영역의 크기 설정 (오브젝트가 이동할 거리만큼)
         float warning_width = Mathf.Abs(targetPosition.x - startPosition.x);
-        warning_renderer.transform.localScale = new Vector3(warning_width, objTransform.localScale.y, 1);
+        warning_renderer.transform.localScale = new Vector3(warning_width, 1, 1);
 
         // 보스 표식 추가
         if (bossIconPrefab != null)
@@ -80,18 +67,11 @@ public class BossRunning : MonoBehaviour, BossSkillInterface
         Destroy(warningContainer); // 전조 영역 삭제
 
         // 그림자 오브젝트 생성 및 이동
-        Vector3 shadowStartPosition = new Vector3(objTransform.position.x, objTransform.position.y - 0.5f, objTransform.position.z); // y 축 위치를 0.5 아래로 설정
-        GameObject shadow_object = Instantiate(shadow_prefab, shadowStartPosition, Quaternion.identity);
+        Vector3 shadowStartPosition = dog.spawnMiddlePoint;
+        GameObject shadow_object = Instantiate(dog.bossPrefab, shadowStartPosition, Quaternion.identity);
 
-        // 이동 방향에 따른 스프라이트 플립 설정
-        if (targetPosition.x > shadowStartPosition.x)
-        {
-            shadow_object.transform.localScale = new Vector3(-Mathf.Abs(shadow_object.transform.localScale.x), shadow_object.transform.localScale.y, shadow_object.transform.localScale.z); // 왼쪽에서 오른쪽으로 이동 시 뒤집기
-        }
-        else
-        {
-            shadow_object.transform.localScale = new Vector3(Mathf.Abs(shadow_object.transform.localScale.x), shadow_object.transform.localScale.y, shadow_object.transform.localScale.z); // 오른쪽에서 왼쪽으로 이동 시 그대로 사용
-        }
+        // 플레이어 위치에 따라 그림자를 반전시킴
+        dog.IsPlayerRight(shadow_object);
 
         Vector3 shadow_target_position = new Vector3(targetPosition.x, shadow_object.transform.position.y, shadow_object.transform.position.z);
         
@@ -118,18 +98,6 @@ public class BossRunning : MonoBehaviour, BossSkillInterface
         Vector2 pivot = new Vector2(0.5f, 0.5f);
 
         return Sprite.Create(texture, rect, pivot, 1.0f);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision) // 충돌시 데미지
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("충돌");
-
-            //PlayerHealth 스크립트 할당
-            player_health = collision.gameObject.GetComponent<PlayerHealth>();
-            player_health.Damage(attack_power); //보스의 공격 세기만큼 플레이어의 hp 감소
-        }
     }
 
 }
