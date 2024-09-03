@@ -7,7 +7,6 @@ public class BossRunning : MonoBehaviour, BossSkillInterface
     private BossDogController dog; //BossDogController 참조
 
     public GameObject player; // 플레이어 게임 오브젝트
-    private PlayerHealth player_health; //PlayerHealth 스크립트 참조
     [SerializeField] float attack_power = 10f; // 보스 공격 세기
 
     public float shadow_speed = 10.0f; // 그림자 이동 속도
@@ -99,18 +98,6 @@ public class BossRunning : MonoBehaviour, BossSkillInterface
         Vector2 pivot = new Vector2(0.5f, 0.5f);
 
         return Sprite.Create(texture, rect, pivot, 1.0f);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision) // 충돌시 데미지
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("충돌");
-
-            //PlayerHealth 스크립트 할당
-            player_health = collision.gameObject.GetComponent<PlayerHealth>();
-            player_health.Damage(attack_power); //보스의 공격 세기만큼 플레이어의 hp 감소
-        }
     }
 
 }
