@@ -23,7 +23,7 @@ public class BossDogController : MonoBehaviour
     private Howling1 _howling1;
     private Howling2 _howling2;
     
-    protected void Awake()
+    void Awake()
     {
         //플레이어 할당
         _player = GameObject.FindWithTag("Player");
