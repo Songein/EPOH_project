@@ -95,11 +95,11 @@ public class BossBiting : MonoBehaviour, BossSkillInterface
             yield return null;
         }
 
-        // 그림자를 y축 -4로 내려오도록 설정
-        Vector2 groundPosition = new Vector2(shadow_object.transform.position.x, -4f);
-        while (shadow_object.transform.position.y > -4f)
+        // 그림자를 y축 -9로 내려오도록 설정
+        Vector2 groundPosition = new Vector2(shadow_object.transform.position.x, -9f);
+        while (shadow_object.transform.position.y > groundPosition.y)
         {
-            shadow_object.transform.position = new Vector2(shadow_object.transform.position.x, Mathf.MoveTowards(shadow_object.transform.position.y, -4f, Time.deltaTime * 10.0f));
+            shadow_object.transform.position = new Vector2(shadow_object.transform.position.x, Mathf.MoveTowards(shadow_object.transform.position.y, groundPosition.y, Time.deltaTime * 10.0f));
             yield return null;
         }
         
