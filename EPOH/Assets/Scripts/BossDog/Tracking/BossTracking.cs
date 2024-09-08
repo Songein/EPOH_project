@@ -36,10 +36,10 @@ public class BossTracking : MonoBehaviour, BossSkillInterface
 
     void Update()
     {
-        // 매 프레임마다 눈동자가 플레이어의 x축을 따라다니도록 설정
+        // 매 프레임마다 눈동자가 플레이어의 x축과 y축을 따라다니도록 설정
         if (tracking_eye != null && player != null)
         {
-            tracking_eye.transform.position = new Vector3(player.transform.position.x, tracking_eye.transform.position.y, tracking_eye.transform.position.z);
+            tracking_eye.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1, tracking_eye.transform.position.z);
         }
     }
 
