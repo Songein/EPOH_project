@@ -7,7 +7,6 @@ public class BossBiting : MonoBehaviour, BossSkillInterface
     private BossDogController dog; //BossDogController 참조
 
     public GameObject player; // 플레이어 게임 오브젝트
-    [SerializeField] float attack_power = 10f; // 보스 공격 세기
 
     public float shadow_speed = 10.0f; // 그림자 이동 속도
 

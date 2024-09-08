@@ -7,7 +7,6 @@ public class BossRunning : MonoBehaviour, BossSkillInterface
     private BossDogController dog; //BossDogController 참조
 
     public GameObject player; // 플레이어 게임 오브젝트
-    [SerializeField] float attack_power = 10f; // 보스 공격 세기
 
     public float shadow_speed = 10.0f; // 그림자 이동 속도
 
@@ -34,8 +33,20 @@ public class BossRunning : MonoBehaviour, BossSkillInterface
 
     private IEnumerator Running()
     {
-        Vector3 targetPosition = player.transform.position;;
-        Vector3 startPosition = dog.spawnMiddlePoint;
+        // LeftPoint와 RightPoint 중 랜덤으로 시작 위치 설정
+        Vector3 startPosition;
+        Vector3 targetPosition;
+
+        if (Random.Range(0, 2) == 0) // 0이면 Left, 1이면 Right
+        {
+            startPosition = dog.spawnLeftPoint;
+            targetPosition = dog.spawnRightPoint;
+        }
+        else
+        {
+            startPosition = dog.spawnRightPoint;
+            targetPosition = dog.spawnLeftPoint;
+        }
         
         GameObject warningContainer = new GameObject("WarningContainer");
 
@@ -53,7 +64,7 @@ public class BossRunning : MonoBehaviour, BossSkillInterface
         
         // 전조 영역의 크기 설정 (오브젝트가 이동할 거리만큼)
         float warning_width = Mathf.Abs(targetPosition.x - startPosition.x);
-        warning_renderer.transform.localScale = new Vector3(warning_width, 1, 1);
+        warning_renderer.transform.localScale = new Vector3(warning_width, 2, 1);
 
         // 보스 표식 추가
         if (bossIconPrefab != null)
@@ -67,7 +78,7 @@ public class BossRunning : MonoBehaviour, BossSkillInterface
         Destroy(warningContainer); // 전조 영역 삭제
 
         // 그림자 오브젝트 생성 및 이동
-        Vector3 shadowStartPosition = dog.spawnMiddlePoint;
+        Vector3 shadowStartPosition = startPosition;
         GameObject shadow_object = Instantiate(dog.bossPrefab, shadowStartPosition, Quaternion.identity);
 
         // 플레이어 위치에 따라 그림자를 반전시킴

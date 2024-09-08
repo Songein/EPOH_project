@@ -7,7 +7,6 @@ public class BossTracking : MonoBehaviour, BossSkillInterface
     private BossDogController dog; //BossDogController 참조
 
     public GameObject player; // 플레이어 게임 오브젝트
-    [SerializeField] float attack_power = 10f; // 보스 공격 세기
 
     //추적 변수
     public GameObject tracking_eye_prefab; // 추적 눈동자 프리팹

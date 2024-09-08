@@ -571,7 +571,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 294923652}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.13742542, y: -5.41842, z: -10}
+  m_LocalPosition: {x: -0.8452563, y: -5.41842, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3754,9 +3754,9 @@ MonoBehaviour:
   bossList: []
   _player: {fileID: 847919468}
   _playerRigid: {fileID: 847919471}
-  spawnLeftPoint: {x: -9, y: -8, z: 0}
-  spawnMiddlePoint: {x: 0, y: -8, z: 0}
-  spawnRightPoint: {x: 9, y: -8, z: 0}
+  spawnLeftPoint: {x: -9, y: -8.6, z: 0}
+  spawnMiddlePoint: {x: 0, y: -8.6, z: 0}
+  spawnRightPoint: {x: 9, y: -8.6, z: 0}
 --- !u!4 &2027936714
 Transform:
   m_ObjectHideFlags: 0
@@ -3785,7 +3785,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 847919468}
-  attack_power: 10
   tracking_eye_prefab: {fileID: 8982902104962463404, guid: 9fbf317a58a6c4c32b10965c738a5457, type: 3}
   tracking_effect_prefab: {fileID: 8982902104962463404, guid: 39d2cad1bf8bf4dc79f9abf933e22a3c, type: 3}
   tracking_pop_prefab: {fileID: 8982902104962463404, guid: 453fb190e6d7a44b0bb8958ba82ffb68, type: 3}
@@ -3802,7 +3801,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 847919468}
-  attack_power: 10
   scratch_prefab: {fileID: 8306289788758409414, guid: f77f81680eeb342e291d842f96fea4d7, type: 3}
   scratch_pop: {fileID: 8306289788758409414, guid: 579c13866060b42229503eb52e37784f, type: 3}
 --- !u!114 &2027936717
@@ -3818,8 +3816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 847919468}
-  attack_power: 10
-  shadow_speed: 10
+  shadow_speed: 20
   warning_duration: 3
   warning_color: {r: 1, g: 0, b: 0, a: 1}
   bossIconPrefab: {fileID: 5474589133209643891, guid: 25afa047b0bbf461ea93ff28d8b23a53, type: 3}
@@ -3836,7 +3833,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 847919468}
-  attack_power: 10
   shadow_speed: 10
   reach_distance_short: 0
   Dog_yposition: 0
