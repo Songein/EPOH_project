@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 1223126142317134020}
   - component: {fileID: 50538192292843304}
   - component: {fileID: 4561450371163375392}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Dog
   m_TagString: Boss
   m_Icon: {fileID: 0}

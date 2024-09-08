@@ -3668,7 +3668,7 @@ GameObject:
   - component: {fileID: 2027936717}
   - component: {fileID: 2027936716}
   - component: {fileID: 2027936715}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BossDogManager
   m_TagString: Boss
   m_Icon: {fileID: 0}
