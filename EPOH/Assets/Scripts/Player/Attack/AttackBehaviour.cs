@@ -5,31 +5,47 @@ using UnityEngine;
 
 public class AttackBehaviour : StateMachineBehaviour
 {
+    //콤보(2단) 공격 실행 여부
+    private bool isComboAttack = false;
+    
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //Attack Area 오브젝트 찾기(비활성화 오브젝트이기에 부모 오브젝트인 Player 오브젝트를 통해 접근
-        GameObject attack_area = GameObject.Find("Player").transform.Find("AttackArea").gameObject;
-        PlayerController pr = FindObjectOfType<PlayerController>(); //PlayerController 할당
-        
-        //공격 상태 진입하면 Attac Area 오브젝트 활성화
-        attack_area.SetActive(true);
-        
         //공격 상태 true로 변경
-        pr.is_attacking = true;
+        PlayerAttack.instance.is_attacking = true;
+        //콤보 공격 여부 false로 초기화
+        isComboAttack = false;
+        
+        //Attack Area 오브젝트 찾기(비활성화 오브젝트이기에 부모 오브젝트인 Player 오브젝트를 통해 접근
+        //공격 상태 진입하면 Attac Area 오브젝트 활성화
+        GameObject attackAreaParent = animator.transform.GetChild(0).gameObject;
+        attackAreaParent.SetActive(true);
         
         //공격 상태 종류에 따라 공격 세기 설정
         if (stateInfo.IsName("Attack One"))
         {
-            attack_area.GetComponent<AttackArea>().SetAttackPower(PlayerAttack.instance.combo_attack_power[0]);
+            attackAreaParent.transform.GetChild(0).gameObject.SetActive(true);
+            attackAreaParent.transform.GetChild(1).gameObject.SetActive(false);
+            PlayerAttack.instance.attack_area = attackAreaParent.transform.GetChild(0).gameObject;
+            PlayerAttack.instance.attack_area.GetComponent<AttackArea>().SetAttackPower(PlayerAttack.instance.combo_attack_power[0]);
         }
         else if (stateInfo.IsName("Attack Two"))
         {
-            attack_area.GetComponent<AttackArea>().SetAttackPower(PlayerAttack.instance.combo_attack_power[1]);
+            Debug.Log("여기 실행?");
+            attackAreaParent.transform.GetChild(1).gameObject.SetActive(true);
+            attackAreaParent.transform.GetChild(0).gameObject.SetActive(false);
+            PlayerAttack.instance.attack_area = attackAreaParent.transform.GetChild(1).gameObject;
+            PlayerAttack.instance.attack_area.GetComponent<AttackArea>().SetAttackPower(PlayerAttack.instance.combo_attack_power[1]);
         }
-        else if (stateInfo.IsName("Attack Three"))
+    }
+    
+    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        //1단 공격 중에 공격 버튼을 누르면 2단 공격 진행
+        if (stateInfo.IsName("Attack One") && Input.GetButtonDown("Attack") && !isComboAttack)
         {
-            attack_area.GetComponent<AttackArea>().SetAttackPower(PlayerAttack.instance.combo_attack_power[2]);
+            isComboAttack = true;
         }
     }
 
@@ -37,13 +53,21 @@ public class AttackBehaviour : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        GameObject.Find("Player").transform.Find("AttackArea").gameObject.SetActive(false);  
-        
-        //PlayerController 할당
-        PlayerController pr = FindObjectOfType<PlayerController>();
+        //공격 범위 오브젝트 비활성화
+        animator.transform.Find("AttackArea").gameObject.SetActive(false);
 
-        //공격 상태 false로 변경
-        pr.is_attacking = false; //공격 상태 false로 변경
+        if (isComboAttack)
+        {
+            //콤보 공격이 가능하다면
+            animator.Play("Attack Two");
+        }
+        else
+        {
+            //콤보 공격이 아니라면 1단 공격으로 마무리
+            //공격 상태를 false로 변경
+            PlayerAttack.instance.is_attacking = false;
+        }
+        
     }
 
 }

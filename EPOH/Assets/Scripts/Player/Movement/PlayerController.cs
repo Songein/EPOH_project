@@ -10,53 +10,42 @@ using Vector2 = UnityEngine.Vector2;
 
 public class PlayerController : MonoBehaviour
 {
-    //플레이어 좌우 이동
-    private float horizontal; //수평 값
-    public float player_speed = 8f; //이동 속도
-    private bool is_facing_right = true; //플레이어가 오른쪽을 쳐다보고 있는지
-    private AttackArea attack_area; //AttackArea 스크립트(AttackArea의 좌우반전을 위해)
-    
-    //플레이어 점프
-    public float player_jump_force = 7f; //점프 힘
-    private int player_jump_cnt = 0; //플레이어 점프 횟수
-    
     //플레이어 리지드바디 컴포넌트
     private Rigidbody2D rigid;
     //플레이어 애니메이터
     private Animator animator;
     //스프라이트 렌더러 컴포넌트
     private SpriteRenderer sr;
+    //땅 레이캐스트 충돌
+    public RaycastHit2D groundRayHit;
     
-    //플레이어 상호작용
-    private GameObject interact_obj; //플레이어가 상호작용할 오브젝트
-    public bool is_interacting = false; //플레이어가 상호작용 중인지
-    private Interaction interaction; //플레이어가 상호작용할 오브젝트에 부착된 Interact 스크립트
-
-    //플레이어 대화
-    public bool is_talking = false;
-    public TalkAction talk_action;
+    //플레이어 좌우 이동
+    private float horizontal; //수평 값
+    [SerializeField] float moveSpeed; //이동 속도
+    private bool is_facing_right = true; //플레이어가 오른쪽을 쳐다보고 있는지
+    
+    //플레이어 점프
+    [SerializeField] float jumpForce; //점프 힘
+    [SerializeField] float doubleJumpForce; //두번째 점프 힘
+    private int player_jump_cnt = 0; //플레이어 점프 횟수
 
     //플레이어 대쉬
     [SerializeField] private TrailRenderer tr; //대쉬 효과
     private bool can_dash = true; //플레이어가 대쉬를 할 수 있는지
-    public float dash_power = 20f; //대쉬 파워
-    private bool is_dashing = false; //플레이어가 대쉬 중인지
-    public float dash_time = 0.3f; //대쉬 지속 타임
-    public float dash_cool_time = 2f; //대쉬 쿨타임
+    [SerializeField] float dash_power; //대쉬 파워
+    public bool is_dashing = false; //플레이어가 대쉬 중인지
+    [SerializeField] float dash_time; //대쉬 지속 타임
+    [SerializeField] float dash_cool_time; //대쉬 쿨타임
     
     //순간이동
     private Vector2 teleport_pos; //순간이동할 위치
-    public bool can_teleport = false; //순간이동할 수 있는지
+    private bool can_teleport = false; //순간이동할 수 있는지
     public bool is_teleporting = false; //순간이동 중인지
-    public float teleport_time = 0.3f; //순간이동 지속 타임
-    public GameObject port_prefab; //순간이동 포트 프리팹
-    private GameObject port; //순간이동 포트
+    private float teleport_time = 0.3f; //순간이동 지속 타임
+    [SerializeField] GameObject mark_prefab; //순간이동 포트 프리팹
+    private GameObject mark; //순간이동 포트
     
-    //공격
-    public bool is_attacking = false; //공격 중일 때 플레이어 이동 막기 위한 변수
-    
-
-    void Start()
+    void Awake()
     {
         //Rigidbody2D 컴포넌트 할당
         rigid = GetComponent<Rigidbody2D>();
@@ -66,14 +55,12 @@ public class PlayerController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         //Trail Renderer 컴포넌트 할당
         tr = GetComponent<TrailRenderer>();
-        //AttackArea 오브젝트의 컴포넌트 할당
-        attack_area = transform.GetChild(0).gameObject.GetComponent<AttackArea>();
     }
     
     void Update()
     {
-        //대쉬 | 상호작용 | 순간이동 | 대화 중이면 다른 작업 이루어지지 않도록
-        if (is_dashing || is_interacting || is_teleporting || is_attacking)
+        //대쉬, 순간이동, 대화, 상호작용, 공격 중일 때에는 이동 금지
+        if (is_dashing || is_teleporting || PlayerInteract.instance.is_interacting || PlayerInteract.instance.is_talking || PlayerAttack.instance.is_attacking)
         {
             return;
         }
@@ -99,12 +86,12 @@ public class PlayerController : MonoBehaviour
             switch (player_jump_cnt)
             {
                 case 0 : //첫 점프일 때
-                    rigid.velocity = new Vector2(rigid.velocity.x, player_jump_force);
+                    rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
                     animator.SetBool("IsJump", true);
                     break;
                 case 1 : //2단 점프일 때
-                    rigid.velocity = new Vector2(rigid.velocity.x, player_jump_force * 1.5f); //2단 점프는 좀 더 높이 점프
-                    animator.SetBool("IsDoubleJump",true);
+                    rigid.velocity = new Vector2(rigid.velocity.x, jumpForce * doubleJumpForce); //2단 점프는 좀 더 높이 점프
+                    animator.SetBool("IsDoubleJump", true);
                     break;
                     
             }
@@ -112,25 +99,10 @@ public class PlayerController : MonoBehaviour
             
         }
         
-        
         //대쉬 버튼을 누르면
         if (Input.GetButtonDown("Dash") && can_dash)
         {
             StartCoroutine(Dash());
-        }
-
-        if (Input.GetButtonDown("Interact")) // 상호작용
-        {
-            if (is_talking) // 대화 중이면
-            {
-                talk_action.Action(); //다음 대화
-            }
-            else if (interact_obj != null) // 대화 중이 아니고 상호작용 할 오브젝트가 있을 경우
-            {
-                Debug.Log(interact_obj.name + "과 상호작용 시작");
-                interaction.Interact();
-                is_interacting = true;
-            }
         }
         
         //순간이동 버튼을 누르면
@@ -142,10 +114,8 @@ public class PlayerController : MonoBehaviour
             }
             else //표식을 설치하지 않은 경우
             {
-                animator.SetInteger("IsTeleport",0); //순간이동 표식 설치 애니메이션 실행
-                Invoke("EndPortAni", 0.3f); //0.3초 후 순간이동 표식 설치 애니메이션 종료
+                animator.SetBool("IsInstallMark", true); //순간이동 표식 설치 애니메이션 실행
                 teleport_pos = transform.position; //플레이어의 현재 위치 받아오기
-                port = Instantiate(port_prefab, new Vector2(teleport_pos.x, teleport_pos.y), Quaternion.identity); //표식 생성
                 can_teleport = true; //순간이동 할 수 있다고 상태 변경
             }
         }
@@ -154,28 +124,28 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        //대쉬 | 상호작용 | 순간이동 | 대화 중이면 다른 작업 이루어지지 않도록
-        if (is_dashing || is_interacting || is_teleporting || is_talking || is_attacking)
+        //대쉬, 순간이동, 대화, 상호작용, 공격 중일 때에는 이동 금지
+        if (is_dashing || is_teleporting || PlayerInteract.instance.is_interacting || PlayerInteract.instance.is_talking || PlayerAttack.instance.is_attacking)
         {
             return;
         }
         
         //수평값에 따른 이동
-        rigid.velocity = new Vector2(horizontal * player_speed, rigid.velocity.y);
+        rigid.velocity = new Vector2(horizontal * moveSpeed, rigid.velocity.y);
         
         //땅 감지 레이캐스트 디버그
-        Debug.DrawRay(rigid.position, Vector2.down * 3f, Color.red);
+        Debug.DrawRay(rigid.position, Vector2.down * 2f, Color.red);
         //플레이어가 떨어지는 경우
         if (rigid.velocity.y < 0f)
         {
             animator.SetBool("IsFall", true);
             
-            RaycastHit2D groundRayHit = Physics2D.Raycast(rigid.position, Vector2.down, 3f, LayerMask.GetMask("Ground"));
+            groundRayHit = Physics2D.Raycast(rigid.position, Vector2.down, 3f, LayerMask.GetMask("Ground"));
             //땅을 감지하고
             if (groundRayHit.collider != null)
             {
                 //거리가 0.5 미만이면
-                if (groundRayHit.distance < 2.5f)
+                if (groundRayHit.distance < 1.5f)
                 {
                     //Debug.Log("땅");
                     //점프 애니메이션 해제
@@ -191,34 +161,9 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        //트리거 충돌한 오브젝트가 Interaction 태그를 갖고 있는 오브젝트일 경우
-        if (other.CompareTag("Interaction"))
-        {
-            //상호작용 할 오브젝트에 트리거 충돌 오브젝트를 할당
-            interact_obj = other.gameObject;
-            interaction = interact_obj.GetComponent<Interaction>(); // 충돌한 오브젝트의 Interaction 할당
-            Debug.Log("[PlayerController] : " + other.name + "과 상호작용 가능");
-        }
-    }
     
-    void OnTriggerExit2D(Collider2D other)
-    {
-        //트리거 충돌 오브젝트에게서 멀어질 때
-        if (interact_obj != null)
-        {
-            //상호작용 할 오브젝트에 null 할당
-            interact_obj = null;
-            Debug.Log("[PlayerController] : " + other.name + "과 상호작용 불가능");
-        }
-        
-    }
-
-
     //플레이어 스프라이트 뒤집기
-    void Flip()
+    public void Flip()
     {
         //오른쪽을 보고 있는데 왼쪽으로 이동하거나 왼쪽을 보고 있는데 오른쪽으로 이동할 경우
         if (is_facing_right && horizontal < 0f || !is_facing_right && horizontal > 0f)
@@ -228,8 +173,14 @@ public class PlayerController : MonoBehaviour
             //sprite renderer flipx 값 변경하기
             sr.flipX = !is_facing_right;
             //공격 범위도 뒤집기
-            attack_area.Flip(is_facing_right);
+            PlayerAttack.instance.attack_area.GetComponent<AttackArea>().Flip();
         }
+    }
+
+    public void Flip(bool value)
+    {
+        sr.flipX = value;
+        PlayerAttack.instance.attack_area.GetComponent<AttackArea>().Flip(value);
     }
 
     //대쉬
@@ -273,19 +224,23 @@ public class PlayerController : MonoBehaviour
         //순간이동 시작 시
         can_teleport = false; //순간이동 불가능으로 설정
         is_teleporting = true; //순간이동 중으로 설정
-        Destroy(port); //순간이동 표식 제거
+        Destroy(mark); //순간이동 표식 제거
         gameObject.transform.position = new Vector2(teleport_pos.x, teleport_pos.y + 2f); //순간이동 표식보다 y축으로 2만큼 위로 이동
-        animator.SetBool("IsFall",true); //순간이동 끝 애니메이션 실행
-        //rigid.velocity = new Vector2(rigid.velocity.x, playerJumpForce);
 
         //순간이동 끝
         yield return new WaitForSeconds(teleport_time);
         is_teleporting = false; //순간이동 중 해제
     }
 
-    void EndPortAni() //순간이동 표식 생성 애니메이션 해제
+    //순간이동 마크 설치 함수
+    public void InstallMark()
     {
-        animator.SetInteger("IsTeleport",-1);
+        mark = Instantiate(mark_prefab, new Vector2(teleport_pos.x, teleport_pos.y), Quaternion.identity); //표식 생성
+        if (!is_facing_right)
+        {
+            mark.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        
     }
     
 }

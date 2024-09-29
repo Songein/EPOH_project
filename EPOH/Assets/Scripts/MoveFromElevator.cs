@@ -5,11 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MoveFromElevator : MonoBehaviour
 {
-    PlayerController playerController;
 
     public void operateElevator()
     {
-        playerController = GetComponent<PlayerController>();
 
         if(GameManager.instance != null && GameManager.instance.boss_clear_info[3])
         {
@@ -17,7 +15,7 @@ public class MoveFromElevator : MonoBehaviour
         }
         else
         {
-            playerController.is_interacting = false;
+            PlayerInteract.instance.is_interacting = false;
         }
     }
 }

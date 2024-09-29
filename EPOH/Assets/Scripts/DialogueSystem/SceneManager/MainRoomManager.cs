@@ -177,6 +177,58 @@ public class MainRoomManager : MonoBehaviour
                     gm.story_info++;
                     gm.eventFlag = false;
                     break;
+                case 63:
+                    DialogueTrigger.TriggerDialogue(63,63);
+                    break;
+                case 64:
+                    gm.eventFlag = true;
+                    Debug.Log("(에드거의 초콜릿이 클로즈업 된다)");
+                    gm.story_info++;
+                    gm.eventFlag = false;
+                    break;
+                case 65:
+                    gm.eventFlag = true;
+                    Debug.Log("과거 회상");
+                    SceneManager.LoadScene("CutScene3");
+                    WaitForSec(2f);
+                    gm.story_info++;
+                    gm.eventFlag = false;
+                    break;
+                case 86:
+                    DialogueTrigger.TriggerDialogue(86,86);
+                    break;
+                case 87:
+                    gm.eventFlag = true;
+                    Debug.Log("(근무 시간 완료)");
+                    gm.story_info++;
+                    gm.eventFlag = false;
+                    break;
+                case 88:
+                    DialogueTrigger.TriggerDialogue(88,89);
+                    break;
+                case 90:
+                    gm.eventFlag = true;
+                    Debug.Log("(오브젝트 챙길지 말지 분기 지점)");
+                    if (Input.GetKey(KeyCode.Alpha1))
+                    {
+                        Debug.Log("배드 엔딩");
+                        gm.story_info = 91;
+                        SceneManager.LoadScene("BadEnding");
+                    }
+                    else if (Input.GetKey(KeyCode.Alpha2))
+                    {
+                        Debug.Log("노멀 엔딩");
+                        gm.story_info = 93;
+                        SceneManager.LoadScene("NormalEnding");
+                    }
+                    else if (Input.GetKey(KeyCode.Alpha3))
+                    {
+                        Debug.Log("히든 엔딩");
+                        gm.story_info = 117;
+                        SceneManager.LoadScene("TrueEnding");
+                    }
+                    gm.eventFlag = false;
+                    break;
                 default:
                     break;
             }

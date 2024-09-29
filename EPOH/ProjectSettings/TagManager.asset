@@ -7,6 +7,9 @@ TagManager:
   - Interaction
   - OneWayPlatform
   - Boss
+  - BossPhaseItem
+  - Ground
+  - BossAttack
   layers:
   - Default
   - TransparentFX
@@ -18,7 +21,7 @@ TagManager:
   - Boss
   - PlayerDamaged
   - Invincible
-  - 
+  - BossAttack
   - 
   - 
   - 
