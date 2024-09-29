@@ -48,27 +48,17 @@ public class BossScratching : MonoBehaviour, BossSkillInterface
             // 할퀸 자국 프리팹 생성
             Vector3 scratch_position = new Vector3(Random.Range(leftEdge.x, rightEdge.x), player.transform.position.y, 0);
             GameObject scratch_object = Instantiate(scratch_prefab, scratch_position, Quaternion.identity); // 프리팹 사용
+            scratch_object.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
 
-            // 초기 투명한 빨간색 설정
-            SpriteRenderer scratch_renderer = scratch_object.GetComponent<SpriteRenderer>();
-
-            scratch_renderer.sortingOrder = 10;
-
-            Color initialColor = new Color(1, 0, 0, 0); // 투명한 빨간색
-            scratch_renderer.color = initialColor;
-
-            // 색상이 점점 진해짐
-            float duration = 3.0f; // 3초간 색상 변화
-            float elapsedTime = 0f;
-
-            while (elapsedTime < duration)
+            // Animator 컴포넌트를 가져와 scratch_scar 애니메이션 재생
+            Animator scratchAnimator = scratch_object.GetComponent<Animator>();
+            if (scratchAnimator != null)
             {
-                elapsedTime += Time.deltaTime;
-                float alpha = Mathf.Clamp01(elapsedTime / duration); // 0에서 1로 알파 값 증가
-                scratch_renderer.color = new Color(1, 0, 0, alpha); // 점점 진해지는 빨간색
-
-                yield return null;
+                scratchAnimator.Play("Scratch_scar"); // scratch_scar 애니메이션 재생
             }
+
+            
+            yield return new WaitForSeconds(3.0f); // 애니메이션 길이에 맞춰 대기
 
             Vector3 currentScale = scratch_object.transform.localScale;
             Vector3 currentPosition = scratch_object.transform.position; // 위치 저장
@@ -77,25 +67,12 @@ public class BossScratching : MonoBehaviour, BossSkillInterface
             GameObject pop_object = Instantiate(scratch_pop, currentPosition, Quaternion.identity); // scratch_pop로 교체
             pop_object.transform.localScale = currentScale; // 이전 오브젝트의 크기 유지
 
-            // scratch_pop의 sortingOrder 설정
-            SpriteRenderer pop_renderer = pop_object.GetComponent<SpriteRenderer>();
-            pop_renderer.sortingOrder = 10;
-
-
-            // 크기 변화 시작
-            float scaleDuration = 1.5f; // 크기가 커지는 시간
-            float scaleElapsedTime = 0f;
-            Vector3 originalScale = pop_object.transform.localScale; // 원래 크기 저장
-
-            while (scaleElapsedTime < scaleDuration)
+            // Animator 컴포넌트를 가져와 scratching_explode 애니메이션 재생
+            Animator popAnimator = pop_object.GetComponent<Animator>();
+            if (popAnimator != null)
             {
-                scaleElapsedTime += Time.deltaTime;
-                float scale = Mathf.Lerp(1.0f, 4.0f, scaleElapsedTime / scaleDuration); // 1배에서 4배까지
-                pop_object.transform.localScale = originalScale * scale; // 원래 크기의 1배에서 4배로 확대
-
-                yield return null; // 프레임을 넘겨 루프가 반복되도록 설정
+                popAnimator.Play("Scratching_explode"); // scratching_explode 애니메이션 재생
             }
-
 
             // 3초 후 폭발 효과 
             Destroy(pop_object);
