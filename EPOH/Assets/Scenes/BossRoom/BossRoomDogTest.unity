@@ -571,7 +571,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 294923652}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.13940883, y: -5.41842, z: -10}
+  m_LocalPosition: {x: -0.14409208, y: -5.41842, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4403,7 +4403,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   absorbingDuration: 5
   absorbPower: 250
-  explosionStartTime: 0.5
+  absorbFlag: 0
+  shockWavePrefab: {fileID: 2758488871968504048, guid: 27df7d44a22d446018408a1bd1997f64, type: 3}
 --- !u!114 &2027936712
 MonoBehaviour:
   m_ObjectHideFlags: 0

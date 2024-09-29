@@ -147,8 +147,8 @@ public class BossDogController : MonoBehaviour
                 _howling1.Activate();
                 yield break;
             case "howling2" :
-                yield return StartCoroutine(_howling2.StartHowling2());
-                break;
+                _howling2.Activate();
+                yield break;
             case "stomping1" :
                 yield return StartCoroutine(_stomping1.StartStomping1());
                 break;
