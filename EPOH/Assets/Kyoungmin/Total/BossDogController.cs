@@ -68,12 +68,12 @@ public class BossDogController : MonoBehaviour
         if (_playerRigid.transform.position.x - boss.transform.position.x >= 0)
         {
             //Debug.Log("right");
-            FlipX(boss, false);
+            FlipX(boss, true);
             return true;
         }
         
         //Debug.Log("left");
-        FlipX(boss, true);
+        FlipX(boss, false);
         return false;
     }
 
@@ -144,8 +144,8 @@ public class BossDogController : MonoBehaviour
         switch (skillName)
         {
             case "howling1" :
-                yield return StartCoroutine(_howling1.StartHowling1());
-                break;
+                _howling1.Activate();
+                yield break;
             case "howling2" :
                 yield return StartCoroutine(_howling2.StartHowling2());
                 break;
