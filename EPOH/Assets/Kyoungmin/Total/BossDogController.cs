@@ -36,14 +36,12 @@ public class BossDogController : MonoBehaviour
     private Stack<string> phase1Stack = new Stack<string>();
     private Stack<string> phase2Stack = new Stack<string>();
     private Stack<string> phase3Stack = new Stack<string>();
+
+    [SerializeField] private float skillDuration;
     
     
     void Awake()
     {
-        //플레이어 할당
-        _player = GameObject.FindWithTag("Player");
-        _playerRigid = _player.GetComponent<Rigidbody2D>();
-        
         //스킬 스크립트 할당
         _howling1 = GetComponent<Howling1>();
         _howling2 = GetComponent<Howling2>();
@@ -57,6 +55,10 @@ public class BossDogController : MonoBehaviour
 
     void Start()
     {
+        //플레이어 할당
+        _player = GameObject.FindWithTag("Player");
+        _playerRigid = _player.GetComponent<Rigidbody2D>();
+        
         ListToStack(phase1List,phase1Stack);
         ListToStack(phase2List,phase2Stack);
         ListToStack(phase3List,phase3Stack);
