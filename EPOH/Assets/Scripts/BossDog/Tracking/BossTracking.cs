@@ -7,7 +7,6 @@ public class BossTracking : MonoBehaviour, BossSkillInterface
     private BossDogController dog; //BossDogController 참조
 
     public GameObject player; // 플레이어 게임 오브젝트
-    [SerializeField] float attack_power = 10f; // 보스 공격 세기
 
     //추적 변수
     public GameObject tracking_eye_prefab; // 추적 눈동자 프리팹
@@ -37,10 +36,10 @@ public class BossTracking : MonoBehaviour, BossSkillInterface
 
     void Update()
     {
-        // 매 프레임마다 눈동자가 플레이어의 x축을 따라다니도록 설정
+        // 매 프레임마다 눈동자가 플레이어의 x축과 y축을 따라다니도록 설정
         if (tracking_eye != null && player != null)
         {
-            tracking_eye.transform.position = new Vector3(player.transform.position.x, tracking_eye.transform.position.y, tracking_eye.transform.position.z);
+            tracking_eye.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1, tracking_eye.transform.position.z);
         }
     }
 

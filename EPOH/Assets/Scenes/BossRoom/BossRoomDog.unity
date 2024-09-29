@@ -4347,7 +4347,7 @@ GameObject:
   - component: {fileID: 2027936717}
   - component: {fileID: 2027936716}
   - component: {fileID: 2027936715}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BossDogManager
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -4472,6 +4472,7 @@ MonoBehaviour:
   - biting
   - howling2
   - running
+
 --- !u!4 &2027936714
 Transform:
   m_ObjectHideFlags: 0
@@ -4500,7 +4501,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 847919468}
-  attack_power: 10
   tracking_eye_prefab: {fileID: 8982902104962463404, guid: 9fbf317a58a6c4c32b10965c738a5457, type: 3}
   tracking_effect_prefab: {fileID: 8982902104962463404, guid: 39d2cad1bf8bf4dc79f9abf933e22a3c, type: 3}
   tracking_pop_prefab: {fileID: 8982902104962463404, guid: 453fb190e6d7a44b0bb8958ba82ffb68, type: 3}
@@ -4517,7 +4517,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 847919468}
-  attack_power: 10
   scratch_prefab: {fileID: 8306289788758409414, guid: f77f81680eeb342e291d842f96fea4d7, type: 3}
   scratch_pop: {fileID: 8306289788758409414, guid: 579c13866060b42229503eb52e37784f, type: 3}
 --- !u!114 &2027936717
@@ -4533,8 +4532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 847919468}
-  attack_power: 10
-  shadow_speed: 10
+  shadow_speed: 20
   warning_duration: 3
   warning_color: {r: 1, g: 0, b: 0, a: 1}
   bossIconPrefab: {fileID: 5474589133209643891, guid: 25afa047b0bbf461ea93ff28d8b23a53, type: 3}
@@ -4551,7 +4549,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 847919468}
-  attack_power: 10
   shadow_speed: 10
   reach_distance_short: 0
   Dog_yposition: 0
