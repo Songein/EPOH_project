@@ -8,11 +8,14 @@ public class Howling1 : MonoBehaviour, BossSkillInterface
 {
     //충격파 발생까지의 시간
     [SerializeField] private float shockWaveStartTime = 2f;
+    //충격파 프리팹
+    [SerializeField] private GameObject shockWavePrefab;
     //BossDogController 참조
     private BossDogController _dog;
     //보스 개 스폰 난수
     private int _random;
-    private void Awake()
+    
+    void Start()
     {
         _dog = GetComponent<BossDogController>();
     }
@@ -23,7 +26,7 @@ public class Howling1 : MonoBehaviour, BossSkillInterface
     }
 
     //일반 하울링 스킬 함수
-    IEnumerator StartHowling1()
+    public IEnumerator StartHowling1()
     {
         //보스 리스트 초기화
         _dog.bossList.Clear();
@@ -49,14 +52,9 @@ public class Howling1 : MonoBehaviour, BossSkillInterface
         yield return new WaitForSeconds(shockWaveStartTime);
         
         //충격파 전조 시간이 지나고충격파 발생
-        if (_dog.bossList.Count == 1)
+        foreach (var boss in _dog.bossList)
         {
-            _dog.bossList[0].transform.GetChild(0).gameObject.SetActive(true);
-        }
-        else
-        {
-            _dog.bossList[0].transform.GetChild(0).gameObject.SetActive(true);
-            _dog.bossList[1].transform.GetChild(0).gameObject.SetActive(true);
+            Instantiate(shockWavePrefab, boss.transform.position, Quaternion.identity);
         }
     }
 }

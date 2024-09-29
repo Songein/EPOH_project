@@ -22,12 +22,44 @@ public class BossDogController : MonoBehaviour
     //보스 개 하위 스킬
     private Howling1 _howling1;
     private Howling2 _howling2;
+    private Stomping1 _stomping1;
+    private Stomping2 _stomping2;
+    private BossBiting _biting;
+    private BossRunning _running;
+    private BossScratching _scratching;
+    private BossTracking _tracking;
+    
+    //보스 페이즈
+    [SerializeField] private List<string> phase1List = new List<string>();
+    [SerializeField] private List<string> phase2List = new List<string>();
+    [SerializeField] private List<string> phase3List = new List<string>();
+    private Stack<string> phase1Stack = new Stack<string>();
+    private Stack<string> phase2Stack = new Stack<string>();
+    private Stack<string> phase3Stack = new Stack<string>();
+    
     
     void Awake()
     {
         //플레이어 할당
         _player = GameObject.FindWithTag("Player");
         _playerRigid = _player.GetComponent<Rigidbody2D>();
+        
+        //스킬 스크립트 할당
+        _howling1 = GetComponent<Howling1>();
+        _howling2 = GetComponent<Howling2>();
+        _stomping1 = GetComponent<Stomping1>();
+        _stomping2 = GetComponent<Stomping2>();
+        _biting = GetComponent<BossBiting>();
+        _running = GetComponent<BossRunning>();
+        _scratching = GetComponent<BossScratching>();
+        _tracking = GetComponent<BossTracking>();
+    }
+
+    void Start()
+    {
+        ListToStack(phase1List,phase1Stack);
+        ListToStack(phase2List,phase2Stack);
+        ListToStack(phase3List,phase3Stack);
     }
     
     public bool IsPlayerRight(GameObject boss)
@@ -57,21 +89,84 @@ public class BossDogController : MonoBehaviour
         bossList.Add(boss);
     }
 
-    public void ActiveSkill(string skillName)
+    void ListToStack(List<string> list, Stack<string> stack)
     {
-        for (int i = 0; i < bossList.Count; i++)
+        for (int i = list.Count - 1; i >= 0; i--)
         {
-            switch (skillName)
-            {
-                case ("Howling1"):
-                    bossList[i].GetComponent<Howling1>().Activate();
-                    break;
-                case ("Howling2"):
-                    bossList[i].GetComponent<Howling2>().Activate();
-                    break;
-                default :
-                    break;
-            }
+            stack.Push(list[i]);
+        }
+        
+    }
+
+    public void StartPhase1()
+    {
+        StartCoroutine(Phase1());
+    }
+    public void StartPhase2()
+    {
+        StartCoroutine(Phase2());
+    }
+    public void StartPhase3()
+    {
+        StartCoroutine(Phase3());
+    }
+    IEnumerator Phase1()
+    {
+        Debug.Log("Phase1 : ");
+        while (phase1Stack.Count > 0)
+        {
+            string skillName = phase1Stack.Pop();
+            yield return StartCoroutine(ActivateSkill(skillName));
+        }
+    }
+    IEnumerator Phase2()
+    {
+        Debug.Log("Phase2 : ");
+        while (phase2Stack.Count > 0)
+        {
+            string skillName = phase2Stack.Pop();
+            yield return StartCoroutine(ActivateSkill(skillName));
+        }
+    }
+    IEnumerator Phase3()
+    {
+        Debug.Log("Phase3 : ");
+        while (phase3Stack.Count > 0)
+        {
+            string skillName = phase3Stack.Pop();
+            yield return StartCoroutine(ActivateSkill(skillName));
+        }
+    }
+
+    IEnumerator ActivateSkill(string skillName)
+    {
+        Debug.Log(skillName + "Activate");
+        switch (skillName)
+        {
+            case "howling1" :
+                yield return StartCoroutine(_howling1.StartHowling1());
+                break;
+            case "howling2" :
+                yield return StartCoroutine(_howling2.StartHowling2());
+                break;
+            case "stomping1" :
+                yield return StartCoroutine(_stomping1.StartStomping1());
+                break;
+            case "stomping2" :
+                yield return StartCoroutine(_stomping2.StartStomping2());
+                break;
+            case "biting" :
+                yield return StartCoroutine(_biting.Biting());
+                break;
+            case "running" :
+                yield return StartCoroutine(_running.Running());
+                break;
+            case "scratching" :
+                yield return StartCoroutine(_scratching.Scratching());
+                break;
+            case "tracking" :
+                yield return StartCoroutine(_tracking.Tracking());
+                break;
         }
     }
     

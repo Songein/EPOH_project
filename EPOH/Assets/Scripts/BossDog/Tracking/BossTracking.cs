@@ -49,7 +49,7 @@ public class BossTracking : MonoBehaviour, BossSkillInterface
         StartCoroutine(Tracking());
     }
 
-    private IEnumerator Tracking()
+    public IEnumerator Tracking()
     {
 
         float elapsedTime = 0f;
@@ -90,7 +90,7 @@ public class BossTracking : MonoBehaviour, BossSkillInterface
 
         // 추적 눈동자 이펙트 비활성화
         tracking_eye.SetActive(false);
-
+        yield return new WaitForSeconds(0.2f);
     }
 
 }

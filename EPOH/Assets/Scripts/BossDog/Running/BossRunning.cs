@@ -31,7 +31,7 @@ public class BossRunning : MonoBehaviour, BossSkillInterface
         StartCoroutine(Running());
     }
 
-    private IEnumerator Running()
+    public IEnumerator Running()
     {
         // LeftPoint와 RightPoint 중 랜덤으로 시작 위치 설정
         Vector3 startPosition;
@@ -96,6 +96,8 @@ public class BossRunning : MonoBehaviour, BossSkillInterface
         }
 
         Destroy(shadow_object); // 그림자 오브젝트 삭제
+        
+        yield return new WaitForSeconds(0.2f);
     }
 
     // 기본 사각형 스프라이트 생성 함수

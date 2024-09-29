@@ -32,7 +32,7 @@ public class BossBiting : MonoBehaviour, BossSkillInterface
         StartCoroutine(Biting());
     }
 
-    private IEnumerator Biting()
+    public IEnumerator Biting()
     {
         // 그림자 오브젝트 생성
         Vector3 shadowStartPosition = dog.spawnMiddlePoint;
@@ -109,6 +109,8 @@ public class BossBiting : MonoBehaviour, BossSkillInterface
 
         // 그림자 오브젝트 삭제
         Destroy(shadow_object);
+        
+        yield return new WaitForSeconds(0.2f);
     }
     
 }
