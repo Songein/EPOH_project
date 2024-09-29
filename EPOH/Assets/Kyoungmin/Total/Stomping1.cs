@@ -21,7 +21,7 @@ public class Stomping1 : MonoBehaviour, BossSkillInterface
         StartCoroutine(StartStomping1());
     }
     
-    IEnumerator StartStomping1()
+    public IEnumerator StartStomping1()
     {
         //보스 리스트 초기화
         _dog.bossList.Clear();
@@ -41,5 +41,7 @@ public class Stomping1 : MonoBehaviour, BossSkillInterface
         stompingWave.SetActive(true);
         stompingWave.GetComponent<Animator>()
             .Play(_dog.IsPlayerRight(_dog.bossList[0]) ? "Right Explosion" : "Left Explosion");
+        
+        yield return new WaitForSeconds(1.5f);
     }
 }

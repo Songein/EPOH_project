@@ -45,7 +45,7 @@ public class Stomping2 : MonoBehaviour, BossSkillInterface
         StartCoroutine(StartStomping2());
     }
     
-    IEnumerator StartStomping2()
+    public IEnumerator StartStomping2()
     {
         //boss 리스트 초기화
         _dog.bossList.Clear();
@@ -74,12 +74,12 @@ public class Stomping2 : MonoBehaviour, BossSkillInterface
         warning.SetActive(false);
         ground.GetComponent<GroundController>().ActiveAttack();
         
-        //돌 공격 시작
-        StartCoroutine(GenerateRock());
-        
         //땅 공격 해제
         yield return new WaitForSeconds(0.5f);
         ground.GetComponent<GroundController>().DisactiveAttack();
+        
+        //돌 공격 시작
+        yield return StartCoroutine(GenerateRock());
     }
     // ReSharper disable Unity.PerformanceAnalysis
     IEnumerator GenerateRock()
@@ -118,6 +118,6 @@ public class Stomping2 : MonoBehaviour, BossSkillInterface
         }
         curSet++;
         yield return new WaitForSeconds(rockSetDuration);
-        StartCoroutine(GenerateRock());
+        yield return StartCoroutine(GenerateRock());
     }
 }

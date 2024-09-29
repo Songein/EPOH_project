@@ -32,7 +32,7 @@ public class BossRunning : MonoBehaviour, BossSkillInterface
         StartCoroutine(Running());
     }
 
-    private IEnumerator Running()
+    public IEnumerator Running()
     {
         Vector3 targetPosition = player.transform.position;;
         Vector3 startPosition = dog.spawnMiddlePoint;
@@ -85,6 +85,8 @@ public class BossRunning : MonoBehaviour, BossSkillInterface
         }
 
         Destroy(shadow_object); // 그림자 오브젝트 삭제
+        
+        yield return new WaitForSeconds(0.2f);
     }
 
     // 기본 사각형 스프라이트 생성 함수

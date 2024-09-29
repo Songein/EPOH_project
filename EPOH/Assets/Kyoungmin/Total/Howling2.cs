@@ -56,7 +56,7 @@ public class Howling2 : MonoBehaviour, BossSkillInterface
     }
     
     //강화 하울링 호출 함수
-    IEnumerator StartHowling2()
+    public IEnumerator StartHowling2()
     {
         //보스 리스트 및 absorb 플래그 초기화
         _dog.bossList.Clear();
@@ -102,6 +102,8 @@ public class Howling2 : MonoBehaviour, BossSkillInterface
         
         //폭발 이펙트 활성화
         _dog.bossList[0].transform.GetChild(1).gameObject.SetActive(true);
+        
+        yield return new WaitForSeconds(0.2f);
     }
 
     //보스 개의 흡수 방향 감지
