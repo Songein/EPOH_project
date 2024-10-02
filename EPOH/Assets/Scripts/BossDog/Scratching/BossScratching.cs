@@ -46,19 +46,33 @@ public class BossScratching : MonoBehaviour, BossSkillInterface
             float maxX = Mathf.Min(rightEdge.x, player.transform.position.x + 10f);
             
             // 할퀸 자국 프리팹 생성
-            Vector3 scratch_position = new Vector3(Random.Range(leftEdge.x, rightEdge.x), player.transform.position.y, 0);
+            Vector3 scratch_position = new Vector3(Random.Range(minX, maxX), player.transform.position.y, 0);
             GameObject scratch_object = Instantiate(scratch_prefab, scratch_position, Quaternion.identity); // 프리팹 사용
+            if (scratch_object != null)
+            {
+                Debug.Log("Scratch prefab instantiated successfully");
+            }
+            else
+            {
+                Debug.Log("Failed to instantiate scratch prefab");
+            }
             scratch_object.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
 
             // Animator 컴포넌트를 가져와 scratch_scar 애니메이션 재생
             Animator scratchAnimator = scratch_object.GetComponent<Animator>();
             if (scratchAnimator != null)
             {
-                scratchAnimator.Play("Scratch_scar"); // scratch_scar 애니메이션 재생
+                Debug.Log("Scratch Animator Found");
+                //scratchAnimator.Play("Scratch_scar"); // scratch_scar 애니메이션 재생
+                scratchAnimator.SetTrigger("Scratch_scar_trigger"); 
+            }
+            else
+            {
+                Debug.Log("Scratch Animator Not Found");
             }
 
             
-            yield return new WaitForSeconds(3.0f); // 애니메이션 길이에 맞춰 대기
+            yield return new WaitForSeconds(0.833f); // 애니메이션 길이에 맞춰 대기
 
             Vector3 currentScale = scratch_object.transform.localScale;
             Vector3 currentPosition = scratch_object.transform.position; // 위치 저장
@@ -73,6 +87,8 @@ public class BossScratching : MonoBehaviour, BossSkillInterface
             {
                 popAnimator.Play("Scratching_explode"); // scratching_explode 애니메이션 재생
             }
+
+            yield return new WaitForSeconds(0.583f);
 
             // 3초 후 폭발 효과 
             Destroy(pop_object);
