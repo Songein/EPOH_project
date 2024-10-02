@@ -63,8 +63,7 @@ public class BossScratching : MonoBehaviour, BossSkillInterface
             if (scratchAnimator != null)
             {
                 Debug.Log("Scratch Animator Found");
-                //scratchAnimator.Play("Scratch_scar"); // scratch_scar 애니메이션 재생
-                scratchAnimator.SetTrigger("Scratch_scar_trigger"); 
+                scratchAnimator.Play("Scratch_scar");
             }
             else
             {
@@ -72,7 +71,8 @@ public class BossScratching : MonoBehaviour, BossSkillInterface
             }
 
             
-            yield return new WaitForSeconds(0.833f); // 애니메이션 길이에 맞춰 대기
+            yield return new WaitForSeconds(1f); // 애니메이션 길이에 맞춰 대기
+
 
             Vector3 currentScale = scratch_object.transform.localScale;
             Vector3 currentPosition = scratch_object.transform.position; // 위치 저장
@@ -88,9 +88,8 @@ public class BossScratching : MonoBehaviour, BossSkillInterface
                 popAnimator.Play("Scratching_explode"); // scratching_explode 애니메이션 재생
             }
 
-            yield return new WaitForSeconds(0.583f);
+            yield return new WaitForSeconds(1f);
 
-            // 3초 후 폭발 효과 
             Destroy(pop_object);
 
 
