@@ -62,7 +62,7 @@ public class BossScratching : MonoBehaviour, BossSkillInterface
             Animator scratchAnimator = scratch_object.GetComponent<Animator>();
             if (scratchAnimator != null)
             {
-                Debug.Log("Scratch Animator Found");
+                Debug.Log("Scratch Animator Runtime Controller: " + scratchAnimator.runtimeAnimatorController.name);
                 scratchAnimator.Play("Scratch_scar");
             }
             else
@@ -71,7 +71,7 @@ public class BossScratching : MonoBehaviour, BossSkillInterface
             }
 
             
-            yield return new WaitForSeconds(1f); // 애니메이션 길이에 맞춰 대기
+            yield return new WaitForSeconds(1.333f); // 애니메이션 길이에 맞춰 대기
 
 
             Vector3 currentScale = scratch_object.transform.localScale;
@@ -81,10 +81,10 @@ public class BossScratching : MonoBehaviour, BossSkillInterface
             GameObject pop_object = Instantiate(scratch_pop, currentPosition, Quaternion.identity); // scratch_pop로 교체
             pop_object.transform.localScale = currentScale; // 이전 오브젝트의 크기 유지
 
-            // Animator 컴포넌트를 가져와 scratching_explode 애니메이션 재생
             Animator popAnimator = pop_object.GetComponent<Animator>();
             if (popAnimator != null)
             {
+                Debug.Log("Pop Animator Runtime Controller: " + popAnimator.runtimeAnimatorController.name);
                 popAnimator.Play("Scratching_explode"); // scratching_explode 애니메이션 재생
             }
 
