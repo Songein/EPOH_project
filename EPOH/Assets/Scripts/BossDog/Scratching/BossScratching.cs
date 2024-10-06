@@ -38,6 +38,7 @@ public class BossScratching : MonoBehaviour, BossSkillInterface
     public IEnumerator Scratching()
     {
         int scratch_count = 3; // 총 3번의 할퀸 자국을 생성
+        int number = 0;
 
         for (int i = 0; i < scratch_count; i++)
         {
@@ -88,9 +89,11 @@ public class BossScratching : MonoBehaviour, BossSkillInterface
                 popAnimator.Play("Scratching_explode"); // scratching_explode 애니메이션 재생
             }
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(popAnimator.GetCurrentAnimatorStateInfo(0).length);
 
             Destroy(pop_object);
+            number ++;
+            Debug.Log("스크래치 횟수: " + number);
 
 
             // 다음 할퀸 자국 생성 전 1초 대기
