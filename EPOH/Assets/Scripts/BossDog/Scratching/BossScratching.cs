@@ -64,7 +64,7 @@ public class BossScratching : MonoBehaviour, BossSkillInterface
             if (scratchAnimator != null)
             {
                 Debug.Log("Scratch Animator Runtime Controller: " + scratchAnimator.runtimeAnimatorController.name);
-                scratchAnimator.Play("Scratch_scar");
+                scratchAnimator.Play("Scratching_scar");
             }
             else
             {
@@ -72,7 +72,7 @@ public class BossScratching : MonoBehaviour, BossSkillInterface
             }
 
             
-            yield return new WaitForSeconds(1.333f); // 애니메이션 길이에 맞춰 대기
+            yield return new WaitForSeconds(1.083f); // 애니메이션 길이에 맞춰 대기
 
 
             Vector3 currentScale = scratch_object.transform.localScale;
