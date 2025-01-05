@@ -10,6 +10,7 @@ TagManager:
   - BossPhaseItem
   - Ground
   - BossAttack
+  - AttackArea
   layers:
   - Default
   - TransparentFX
