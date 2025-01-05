@@ -6,22 +6,37 @@ using UnityEngine;
 public class Hittable : MonoBehaviour
 {
     //오브젝트의 체력
-    [SerializeField] private float health;
-    public float Health { get; set; }
+    [SerializeField] private float _health;
+
+    public float Health
+    {
+        get { return _health;}
+        set { _health = value; }
+    }
     
     //감소시킬 플레이어의 해킹 포인트 수치
-    [Tooltip("감소시킬 해킹 포인트 수치(단위 : %)")]
-    [SerializeField] private float hackPoint;
-    public float HackPoint { get; private set; }
+    [SerializeField] private float _hackPoint;
+
+    public float HackPoint
+    {
+        get { return _hackPoint;}
+        set { _hackPoint = value; }
+    }
+
+    void Awake()
+    {
+        Health = _health;
+        HackPoint = _hackPoint;
+    }
     
     //플레이어에게 공격 받을 경우의 행위
     public virtual void OnHit(float damage)
     {
         //공격세기 만큼 체력을 감소하기
-        health -= damage;
+        _health -= damage;
 
         //체력이 0이하라면 파괴함수 호출
-        if (health <= 0)
+        if (_health <= 0)
         {
             OnRemoved();
         }

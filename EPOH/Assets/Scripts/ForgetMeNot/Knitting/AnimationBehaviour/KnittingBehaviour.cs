@@ -14,7 +14,7 @@ public class KnittingBehaviour : StateMachineBehaviour
         Knit knit = animator.GetComponent<Knit>();
         knit.CurStep = step;
         knit.Health = health;
-        Debug.Log($"[Knit] : {knit.CurStep+1}->{knit.CurStep} 로 단계 감소. 체력({knit.Health})");
+        Debug.Log($"[Knit] : 현재 단계{knit.CurStep}. 체력({knit.Health})");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

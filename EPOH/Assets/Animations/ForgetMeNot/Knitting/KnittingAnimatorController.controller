@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d21d84b0972fa462ba69c4286d630644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stage: 2
+  step: 2
   health: 100
 --- !u!114 &-6371892502322477047
 MonoBehaviour:
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d21d84b0972fa462ba69c4286d630644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stage: 3
+  step: 3
   health: 100
 --- !u!1101 &-5886440958153692473
 AnimatorStateTransition:
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d21d84b0972fa462ba69c4286d630644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stage: 4
+  step: 4
   health: 100
 --- !u!1102 &-4534868444280954890
 AnimatorState:
@@ -446,7 +446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d21d84b0972fa462ba69c4286d630644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stage: 1
+  step: 1
   health: 100
 --- !u!1102 &-720468929835361635
 AnimatorState:
@@ -491,7 +491,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -813,7 +813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d21d84b0972fa462ba69c4286d630644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stage: 5
+  step: 5
   health: 100
 --- !u!114 &6631189223399474620
 MonoBehaviour:
