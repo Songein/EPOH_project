@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Debug = EPOH.Debug;
 
 public class KnittingBehaviour : StateMachineBehaviour
 {
-    public int stage;
+    public int step;
     public float health;
     
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Knit knit = animator.GetComponent<Knit>();
-        knit.CurStage = stage;
+        knit.CurStep = step;
         knit.Health = health;
+        Debug.Log($"[Knit] : {knit.CurStep+1}->{knit.CurStep} 로 단계 감소. 체력({knit.Health})");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
