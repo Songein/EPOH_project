@@ -33,14 +33,17 @@ public class BossBiting : MonoBehaviour, BossSkillInterface
         StartCoroutine(Biting());
     }
 
-    private void AdjustDirection(GameObject obj, Vector3 playerPos)
+    private void AdjustDirection(GameObject obj, Vector3 playerPos, Vector3 unifiedScale)
     {
+        // 크기를 통일
+        obj.transform.localScale = unifiedScale;
+
         if (playerPos.x < obj.transform.position.x)
         {
             // 왼쪽을 바라보도록 설정
             obj.transform.localScale = new Vector3(
-                Mathf.Abs(obj.transform.localScale.x) * 0.5f,
-                obj.transform.localScale.y * 0.5f,
+                Mathf.Abs(obj.transform.localScale.x),
+                obj.transform.localScale.y,
                 obj.transform.localScale.z
             );
         }
@@ -62,19 +65,26 @@ public class BossBiting : MonoBehaviour, BossSkillInterface
         Vector3 shadowStartPosition = dog.spawnMiddlePoint;
         GameObject bite_ready_object = Instantiate(biteReadyPrefab, shadowStartPosition, Quaternion.identity);
 
+        // 통일된 크기 정의
+        Vector3 unifiedScale = new Vector3(
+            bite_ready_object.transform.localScale.x * 0.5f,
+            bite_ready_object.transform.localScale.y * 0.5f,
+            bite_ready_object.transform.localScale.z
+        );
+
         // 좌우 반전 효과 (잠깐 반전)
         for (int i = 0; i < 2; i++) // 두 번 반전
         {
             bite_ready_object.transform.localScale = new Vector3(
-                -bite_ready_object.transform.localScale.x,
-                bite_ready_object.transform.localScale.y,
-                bite_ready_object.transform.localScale.z
+                -unifiedScale.x, // 반전된 방향의 x축 크기
+                unifiedScale.y,   // y축 크기는 유지
+                unifiedScale.z    // z축 크기는 유지
             );
-            yield return new WaitForSeconds(0.8f); // 0.2초 대기
+            yield return new WaitForSeconds(0.8f); // 0.8초 대기
         }
-
+        
        // 플레이어 방향에 따라 bite_ready_object 방향 설정
-        AdjustDirection(bite_ready_object, player.transform.position);
+        AdjustDirection(bite_ready_object, player.transform.position, unifiedScale);
 
         // 반전된 상태에서 1초 동안 대기
         yield return new WaitForSeconds(1.5f);
@@ -96,7 +106,7 @@ public class BossBiting : MonoBehaviour, BossSkillInterface
         Animator biteAnimator = bite_object.GetComponent<Animator>();
 
         // 플레이어 방향에 따라 bite_object 방향 설정
-        AdjustDirection(bite_object, player.transform.position);
+        AdjustDirection(bite_object, player.transform.position, unifiedScale);
 
         if (biteAnimator == null)
         {
