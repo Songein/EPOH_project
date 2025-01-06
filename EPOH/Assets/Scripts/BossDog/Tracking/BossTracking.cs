@@ -70,7 +70,6 @@ public class BossTracking : MonoBehaviour, BossSkillInterface
 
     public IEnumerator Tracking()
     {
-
         float elapsedTime = 0f;
         float totalDuration = 5.0f; // 전체 추적 지속 시간
         float interval = 1.5f; // 추적 이펙트가 생성되고 폭발할 때까지의 간격
@@ -79,6 +78,9 @@ public class BossTracking : MonoBehaviour, BossSkillInterface
         {
             // 플레이어 위치에 추적 이펙트 생성
             Vector3 effectSpawnPosition = player.transform.position;
+
+            effectSpawnPosition.y += 0.5f;
+
             GameObject tracking_effect = Instantiate(tracking_effect_prefab, effectSpawnPosition, Quaternion.identity);
 
             // 1초 후 추적 폭발 이펙트 발생
@@ -86,26 +88,26 @@ public class BossTracking : MonoBehaviour, BossSkillInterface
 
             // 추적 폭발 이펙트 발생 (추적 이펙트 삭제 및 폭발 이펙트 생성)
             Destroy(tracking_effect); // 기존 이펙트 삭제
-            GameObject explosion = Instantiate(tracking_pop_prefab, effectSpawnPosition, Quaternion.identity); // 폭발 이펙트 생성
+            GameObject explode_object = Instantiate(tracking_pop_prefab, effectSpawnPosition, Quaternion.identity); // 폭발 이펙트 생성
 
-            // 폭발 이펙트가 점점 커짐
-            float explosionDuration = 0.5f; // 폭발이 커지는 시간
-            float explosionElapsedTime = 0f;
-            Vector3 originalScale = explosion.transform.localScale;
-
-            while (explosionElapsedTime < explosionDuration)
+            // Animator 컴포넌트를 가져와 애니메이션 재생
+            Animator explodeAnimator = explode_object.GetComponent<Animator>();
+            if (explodeAnimator != null)
             {
-                explosionElapsedTime += Time.deltaTime;
-                float scale = Mathf.Lerp(1.0f, 6.0f, explosionElapsedTime / explosionDuration); // 1배에서 4배로 크기 증가
-                explosion.transform.localScale = originalScale * scale;
-                yield return null;
+                explodeAnimator.Play("Tracking_teeth"); // Animator에 설정된 애니메이션 이름
+            }
+            else
+            {
+                Debug.LogError("Animator component is missing on the explode_object prefab.");
             }
 
-            Destroy(explosion); // 폭발 이펙트 제거
+
+            // 일정 시간 후 폭발 이펙트 제거
+            yield return new WaitForSeconds(2.0f); // 폭발 이펙트 유지 시간
+            Destroy(explode_object); // 폭발 이펙트 제거
 
             elapsedTime += interval; // 경과 시간 증가
         }
-
 
         // 추적 눈동자 이펙트 비활성화
         tracking_eye.SetActive(false);
