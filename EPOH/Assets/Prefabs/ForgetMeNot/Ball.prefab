@@ -138,4 +138,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _duration: 10
   _damage: 20
-  _ballSpeed: 30
+  _ballSpeed: 15
