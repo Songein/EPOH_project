@@ -14,6 +14,7 @@ public class BossTracking : MonoBehaviour, BossSkillInterface
     public GameObject tracking_pop_prefab; // 추적 이펙트 프리팹
 
     private GameObject tracking_eye; // 추적 눈동자 오브젝트
+    private Animator trackingAnimator; // 추적 눈동자 애니메이터
 
 
     private void Awake()
@@ -28,9 +29,19 @@ public class BossTracking : MonoBehaviour, BossSkillInterface
     {
         
         // 추적 눈동자 생성
-        Vector3 eyePosition = new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z);
+        Vector3 eyePosition = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
         tracking_eye = Instantiate(tracking_eye_prefab, eyePosition, Quaternion.identity);
         tracking_eye.SetActive(false); // 시작 시 비활성화
+
+        //크기 조정
+        tracking_eye.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); // 눈동자 크기를 2배로 설정
+
+        // Animator 컴포넌트 가져오기
+        trackingAnimator = tracking_eye.GetComponent<Animator>();
+        if (trackingAnimator == null)
+        {
+            Debug.LogError("Animator component is missing on the tracking_eye prefab.");
+        }
 
     }
 
@@ -39,13 +50,21 @@ public class BossTracking : MonoBehaviour, BossSkillInterface
         // 매 프레임마다 눈동자가 플레이어의 x축과 y축을 따라다니도록 설정
         if (tracking_eye != null && player != null)
         {
-            tracking_eye.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1, tracking_eye.transform.position.z);
+            tracking_eye.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, tracking_eye.transform.position.z);
         }
     }
 
     public void Activate()
     {
         tracking_eye.SetActive(true); // 추적 눈동자 활성화
+
+        // 추적 눈동자 애니메이션 재생
+        if (trackingAnimator != null)
+        {
+            trackingAnimator.Play("Tracking_eye"); // Animator에 설정된 애니메이션 이름
+        }
+
+
         StartCoroutine(Tracking());
     }
 
