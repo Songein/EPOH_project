@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 1317982050988107674}
   - component: {fileID: -5383675264765943190}
   - component: {fileID: 5950484199248453705}
-  - component: {fileID: 4906604556366714989}
   - component: {fileID: 5964327985969584555}
+  - component: {fileID: 8097045501208940632}
   m_Layer: 0
-  m_Name: BossDogShadow
+  m_Name: DogRunning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  runningPrefab: {fileID: 0}
   shadow_speed: 10
   warning_duration: 3
   warning_color: {r: 1, g: 0, b: 0, a: 1}
@@ -125,31 +126,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4906604556366714989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3798098871553349891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebdb7ef74db4844c2bc93c6fb8f3aaca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  shadow_speed: 10
-  reach_distance_short: 0
-  Dog_yposition: 0
-  bite_duration: 0.5
-  bite_effects: []
-  bite_renderer: {fileID: 0}
-  curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &5964327985969584555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +139,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _power: 10
+--- !u!95 &8097045501208940632
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3798098871553349891}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: be3c8d022527f46c398a17831d48f643, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8939410992293039188
 GameObject:
   m_ObjectHideFlags: 0

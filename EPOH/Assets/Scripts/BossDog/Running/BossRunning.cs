@@ -7,6 +7,7 @@ public class BossRunning : MonoBehaviour, BossSkillInterface
     private BossDogController dog; //BossDogController 참조
 
     public GameObject player; // 플레이어 게임 오브젝트
+    public GameObject runningPrefab;
 
     public float shadow_speed = 10.0f; // 그림자 이동 속도
 
@@ -65,40 +66,67 @@ public class BossRunning : MonoBehaviour, BossSkillInterface
         // 전조 영역의 크기 설정 (오브젝트가 이동할 거리만큼)
         float warning_width = Mathf.Abs(targetPosition.x - startPosition.x);
         warning_renderer.transform.localScale = new Vector3(warning_width, 2, 1);
-
+        
         // 보스 표식 추가
         if (bossIconPrefab != null)
         {
             GameObject bossIcon = Instantiate(bossIconPrefab, warningContainer.transform);
-            bossIcon.transform.position = new Vector3(warning_area.transform.position.x, warning_area.transform.position.y, warning_area.transform.position.z);
+
+            // 전조 영역의 왼쪽 끝과 오른쪽 끝의 중앙 가로값 계산
+            float centerX = (startPosition.x + targetPosition.x) / 2;
+            float centerY = startPosition.y; // y 좌표는 전조 영역과 동일하게 유지
+            float centerZ = startPosition.z; // z 좌표도 동일하게 유지
+
+            bossIcon.transform.position = new Vector3(centerX, centerY, centerZ); // 보스 표식 위치 설정
+            // SpriteRenderer가 있는 경우 Sorting Order 설정
+            SpriteRenderer bossIconRenderer = bossIcon.GetComponent<SpriteRenderer>();
+            if (bossIconRenderer != null)
+            {
+                bossIconRenderer.sortingOrder = 21; // 전조 영역보다 높은 값으로 설정
+            }
         }
         
         yield return new WaitForSeconds(warning_duration); // 전조 영역 유지
 
         Destroy(warningContainer); // 전조 영역 삭제
 
-        // 그림자 오브젝트 생성 및 이동
-        Vector3 shadowStartPosition = startPosition;
-        GameObject shadow_object = Instantiate(dog.bossPrefab, shadowStartPosition, Quaternion.identity);
+        // Animator 컴포넌트 추가 및 설정
+        GameObject running_object = Instantiate(runningPrefab, startPosition, Quaternion.identity);
 
-        // 플레이어 위치에 따라 그림자를 반전시킴
-        dog.IsPlayerRight(shadow_object);
-
-        Vector3 shadow_target_position = new Vector3(targetPosition.x, shadow_object.transform.position.y, shadow_object.transform.position.z);
         
-        // 그림자의 y 좌표를 고정하여 수평으로만 이동하도록 설정
-        float fixedY = shadowStartPosition.y;
+        // Animator 컴포넌트를 가져와 scratch_scar 애니메이션 재생
+        Animator runningAnimator = running_object.GetComponent<Animator>();
 
-        while (Vector3.Distance(shadow_object.transform.position, shadow_target_position) > 0.1f)
+        // 좌우 반전 처리
+        Vector3 originalScale = running_object.transform.localScale;
+        if (targetPosition.x < startPosition.x) // 왼쪽으로 이동할 때
         {
-            shadow_object.transform.position = Vector3.MoveTowards(shadow_object.transform.position, shadow_target_position, shadow_speed * Time.deltaTime);
+            running_object.transform.localScale = new Vector3(-Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
+        }
+        else // 오른쪽으로 이동할 때
+        {
+            running_object.transform.localScale = new Vector3(Mathf.Abs(originalScale.x), originalScale.y, originalScale.z);
+        }
+
+
+        // Running 애니메이션 재생
+        if (runningAnimator != null)
+        {
+            runningAnimator.Play("Running_Animation");
+        }
+
+        // 애니메이션 실행 동안 이동 처리
+        while (Vector3.Distance(running_object.transform.position, targetPosition) > 0.1f)
+        {
+            running_object.transform.position = Vector3.MoveTowards(running_object.transform.position, targetPosition, shadow_speed * Time.deltaTime);
             yield return null;
         }
 
-        Destroy(shadow_object); // 그림자 오브젝트 삭제
-        
+        // 도착 후 애니메이션 종료 처리
+        Destroy(running_object);
+
         yield return new WaitForSeconds(0.2f);
-    }
+}
 
     // 기본 사각형 스프라이트 생성 함수
     private Sprite CreateWarningSprite()
