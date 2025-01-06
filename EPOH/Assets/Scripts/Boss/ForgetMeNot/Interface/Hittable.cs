@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Debug = EPOH.Debug;
 
 //피격 패턴에서 사용되는 피격 오브젝트
 public class Hittable : MonoBehaviour
@@ -33,6 +34,7 @@ public class Hittable : MonoBehaviour
     public virtual void OnHit(float damage)
     {
         //공격세기 만큼 체력을 감소하기
+        Debug.Log($"[Hittable] : {damage} 만큼 체력 감소. 남은 체력({Health})");
         _health -= damage;
 
         //체력이 0이하라면 파괴함수 호출
