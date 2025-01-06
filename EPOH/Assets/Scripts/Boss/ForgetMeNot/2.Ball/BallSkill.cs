@@ -11,9 +11,18 @@ public class BallSkill : MonoBehaviour, BossSkillInterface
     {
         //공을 랜덤 위치에 생성하기
         BossData bossData = BossManagerNew.Instance.bossData;
-        _x = Random.Range(bossData._leftBottom.x,bossData._rightTop.x);
-        _y = Random.Range(bossData._leftBottom.y, bossData._rightTop.y);
-        Vector3 ballPos = new Vector3(_x, _y, 0);
+        int randomValue = Random.Range(0, 2);
+        Vector3 ballPos;
+        if (randomValue == 1)
+        {
+            ballPos = new Vector3(bossData._leftBottom.x, bossData._rightTop.y, 0);
+        }
+        else
+        {
+            ballPos = new Vector3(bossData._rightTop.x, bossData._rightTop.y, 0);
+        }
+
+        
 
         Instantiate(_ballPrefab, ballPos, Quaternion.identity);
     }
