@@ -5,7 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class AttackArea : MonoBehaviour
+public class AttackAreaLegacy : MonoBehaviour
 {
     private PolygonCollider2D collider; //AttackArea의 collider;
     private float attackPower; //공격 세기

@@ -31,7 +31,6 @@ public class AttackBehaviour : StateMachineBehaviour
         }
         else if (stateInfo.IsName("Attack Two"))
         {
-            Debug.Log("여기 실행?");
             attackAreaParent.transform.GetChild(1).gameObject.SetActive(true);
             attackAreaParent.transform.GetChild(0).gameObject.SetActive(false);
             PlayerAttack.instance.attack_area = attackAreaParent.transform.GetChild(1).gameObject;

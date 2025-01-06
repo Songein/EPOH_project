@@ -16,6 +16,9 @@ public class PlayerInteract : MonoBehaviour
     //플레이어 대화
     public bool is_talking = false;
     private TalkAction talk_action;
+    
+    //보스 맵 내 상호작용 패턴
+    public Action OnInteract;
 
     void Awake()
     {
@@ -36,6 +39,7 @@ public class PlayerInteract : MonoBehaviour
                 interaction.Interact();
                 is_interacting = true;
             }
+            else OnInteract?.Invoke();
         }
     }
     

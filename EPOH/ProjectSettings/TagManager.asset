@@ -10,6 +10,7 @@ TagManager:
   - BossPhaseItem
   - Ground
   - BossAttack
+  - AttackArea
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - PlayerDamaged
   - Invincible
   - BossAttack
-  - 
+  - AttackableObject
   - 
   - 
   - 
