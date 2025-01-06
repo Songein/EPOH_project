@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Debug = EPOH.Debug;
 
 public class Attackable : MonoBehaviour
 {
@@ -34,9 +35,18 @@ public class Attackable : MonoBehaviour
         }
     }
 
+    protected void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+            playerHealth.Damage(this.Damage);
+        }
+    }
+
     protected IEnumerator StopSkill()
     {
-        yield return new WaitForSeconds(Duration);
+        yield return new WaitForSeconds(_duration);
         Destroy(gameObject);
     }
 }
