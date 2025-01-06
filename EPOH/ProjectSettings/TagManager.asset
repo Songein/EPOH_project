@@ -23,7 +23,7 @@ TagManager:
   - PlayerDamaged
   - Invincible
   - BossAttack
-  - 
+  - AttackableObject
   - 
   - 
   - 

@@ -7,14 +7,8 @@ using UnityEngine;
 
 public class AttackArea : MonoBehaviour
 {
-    private PolygonCollider2D _collider; //AttackArea의 collider;
+    [SerializeField] private PolygonCollider2D _collider; //AttackArea의 collider;
     private float _attackPower; //공격 세기
-    
-    void Awake()
-    {
-        //공격 범위 콜라이더 할당
-        _collider = GetComponent<PolygonCollider2D>();
-    }
     
     //공격 세기 설정 함수
     public void SetAttackPower(float power)
