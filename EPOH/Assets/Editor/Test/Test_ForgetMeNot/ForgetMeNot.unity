@@ -2099,6 +2099,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415639345}
   m_CullTransparentMesh: 1
+--- !u!1 &1431725271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1431725272}
+  m_Layer: 0
+  m_Name: Lullaby
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1431725272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431725271}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1453598367
 GameObject:
   m_ObjectHideFlags: 0
@@ -2290,7 +2321,7 @@ GameObject:
   - component: {fileID: 1499787720}
   - component: {fileID: 1499787719}
   - component: {fileID: 1499787718}
-  - component: {fileID: 1499787717}
+  - component: {fileID: 1499787721}
   m_Layer: 5
   m_Name: Doll
   m_TagString: Untagged
@@ -2319,23 +2350,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 0.5}
---- !u!114 &1499787717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1499787715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f151801073de9432489ccc838f10124c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _knitPrefab: {fileID: 1900373038240949904, guid: 499e6ff62ea5747b88bb7ee81dbcbb81, type: 3}
-  _spawnPoints:
-  - {fileID: 803279691}
-  - {fileID: 85095207}
-  - {fileID: 983616618}
 --- !u!114 &1499787718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2380,8 +2394,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1499787717}
-        m_TargetAssemblyTypeName: KnittingSkill, Assembly-CSharp
+      - m_Target: {fileID: 1499787721}
+        m_TargetAssemblyTypeName: DollSkill, Assembly-CSharp
         m_MethodName: Activate
         m_Mode: 1
         m_Arguments:
@@ -2430,6 +2444,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1499787715}
   m_CullTransparentMesh: 1
+--- !u!114 &1499787721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499787715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9b09f6dbde5744a3945f9f20931a3a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dollPrefab: {fileID: 7917404382585759998, guid: 4c5805f9ccc284aa5bb720f9791d63e2, type: 3}
 --- !u!1 &1560450168
 GameObject:
   m_ObjectHideFlags: 0
