@@ -8,16 +8,17 @@ public class BossBiting : MonoBehaviour, BossSkillInterface
 
     public GameObject player; // 플레이어 게임 오브젝트
 
+    public GameObject biteReadyPrefab; // Bite Ready 프리팹
+    public GameObject bitePrefab; // Bite 프리팹
+
     public float shadow_speed = 10.0f; // 그림자 이동 속도
 
     //물기 변수
     [SerializeField] float reach_distance_short; // 포물선 이동 거리
     [SerializeField] float Dog_yposition; // 이동할 y 위치
     [SerializeField] float bite_duration = 0.5f; //포물선 이동에 걸리는 시간
-    [SerializeField] private GameObject[] bite_effects; //bite effect 배열
-    [SerializeField] SpriteRenderer bite_renderer;
 
-    public AnimationCurve curve; //포물선 이동을 위한 AnimationCurve 선언
+    public AnimationCurve curve; // 포물선 이동을 위한 AnimationCurve 선언
 
     private void Awake()
     {
@@ -32,54 +33,78 @@ public class BossBiting : MonoBehaviour, BossSkillInterface
         StartCoroutine(Biting());
     }
 
+    private void AdjustDirection(GameObject obj, Vector3 playerPos)
+    {
+        if (playerPos.x < obj.transform.position.x)
+        {
+            // 왼쪽을 바라보도록 설정
+            obj.transform.localScale = new Vector3(
+                Mathf.Abs(obj.transform.localScale.x) * 0.5,
+                obj.transform.localScale.y * 0.5,
+                obj.transform.localScale.z
+            );
+        }
+        else
+        {
+            // 오른쪽을 바라보도록 설정
+            obj.transform.localScale = new Vector3(
+                -Mathf.Abs(obj.transform.localScale.x),
+                obj.transform.localScale.y,
+                obj.transform.localScale.z
+            );
+        }
+    }
+
+
     public IEnumerator Biting()
     {
         // 그림자 오브젝트 생성
         Vector3 shadowStartPosition = dog.spawnMiddlePoint;
-        GameObject shadow_object = Instantiate(dog.bossPrefab, shadowStartPosition, Quaternion.identity);
-        Debug.Log("왼쪽으로 무는 이펙트");
+        GameObject bite_ready_object = Instantiate(biteReadyPrefab, shadowStartPosition, Quaternion.identity);
 
-        // 처음에는 그림자를 그대로 둠
-        shadow_object.transform.localScale = new Vector3(Mathf.Abs(shadow_object.transform.localScale.x), shadow_object.transform.localScale.y, shadow_object.transform.localScale.z);
+        // 좌우 반전 효과 (잠깐 반전)
+        for (int i = 0; i < 2; i++) // 두 번 반전
+        {
+            bite_ready_object.transform.localScale = new Vector3(
+                -bite_ready_object.transform.localScale.x,
+                bite_ready_object.transform.localScale.y,
+                bite_ready_object.transform.localScale.z
+            );
+            yield return new WaitForSeconds(0.8f); // 0.2초 대기
+        }
 
-        // 그림자가 잠시 나타난 후 반전시킴
-        yield return new WaitForSeconds(0.8f); // 0.5초 후 반전
-        shadow_object.transform.localScale = new Vector3(-shadow_object.transform.localScale.x, shadow_object.transform.localScale.y, shadow_object.transform.localScale.z); // 그림자 반전
-        Debug.Log("오른쪽으로 무는 이펙트");
-
-        // 그림자가 반전된 후 다시 0.5초 동안 기다림
-        yield return new WaitForSeconds(0.8f);
-
-        // 플레이어 위치에 따라 그림자를 반전시킴
-        dog.IsPlayerRight(shadow_object);
+       // 플레이어 방향에 따라 bite_ready_object 방향 설정
+        AdjustDirection(bite_ready_object, player.transform.position);
 
         // 반전된 상태에서 1초 동안 대기
         yield return new WaitForSeconds(1.5f);
         Debug.Log("플레이어를 바라보며 으르렁대는 모션");
+
+        // bite_ready_object 삭제
+        Destroy(bite_ready_object);
         
         //플레이어의 현재 위치 파악
         Vector2 player_pos = player.transform.position;
         //그림자의 시작 위치 파악
-        Vector2 start = shadow_object.transform.position;
-        float bite_distance = 0f; //그림자가 이동할 거리
-
-        if (shadow_object.transform.position.x - player_pos.x >= 0f)
-        {
-            //포물선 이동을 왼쪽으로 사정거리만큼 하도록 설정
-            bite_distance = -1 * reach_distance_short;
-            //보스의 스프라이트를 왼쪽 방향으로 설정
-            bite_renderer.flipX = false;
-        }
-        else
-        {
-            //포물선 이동을 오른쪽으로 사정거리만큼 하도록 설정
-            bite_distance = 1 * reach_distance_short;
-            //보스의 스프라이트를 오른쪽 방향으로 설정
-            bite_renderer.flipX = true;
-        }
+        Vector2 start = shadowStartPosition;
 
         // 그림자의 도착지점 위치 지정
         Vector2 end = new Vector2(player_pos.x, Dog_yposition);
+
+        GameObject bite_object = Instantiate(bitePrefab, start, Quaternion.identity); // bite 프리팹
+
+        Animator biteAnimator = bite_object.GetComponent<Animator>();
+
+        // 플레이어 방향에 따라 bite_object 방향 설정
+        AdjustDirection(bite_object, player.transform.position);
+
+        if (biteAnimator == null)
+        {
+            Debug.LogError("Animator component is missing on the bitePrefab.");
+            yield break;
+        }
+
+        biteAnimator.Play("Biting"); // 돌진 준비 애니메이션
 
         //해당 위치로 아치형을 그리며 그림자를 돌진
         float time = 0f;
@@ -88,17 +113,23 @@ public class BossBiting : MonoBehaviour, BossSkillInterface
             time += Time.deltaTime;
             float linearT = time / bite_duration;
             float heightT = curve.Evaluate(linearT);
-            float height = Mathf.Lerp(0.0f, 10f, heightT);
+            float height = Mathf.Lerp(0.0f, 8f, heightT);
 
-            shadow_object.transform.position = Vector2.Lerp(start, end, linearT) + new Vector2(0.0f, height);
+            bite_object.transform.position = Vector2.Lerp(start, end, linearT) + new Vector2(0.0f, height);
+
+            if (time > bite_duration / 2 && biteAnimator.GetCurrentAnimatorStateInfo(0).IsName("BiteReady"))
+            {
+                biteAnimator.Play("Bite"); // 물기 애니메이션
+            }
+
             yield return null;
         }
 
         // 그림자를 y축 -9로 내려오도록 설정
-        Vector2 groundPosition = new Vector2(shadow_object.transform.position.x, -9f);
-        while (shadow_object.transform.position.y > groundPosition.y)
+        Vector2 groundPosition = new Vector2(bite_object.transform.position.x, -9f);
+        while (bite_object.transform.position.y > groundPosition.y)
         {
-            shadow_object.transform.position = new Vector2(shadow_object.transform.position.x, Mathf.MoveTowards(shadow_object.transform.position.y, groundPosition.y, Time.deltaTime * 10.0f));
+            bite_object.transform.position = new Vector2(bite_object.transform.position.x, Mathf.MoveTowards(bite_object.transform.position.y, groundPosition.y, Time.deltaTime * 10.0f));
             yield return null;
         }
         
@@ -108,7 +139,7 @@ public class BossBiting : MonoBehaviour, BossSkillInterface
         
 
         // 그림자 오브젝트 삭제
-        Destroy(shadow_object);
+        Destroy(bite_object);
         
         yield return new WaitForSeconds(0.2f);
     }
