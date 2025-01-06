@@ -2050,7 +2050,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -118.80005, y: -190}
+  m_AnchoredPosition: {x: -118.799805, y: -190}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1011962439
@@ -2770,7 +2770,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -118.80005, y: -50}
+  m_AnchoredPosition: {x: -118.799805, y: -50}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1375217044
@@ -2904,7 +2904,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -118.80005, y: -120}
+  m_AnchoredPosition: {x: -118.799805, y: -120}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1490841071
@@ -4552,12 +4552,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 847919468}
+  biteReadyPrefab: {fileID: 3798098871553349891, guid: de720e099483c4b0f95ceda5149dda74, type: 3}
+  bitePrefab: {fileID: 3798098871553349891, guid: ae427bc68e4714f8da54e49dbb17dc8c, type: 3}
   shadow_speed: 10
   reach_distance_short: 0
   Dog_yposition: 0
   bite_duration: 0.5
-  bite_effects: []
-  bite_renderer: {fileID: 5950484199248453705, guid: 9692569e776a14ba5a22d56fabeecfa4, type: 3}
   curve:
     serializedVersion: 2
     m_Curve: []

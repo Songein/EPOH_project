@@ -39,8 +39,8 @@ public class BossBiting : MonoBehaviour, BossSkillInterface
         {
             // 왼쪽을 바라보도록 설정
             obj.transform.localScale = new Vector3(
-                Mathf.Abs(obj.transform.localScale.x) * 0.5,
-                obj.transform.localScale.y * 0.5,
+                Mathf.Abs(obj.transform.localScale.x) * 0.5f,
+                obj.transform.localScale.y * 0.5f,
                 obj.transform.localScale.z
             );
         }
