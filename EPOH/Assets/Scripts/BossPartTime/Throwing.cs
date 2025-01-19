@@ -52,6 +52,21 @@ public class Throwing : MonoBehaviour
                 yield break;
             }
 
+            // 크기 조정
+            float scaleFactor = 0.5f; // 접시 크기 비율 (1.0은 원래 크기, 0.5는 50% 크기)
+            plate.transform.localScale = new Vector3(
+                plate.transform.localScale.x * scaleFactor,
+                plate.transform.localScale.y * scaleFactor,
+                plate.transform.localScale.z * scaleFactor
+            );
+
+            // 애니메이션 방향 설정 (좌 -> 우 또는 우 -> 좌)
+            Animator animator = plate.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.SetBool("LeftToRight", spawnPoint == leftSpawnPoint);
+            }
+
             // 던지기 각도 계산
             float throwAngle = Random.Range(minThrowAngle, maxThrowAngle);
             Vector2 throwDirection;

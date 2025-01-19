@@ -1539,9 +1539,9 @@ MonoBehaviour:
   bossList: []
   _player: {fileID: 1378189952}
   _playerRigid: {fileID: 1378189956}
-  spawnLeftPoint: {x: -13, y: -4, z: 0}
-  spawnMiddlePoint: {x: 0, y: -4, z: 0}
-  spawnRightPoint: {x: 5, y: -4, z: 0}
+  spawnLeftPoint: {x: -13, y: -2, z: 0}
+  spawnMiddlePoint: {x: 0, y: -2, z: 0}
+  spawnRightPoint: {x: 5, y: -2, z: 0}
   phase1List:
   - tracking
   - howling1
