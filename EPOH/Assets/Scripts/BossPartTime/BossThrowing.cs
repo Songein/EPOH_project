@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Throwing : MonoBehaviour
+public class BossThrowing : MonoBehaviour
 {
     public GameObject platePrefab; // 접시 프리팹
     public float throwSpeed = 10f; // 접시 던지는 속도
