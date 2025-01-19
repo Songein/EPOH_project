@@ -206,7 +206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 57106312}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 792391339}
+        m_TargetAssemblyTypeName: BossPepper, Assembly-CSharp
+        m_MethodName: Activate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &57106312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1519,6 +1531,7 @@ GameObject:
   - component: {fileID: 792391336}
   - component: {fileID: 792391337}
   - component: {fileID: 792391338}
+  - component: {fileID: 792391339}
   m_Layer: 7
   m_Name: BossPartTimeManager
   m_TagString: Boss
@@ -1658,6 +1671,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1378189952}
   fork: {fileID: 8142072990911158202, guid: fdce5bd5fd8584694b6cf507f6d3409a, type: 3}
+--- !u!114 &792391339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792391332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab1f95964a1e472f9b67e745aa3a171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1378189952}
+  pepper_prefab: {fileID: 3477557593359293911, guid: 71f735f0de08141b583ee29cbd938980, type: 3}
+  pepper_pop: {fileID: 3477557593359293911, guid: cedad101f3646494eb922b959c644646, type: 3}
 --- !u!1 &960852356
 GameObject:
   m_ObjectHideFlags: 0
