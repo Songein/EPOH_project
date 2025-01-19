@@ -206,7 +206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 57106312}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 792391339}
+        m_TargetAssemblyTypeName: BossPepper, Assembly-CSharp
+        m_MethodName: Activate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &57106312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -960,7 +972,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 556608695}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 792391335}
+        m_TargetAssemblyTypeName: BossSwaping, Assembly-CSharp
+        m_MethodName: Activate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &556608695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1187,12 +1211,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730480502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.3, z: 0}
+  m_LocalPosition: {x: 46.8, y: -22.4, z: 0}
   m_LocalScale: {x: 50, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &777031061
 GameObject:
@@ -1503,6 +1527,11 @@ GameObject:
   m_Component:
   - component: {fileID: 792391334}
   - component: {fileID: 792391333}
+  - component: {fileID: 792391335}
+  - component: {fileID: 792391336}
+  - component: {fileID: 792391337}
+  - component: {fileID: 792391338}
+  - component: {fileID: 792391339}
   m_Layer: 7
   m_Name: BossPartTimeManager
   m_TagString: Boss
@@ -1524,11 +1553,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossPrefab: {fileID: 7980823611527157787, guid: 83945ae5dec6249c7b0a947284cefffb, type: 3}
   bossList: []
-  _player: {fileID: 1835839453}
-  _playerRigid: {fileID: 1835839455}
-  spawnLeftPoint: {x: -9, y: -8, z: 0}
-  spawnMiddlePoint: {x: 0, y: -8, z: 0}
-  spawnRightPoint: {x: 9, y: -8, z: 0}
+  _player: {fileID: 1378189952}
+  _playerRigid: {fileID: 1378189956}
+  spawnLeftPoint: {x: -13, y: -2, z: 0}
+  spawnMiddlePoint: {x: 0, y: -2, z: 0}
+  spawnRightPoint: {x: 5, y: -2, z: 0}
   phase1List:
   - tracking
   - howling1
@@ -1582,6 +1611,81 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &792391335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792391332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1debccaa8d86a484bb9bb076abac7559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1378189952}
+  runningPrefab: {fileID: 1237795267379599906, guid: 03eace25eba1a4842845b809fe27c881, type: 3}
+  shadow_speed: 10
+  warning_duration: 3
+  warning_color: {r: 1, g: 0, b: 0, a: 1}
+  bossIconPrefab: {fileID: 5474589133209643891, guid: 25afa047b0bbf461ea93ff28d8b23a53, type: 3}
+--- !u!114 &792391336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792391332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71aeb5a89969d47d1bf729aceaa4deb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1378189952}
+  knifePrefab: {fileID: 3338149558959726008, guid: 9744d30c985044a20bba2f0d8b546694, type: 3}
+--- !u!114 &792391337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792391332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4b04b4d2859d4e5785f150aa10a5c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1378189952}
+  knifePrefab: {fileID: 3338149558959726008, guid: 9744d30c985044a20bba2f0d8b546694, type: 3}
+--- !u!114 &792391338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792391332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9596fb16311464ce483962e17bc7996d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1378189952}
+  fork: {fileID: 8142072990911158202, guid: fdce5bd5fd8584694b6cf507f6d3409a, type: 3}
+--- !u!114 &792391339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792391332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab1f95964a1e472f9b67e745aa3a171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1378189952}
+  pepper_prefab: {fileID: 3477557593359293911, guid: 71f735f0de08141b583ee29cbd938980, type: 3}
+  pepper_pop: {fileID: 3477557593359293911, guid: cedad101f3646494eb922b959c644646, type: 3}
 --- !u!1 &960852356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1740,7 +1844,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1045739789
 GameObject:
@@ -2031,7 +2135,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1076272750}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 792391338}
+        m_TargetAssemblyTypeName: BossFork, Assembly-CSharp
+        m_MethodName: Activate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1076272750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2205,6 +2321,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239429031}
   m_CullTransparentMesh: 1
+--- !u!1 &1378189952 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 245169945507368180, guid: 1798fccc825e741998eadc340af4ab3c, type: 3}
+  m_PrefabInstance: {fileID: 1835839452}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1378189956 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 7336264336781208943, guid: 1798fccc825e741998eadc340af4ab3c, type: 3}
+  m_PrefabInstance: {fileID: 1835839452}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1382513479
 GameObject:
   m_ObjectHideFlags: 0
@@ -2661,7 +2787,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1549973296
 GameObject:
@@ -3268,7 +3394,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1808875733}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 792391336}
+        m_TargetAssemblyTypeName: BossKnife, Assembly-CSharp
+        m_MethodName: Activate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1808875733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3396,31 +3534,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1798fccc825e741998eadc340af4ab3c, type: 3}
---- !u!1 &1835839453 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7617063911790798734, guid: 1798fccc825e741998eadc340af4ab3c, type: 3}
-  m_PrefabInstance: {fileID: 1835839452}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1835839454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1835839453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5492f69f317ce4ffa832b60bb8c81636, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boss_manager: {fileID: 0}
-  player_hp: 200
-  is_invincible: 0
---- !u!50 &1835839455 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 9201232379423587815, guid: 1798fccc825e741998eadc340af4ab3c, type: 3}
-  m_PrefabInstance: {fileID: 1835839452}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1884127933
 GameObject:
   m_ObjectHideFlags: 0
@@ -3504,7 +3617,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1884127936}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 792391337}
+        m_TargetAssemblyTypeName: BossKnifeUp, Assembly-CSharp
+        m_MethodName: Activate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1884127936
 MonoBehaviour:
   m_ObjectHideFlags: 0
