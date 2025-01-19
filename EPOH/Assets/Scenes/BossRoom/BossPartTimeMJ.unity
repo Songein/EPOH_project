@@ -1518,6 +1518,7 @@ GameObject:
   - component: {fileID: 792391335}
   - component: {fileID: 792391336}
   - component: {fileID: 792391337}
+  - component: {fileID: 792391338}
   m_Layer: 7
   m_Name: BossPartTimeManager
   m_TagString: Boss
@@ -1643,6 +1644,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1378189952}
   knifePrefab: {fileID: 3338149558959726008, guid: 9744d30c985044a20bba2f0d8b546694, type: 3}
+--- !u!114 &792391338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792391332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9596fb16311464ce483962e17bc7996d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1378189952}
+  fork: {fileID: 8142072990911158202, guid: fdce5bd5fd8584694b6cf507f6d3409a, type: 3}
 --- !u!1 &960852356
 GameObject:
   m_ObjectHideFlags: 0
@@ -2092,7 +2107,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1076272750}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 792391338}
+        m_TargetAssemblyTypeName: BossFork, Assembly-CSharp
+        m_MethodName: Activate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1076272750
 MonoBehaviour:
   m_ObjectHideFlags: 0
