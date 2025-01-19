@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sauce : MonoBehaviour
+public class BossSauce : MonoBehaviour
 {
     public GameObject lidPrefab; // 뚜껑 프리팹
     public GameObject saucePrefab; // 물줄기를 표현하는 프리팹 (Sauce)
     public Transform[] lidSpawnPoints; // 뚜껑 생성 위치 배열
     public float growSpeed = 5f; // 물줄기가 길어지는 속도
     public float maxLength = 15f; // 물줄기의 최대 길이
-    public float destroyDelay = 1f; // 물줄기가 생성된 후 사라지기까지의 시간
+    public float destroyDelay = 1.0f; // 물줄기가 생성된 후 사라지기까지의 시간
     public float lidToWaterDelay = 1f; // 뚜껑 생성 후 물줄기가 나오기까지의 대기 시간
 
     private List<GameObject> lids = new List<GameObject>(); // 생성된 뚜껑 오브젝트 리스트
@@ -32,6 +32,13 @@ public class Sauce : MonoBehaviour
             GameObject lid = Instantiate(lidPrefab, spawnPoint.position, Quaternion.identity);
             lid.SetActive(true); // 처음에 비활성화 상태였던 뚜껑 활성화
             lids.Add(lid);
+
+            // 뚜껑 애니메이션 시작
+            Animator lidAnimator = lid.GetComponent<Animator>();
+            if (lidAnimator != null)
+            {
+                lidAnimator.Play("OpenLid"); // 뚜껑 열리는 애니메이션 실행
+            }
         }
 
         // 뚜껑 생성 후 대기
@@ -46,7 +53,7 @@ public class Sauce : MonoBehaviour
 
     private IEnumerator CreateWaterStream(GameObject lid)
     {
-        // 뚜껑의 **아래 중심** 위치 계산
+        // 뚜껑의 아래 중심 위치 계산
         Vector3 spawnPosition = new Vector3(
             lid.transform.position.x,
             lid.transform.position.y - (lid.transform.localScale.y / 2), // 뚜껑의 아래 중심
@@ -55,6 +62,13 @@ public class Sauce : MonoBehaviour
 
         // 물줄기 생성
         GameObject sauce = Instantiate(saucePrefab, spawnPosition, Quaternion.identity);
+
+        // 애니메이션 시작
+        Animator sauceAnimator = sauce.GetComponent<Animator>();
+        if (sauceAnimator != null)
+        {
+            sauceAnimator.Play("GrowSauce"); // 물줄기 길어지는 애니메이션 실행
+        }
 
         // 초기 크기를 0으로 설정
         sauce.transform.localScale = new Vector3(1f, 0f, 1f);
