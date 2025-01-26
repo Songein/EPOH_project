@@ -32,7 +32,7 @@ public class BossBubble : MonoBehaviour
 
         for (int i = 0; i < bubbleCount; i++)
         {
-            float yOffset = 2.5f;
+            float yOffset = 3.0f;
 
             Vector3 bubblePosition = new Vector3(
                 dog.spawnLeftPoint.x + (i * bubbleSpacing),
