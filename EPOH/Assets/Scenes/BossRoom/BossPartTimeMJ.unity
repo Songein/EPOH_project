@@ -1532,6 +1532,7 @@ GameObject:
   - component: {fileID: 792391337}
   - component: {fileID: 792391338}
   - component: {fileID: 792391339}
+  - component: {fileID: 792391340}
   m_Layer: 7
   m_Name: BossPartTimeManager
   m_TagString: Boss
@@ -1686,6 +1687,19 @@ MonoBehaviour:
   player: {fileID: 1378189952}
   pepper_prefab: {fileID: 3477557593359293911, guid: 71f735f0de08141b583ee29cbd938980, type: 3}
   pepper_pop: {fileID: 3477557593359293911, guid: cedad101f3646494eb922b959c644646, type: 3}
+--- !u!114 &792391340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792391332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e781e9fba8e15433eb9371e2b5677710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubbleObject: {fileID: 2046269840837140296, guid: df1e666a5de194d04a15651ced77bddc, type: 3}
 --- !u!1 &960852356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1929,7 +1943,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1045739792}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 792391340}
+        m_TargetAssemblyTypeName: BossBubble, Assembly-CSharp
+        m_MethodName: Activate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1045739792
 MonoBehaviour:
   m_ObjectHideFlags: 0

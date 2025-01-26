@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     
     //플레이어 좌우 이동
     private float horizontal; //수평 값
-    [SerializeField] float moveSpeed; //이동 속도
+    public float moveSpeed; //이동 속도
     private bool is_facing_right = true; //플레이어가 오른쪽을 쳐다보고 있는지
     
     //플레이어 점프
