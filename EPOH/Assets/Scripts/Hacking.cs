@@ -27,9 +27,8 @@ public class Hacking : MonoBehaviour
         else
         {
             _hackingPoint -= value;
-            Debug.Log($"Hacking Point : -{value} -> {_hackingPoint}");
         }
-
+        Debug.Log($"Hacking Point : -{value} -> {_hackingPoint}");
         UpdateText();
     }
 
@@ -43,9 +42,8 @@ public class Hacking : MonoBehaviour
         else
         {
             _hackingPoint += value;
-            Debug.Log($"Hacking Point : +{value} -> {_hackingPoint}");
         }
-
+        Debug.Log($"Hacking Point : +{value} -> {_hackingPoint}");
         UpdateText();
     }
     

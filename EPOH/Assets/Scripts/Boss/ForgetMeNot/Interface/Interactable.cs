@@ -6,7 +6,7 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     protected PlayerInteract _player;
-    private void OnEnable()
+    protected void OnEnable()
     {
         _player = FindObjectOfType<PlayerInteract>();
     }
@@ -14,7 +14,7 @@ public class Interactable : MonoBehaviour
     //플레이어가 상호작용 할 경우
     public virtual void OnInteract(){}
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
@@ -22,7 +22,7 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    protected void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
@@ -30,7 +30,7 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    protected void OnDisable()
     {
         _player.OnInteract -= OnInteract;
     }
