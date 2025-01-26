@@ -24,6 +24,7 @@ public class Picture : Hittable
         base.OnChange();
         //해킹 포인트 감소
         Debug.Log($"#[Picture] : {_decreaseDuration}초가 지나 해킹포인트 {HackPoint}% 만큼 감소");
+        BossManagerNew.Instance.OnDecreaseHackingPoint?.Invoke(HackPoint);
         if (Health > 0)
         {
             StartCoroutine(DecreaseHackPoint());

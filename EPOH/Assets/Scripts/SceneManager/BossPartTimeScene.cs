@@ -86,7 +86,7 @@ public class BossPartTimeScene : MonoBehaviour
 
             bossPartTimeMissionClear();
 
-            hacking.endBossBattle();
+            //hacking.endBossBattle();
 
             Debug.Log("Boss PartTime 클리어!");
         }

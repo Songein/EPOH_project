@@ -85,7 +85,7 @@ public class BossDogScene : MonoBehaviour
 
             bossDogMissionClear();
 
-            hacking.endBossBattle();
+            //hacking.endBossBattle();
 
             Debug.Log("Boss Dog 클리어!");
         }

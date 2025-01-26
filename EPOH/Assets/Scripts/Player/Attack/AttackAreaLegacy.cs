@@ -21,6 +21,7 @@ public class AttackAreaLegacy : MonoBehaviour
         hacking = GetComponentInParent<Hacking>();
     }
     
+    /*
     void OnTriggerEnter2D(Collider2D other)
     {
         //공격 범위와 트리거 충돌 주체의 태그가 Boss 이면
@@ -80,7 +81,7 @@ public class AttackAreaLegacy : MonoBehaviour
             Debug.Log("[AttackArea] : 충돌 주체가 적이 아님");
         }
     }
-
+    */
     //공격 세기 설정 함수
     public void SetAttackPower(float power)
     {
