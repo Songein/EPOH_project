@@ -11,6 +11,7 @@ TagManager:
   - Ground
   - BossAttack
   - AttackArea
+  - BossBubble
   layers:
   - Default
   - TransparentFX
