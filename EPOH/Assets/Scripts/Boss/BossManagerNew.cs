@@ -11,7 +11,7 @@ public class BossManagerNew : Singleton<BossManagerNew>
 
     public void StartBossRaid()
     {
-        Debug.LogWarning($"{bossData.name} 레이드 시작");   
+        Debug.LogWarning($"{bossData.name} 레이드 시작");
     }
     
     public void EndBossRaid()
