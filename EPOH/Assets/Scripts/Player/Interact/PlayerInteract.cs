@@ -39,7 +39,11 @@ public class PlayerInteract : MonoBehaviour
                 interaction.Interact();
                 is_interacting = true;
             }
-            else OnInteract?.Invoke();
+            else
+            {
+                OnInteract?.Invoke();
+                OnInteract = null;
+            }
         }
     }
     

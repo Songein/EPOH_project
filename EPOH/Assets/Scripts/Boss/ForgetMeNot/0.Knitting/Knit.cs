@@ -40,6 +40,7 @@ public class Knit : Hittable
         {
             //해킹 포인트 증가
             Debug.Log($"[Knit] : 한 단계 파괴 성공. 해킹 포인트 {IncreasingHackPoint}% 증가");
+            BossManagerNew.Instance.OnIncreaseHackingPoint?.Invoke(IncreasingHackPoint);
             //애니메이션 파괴 트리거 발동
             _animator.SetTrigger("Destroy");
         }
@@ -49,6 +50,7 @@ public class Knit : Hittable
     {
         base.OnComplete();
         Debug.Log($"[Knit] : 5단계 완성. 해킹 포인트 {HackPoint}% 감소");
+        BossManagerNew.Instance.OnDecreaseHackingPoint?.Invoke(HackPoint);
         //해킹 포인트 감소
         Destroy(gameObject);
     }

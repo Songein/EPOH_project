@@ -18,6 +18,7 @@ public class BossHealth : MonoBehaviour
         hacking = GetComponent<Hacking>();
     }
     
+    /*
     public void Damage(float power)
     {
         // Ensure boss_hp doesn't go below 0
@@ -46,4 +47,5 @@ public class BossHealth : MonoBehaviour
         Debug.Log("[Enemy] : " + gameObject.name + " 사망");
         gameObject.SetActive(false);
     }
+    */
 }

@@ -104,7 +104,7 @@ public class BossForgetMeNotScene : MonoBehaviour
 
             bossForgetMeNotMissionClear();
 
-            hacking.endBossBattle();
+            //hacking.endBossBattle();
 
             Debug.Log("Boss ForgetMeNot 클리어!");
         }

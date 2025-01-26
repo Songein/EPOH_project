@@ -106,7 +106,7 @@ public class BossCriminalScene : MonoBehaviour
 
             bossCriminalMissionClear();
 
-            hacking.endBossBattle();
+            //hacking.endBossBattle();
 
             Debug.Log("Boss Criminal 클리어!");
         }
