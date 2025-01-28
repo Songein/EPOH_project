@@ -12,10 +12,14 @@ public class BossHoaScene : MonoBehaviour
     public Hacking hacking;
     public bool hacking_complete; // 해킹 완료
 
-    [SerializeField] private GameObject phase1_object_prefab; //페이즈1 오브젝트 프리팹
-    [SerializeField] private GameObject phase2_object_prefab; //페이즈2 오브젝트 프리팹
-    [SerializeField] private GameObject phase3_object_prefab; //페이즈3 오브젝트 프리팹
-    [SerializeField] private GameObject phase4_object_prefab; //페이즈4 오브젝트 프리팹
+    [SerializeField] 
+    private GameObject phase1_object_prefab; //페이즈1 오브젝트 프리팹
+    [SerializeField] 
+    private GameObject phase2_object_prefab; //페이즈2 오브젝트 프리팹
+    [SerializeField] 
+    private GameObject phase3_object_prefab; //페이즈3 오브젝트 프리팹
+    [SerializeField] 
+    private GameObject phase4_object_prefab; //페이즈4 오브젝트 프리팹
 
     private GameObject phase1_object_instance; //페이즈1 오브젝트 인스턴스
     private GameObject phase2_object_instance; //페이즈2 오브젝트 인스턴스
