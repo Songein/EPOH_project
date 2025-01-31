@@ -5,7 +5,7 @@ using UnityEngine;
 public class LightSkill : MonoBehaviour
 {
 
-    private Vector3 topSpawnPoint; // 카메라 상단에서 Y축 +10 위치
+    private Vector3 topSpawnPoint; // 카메라 상단에서 Y축 +2 위치
     [SerializeField] private Vector3[] spawnPositions; // X축으로 떨어진 5개 위치
     [SerializeField] private GameObject machinePrefab;
     [SerializeField] private GameObject laserPrefab;
@@ -20,7 +20,7 @@ public class LightSkill : MonoBehaviour
         Camera mainCamera = Camera.main; //Camera.main은 게임 오브젝트가 활성화된 후에야 사용 가능 전역변수 X
         if (mainCamera != null)
         {
-            topSpawnPoint = mainCamera.ViewportToWorldPoint(new Vector3(0.01f, 1, mainCamera.nearClipPlane));
+            topSpawnPoint = mainCamera.ViewportToWorldPoint(new Vector3(0.01f, 1f, mainCamera.nearClipPlane));
             topSpawnPoint.y += 2; ///[[[[[[[[[[[[[[ 기계 초기 위치 지정 여기(machine)]]]]]]]]]]]]]]]]]
             topSpawnPoint.z = 0;
 
