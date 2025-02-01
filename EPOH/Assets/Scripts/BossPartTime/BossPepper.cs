@@ -11,9 +11,9 @@ public class BossPepper : MonoBehaviour, BossSkillInterface
     private Vector3 leftEdge;
     private Vector3 rightEdge;
 
-    //할퀴기 변수
-    public GameObject pepper_prefab; // 할퀸 자국 프리팹
-    public GameObject pepper_pop; // 폭발 프리팹
+    //pepper 변수
+    public GameObject pepper_prefab; //pepper 프리팹
+    public GameObject pepper_pop; // pepper 폭발 프리팹
 
     private void Awake()
     {
