@@ -50,6 +50,13 @@ public class PlayerHealth : MonoBehaviour
         }
         */
     }
+
+    public void IncreaseHealth(float power)
+    {
+        //파라미터로 입력받은 power 만큼 hp가 증가함.
+        player_hp += power;
+        Debug.Log($"[PlayerHealth] : 플레이어 hp가 {power}만큼 증가함. 현재 hp -> " + player_hp);
+    }
     //플레이어 무적시간
     private IEnumerator Invincible()
     {

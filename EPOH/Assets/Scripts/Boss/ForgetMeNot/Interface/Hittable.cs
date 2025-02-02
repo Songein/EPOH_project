@@ -16,7 +16,7 @@ public class Hittable : MonoBehaviour
     }
     
     //감소시킬 플레이어의 해킹 포인트 수치
-    [SerializeField] private float _hackPoint;
+    [SerializeField] protected float _hackPoint;
 
     public float HackPoint
     {
@@ -57,7 +57,7 @@ public class Hittable : MonoBehaviour
     public virtual void OnComplete(){}
     
     //플레이어의 공격 범위와 충돌할 경우
-    void OnTriggerEnter2D(Collider2D other)
+    protected void OnTriggerEnter2D(Collider2D other)
     {
         //플레이어의 공격범위와 충돌할 경우
         if (other.CompareTag("AttackArea"))

@@ -15,7 +15,7 @@ public class MoneyRainSkill : MonoBehaviour, BossSkillInterface
     [SerializeField] private float _moneyMinGravity;
     [SerializeField] private float _moneyMaxGravity;
 
-    public async void Activate()
+    public void Activate()
     {
         BossData bossData = BossManagerNew.Instance.bossData;
         

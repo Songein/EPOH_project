@@ -508,7 +508,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Doll
+  m_text: Virus
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2296,7 +2296,7 @@ GameObject:
   - component: {fileID: 1499787718}
   - component: {fileID: 1499787721}
   m_Layer: 5
-  m_Name: Doll
+  m_Name: Virus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2368,7 +2368,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1499787721}
-        m_TargetAssemblyTypeName: DollSkill, Assembly-CSharp
+        m_TargetAssemblyTypeName: VirusSkill, Assembly-CSharp
         m_MethodName: Activate
         m_Mode: 1
         m_Arguments:
@@ -2426,10 +2426,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1499787715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9b09f6dbde5744a3945f9f20931a3a0, type: 3}
+  m_Script: {fileID: 11500000, guid: e968414779bf7471e9c949e5341a0683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dollPrefab: {fileID: 7917404382585759998, guid: 4c5805f9ccc284aa5bb720f9791d63e2, type: 3}
+  _vaccinePrefab: {fileID: 2387574069884063311, guid: 94ab320a01bef4685bed4422dba9c556, type: 3}
+  _virusPrefab: {fileID: 8814852394709463941, guid: 02e2a3051e1d249daa4fc92a46b732fc, type: 3}
+  _objectCnt: 2
+  _fallingCnt: 8
+  _fallingInteraval: 2
+  _topSpawnRange: 3
+  _minGravity: 0.5
+  _maxGravity: 1.5
+  _fallingSpeed: 0.8
 --- !u!1 &1560450168
 GameObject:
   m_ObjectHideFlags: 0
