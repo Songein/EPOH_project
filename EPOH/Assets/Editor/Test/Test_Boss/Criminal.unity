@@ -957,7 +957,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cocoa
+  m_text: Runaway
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2616,7 +2616,7 @@ GameObject:
   - component: {fileID: 1599532956}
   - component: {fileID: 1599532959}
   m_Layer: 5
-  m_Name: Cocoa
+  m_Name: Runaway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2688,7 +2688,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1599532959}
-        m_TargetAssemblyTypeName: CocoaSkill, Assembly-CSharp
+        m_TargetAssemblyTypeName: RunawaySkill, Assembly-CSharp
         m_MethodName: Activate
         m_Mode: 1
         m_Arguments:
@@ -2746,10 +2746,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1599532953}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 891a3431e4f9d444ea6408380b5caaa9, type: 3}
+  m_Script: {fileID: 11500000, guid: ad02ca6f5f828452992abeec01fc0789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cocoaPrefab: {fileID: 3727608891648857350, guid: dd97c055c6be54853a366f4fbb1148a5, type: 3}
+  _criminalPrefabList:
+  - {fileID: 2649482153741351512, guid: 8080129f4bd92409280e040f7614d87d, type: 3}
+  - {fileID: 4068837899869172857, guid: e36517d434d67480b96cf0112c58f5da, type: 3}
+  - {fileID: 7046482310498105202, guid: d15592a66234c4739a73577e9006458b, type: 3}
+  - {fileID: 3265107144402766453, guid: 5de5d868117b34c0f9ebb433248404c5, type: 3}
+  - {fileID: 8217599590691575860, guid: ea0662616862749dbb68d71d5f8f8369, type: 3}
+  _criminals: []
+  _shuffleCnt: 3
+  swapDuration: 0.5
+  moveDuration: 1
 --- !u!1 &1640272650
 GameObject:
   m_ObjectHideFlags: 0
