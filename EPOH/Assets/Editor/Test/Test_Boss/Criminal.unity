@@ -1582,7 +1582,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lullaby
+  m_text: VirusCopy
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1826,7 +1826,7 @@ GameObject:
   - component: {fileID: 1330111528}
   - component: {fileID: 1330111531}
   m_Layer: 5
-  m_Name: Lullaby
+  m_Name: VirusCopy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1898,7 +1898,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1330111531}
-        m_TargetAssemblyTypeName: LullabySkill, Assembly-CSharp
+        m_TargetAssemblyTypeName: VirusCopySkill, Assembly-CSharp
         m_MethodName: Activate
         m_Mode: 1
         m_Arguments:
@@ -1956,10 +1956,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1330111525}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e145f8c90cf2648ccbf9748298b906ad, type: 3}
+  m_Script: {fileID: 11500000, guid: ba3308030e2a74bb5ba0149c11312742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lullabyPrefab: {fileID: 1611299285968250529, guid: d23a090afe1454ddb9785e867bd18602, type: 3}
+  firstVirus: {fileID: 8952641379451783217, guid: 366134adb7f6f41d996e750a3082e0c8, type: 3}
+  virusPrefab: {fileID: 7344362357520157738, guid: 1f15964f829bb4b4d8ca6555b6d1fb82, type: 3}
+  _afterStartCopy: 3
+  _copyCnt: 5
+  _copyDuration: 0.5
+  _spawnDistance: 3
 --- !u!1 &1415639345
 GameObject:
   m_ObjectHideFlags: 0
