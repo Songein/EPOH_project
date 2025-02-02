@@ -1533,6 +1533,7 @@ GameObject:
   - component: {fileID: 792391338}
   - component: {fileID: 792391339}
   - component: {fileID: 792391340}
+  - component: {fileID: 792391341}
   m_Layer: 7
   m_Name: BossPartTimeManager
   m_TagString: Boss
@@ -1700,6 +1701,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bubbleObject: {fileID: 2046269840837140296, guid: df1e666a5de194d04a15651ced77bddc, type: 3}
+--- !u!114 &792391341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792391332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc1110a17f5114434a5be7a54ee2a999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1378189952}
+  receipt_prefab: {fileID: 528189908814442619, guid: 837942be3004e490c947cde66370d26c, type: 3}
+  receipt_pop: {fileID: 0}
 --- !u!1 &960852356
 GameObject:
   m_ObjectHideFlags: 0
@@ -2440,7 +2456,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1382513482}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 792391341}
+        m_TargetAssemblyTypeName: BossReceipt, Assembly-CSharp
+        m_MethodName: Activate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1382513482
 MonoBehaviour:
   m_ObjectHideFlags: 0

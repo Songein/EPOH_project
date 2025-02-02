@@ -11,9 +11,9 @@ public class BossPepper : MonoBehaviour, BossSkillInterface
     private Vector3 leftEdge;
     private Vector3 rightEdge;
 
-    //할퀴기 변수
-    public GameObject pepper_prefab; // 할퀸 자국 프리팹
-    public GameObject pepper_pop; // 폭발 프리팹
+    //pepper 변수
+    public GameObject pepper_prefab; //pepper 프리팹
+    public GameObject pepper_pop; // pepper 폭발 프리팹
 
     private void Awake()
     {
@@ -32,21 +32,21 @@ public class BossPepper : MonoBehaviour, BossSkillInterface
 
     public void Activate()
     {
-        StartCoroutine(Scratching());
+        StartCoroutine(Pepper());
     }
 
-    public IEnumerator Scratching()
+    public IEnumerator Pepper()
     {
-        int pepper_count = 3; // 총 3번의 할퀸 자국을 생성
+        int pepper_count = 3; // 총 3번의 pepper을 생성
         int number = 0;
 
         for (int i = 0; i < pepper_count; i++)
         {
-            // 할퀸 자국이 플레이어 x축 위치로부터 -10, 10 이내에서만 생성되도록 설정
+            // pepper 오브젝트가 플레이어 x축 위치로부터 -10, 10 이내에서만 생성되도록 설정
             float minX = Mathf.Max(leftEdge.x, player.transform.position.x - 10f);
             float maxX = Mathf.Min(rightEdge.x, player.transform.position.x + 10f);
             
-            // 할퀸 자국 프리팹 생성
+            // pepper 프리팹 생성
             Vector3 pepper_position = new Vector3(Random.Range(minX, maxX), player.transform.position.y, 0);
             GameObject pepper_object = Instantiate(pepper_prefab, pepper_position, Quaternion.identity); // 프리팹 사용
             if (pepper_object != null)
@@ -96,7 +96,7 @@ public class BossPepper : MonoBehaviour, BossSkillInterface
             Debug.Log("스크래치 횟수: " + number);
 
 
-            // 다음 할퀸 자국 생성 전 1초 대기
+            // 다음 pepper 생성 전 1초 대기
             if (i < pepper_count - 1)
             {
                 yield return new WaitForSeconds(1.0f);

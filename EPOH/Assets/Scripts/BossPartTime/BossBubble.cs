@@ -42,11 +42,17 @@ public class BossBubble : MonoBehaviour
 
             GameObject bubble = Instantiate(bubbleObject, bubblePosition, Quaternion.identity, bubbleContainer.transform);
 
+            Collider2D bubbleCollider = bubble.GetComponent<Collider2D>();
+            if (bubbleCollider != null)
+            {
+                bubbleCollider.offset -= new Vector2(0, 5.0f); // Y축으로 Collider를 내림 (값은 조정 가능)
+            }
+
             // 버블의 애니메이션 실행
             Animator bubbleAnimator = bubble.GetComponent<Animator>();
             if (bubbleAnimator != null)
             {
-                bubbleAnimator.SetTrigger("StartBubble"); 
+                bubbleAnimator.SetTrigger("bubble1"); 
             }
         }
 
@@ -73,7 +79,7 @@ public class BossBubble : MonoBehaviour
     private IEnumerator BoostSpeed(PlayerController playerController)
     {
         float originalSpeed = playerController.moveSpeed;
-        playerController.moveSpeed *= 2; // 이동 속도 2배 증가
+        playerController.moveSpeed *= 4; // 이동 속도 4배 증가
         yield return new WaitForSeconds(duration);
         playerController.moveSpeed = originalSpeed; // 원래 속도로 복원
     }
