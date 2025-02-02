@@ -32,18 +32,9 @@ public class Code : Attackable
         }
     }
 
-    protected void OnTriggerStay2D(Collider2D other)
-    {
-        base.OnTriggerStay2D(other);
-        if (other.CompareTag("Player"))
-        {
-            BossManagerNew.Instance.OnDecreaseHackingPoint?.Invoke(_hackPoint);
-        }
-    }
-
     IEnumerator MoveCode()
     {
-        yield return new WaitForSeconds(Duration);
+        yield return new WaitForSeconds(_duration);
         if (_isReverse)
         {
             if (_codeType == InjectionSkill.CodeType.Black)

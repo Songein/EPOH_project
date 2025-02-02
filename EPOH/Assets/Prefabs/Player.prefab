@@ -115,7 +115,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: db7ba9523d94f4f7d9e74eac85506668, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -373,11 +373,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 884943376621139529}
-  - component: {fileID: 2441150614705309264}
   - component: {fileID: 6040114913706024078}
+  - component: {fileID: 1029385330}
   m_Layer: 0
   m_Name: Attack2Area
-  m_TagString: Untagged
+  m_TagString: AttackArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -397,18 +397,6 @@ Transform:
   m_Father: {fileID: 3302496473648077428}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2441150614705309264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889359883389631050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4ec30ce80ef94e7ab7df43672d002d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!60 &6040114913706024078
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -443,6 +431,19 @@ PolygonCollider2D:
       - {x: 7.088404, y: 1.010338}
       - {x: 6.0519624, y: -1.531326}
       - {x: 3.9985409, y: -3.1001475}
+--- !u!114 &1029385330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889359883389631050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001ceb773cda44447815865fd9a01850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 6040114913706024078}
 --- !u!1 &8505008103421376674
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,11 +453,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 826479962533040516}
-  - component: {fileID: 7805863435989086384}
   - component: {fileID: 6421399593071902974}
+  - component: {fileID: 358624131}
   m_Layer: 0
   m_Name: Attack1Area
-  m_TagString: Untagged
+  m_TagString: AttackArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -476,18 +477,6 @@ Transform:
   m_Father: {fileID: 3302496473648077428}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7805863435989086384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8505008103421376674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4ec30ce80ef94e7ab7df43672d002d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!60 &6421399593071902974
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -522,3 +511,16 @@ PolygonCollider2D:
       - {x: -2.2756767, y: -2.391415}
       - {x: 0.58778536, y: -2.3039217}
       - {x: 4.9659433, y: -3.2360432}
+--- !u!114 &358624131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8505008103421376674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001ceb773cda44447815865fd9a01850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 6421399593071902974}
