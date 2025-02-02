@@ -6,15 +6,15 @@ public class Arm : MonoBehaviour, BossSkillInterface
 {
     public GameObject warningPrefab; // 경고 스프라이트 프리팹
     [SerializeField]  private GameObject armPrefab; // 팔 스프라이트 프리팹
-    private Vector3 leftSpawnPoint; // 왼쪽 스폰 위치
-    private Vector3 rightSpawnPoint;
+    [SerializeField] private Vector3 leftSpawnPoint; // 왼쪽 스폰 위치
+    [SerializeField] private Vector3 rightSpawnPoint;
     [SerializeField] private float warningTime; // 경고 표시 시간
     [SerializeField] private float armDestroyTime = 1.0f;
-    [SerializeField]   private float armLength = 10.0f; // 팔 길이 (중심에서 팔까지 거리)
+    [SerializeField]   private float armLength; // 팔 길이 (중심에서 팔까지 거리)
     private Transform spawnPoint;
 
     private void Start()
-    {
+    { /*
         Camera mainCamera = Camera.main;
         if (mainCamera != null)
         {
@@ -27,7 +27,7 @@ public class Arm : MonoBehaviour, BossSkillInterface
             rightSpawnPoint.z = 0;
 
           
-        }
+        } */
     }
 
     public void Activate() {
@@ -61,6 +61,8 @@ public class Arm : MonoBehaviour, BossSkillInterface
             Vector3 warningPosition = GetPositionAtAngle(angle, armLength, spawnPoint);
             GameObject warning = Instantiate(warningPrefab, warningPosition, Quaternion.identity);
 
+            warning.transform.up = (warningPosition - leftSpawnPoint).normalized;
+
 
             // 2. 경고 표시 대기
             yield return new WaitForSeconds(warningTime);
@@ -81,6 +83,8 @@ public class Arm : MonoBehaviour, BossSkillInterface
             // 1. 경고 스프라이트 생성
             Vector3 warningPosition = GetPositionAtAngle(angle, armLength, spawnPoint);
             GameObject warning = Instantiate(warningPrefab, warningPosition, Quaternion.identity);
+
+            warning.transform.up = (warningPosition - rightSpawnPoint).normalized;
 
 
             // 2. 경고 표시 대기
