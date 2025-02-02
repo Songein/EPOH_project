@@ -6,41 +6,45 @@ using Debug = EPOH.Debug;
 
 public class Attackable : MonoBehaviour
 {
-    [SerializeField] private float _duration;
-    public float Duration
-    {
-        get { return _duration; }
-        private set { _duration = value; }
-    }
-    [SerializeField] private float _damage;
-    public float Damage
-    {
-        get { return _damage; }
-        private set { _damage = value; }
-    }
-
-    void Awake()
-    {
-        Duration = _duration;
-        Damage = _damage;
-    }
+    [SerializeField] protected float _duration;
+    [SerializeField] protected float _healthDamage;
+    [SerializeField] protected float _hackPointDamage;
+    [SerializeField] protected bool _attackHealth = false;
+    [SerializeField] protected bool _attackHackPoint = false;
+    
 
     //플레이어와 부딪힐 경우
     protected void OnCollisionEnter2D(Collision2D other)
     {
         if (other.transform.CompareTag("Player"))
         {
-            PlayerHealth playerHealth = other.transform.GetComponent<PlayerHealth>();
-            playerHealth.Damage(this.Damage);
+            if (_attackHealth)
+            {
+                PlayerHealth playerHealth = other.transform.GetComponent<PlayerHealth>();
+                playerHealth.Damage(_healthDamage);
+            }
+
+            if (_attackHackPoint)
+            {
+                BossManagerNew.Instance.OnDecreaseHackingPoint?.Invoke(_hackPointDamage);
+            }
         }
     }
 
-    protected void OnTriggerStay2D(Collider2D other)
+    protected void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.transform.CompareTag("Player"))
         {
-            PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
-            playerHealth.Damage(this.Damage);
+            if (_attackHealth)
+            {
+                PlayerHealth playerHealth = other.transform.GetComponent<PlayerHealth>();
+                playerHealth.Damage(_healthDamage);
+            }
+
+            if (_attackHackPoint)
+            {
+                BossManagerNew.Instance.OnDecreaseHackingPoint?.Invoke(_hackPointDamage);
+            }
         }
     }
 
