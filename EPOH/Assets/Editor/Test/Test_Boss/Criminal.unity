@@ -2023,7 +2023,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Picture
+  m_text: Catch
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2786,7 +2786,7 @@ GameObject:
   - component: {fileID: 1640272653}
   - component: {fileID: 1640272656}
   m_Layer: 5
-  m_Name: Picture
+  m_Name: Catch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2858,7 +2858,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1640272656}
-        m_TargetAssemblyTypeName: PictureSkill, Assembly-CSharp
+        m_TargetAssemblyTypeName: CatchSkill, Assembly-CSharp
         m_MethodName: Activate
         m_Mode: 1
         m_Arguments:
@@ -2916,17 +2916,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1640272650}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07f72ffa259534d6ba220bc2791436e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 3be56edb184c04f5d9b0b5ae4ec0f3eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _duration: 2
-  _damage: 50
-  _captureCamera: {fileID: 414865412}
-  _captureWidth: 500
-  _captureHeight: 300
-  _cameraZPosition: -11
-  _pictureCameraPrefab: {fileID: 3210967586484432030, guid: 057274a3541014143b9b6f9e6d96a8e0, type: 3}
-  _picturePrefab: {fileID: 6139216794183811732, guid: 603526d0af4824f6cb7726f19b11846b, type: 3}
+  _criminalPrefab: {fileID: 5768759031268537077, guid: 2c9e4ac03f0724d238deab46932ced86, type: 3}
+  _jailPrefab: {fileID: 3680740586347020305, guid: 2f52f03a72bf9489c8a14f66f0a7f720, type: 3}
 --- !u!1 &1727792944
 GameObject:
   m_ObjectHideFlags: 0
@@ -3160,6 +3154,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6642683221333311040, guid: 76bcef9e02e834a45811d0ec35367418, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6642683221810150482, guid: 76bcef9e02e834a45811d0ec35367418, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6642683222603264048, guid: 76bcef9e02e834a45811d0ec35367418, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6642683223307840576, guid: 76bcef9e02e834a45811d0ec35367418, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 6642683223336458284, guid: 76bcef9e02e834a45811d0ec35367418, type: 3}
       propertyPath: m_Name
       value: -----[Environments]
