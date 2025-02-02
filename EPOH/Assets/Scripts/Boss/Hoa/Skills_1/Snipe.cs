@@ -4,15 +4,118 @@ using UnityEngine;
 
 public class Snipe : MonoBehaviour
 {
+    private BossDogController dog; //BossDogController 참조
+
+    public GameObject player; // 플레이어 게임 오브젝트
+
+    //추적 변수
+    public GameObject tracking_eye_prefab; // 추적 눈동자 프리팹
+    public GameObject tracking_effect_prefab; // 추적 이펙트 프리팹
+    public GameObject tracking_pop_prefab; // 추적 이펙트 프리팹
+
+    private GameObject tracking_eye; // 추적 눈동자 오브젝트
+    private Animator trackingAnimator; // 추적 눈동자 애니메이터
+
+
+    private void Awake()
+    {
+        //dog = GameObject.FindWithTag("Boss").GetComponent<BossDogController>();
+       // player = dog._player;
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        // 추적 눈동자 생성
+        Vector3 eyePosition = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+        tracking_eye = Instantiate(tracking_eye_prefab, eyePosition, Quaternion.identity);
+        tracking_eye.SetActive(false); // 시작 시 비활성화
+
+        //크기 조정
+        tracking_eye.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); // 눈동자 크기를 2배로 설정
+
+        // Animator 컴포넌트 가져오기
+        trackingAnimator = tracking_eye.GetComponent<Animator>();
+        if (trackingAnimator == null)
+        {
+            Debug.LogError("Animator component is missing on the tracking_eye prefab.");
+        }
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        // 매 프레임마다 눈동자가 플레이어의 x축과 y축을 따라다니도록 설정
+        if (tracking_eye != null && player != null)
+        {
+            tracking_eye.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, tracking_eye.transform.position.z);
+        }
     }
+
+    public void Activate()
+    {
+        tracking_eye.SetActive(true); // 추적 눈동자 활성화
+
+        // 추적 눈동자 애니메이션 재생
+        if (trackingAnimator != null)
+        {
+            trackingAnimator.Play("Tracking_eye"); // Animator에 설정된 애니메이션 이름
+        }
+
+
+        StartCoroutine(Tracking());
+    }
+
+    public IEnumerator Tracking()
+    {
+        float elapsedTime = 0f;
+        float totalDuration = 5.0f; // 전체 추적 지속 시간
+        float interval = 1f; // 추적 이펙트가 생성되고 폭발할 때까지의 간격
+
+        while (elapsedTime < totalDuration)
+        {
+            // 플레이어 위치에 추적 이펙트 생성
+            Vector3 effectSpawnPosition = player.transform.position;
+
+            effectSpawnPosition.y += 0.2f;
+
+            GameObject tracking_effect = Instantiate(tracking_effect_prefab, effectSpawnPosition, Quaternion.identity);
+
+            // 1초 후 추적 폭발 이펙트 발생
+            yield return new WaitForSeconds(interval);
+
+            // 추적 폭발 이펙트 발생 (추적 이펙트 삭제 및 폭발 이펙트 생성)
+            Destroy(tracking_effect); // 기존 이펙트 삭제
+            GameObject explode_object = Instantiate(tracking_pop_prefab, effectSpawnPosition, Quaternion.identity); // 폭발 이펙트 생성
+
+
+            /*
+            // Animator 컴포넌트를 가져와 애니메이션 재생
+            Animator explodeAnimator = explode_object.GetComponent<Animator>();
+            if (explodeAnimator != null)
+            {
+                explodeAnimator.Play("Tracking_teeth"); // Animator에 설정된 애니메이션 이름
+            }
+            else
+            {
+                Debug.LogError("Animator component is missing on the explode_object prefab.");
+            }
+            */
+
+            // 일정 시간 후 폭발 이펙트 제거
+            yield return new WaitForSeconds(2.0f); // 폭발 이펙트 유지 시간
+            Destroy(explode_object); // 폭발 이펙트 제거
+
+            elapsedTime += interval; // 경과 시간 증가
+        }
+
+        // 추적 눈동자 이펙트 비활성화
+        tracking_eye.SetActive(false);
+        yield return new WaitForSeconds(0.2f);
+    }
+
 }
+
+
