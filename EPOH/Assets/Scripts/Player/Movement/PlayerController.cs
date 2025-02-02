@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
                     animator.SetBool("IsJump", true);
                     break;
                 case 1 : //2단 점프일 때
-                    rigid.velocity = new Vector2(rigid.velocity.x, jumpForce * doubleJumpForce); //2단 점프는 좀 더 높이 점프
+                    rigid.velocity = new Vector2(rigid.velocity.x, jumpForce * doubleJumpForce); //2단 점프는 좀 더 낮게 점프
                     animator.SetBool("IsDoubleJump", true);
                     break;
                     
@@ -139,27 +139,25 @@ public class PlayerController : MonoBehaviour
         if (rigid.velocity.y < 0f)
         {
             animator.SetBool("IsFall", true);
-            
-            groundRayHit = Physics2D.Raycast(rigid.position, Vector2.down, 3f, LayerMask.GetMask("Ground"));
-            //땅을 감지하고
-            if (groundRayHit.collider != null)
-            {
-                //거리가 0.5 미만이면
-                if (groundRayHit.distance < 2.5f)
-                {
-                    //Debug.Log("땅");
-                    //점프 애니메이션 해제
-                    animator.SetBool("IsFall", false);
-                    animator.SetBool("IsJump",false);
-                    animator.SetBool("IsDoubleJump",false);
-                    player_jump_cnt = 0; //바닥에 닿으면 플레이어 점프 횟수 초기화
-                    
-                    //Debug.Log("거리 0.3f 미만");
 
-                }
+        }
+
+        //떨어지는 중이 아니더라도 땅을 감지하면 애니메이션이 중지되도록 변경
+        groundRayHit = Physics2D.Raycast(rigid.position, Vector2.down, 3f, LayerMask.GetMask("Ground"));
+        //땅을 감지하고
+        if (groundRayHit.collider != null)
+        {
+            //거리가 3.0 미만이면
+            if (groundRayHit.distance < 3.0f)
+            {
+                //점프 애니메이션 해제
+                animator.SetBool("IsFall", false);
+                animator.SetBool("IsJump", false);
+                animator.SetBool("IsDoubleJump", false);
+                player_jump_cnt = 0; //바닥에 닿으면 플레이어 점프 횟수 초기화
             }
         }
-        
+
     }
     
     //플레이어 스프라이트 뒤집기
