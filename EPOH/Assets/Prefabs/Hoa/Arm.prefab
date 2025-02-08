@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5356723675728310234}
   - component: {fileID: 5356723675728310235}
   - component: {fileID: 5356723675728310232}
-  - component: {fileID: 352551797399160560}
+  - component: {fileID: -5246442952423863512}
   m_Layer: 0
   m_Name: Arm
   m_TagString: Untagged
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &352551797399160560
+--- !u!114 &-5246442952423863512
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,7 +121,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5356723675728310233}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef3479fcfad4e4dba8462b439a4913e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 97277954b1470418b8f72fabca27135d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _power: 10
+  _duration: 0
+  _healthDamage: 10
+  _hackPointDamage: 0
+  _attackHealth: 1
+  _attackHackPoint: 0
