@@ -13,6 +13,7 @@ TagManager:
   - AttackArea
   - BossBubble
   - HoaMachine
+  - RainDrop
   layers:
   - Default
   - TransparentFX

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ca0ad174d8c4191bac77dd32a87dd2, type: 3}
+  m_Name: HoaData
+  m_EditorClassIdentifier: 
+  name: Hoa
+  _maxHealth: 0
+  _rightTop: {x: 25, y: 12, z: 0}
+  _leftBottom: {x: -25, y: -4, z: 0}

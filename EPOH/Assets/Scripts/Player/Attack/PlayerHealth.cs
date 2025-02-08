@@ -66,7 +66,7 @@ public class PlayerHealth : MonoBehaviour
         is_invincible = true;
         //오브젝트의 색 변경(하얀 투명색)
         sp.color = new Color(1, 1, 1, 0.4f);
-
+        
         yield return new WaitForSeconds(2f); //무적시간 2초
         //오브젝트의 레이어를 Player로 변경
         gameObject.layer = 6;
