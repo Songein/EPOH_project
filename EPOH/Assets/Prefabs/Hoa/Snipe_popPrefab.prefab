@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7583853714583533447}
   - component: {fileID: 7583853714583533446}
   - component: {fileID: -3157617887652594160}
+  - component: {fileID: -3325458560818050614}
   m_Layer: 0
   m_Name: Snipe_popPrefab
   m_TagString: Untagged
@@ -144,3 +145,20 @@ PolygonCollider2D:
       - {x: 0.40234375, y: 0.29296875}
       - {x: 0.29296875, y: 0.40234375}
       - {x: 0.15234375, y: 0.47265625}
+--- !u!114 &-3325458560818050614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7583853714583533449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97277954b1470418b8f72fabca27135d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _duration: 0
+  _healthDamage: 0
+  _hackPointDamage: 0
+  _attackHealth: 0
+  _attackHackPoint: 0
