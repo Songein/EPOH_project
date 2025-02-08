@@ -10,10 +10,10 @@ public class ElectricBall : MonoBehaviour
     [SerializeField] private Vector3 leftEdgePoint;
     [SerializeField] private Vector3 rightEdgePoint;
 
-    
+
     //ball 변수
-    public GameObject ball_prefab; // ball 프리팹
-    public GameObject ball_pop; // 폭발 프리팹
+    [SerializeField] private GameObject ball_prefab; // ball 프리팹
+    [SerializeField] private GameObject ball_pop; // 폭발 프리팹
 
     private void Awake()
     {
