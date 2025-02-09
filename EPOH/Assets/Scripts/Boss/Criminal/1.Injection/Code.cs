@@ -27,7 +27,7 @@ public class Code : Attackable
             if (Vector3.Distance(transform.position, _targetPosition) < 0.01f)
             {
                 _canMove = false;
-                Destroy(gameObject);
+                DestroyCodes();
             }
         }
     }
@@ -48,6 +48,15 @@ public class Code : Attackable
             {
                 _canMove = true;
             }
+        }
+    }
+
+    private void DestroyCodes()
+    {
+        Code[] _codes = FindObjectsOfType<Code>();
+        foreach (var code in _codes)
+        {
+            Destroy(code.gameObject);
         }
     }
 }
