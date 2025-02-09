@@ -28,7 +28,7 @@ public class UP_Light : MonoBehaviour, BossSkillInterface
     public void Activate()
     {
         //Vector3 topSpawnPoint = SpawnPoint;
-        BossData bossData = BossManagerNew.Instance.bossData;
+        BossData bossData = BossManagerNew.Current.bossData;
 
         // X축으로 K씩 차이나는 위치 K개 생성
         for (int i = 0; i < this.spawnPositions.Length; i++)
