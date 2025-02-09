@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
-  jumpForce: 28
+  jumpForce: 25
   doubleJumpForce: 0.8
   tr: {fileID: 0}
   dash_power: 50
