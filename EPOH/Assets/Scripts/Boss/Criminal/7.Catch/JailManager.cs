@@ -41,7 +41,7 @@ public class JailManager : MonoBehaviour
 
         // 철창이 최저 높이에 도달하면 감옥 닫힘
         Debug.Log("감옥이 완전히 닫혔습니다!");
-        Invoke("CheckResult",1f);
+        CheckResult();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -51,8 +51,6 @@ public class JailManager : MonoBehaviour
             if (jailClosed)
             {
                 Debug.Log("감옥 안에 범죄자가 들어옴");
-                //other.GetComponent<CriminalAI>().EndMove();
-                _criminalObj = other.gameObject;
                 transform.GetChild(0).gameObject.SetActive(true);
                 _isSuccess = true;
             }
@@ -69,14 +67,17 @@ public class JailManager : MonoBehaviour
         {
             BossManagerNew.Current.OnDecreaseHackingPoint?.Invoke(_hackingPoint);
         }
-        
-        Invoke("EndSkill",2f);
+
+        StartCoroutine(EndSkill());
     }
 
-    private void EndSkill()
+    IEnumerator EndSkill()
     {
-        Destroy(gameObject);
+        yield return new WaitForSeconds(2f);
         _criminalObj = FindObjectOfType<CriminalAI>().gameObject;
+        _criminalObj.GetComponent<CriminalAI>().EndMove();
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
         Destroy(_criminalObj);
     }
 }
