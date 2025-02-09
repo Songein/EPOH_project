@@ -9,7 +9,7 @@ public class Cross : MonoBehaviour, BossSkillInterface
     [SerializeField] private GameObject CrossArms;
 
     public void Activate() {
-        BossData bossData = BossManagerNew.Instance.bossData;
+        BossData bossData = BossManagerNew.Current.bossData;
         StartCoroutine(LightMoving(bossData));
     }
 

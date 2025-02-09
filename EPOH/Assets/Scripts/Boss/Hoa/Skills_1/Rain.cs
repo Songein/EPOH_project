@@ -17,14 +17,14 @@ public class Rain : MonoBehaviour, BossSkillInterface
 
     public void Activate()
     {
-        if (BossManagerNew.Instance == null)
+        if (BossManagerNew.Current == null)
         {
-            Debug.LogError("BossManagerNew instance is not found!");
+            Debug.LogError("BossManagerNew Current is not found!");
             return;
         }
       
 
-        BossData bossData = BossManagerNew.Instance.bossData;
+        BossData bossData = BossManagerNew.Current.bossData;
         if (bossData == null)
         {
             Debug.LogError("BossData is not assigned in BossManagerNew!");
