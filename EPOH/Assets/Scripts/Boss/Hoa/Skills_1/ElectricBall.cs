@@ -7,13 +7,13 @@ public class ElectricBall : MonoBehaviour
     //  private BossDogController dog; 
     public GameObject player; // 플레이어 게임 오브젝트
     private List<GameObject> balls;
-    private Vector3 leftEdge;
-    private Vector3 rightEdge;
+    [SerializeField] private Vector3 leftEdgePoint;
+    [SerializeField] private Vector3 rightEdgePoint;
 
-    
+
     //ball 변수
-    public GameObject ball_prefab; // ball 프리팹
-    public GameObject ball_pop; // 폭발 프리팹
+    [SerializeField] private GameObject ball_prefab; // ball 프리팹
+    [SerializeField] private GameObject ball_pop; // 폭발 프리팹
 
     private void Awake()
     {
@@ -24,10 +24,7 @@ public class ElectricBall : MonoBehaviour
 
     void Start()
     {
-        Camera mainCamera = Camera.main; //Camera.main은 게임 오브젝트가 활성화된 후에야 사용 가능 전역변수 X
-        // Scene의 가장 왼쪽과 오른쪽 좌표를 설정
-        leftEdge = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, 0));
-        rightEdge = Camera.main.ViewportToWorldPoint(new Vector3(1, 0.5f, 0));
+      
     }
 
     public void Activate()
@@ -42,18 +39,19 @@ public class ElectricBall : MonoBehaviour
 
     public IEnumerator electricBall()
     {
-       
+        Vector3 leftEdge = leftEdgePoint;
+        Vector3 rightEdge = rightEdgePoint;
         int ball_count = 4; // 총 4번의 electricball 을 생성
         int number = 0;
         balls = new List<GameObject>();
         for (int i = 0; i < ball_count; i++)
         {
             // 할퀸 자국이 플레이어 x축 위치로부터 -10, 10 이내에서만 생성되도록 설정
-            float minX = Mathf.Max(leftEdge.x, player.transform.position.x - 10f);
-            float maxX = Mathf.Min(rightEdge.x, player.transform.position.x + 10f);
+            //float minX = Mathf.Max(leftEdge.x, player.transform.position.x - 10f);
+           // float maxX = Mathf.Min(rightEdge.x, player.transform.position.x + 10f);
 
             // 할퀸 자국 프리팹 생성
-            Vector3 ball_position = new Vector3(Random.Range(minX, maxX), player.transform.position.y, 0);
+            Vector3 ball_position = new Vector3(Random.Range(leftEdge.x, rightEdge.x), Random.Range(leftEdge.y, rightEdge.y), 0);
             GameObject ball_object = Instantiate(ball_prefab, ball_position, Quaternion.identity); // 프리팹 사용
             this.balls.Add(ball_object);
             if (ball_object != null)

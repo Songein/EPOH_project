@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2006082400839239483}
   - component: {fileID: 285133404875108893}
   m_Layer: 0
-  m_Name: TestPrefab
+  m_Name: SnipeEyePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

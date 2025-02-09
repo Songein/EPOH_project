@@ -30,7 +30,7 @@ public class Attackable : MonoBehaviour
             }
         }
     }
-
+    
     protected void OnTriggerEnter2D(Collider2D other)
     {
         if (other.transform.CompareTag("Player"))

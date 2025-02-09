@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2015615753190584692}
   - component: {fileID: 2015615753190584691}
   - component: {fileID: 2015615753190584690}
-  - component: {fileID: 2015615753190584689}
+  - component: {fileID: 6694116614721081848}
   m_Layer: 0
   m_Name: laserPrefab
   m_TagString: Untagged
@@ -134,7 +134,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2015615753190584689
+--- !u!114 &6694116614721081848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,7 +143,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2015615753190584688}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef3479fcfad4e4dba8462b439a4913e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 97277954b1470418b8f72fabca27135d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _power: 10
+  _duration: 0
+  _healthDamage: 10
+  _hackPointDamage: 0
+  _attackHealth: 1
+  _attackHackPoint: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2550157158978267313}
   - component: {fileID: 7464364948254110813}
   - component: {fileID: 7105577925037735355}
-  - component: {fileID: 71648489260672373}
+  - component: {fileID: 3574635116225393830}
   m_Layer: 0
   m_Name: ball_popPrefab
   m_TagString: Untagged
@@ -131,7 +131,7 @@ PolygonCollider2D:
       - {x: 0.40234375, y: 0.29296875}
       - {x: 0.29296875, y: 0.40234375}
       - {x: 0.15234375, y: 0.47265625}
---- !u!114 &71648489260672373
+--- !u!114 &3574635116225393830
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,7 +140,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8886808525591183159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef3479fcfad4e4dba8462b439a4913e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 97277954b1470418b8f72fabca27135d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _power: 20
+  _duration: 0
+  _healthDamage: 10
+  _hackPointDamage: 0
+  _attackHealth: 1
+  _attackHackPoint: 0
