@@ -7,6 +7,7 @@ public class LightSkill : MonoBehaviour
 
     private Vector3 topSpawnPoint; // 카메라 상단에서 Y축 +2 위치
     [SerializeField] private Vector3[] spawnPositions; // X축으로 떨어진 5개 위치
+    [SerializeField] private Vector3 SpawnPoint;
     [SerializeField] private GameObject machinePrefab;
     [SerializeField] private GameObject laserPrefab;
     [SerializeField] private float moveDuration;
@@ -17,23 +18,21 @@ public class LightSkill : MonoBehaviour
 
     private void Start()
     {
-        Camera mainCamera = Camera.main; //Camera.main은 게임 오브젝트가 활성화된 후에야 사용 가능 전역변수 X
-        if (mainCamera != null)
-        {
-            topSpawnPoint = mainCamera.ViewportToWorldPoint(new Vector3(0.01f, 1f, mainCamera.nearClipPlane));
-            topSpawnPoint.y += 2; ///[[[[[[[[[[[[[[ 기계 초기 위치 지정 여기(machine)]]]]]]]]]]]]]]]]]
-            topSpawnPoint.z = 0;
-
-            // X축으로 K씩 차이나는 위치 K개 생성
-            for (int i = 0; i < this.spawnPositions.Length; i++)
-            {
-                this.spawnPositions[i] = new Vector3(topSpawnPoint.x + i * 3, topSpawnPoint.y, 0);  ///[[[[[[[[기계간 간격 조정은 x축 (i-4) 에서 조절(machine)]]]]]]]
-            }
-        }
+       
+           // topSpawnPoint = new Vector3(-25f, 12f,0f);
+        
 
     }
     public void Activate()
     {
+        Vector3 topSpawnPoint = SpawnPoint;
+
+
+        // X축으로 K씩 차이나는 위치 K개 생성
+        for (int i = 0; i < this.spawnPositions.Length; i++)
+        {
+            this.spawnPositions[i] = new Vector3(topSpawnPoint.x + i * 3, topSpawnPoint.y, 0);  ///[[[[[[[[기계간 간격 조정은 x축 (i-4) 에서 조절(machine)]]]]]]]
+        }
         RandomFive(spawnPositions);
     }
 

@@ -2,19 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rain : MonoBehaviour, BossSkillInterface
+public class UP_Rain : MonoBehaviour
 {
     [SerializeField] private int minRaindrops;
     [SerializeField] private int maxRaindrops;
     [SerializeField] private float minSpeed;
     [SerializeField] private float maxSpeed;
     [SerializeField] private GameObject rainPrefab;
+    [SerializeField] private GameObject safePrefab;
 
 
     // [SerializeField] private float growSpeed;
     // [SerializeField] private float maxLength;
 
-
+    private void Start()
+    {
+     
+    }
     public void Activate()
     {
         if (BossManagerNew.Instance == null)
@@ -22,7 +26,7 @@ public class Rain : MonoBehaviour, BossSkillInterface
             Debug.LogError("BossManagerNew instance is not found!");
             return;
         }
-      
+
 
         BossData bossData = BossManagerNew.Instance.bossData;
         if (bossData == null)
@@ -30,18 +34,26 @@ public class Rain : MonoBehaviour, BossSkillInterface
             Debug.LogError("BossData is not assigned in BossManagerNew!");
             return;
         }
+        
 
         StartCoroutine(rain(bossData));
     }
     IEnumerator rain(BossData bossData)
     {
-        int raindropCount = Random.Range(minRaindrops, maxRaindrops + 1); // 랜덤 개수 결정
-        
+
+        float spawnX = Random.Range(bossData._leftBottom.x, bossData._rightTop.x);
+        float spawnY = Random.Range(bossData._leftBottom.y, bossData._leftBottom.y +10); // 랜덤 위치
+        int raindropCount = Random.Range(minRaindrops, maxRaindrops + 1);  // 랜덤 개수 결정
+        Vector3 safePosition = new Vector3(spawnX, bossData._leftBottom.y, 0);
+        GameObject safeZone = Instantiate(safePrefab, safePosition, Quaternion.identity);
+
+        yield return new WaitForSeconds(2.0f);
+
         for (int i = 0; i < 3; i++)
         {
             for (int j = 0; j < raindropCount; j++)
             {
-                float spawnX = Random.Range(bossData._leftBottom.x, bossData._rightTop.x); // 랜덤 위치
+                 spawnX = Random.Range(bossData._leftBottom.x, bossData._rightTop.x); // 랜덤 위치
                 Vector3 spawnPosition = new Vector3(spawnX, bossData._rightTop.y, 0);
                 GameObject rainDrop = Instantiate(rainPrefab, spawnPosition, Quaternion.identity);
 
@@ -55,26 +67,10 @@ public class Rain : MonoBehaviour, BossSkillInterface
             }
             yield return new WaitForSeconds(1f);
         }
-        
 
-
-        
-
-
+        Destroy(safeZone);
 
     }
 
-    /*
-    public void ClearAllRaindrops()
-    {
-        GameObject[] raindrops = GameObject.FindGameObjectsWithTag("RainDrop");
-        foreach (GameObject drop in raindrops)
-        {
-            Destroy(drop);
-        }
 
-    }
-    */
 }
-
-

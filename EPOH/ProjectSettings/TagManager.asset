@@ -14,6 +14,7 @@ TagManager:
   - BossBubble
   - HoaMachine
   - Jail
+  - RainDrop
   layers:
   - Default
   - TransparentFX

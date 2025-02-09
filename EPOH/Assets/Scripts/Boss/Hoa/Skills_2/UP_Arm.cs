@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arm : MonoBehaviour, BossSkillInterface
+public class UP_Arm : MonoBehaviour, BossSkillInterface
 {
-    public GameObject warningPrefab; // 경고 스프라이트 프리팹
+    [SerializeField] private GameObject warningPrefab; // 경고 스프라이트 프리팹
     [SerializeField] private GameObject armPrefab; // 팔 스프라이트 프리팹
-    [SerializeField] private float warningTime; // 경고 표시 시간
-    [SerializeField] private float armDestroyTime = 1.0f;
-    [SerializeField] private float armLength; // 팔 길이 (중심에서 팔까지 거리)
+    [SerializeField] private GameObject armElectPrefab; //전류 흐르기 프리팹
+     private float warningTime =2f; // 경고 표시 시간
+      //[SerializeField] private float armDestroyTime = 1.0f;
+    [SerializeField] private float armLength= 5f; // 팔 길이
 
 
     private void Start()
@@ -49,8 +50,8 @@ public class Arm : MonoBehaviour, BossSkillInterface
 
     public void SetData(BossData bossData, float angle)
     {
-        Vector3 leftSpawnPoint = new Vector3(bossData._leftBottom.x +10, bossData._leftBottom.y + 5, 0);
-        Vector3 rightSpawnPoint = new Vector3(bossData._rightTop.x -10, bossData._leftBottom.y + 5, 0);
+        Vector3 leftSpawnPoint = new Vector3(bossData._leftBottom.x + 10, bossData._leftBottom.y + 5, 0);
+        Vector3 rightSpawnPoint = new Vector3(bossData._rightTop.x - 10, bossData._leftBottom.y + 5, 0);
 
         Vector3 spawnPoint = Random.Range(0, 2) == 0 ? leftSpawnPoint : rightSpawnPoint;
 
@@ -78,8 +79,13 @@ public class Arm : MonoBehaviour, BossSkillInterface
         arm.transform.up = (warningPosition - spawnPoint).normalized; // 팔 방향 설정
 
         // 팔 제거 대기
-        yield return new WaitForSeconds(armDestroyTime);
+        yield return new WaitForSeconds(0.7f);
+        //전류생성
+        GameObject armElect = Instantiate(armElectPrefab, warningPosition, Quaternion.identity);
+        armElect.transform.up = (warningPosition - spawnPoint).normalized;
+        yield return new WaitForSeconds(0.3f);
         Destroy(arm);
+        Destroy(armElect);
     }
 
     private Vector3 GetPositionAtAngle(float angle, float radius, Vector3 spawnPoint)
@@ -89,5 +95,4 @@ public class Arm : MonoBehaviour, BossSkillInterface
         float y = Random.Range(spawnPoint.y - 5, spawnPoint.y + 5) + Mathf.Sin(radian) * radius;
         return new Vector3(x, y, 0);
     }
-
 }
