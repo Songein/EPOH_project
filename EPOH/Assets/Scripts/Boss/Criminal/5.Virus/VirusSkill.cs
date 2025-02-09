@@ -16,7 +16,7 @@ public class VirusSkill : MonoBehaviour, BossSkillInterface
     [SerializeField] private float _fallingSpeed;
     public void Activate()
     {
-        BossData bossData = BossManagerNew.Instance.bossData;
+        BossData bossData = BossManagerNew.Current.bossData;
         
         // 랜덤한 위치에 바이러스와 백신 생성
         StartCoroutine(SpawnObject(_vaccinePrefab, bossData));

@@ -27,7 +27,7 @@ public class PictureSkill : MonoBehaviour, BossSkillInterface
 
     public void Activate()
     {
-        BossData bossData = BossManagerNew.Instance.bossData;
+        BossData bossData = BossManagerNew.Current.bossData;
         float _x = Random.Range(bossData._leftBottom.x, bossData._rightTop.x);
         float _y = Random.Range(bossData._leftBottom.y, bossData._rightTop.y);
         Vector3 randomPos = new Vector3(_x, _y, 0);

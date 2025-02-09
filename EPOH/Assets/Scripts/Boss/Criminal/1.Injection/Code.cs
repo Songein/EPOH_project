@@ -15,7 +15,7 @@ public class Code : Attackable
     private void OnEnable()
     {
         StartCoroutine(MoveCode());
-        _targetPosition = new Vector2(BossManagerNew.Instance.bossData._leftBottom.x , transform.position.y);
+        _targetPosition = new Vector2(BossManagerNew.Current.bossData._leftBottom.x , transform.position.y);
     }
 
     private void Update()

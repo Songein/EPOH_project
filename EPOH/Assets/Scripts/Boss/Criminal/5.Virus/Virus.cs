@@ -14,7 +14,7 @@ public class Virus : Hittable
         if (other.CompareTag("Ground"))
         {
             FindObjectOfType<PlayerHealth>().Damage(_healthDamage);
-            BossManagerNew.Instance.OnDecreaseHackingPoint(_hackPoint);
+            BossManagerNew.Current.OnDecreaseHackingPoint(_hackPoint);
             
             Destroy(gameObject);
         }

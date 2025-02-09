@@ -22,7 +22,7 @@ public class VirusCopySkill : MonoBehaviour, BossSkillInterface
 
     private IEnumerator SpawnFirstVirus()
     {
-        bossData = BossManagerNew.Instance.bossData;
+        bossData = BossManagerNew.Current.bossData;
 
         // 맵 내 랜덤한 위치에 바이러스 생성
         Vector2 virusPos = GetValidRandomPosition();

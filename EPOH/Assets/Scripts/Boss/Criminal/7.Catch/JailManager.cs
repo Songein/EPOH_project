@@ -63,11 +63,11 @@ public class JailManager : MonoBehaviour
     {
         if (_isSuccess)
         {
-            BossManagerNew.Instance.OnIncreaseHackingPoint?.Invoke(_hackingPoint);
+            BossManagerNew.Current.OnIncreaseHackingPoint?.Invoke(_hackingPoint);
         }
         else
         {
-            BossManagerNew.Instance.OnDecreaseHackingPoint?.Invoke(_hackingPoint);
+            BossManagerNew.Current.OnDecreaseHackingPoint?.Invoke(_hackingPoint);
         }
         
         Invoke("EndSkill",2f);

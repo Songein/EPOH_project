@@ -26,7 +26,7 @@ public class Attackable : MonoBehaviour
 
             if (_attackHackPoint)
             {
-                BossManagerNew.Instance.OnDecreaseHackingPoint?.Invoke(_hackPointDamage);
+                BossManagerNew.Current.OnDecreaseHackingPoint?.Invoke(_hackPointDamage);
             }
         }
     }
@@ -43,7 +43,7 @@ public class Attackable : MonoBehaviour
 
             if (_attackHackPoint)
             {
-                BossManagerNew.Instance.OnDecreaseHackingPoint?.Invoke(_hackPointDamage);
+                BossManagerNew.Current.OnDecreaseHackingPoint?.Invoke(_hackPointDamage);
             }
         }
     }

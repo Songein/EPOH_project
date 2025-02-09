@@ -39,7 +39,7 @@ public class Hacking : MonoBehaviour
         if (_hackingPoint + value >= 100)
         {
             _hackingPoint = 100f;
-            BossManagerNew.Instance.EndBossRaid();
+            BossManagerNew.Current.EndBossRaid();
         }
         else
         {
