@@ -260,10 +260,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
-  jumpForce: 30
-  doubleJumpForce: 1.2
+  jumpForce: 25
+  doubleJumpForce: 0.8
   tr: {fileID: 0}
-  dash_power: 20
+  dash_power: 50
   is_dashing: 0
   dash_time: 0.3
   dash_cool_time: 2

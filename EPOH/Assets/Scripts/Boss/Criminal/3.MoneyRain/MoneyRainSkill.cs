@@ -17,7 +17,7 @@ public class MoneyRainSkill : MonoBehaviour, BossSkillInterface
 
     public void Activate()
     {
-        BossData bossData = BossManagerNew.Instance.bossData;
+        BossData bossData = BossManagerNew.Current.bossData;
         
         StartCoroutine(SpawnMoney(bossData));
     }

@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class Hacking : MonoBehaviour
 {
+    private BossManagerNew _bossManager;
     [SerializeField] private float _hackingPoint = 0f;
     [SerializeField] private TextMeshProUGUI _text;
-    public void OnEnable()
+    public void Start()
     {
-        BossManagerNew.Instance.OnDecreaseHackingPoint += DecreaseHackingPoint;
-        BossManagerNew.Instance.OnIncreaseHackingPoint += IncreaseHackingPoint;
+        _bossManager = FindObjectOfType<BossManagerNew>();
+        _bossManager.OnDecreaseHackingPoint = DecreaseHackingPoint;
+        _bossManager.OnIncreaseHackingPoint = IncreaseHackingPoint;
     }
     public float GetHackingPoint()
     {
@@ -37,7 +39,7 @@ public class Hacking : MonoBehaviour
         if (_hackingPoint + value >= 100)
         {
             _hackingPoint = 100f;
-            BossManagerNew.Instance.EndBossRaid();
+            BossManagerNew.Current.EndBossRaid();
         }
         else
         {
@@ -45,12 +47,6 @@ public class Hacking : MonoBehaviour
         }
         Debug.Log($"Hacking Point : +{value} -> {_hackingPoint}");
         UpdateText();
-    }
-    
-    public void OnDisable()
-    {
-        BossManagerNew.Instance.OnDecreaseHackingPoint -= DecreaseHackingPoint;
-        BossManagerNew.Instance.OnIncreaseHackingPoint -= IncreaseHackingPoint;
     }
 
     public void UpdateText()

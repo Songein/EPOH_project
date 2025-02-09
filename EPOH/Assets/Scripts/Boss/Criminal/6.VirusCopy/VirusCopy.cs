@@ -41,7 +41,7 @@ public class VirusCopy : Attackable
 
     IEnumerator FirstVirusAct()
     {
-        yield return new WaitForSeconds(10f);
-        DestroyObject();
+        yield return new WaitForSeconds(2.5f);
+        StartCoroutine(Explode());
     }
 }

@@ -13,6 +13,7 @@ TagManager:
   - AttackArea
   - BossBubble
   - HoaMachine
+  - Jail
   - RainDrop
   layers:
   - Default
@@ -28,8 +29,8 @@ TagManager:
   - BossAttack
   - AttackableObject
   - Wall
-  - 
-  - 
+  - CriminalAI
+  - Jail
   - 
   - 
   - 

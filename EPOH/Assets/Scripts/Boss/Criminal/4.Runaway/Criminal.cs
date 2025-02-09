@@ -25,7 +25,7 @@ public class Criminal : Interactable
         {
             // 1. 범죄자 깜짝 놀라는 애니메이션 실행
             // 2. 해킹 포인트 증가
-            BossManagerNew.Instance.OnIncreaseHackingPoint?.Invoke(_increaseHackPoint);
+            BossManagerNew.Current.OnIncreaseHackingPoint?.Invoke(_increaseHackPoint);
             
             // 모든 범죄자 사라짐
             DestroyAllCriminal();
@@ -36,7 +36,7 @@ public class Criminal : Interactable
             // 1. 폭발 애니메이션 실행
             // 2. 데미지 입고 해킹포인트 감소
             _player.GetComponent<PlayerHealth>().Damage(_explosionDamage);
-            BossManagerNew.Instance.OnDecreaseHackingPoint?.Invoke(_decreaseHackPoint);
+            BossManagerNew.Current.OnDecreaseHackingPoint?.Invoke(_decreaseHackPoint);
             
             // 진짜 범죄자 먼저 사라짐
             DestroyOnlyReal();
