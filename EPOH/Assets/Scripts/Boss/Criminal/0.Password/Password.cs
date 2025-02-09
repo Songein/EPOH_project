@@ -35,7 +35,7 @@ public class Password : Interactable
         if (!_isChanged)
         {
             //바꾸는 것 실패 -> 데미지 및 해킹포인트 감소
-            BossManagerNew.Instance.OnDecreaseHackingPoint?.Invoke(_hackPoint);
+            BossManagerNew.Current.OnDecreaseHackingPoint?.Invoke(_hackPoint);
         }
         Destroy(gameObject);
     }

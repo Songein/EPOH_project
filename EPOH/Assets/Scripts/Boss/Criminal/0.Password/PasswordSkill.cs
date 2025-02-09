@@ -10,10 +10,10 @@ public class PasswordSkill : MonoBehaviour, BossSkillInterface
     public void Activate()
     {
         //맵 내의 랜덤한 위치에 단어 오브젝트 생성
-        float _x = Random.Range(BossManagerNew.Instance.bossData._leftBottom.x,
-            BossManagerNew.Instance.bossData._rightTop.x);
-        float _y = Random.Range(BossManagerNew.Instance.bossData._leftBottom.y,
-            BossManagerNew.Instance.bossData._rightTop.y);
+        float _x = Random.Range(BossManagerNew.Current.bossData._leftBottom.x,
+            BossManagerNew.Current.bossData._rightTop.x);
+        float _y = Random.Range(BossManagerNew.Current.bossData._leftBottom.y,
+            BossManagerNew.Current.bossData._rightTop.y);
         Vector2 newPos = new Vector2(_x, _y);
         Instantiate(_wordPrefab, newPos,quaternion.identity);
     }

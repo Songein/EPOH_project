@@ -99,7 +99,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 3
-  _damage: 30
+  _healthDamage: 0
+  _hackPointDamage: 0
+  _attackHealth: 0
+  _attackHackPoint: 1
   _codeType: 0
   _movingSpeed: 30
   _hackPoint: 3

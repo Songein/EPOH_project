@@ -10,7 +10,7 @@ public class BallSkill : MonoBehaviour, BossSkillInterface
     public void Activate()
     {
         //공을 랜덤 위치에 생성하기
-        BossData bossData = BossManagerNew.Instance.bossData;
+        BossData bossData = BossManagerNew.Current.bossData;
         int randomValue = Random.Range(0, 2);
         Vector3 ballPos;
         if (randomValue == 1)

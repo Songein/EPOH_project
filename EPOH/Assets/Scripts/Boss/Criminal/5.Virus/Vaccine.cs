@@ -13,7 +13,7 @@ public class Vaccine : Hittable
         if (other.CompareTag("Ground"))
         {
             FindObjectOfType<PlayerHealth>().IncreaseHealth(_increaseHealth);
-            BossManagerNew.Instance.OnIncreaseHackingPoint(_hackPoint);
+            BossManagerNew.Current.OnIncreaseHackingPoint(_hackPoint);
             
             Destroy(gameObject);
         }

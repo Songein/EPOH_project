@@ -27,7 +27,7 @@ public class RunawaySkill : MonoBehaviour, BossSkillInterface
         // 진짜 범죄자 웃는 애니메이션 실행
         yield return new WaitForSeconds(3f);
         
-        BossData bossData = BossManagerNew.Instance.bossData;
+        BossData bossData = BossManagerNew.Current.bossData;
         // 셔플 먼저 진행
         yield return StartCoroutine(ShuffleObjectsCoroutine(_shuffleCnt));
         

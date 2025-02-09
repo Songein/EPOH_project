@@ -6,12 +6,17 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public BossManager boss_manager;
-
-    public float player_hp = 200; //플레이어의 목숨
+    [SerializeField] private float _playerMaxHP = 200;
+    public float player_hp; //플레이어의 목숨
     public bool is_invincible; //무적 여부
+    public event Action<float> OnHealthChanged;
     
     private SpriteRenderer sp; //플레이어 SpriteRenderer 참조
 
+    void Awake()
+    {
+        player_hp = _playerMaxHP;
+    }
     void Start()
     {
         //SpriteRenderer 할당하기
@@ -29,7 +34,12 @@ public class PlayerHealth : MonoBehaviour
 
             //파라미터로 입력받은 power 만큼 hp가 감소함.
             player_hp -= power;
+            if (player_hp <= 0)
+            {
+                player_hp = 0;
+            }
             //boss_manager.player_hp = player_hp;
+            OnHealthChanged?.Invoke(player_hp);
             Debug.Log("[PlayerHealth] : 남은 hp " + player_hp);
 
             if (player_hp <= 0) //플레이어 목숨이 0이하라면
@@ -55,6 +65,11 @@ public class PlayerHealth : MonoBehaviour
     {
         //파라미터로 입력받은 power 만큼 hp가 증가함.
         player_hp += power;
+        if (player_hp >= _playerMaxHP)
+        {
+            player_hp = _playerMaxHP;
+        }
+        OnHealthChanged?.Invoke(player_hp);
         Debug.Log($"[PlayerHealth] : 플레이어 hp가 {power}만큼 증가함. 현재 hp -> " + player_hp);
     }
     //플레이어 무적시간
