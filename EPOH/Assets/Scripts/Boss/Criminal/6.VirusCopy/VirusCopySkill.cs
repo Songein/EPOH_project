@@ -32,10 +32,10 @@ public class VirusCopySkill : MonoBehaviour, BossSkillInterface
         yield return new WaitForSeconds(_afterStartCopy);
 
         // 해당 바이러스를 기준으로 증식 시작
-        StartCoroutine(CopyVirus(virusPos));
+        StartCoroutine(CopyVirus(virusPos, Vector2.zero));
     }
 
-    private IEnumerator CopyVirus(Vector3 startPosition)
+    private IEnumerator CopyVirus(Vector3 startPosition, Vector2 previousDirection)
     {
         Vector2 currentPosition = startPosition;
         
@@ -47,10 +47,11 @@ public class VirusCopySkill : MonoBehaviour, BossSkillInterface
             int maxAttempts = 10; // 무한 루프 방지를 위한 최대 시도 횟수
             int attempt = 0;
 
+            Vector2 randomDirection;
             do
             {
-                // 8방향 중 랜덤한 방향 선택
-                Vector2 randomDirection = GetRandomDirection();
+                // 4방향 중 랜덤한 방향 선택
+                randomDirection = GetValidDirection(previousDirection);
                 spawnPosition = currentPosition + randomDirection * _spawnDistance;
                 attempt++;
             }
@@ -65,6 +66,7 @@ public class VirusCopySkill : MonoBehaviour, BossSkillInterface
 
             // 다음 생성 위치 업데이트
             currentPosition = spawnPosition;
+            previousDirection = randomDirection;
         }
     }
 
@@ -80,7 +82,7 @@ public class VirusCopySkill : MonoBehaviour, BossSkillInterface
         return true;
     }
 
-    private Vector2 GetRandomDirection()
+    private Vector2 GetValidDirection(Vector2 previousDirection)
     {
         // 4방향 벡터 배열
         Vector2[] directions = new Vector2[]
@@ -91,9 +93,20 @@ public class VirusCopySkill : MonoBehaviour, BossSkillInterface
             new Vector2(0, -1),  // 아래쪽
         };
 
-        // 랜덤하게 방향 선택
-        return directions[Random.Range(0, directions.Length)];
+        // 이전 방향의 반대 방향을 제외한 리스트 생성
+        List<Vector2> validDirections = new List<Vector2>();
+        foreach (var dir in directions)
+        {
+            if (dir != -previousDirection) // 반대 방향 제거
+            {
+                validDirections.Add(dir);
+            }
+        }
+
+        // 유효한 방향 중에서 랜덤 선택
+        return validDirections[Random.Range(0, validDirections.Count)];
     }
+
 
     private Vector2 GetValidRandomPosition()
     {

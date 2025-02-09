@@ -2972,6 +2972,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: AttackArea
       objectReference: {fileID: 0}
+    - target: {fileID: 4671202162930431033, guid: 1798fccc825e741998eadc340af4ab3c, type: 3}
+      propertyPath: _playerMaxHP
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 5190376174070149585, guid: 1798fccc825e741998eadc340af4ab3c, type: 3}
       propertyPath: m_SortingOrder
       value: 5
@@ -3388,7 +3392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e40ab0aaa5184a44bc03a6c3f1c2216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dontDestroy: 0
   bossData: {fileID: 11400000, guid: 99fe20581dc624a49969a5cbcffe769f, type: 2}
 --- !u!4 &2104686139
 Transform:
