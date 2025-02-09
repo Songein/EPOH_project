@@ -13,6 +13,7 @@ TagManager:
   - AttackArea
   - BossBubble
   - HoaMachine
+  - Jail
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - BossAttack
   - AttackableObject
   - Wall
-  - 
+  - CriminalAI
   - 
   - 
   - 
