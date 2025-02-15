@@ -15,6 +15,7 @@ TagManager:
   - HoaMachine
   - Jail
   - RainDrop
+  - Neuron
   layers:
   - Default
   - TransparentFX
