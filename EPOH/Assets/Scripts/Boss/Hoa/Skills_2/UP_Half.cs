@@ -11,7 +11,7 @@ public class UP_Half : MonoBehaviour, BossSkillInterface
 
     public void Activate()
     {
-        BossData bossData = BossManagerNew.Instance.bossData;
+        BossData bossData = BossManagerNew.Current.bossData;
 
         StartCoroutine(ArmComingUp(bossData));
     }
