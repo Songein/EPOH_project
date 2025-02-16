@@ -939,6 +939,8 @@ MonoBehaviour:
   - {fileID: 803279691}
   - {fileID: 85095207}
   - {fileID: 983616618}
+  _knitCnt: 3
+  _knitCompleteCnt: 0
 --- !u!114 &760377068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2216,6 +2218,7 @@ MonoBehaviour:
   - {fileID: 1043750762}
   - {fileID: 1485661086}
   - {fileID: 1894116258}
+  _seedCnt: 5
 --- !u!1 &1330111525
 GameObject:
   m_ObjectHideFlags: 0
@@ -3869,6 +3872,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6642683221333311040, guid: 76bcef9e02e834a45811d0ec35367418, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6642683221333311040, guid: 76bcef9e02e834a45811d0ec35367418, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6642683221810150482, guid: 76bcef9e02e834a45811d0ec35367418, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6642683221810150482, guid: 76bcef9e02e834a45811d0ec35367418, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6642683222603264048, guid: 76bcef9e02e834a45811d0ec35367418, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6642683222603264048, guid: 76bcef9e02e834a45811d0ec35367418, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6642683223307840576, guid: 76bcef9e02e834a45811d0ec35367418, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6642683223307840576, guid: 76bcef9e02e834a45811d0ec35367418, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 6642683223336458284, guid: 76bcef9e02e834a45811d0ec35367418, type: 3}
       propertyPath: m_Name
       value: -----[Environments]
@@ -4244,6 +4279,8 @@ MonoBehaviour:
   phase1List: 0000000001000000020000000300000004000000050000000600000007000000
   phase2List: 
   phase3List: 
+  skillTerm: 3
+  _isSkillEnd: 0
 --- !u!4 &2104686139
 Transform:
   m_ObjectHideFlags: 0
@@ -4363,6 +4400,7 @@ MonoBehaviour:
   - {fileID: 1043750762}
   - {fileID: 1485661086}
   - {fileID: 1894116258}
+  _seedCnt: 5
 --- !u!114 &2104686147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4380,6 +4418,8 @@ MonoBehaviour:
   - {fileID: 803279691}
   - {fileID: 85095207}
   - {fileID: 983616618}
+  _knitCnt: 3
+  _knitCompleteCnt: 0
 --- !u!1 &2110185271
 GameObject:
   m_ObjectHideFlags: 0
