@@ -16,6 +16,7 @@ public class Picture : Hittable
         base.OnRemoved();
         Debug.Log($"#[Picture] : 최종 파괴 성공.");
         StopAllCoroutines();
+        BossManagerNew.Current.OnSkillEnd?.Invoke();
         Destroy(gameObject);
     }
 
