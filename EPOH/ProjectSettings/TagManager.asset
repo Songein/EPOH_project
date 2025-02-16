@@ -30,8 +30,8 @@ TagManager:
   - AttackableObject
   - Wall
   - CriminalAI
-  - Jail
-  - 
+  - JailDetect
+  - JailBorder
   - 
   - 
   - 
