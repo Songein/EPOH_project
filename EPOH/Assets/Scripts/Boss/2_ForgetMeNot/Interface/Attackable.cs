@@ -51,6 +51,7 @@ public class Attackable : MonoBehaviour
     protected IEnumerator StopSkill()
     {
         yield return new WaitForSeconds(_duration);
+        BossManagerNew.Current.OnSkillEnd?.Invoke();
         Destroy(gameObject);
     }
 }

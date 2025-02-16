@@ -14,6 +14,7 @@ public class Cookie : Interactable
         //해킹포인트 감소
         Debug.Log($"[Cookie] : 플레이어 해킹포인트 {_decreasingHackPoint}% 만큼 감소");
         BossManagerNew.Current.OnDecreaseHackingPoint?.Invoke(_decreasingHackPoint);
+        BossManagerNew.Current.OnSkillEnd?.Invoke();
         Destroy(gameObject);
     }
 }

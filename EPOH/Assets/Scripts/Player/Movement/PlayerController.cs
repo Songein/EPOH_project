@@ -134,30 +134,30 @@ public class PlayerController : MonoBehaviour
         rigid.velocity = new Vector2(horizontal * moveSpeed, rigid.velocity.y);
         
         //땅 감지 레이캐스트 디버그
-        Debug.DrawRay(rigid.position, Vector2.down * 3f, Color.red);
+        Debug.DrawRay(rigid.position, Vector2.down * 2.5f, Color.red);
         //플레이어가 떨어지는 경우
         if (rigid.velocity.y < 0f)
         {
             animator.SetBool("IsFall", true);
-
         }
 
         //떨어지는 중이 아니더라도 땅을 감지하면 애니메이션이 중지되도록 변경
-        groundRayHit = Physics2D.Raycast(rigid.position, Vector2.down, 3f, LayerMask.GetMask("Ground"));
+        groundRayHit = Physics2D.Raycast(rigid.position, Vector2.down, 2.5f, LayerMask.GetMask("Ground"));
         //땅을 감지하고
         if (groundRayHit.collider != null)
         {
             //거리가 3.0 미만이면
-            if (groundRayHit.distance < 3.0f)
+            if (groundRayHit.distance < 2.45f && rigid.velocity.y < 0f)
             {
+                //Debug.LogWarning(groundRayHit.distance);
                 //점프 애니메이션 해제
                 animator.SetBool("IsFall", false);
                 animator.SetBool("IsJump", false);
                 animator.SetBool("IsDoubleJump", false);
+                animator.Play("Landing");
                 player_jump_cnt = 0; //바닥에 닿으면 플레이어 점프 횟수 초기화
             }
         }
-
     }
     
     //플레이어 스프라이트 뒤집기
