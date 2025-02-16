@@ -16,6 +16,7 @@ TagManager:
   - Jail
   - RainDrop
   - Wall
+  - Neuron
   layers:
   - Default
   - TransparentFX

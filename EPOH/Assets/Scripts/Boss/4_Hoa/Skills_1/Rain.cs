@@ -19,7 +19,7 @@ public class Rain : MonoBehaviour, BossSkillInterface
     {
         if (BossManagerNew.Current == null)
         {
-            Debug.LogError("BossManagerNew instance is not found!");
+            Debug.LogError("BossManagerNew Current is not found!");
             return;
         }
       
