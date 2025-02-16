@@ -125,7 +125,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 10
-  _damage: 20
+  _healthDamage: 0
+  _hackPointDamage: 0
+  _attackHealth: 0
+  _attackHackPoint: 0
 --- !u!1 &3727608891648857350
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +220,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 10
-  _damage: 20
+  _healthDamage: 30
+  _hackPointDamage: 0
+  _attackHealth: 1
+  _attackHackPoint: 0
 --- !u!1 &3727608893146815750
 GameObject:
   m_ObjectHideFlags: 0
