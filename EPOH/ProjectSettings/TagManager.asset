@@ -15,6 +15,7 @@ TagManager:
   - HoaMachine
   - Jail
   - RainDrop
+  - Wall
   - Neuron
   layers:
   - Default
@@ -31,8 +32,8 @@ TagManager:
   - AttackableObject
   - Wall
   - CriminalAI
-  - Jail
-  - 
+  - JailDetect
+  - JailBorder
   - 
   - 
   - 

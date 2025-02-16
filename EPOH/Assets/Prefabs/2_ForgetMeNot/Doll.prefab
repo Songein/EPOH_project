@@ -100,7 +100,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 10
-  _damage: 20
+  _healthDamage: 30
+  _hackPointDamage: 0
+  _attackHealth: 1
+  _attackHackPoint: 0
 --- !u!61 &48717543563018594
 BoxCollider2D:
   m_ObjectHideFlags: 0

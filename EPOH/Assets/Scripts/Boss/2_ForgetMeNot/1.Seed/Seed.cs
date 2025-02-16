@@ -38,6 +38,7 @@ public class Seed : Hittable
         base.OnComplete();
         Debug.Log($"[Seed] : 4단계 완성. 해킹 포인트 {HackPoint}% 감소");
         BossManagerNew.Current.OnDecreaseHackingPoint?.Invoke(HackPoint);
+        FindObjectOfType<SeedSkill>().CompleteSeed();
         //해킹 포인트 감소
         Destroy(gameObject);
     }
@@ -46,6 +47,7 @@ public class Seed : Hittable
     {
         base.OnRemoved();
         Debug.Log($"[Seed] : 최종 파괴 성공.");
+        FindObjectOfType<SeedSkill>().CompleteSeed();
         Destroy(gameObject);
     }
 }
