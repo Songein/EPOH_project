@@ -70,6 +70,8 @@ public class UP_Rain : MonoBehaviour
 
         Destroy(safeZone);
 
+        BossManagerNew.Current.OnSkillEnd?.Invoke();
+
     }
 
 

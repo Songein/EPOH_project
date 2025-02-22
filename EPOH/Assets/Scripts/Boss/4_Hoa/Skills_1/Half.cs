@@ -29,6 +29,7 @@ public class Half : MonoBehaviour, BossSkillInterface
         yield return new WaitForSeconds(1.5f);//light나온 뒤 1.5초 뒤에 light 삭제(애니메이션 추가)
         Destroy(light);
         Destroy(hoa);
+        BossManagerNew.Current.OnSkillEnd?.Invoke();
 
 
 

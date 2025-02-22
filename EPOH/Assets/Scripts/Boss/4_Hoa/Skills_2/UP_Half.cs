@@ -61,7 +61,7 @@ public class UP_Half : MonoBehaviour, BossSkillInterface
         yield return new WaitForSeconds(1.0f);//light나온 뒤 1.0초 뒤에 light 삭제(애니메이션 추가)
         Destroy(light);
         Destroy(hoa);
-
+        BossManagerNew.Current.OnSkillEnd?.Invoke();
 
 
 

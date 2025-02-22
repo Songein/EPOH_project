@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightSkill : MonoBehaviour
+public class LightSkill : MonoBehaviour, BossSkillInterface
 {
 
     private Vector3 topSpawnPoint; // 카메라 상단에서 Y축 +2 위치
@@ -133,8 +133,10 @@ public class LightSkill : MonoBehaviour
         foreach (Coroutine coroutine in moveCoroutines)
         {
             yield return coroutine;
-           
+            
+
         }
+        BossManagerNew.Current.OnSkillEnd?.Invoke();
     }
 
     private IEnumerator MoveUpMachine(GameObject machine) {
