@@ -67,16 +67,23 @@ public class PlayerController : MonoBehaviour
         
         //수평값 읽어오기
         horizontal = Input.GetAxisRaw("Horizontal");
+    
         //플레이어 Flip 검사
         Flip();
         //뛰는 경우 애니메이션
         if (Mathf.Abs(rigid.velocity.x) < 0.3f)
         {
             animator.SetBool("IsRun", false);
+         
         }
         else
         {
             animator.SetBool("IsRun", true);
+            if (!animator.GetBool("IsJump") && !animator.GetBool("IsDoubleJump"))
+            {
+                SoundManager2.instance.PlayFootstep();
+            }
+
         }
 
         //점프 버튼을 누르고 점프 횟수가 2미만일 때 점프 수행
@@ -115,6 +122,7 @@ public class PlayerController : MonoBehaviour
             else //표식을 설치하지 않은 경우
             {
                 animator.SetBool("IsInstallMark", true); //순간이동 표식 설치 애니메이션 실행
+                SoundManager2.instance.PlayTeleport();
                 teleport_pos = transform.position; //플레이어의 현재 위치 받아오기
                 can_teleport = true; //순간이동 할 수 있다고 상태 변경
             }

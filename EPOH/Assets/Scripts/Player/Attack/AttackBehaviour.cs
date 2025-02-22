@@ -59,6 +59,7 @@ public class AttackBehaviour : StateMachineBehaviour
         {
             //콤보 공격이 가능하다면
             animator.Play("Attack Two");
+            SoundManager2.instance.PlayAttack();
         }
         else
         {

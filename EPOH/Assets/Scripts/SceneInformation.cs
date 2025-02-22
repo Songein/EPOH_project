@@ -8,7 +8,7 @@ public class SceneInformation : MonoBehaviour
 
     private void Start()
     {
-        SoundManager.instance.PlayBGM(scene_bgm);
+        SoundManager2.instance.PlayBGM(scene_bgm);
     }
 
 }
