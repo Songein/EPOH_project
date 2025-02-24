@@ -34,6 +34,7 @@ public class UP_Cross : MonoBehaviour
                 yield return new WaitForSeconds(1.0f); //3초동안 경고
                 Instantiate(CrossArms, hoaArmPositions[Randomnum], Quaternion.identity);  //세로
                 Instantiate(CrossArms, adjustPosition, Quaternion.Euler(0, 0, 90)); //가로
+
             }
             else
             {
@@ -103,7 +104,9 @@ public class UP_Cross : MonoBehaviour
                     yield return new WaitForSeconds(3.0f); //3초동안 경고
                     Instantiate(CrossArms, hoaArmPositions[Randomnum], Quaternion.identity);  //세로
                     Instantiate(CrossArms, adjustPosition, Quaternion.Euler(0, 0, 90)); //가로
-                }
+                yield return new WaitForSeconds(1.5f);
+                BossManagerNew.Current.OnSkillEnd?.Invoke();
+            }
                 else
                 {
                     Vector3 adjustPosition = new Vector3(hoaArmPositions[Randomnum].x - 10, hoaArmPositions[Randomnum].y, 0); //오른쪽 position point들의 prefab 조정
@@ -113,7 +116,9 @@ public class UP_Cross : MonoBehaviour
                     yield return new WaitForSeconds(3.0f); //3초동안 경고
                     Instantiate(CrossArms, hoaArmPositions[Randomnum], Quaternion.identity);  //세로
                     Instantiate(CrossArms, adjustPosition, Quaternion.Euler(0, 0, 90)); //가로
-                }
+                yield return new WaitForSeconds(1.5f);
+                BossManagerNew.Current.OnSkillEnd?.Invoke();
+            }
             }
 
             else
@@ -141,10 +146,11 @@ public class UP_Cross : MonoBehaviour
                 // 왼쪽 대각선 생성 (최종)
                 Instantiate(CrossArms, hoaArmPositions[Randomnum], Quaternion.Euler(0, 0, 170));
 
-                //yield return new WaitForSeconds(1.5f);  // 추가적인 대기 시간
+                yield return new WaitForSeconds(1.5f);  // 추가적인 대기 시간
+            BossManagerNew.Current.OnSkillEnd?.Invoke();
 
 
-            }
+        }
         
         
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7764093371953649852}
   - component: {fileID: -8494037812795597602}
   - component: {fileID: -4169347035268458241}
-  - component: {fileID: -8813410018123757445}
+  - component: {fileID: 4201571560720679764}
   m_Layer: 0
   m_Name: neuron
   m_TagString: Neuron
@@ -134,7 +134,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
---- !u!114 &-8813410018123757445
+--- !u!114 &4201571560720679764
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,6 +143,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7764093371953649824}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52a8cbe8ed2f02e46b941e00b731dc1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 5265e8c1ab30f37478b774e7c356f15c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

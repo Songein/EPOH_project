@@ -137,6 +137,7 @@ public class ElectricBall : MonoBehaviour
             Destroy(pop_object);
             number++;
             Debug.Log("pop 횟수: " + number);
+            BossManagerNew.Current.OnSkillEnd?.Invoke();
 
             /*
                 // 다음 ball 자국 생성 전 1초 대기

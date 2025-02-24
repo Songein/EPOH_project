@@ -10,6 +10,7 @@ public class MainRoomManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SoundManager2.instance.PlayBGM(1);
         //주인공 행동
         Debug.Log("주인공 클로즈업");
         gm.story_info++;

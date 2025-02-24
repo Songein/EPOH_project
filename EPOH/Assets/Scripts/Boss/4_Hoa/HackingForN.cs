@@ -7,7 +7,7 @@ public class HackingForN : MonoBehaviour
 {
     private PlayerController pcontrol;
     private BossManagerNew _bossManager;
-    public float _hackingPoint = 0f;
+    public float _hackingPoint;
     public int hackingGoal;
     [SerializeField] private TextMeshProUGUI _text;
     public void Start()
@@ -61,6 +61,6 @@ public class HackingForN : MonoBehaviour
 
     public void UpdateText()
     {
-        _text.text = $"{_hackingPoint}" + "%";
+        _text.text = $"{_hackingPoint/ hackingGoal * 100}" + "%";
     }
 }

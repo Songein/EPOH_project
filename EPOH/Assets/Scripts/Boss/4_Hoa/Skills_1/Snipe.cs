@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Snipe : MonoBehaviour
+public class Snipe : MonoBehaviour, BossSkillInterface
 {
     private BossDogController dog; //BossDogController 참조
 
@@ -114,6 +114,7 @@ public class Snipe : MonoBehaviour
         // 추적 눈동자 이펙트 비활성화
         tracking_eye.SetActive(false);
         yield return new WaitForSeconds(0.2f);
+        BossManagerNew.Current.OnSkillEnd?.Invoke();
     }
 
 }
