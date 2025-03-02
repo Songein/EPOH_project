@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: ForgetMeNot
   _maxHealth: 0
-  _leftTop: {x: -9, y: 9, z: 0}
   _rightTop: {x: 9, y: 9, z: 0}
   _leftBottom: {x: -9, y: -9, z: 0}
-  _rightBottom: {x: 9, y: -9, z: 0}
+  BGMClip: {fileID: 8300000, guid: 2a7dd7a862e9ff04c8f7bd2bf78dfe96, type: 3}

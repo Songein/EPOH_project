@@ -16,3 +16,4 @@ MonoBehaviour:
   _maxHealth: 0
   _rightTop: {x: 9, y: 9, z: 0}
   _leftBottom: {x: -9, y: -9, z: 0}
+  BGMClip: {fileID: 8300000, guid: 43743a006310a174085119e7d81d1bcc, type: 3}

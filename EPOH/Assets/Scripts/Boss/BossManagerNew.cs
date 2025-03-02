@@ -23,6 +23,11 @@ public class BossManagerNew : MonoBehaviour
         OnSkillEnd += EndSkill;
     }
 
+    private void Start()
+    {
+        SoundManager2.instance.PlayAudio();
+    }
+
     public void StartBossRaid()
     {
         Debug.LogWarning($"{bossData.name} 레이드 시작");

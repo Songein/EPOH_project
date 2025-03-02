@@ -16,7 +16,7 @@ public class NeuronHack : MonoBehaviour
       void Start()
       {
           startPos = transform.position;
-          targetPos = startPos + new Vector3(0, 0.00002f, 0); //y축으로 1만큼 이동
+          targetPos = startPos + new Vector3(0, 0.00001f, 0); //y축으로 1만큼 이동
         StartCoroutine(MoveLoop());
       }
           
