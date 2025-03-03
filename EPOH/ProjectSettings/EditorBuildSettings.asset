@@ -78,6 +78,6 @@ EditorBuildSettings:
     path: Assets/Scenes/CutScene/CutScene4.unity
     guid: f3d0c1e6505eb48b59c37a4b80be8810
   - enabled: 1
-    path: Assets/Scenes/BossRoom/BossRoomHoaSH.unity
-    guid: 2fc17c091c71aff4383290e7f483d937
+    path: Assets/Editor/Test/MainRoomTest.unity
+    guid: 049aa7253eac44b6da5ef6ac146d02fb
   m_configObjects: {}
