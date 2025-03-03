@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsRun", true);
             if (!animator.GetBool("IsJump") && !animator.GetBool("IsDoubleJump"))
             {
-                SoundManager2.instance.PlayFootstep();
+                SoundManager2.instance.PlaySFX(4);
             }
 
         }
@@ -95,10 +95,12 @@ public class PlayerController : MonoBehaviour
                 case 0 : //첫 점프일 때
                     rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
                     animator.SetBool("IsJump", true);
+                    SoundManager2.instance.PlaySFX(3);
                     break;
                 case 1 : //2단 점프일 때
                     rigid.velocity = new Vector2(rigid.velocity.x, jumpForce * doubleJumpForce); //2단 점프는 좀 더 낮게 점프
                     animator.SetBool("IsDoubleJump", true);
+                  
                     break;
                     
             }
@@ -122,7 +124,7 @@ public class PlayerController : MonoBehaviour
             else //표식을 설치하지 않은 경우
             {
                 animator.SetBool("IsInstallMark", true); //순간이동 표식 설치 애니메이션 실행
-                SoundManager2.instance.PlayTeleport();
+                SoundManager2.instance.PlaySFX(0);
                 teleport_pos = transform.position; //플레이어의 현재 위치 받아오기
                 can_teleport = true; //순간이동 할 수 있다고 상태 변경
             }

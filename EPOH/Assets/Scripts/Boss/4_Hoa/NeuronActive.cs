@@ -7,8 +7,7 @@ public class NeuronActive : MonoBehaviour
     [SerializeField] private Vector3[] neuronPosition;
     [SerializeField] private GameObject neuron;
     private HackingForN hacking;
-
-
+ 
 
     public void Activate()
     {   

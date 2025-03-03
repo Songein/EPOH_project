@@ -7,16 +7,15 @@ public class SoundManager2 : MonoBehaviour
 {
     public static SoundManager2 instance;
 
-
     [SerializeField] public AudioSource bgmSource;
     [SerializeField] private AudioSource sfxSource;
     [SerializeField] private AudioClip[] BGM_List;
-    [SerializeField] private AudioClip[] SFX_List;
+    [SerializeField] private SfxData[] sfxData;
+    //[SerializeField] private AudioClip[] SFX_List;
 
     private AudioSource[] audioSources;
     private float footstepDelay = 0.6f; // 발자국 소리 간격
-    private float lastFootstepTime;
-
+    private float lastTime;
 
 
     public enum BGMsound { 
@@ -58,8 +57,19 @@ public class SoundManager2 : MonoBehaviour
 
         // 확인용 디버그 로그
         Debug.Log("AudioSource 개수: " + audioSources.Length);
+
     }
 
+    public void PlayAudio() {
+        BossData bossData = BossManagerNew.Current.bossData;
+        if (bossData != null)
+        {
+            bgmSource.clip = bossData.BGMClip;
+            bgmSource.loop = true;
+            bgmSource.Play();
+        }
+
+    }
 
 
     public void SetBGMVolume(float volume)
@@ -73,7 +83,7 @@ public class SoundManager2 : MonoBehaviour
     {
 
         audioSources[1].volume = volume;
-        Debug.Log("BGM Volume: " + bgmSource.volume);
+        Debug.Log("SFX Volume: " + bgmSource.volume);
     }
 
  
@@ -92,38 +102,26 @@ public class SoundManager2 : MonoBehaviour
         bgmSource.Stop();
     }
 
+
     public void PlaySFX(int index)
     {
-        sfxSource.PlayOneShot(SFX_List[index]);
-    }
-
-    public void PlayFootstep()
-    {
-        if (Time.time - lastFootstepTime >= footstepDelay)
+        if (Time.time - lastTime >= sfxData[index].delay)
         {
-            float currentVolume = audioSources[1].volume; // 현재 슬라이더에 설정된 볼륨
-            sfxSource.PlayOneShot(SFX_List[(int)SfXSound.Footstep], currentVolume);
-            lastFootstepTime = Time.time;
-        }
-    }
-
-    public void PlayTeleport()
-    {
-        if (Time.time - lastFootstepTime >= 0.15)
-        {
-            float currentVolume = audioSources[1].volume; // 현재 슬라이더에 설정된 볼륨
-            sfxSource.PlayOneShot(SFX_List[(int)SfXSound.Teleport], currentVolume);
-            lastFootstepTime = Time.time;
+            float currentVolume = audioSources[1].volume * sfxData[index].volume; // 현재 슬라이더에 설정된 볼륨
+            sfxSource.PlayOneShot(sfxData[index].sfxClip, currentVolume);
+            sfxSource.loop = sfxData[index].loop;
+            lastTime = Time.time;
         }
     }
 
     public void PlayAttack()
     {
-        if (Time.time - lastFootstepTime >= 0.05)
+        if (Time.time - lastTime >= 0.05)
         {
-            float currentVolume = audioSources[1].volume; // 현재 슬라이더에 설정된 볼륨
-            sfxSource.PlayOneShot(SFX_List[(int)SfXSound.Attack], currentVolume);
-            lastFootstepTime = Time.time;
+            float currentVolume = audioSources[1].volume * sfxData[2].volume; // 현재 슬라이더에 설정된 볼륨
+            sfxSource.PlayOneShot(sfxData[2].sfxClip, currentVolume);
+            sfxSource.loop = sfxData[2].loop;
+            lastTime = Time.time;
         }
     }
 }
