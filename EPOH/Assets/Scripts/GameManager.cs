@@ -72,6 +72,5 @@ public class GameManager : MonoBehaviour
         boss_clear_info[2] = false;
         boss_clear_info[3] = false;
         boss_clear_info[4] = false;
-        boss_clear_info[5] = false;
     }
 }

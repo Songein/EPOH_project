@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class CharacterStructure
+namespace Event
 {
-    public string CharacterId;
-    public string CharacterName;
-    public string PortraitPath;
+    public class CharacterStructure
+    {
+        public string CharacterId;
+        public string CharacterName;
+        public string PortraitPath;
+    }
 }
