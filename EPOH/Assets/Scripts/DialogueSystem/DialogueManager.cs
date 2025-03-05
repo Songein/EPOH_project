@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Event;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
@@ -7,42 +8,65 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    public static DialogueManager Instance;
-    public Dialogue currentDialogue;
-    public string currentLine;
-    
-    //public Image characterPortrait;
-    public TextMeshProUGUI characterName;
-    public TextMeshProUGUI dialogueArea;
+    private static DialogueManager _instance;
 
-    private Queue<Dialogue> _dialogues = new Queue<Dialogue>();
-    private Queue<string> _lines = new Queue<string>();
+    public static DialogueManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<DialogueManager>();
+
+                if (_instance == null)
+                {
+                    GameObject singletonObject = new GameObject(typeof(DialogueManager).Name);
+                    _instance = singletonObject.AddComponent<DialogueManager>();
+                }
+            }
+            return _instance;
+        }
+    }
+
+    void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject); // 씬이 바뀌어도 유지됨
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject); // 중복 생성 방지
+        }
+    }
     
+    [Header("다이얼로그 정보")]
+    private DialogueStructure _currentDialogue;
+    public string currentLine;
+    public string nextDialogueID;
+    private Queue<DialogueTextType> _dialogues = new Queue<DialogueTextType>();
+
+    [Header("UI 관련 변수")] [SerializeField] private GameObject _dialogueUI;
+    [SerializeField] TextMeshProUGUI _characterName;
+    [SerializeField] TextMeshProUGUI _dialogueArea;
+    
+    [Header("대사 출력 변수")]
     [SerializeField] bool isDialogueActive = false;
     [SerializeField] bool isTyping = false;
     [SerializeField] bool isLineEnd = false;
     [SerializeField] float typingSpeed = 0.1f;
     [SerializeField] float lineChangeSpeed = 0.5f;
 
-    DialogueUIController dialogueUI;
-    private int dialogueCnt;
     
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-    }
-
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && isTyping)
         {
             StopAllCoroutines();
             isTyping = false;
-            dialogueArea.text = currentLine;
+            _dialogueArea.text = currentLine;
             Invoke("ChangeLineTime", lineChangeSpeed);
         }
 
@@ -53,22 +77,23 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(Dialogue[] p_dialogues)
+    public IEnumerator StartDialogue(string dialogueID)
     {
+        yield return new WaitForSeconds(1f);
+        // 다이얼로그 가져오기
+        _currentDialogue = DataManager.Instance.dialogues[dialogueID]; 
         isDialogueActive = true;
-        //대사 UI창 열기
-        dialogueUI = GameObject.Find("Canvas").transform.GetChild(0).GetComponent<DialogueUIController>();
-        characterName = dialogueUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        dialogueArea = dialogueUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-        dialogueUI.OpenUI();
         
         //대화 큐에 대화 넣기
         _dialogues.Clear();
-        foreach (Dialogue dialogue in p_dialogues)
+        foreach (DialogueTextType dialogue in _currentDialogue.Texts)
         {
             _dialogues.Enqueue(dialogue);
         }
-        dialogueCnt = _dialogues.Count;
+        
+        //대사 UI창 열기
+        SetUI(_currentDialogue);
+        _dialogueUI.SetActive(true);
         
         DisplayNextDialogueLine();
     }
@@ -76,38 +101,34 @@ public class DialogueManager : MonoBehaviour
     public void DisplayNextDialogueLine()
     {
         //대화 수가 0이면 대화 종료
-        if (_dialogues.Count == 0 && _lines.Count == 0)
+        if (_dialogues.Count == 0)
         {
+            if (nextDialogueID != "")
+            {
+                StartDialogue(nextDialogueID);
+                return;
+            }
             EndDialogue();
             return;
         }
 
         //대사 큐 수가 0이면
-        if (_lines.Count == 0)
+        if (_dialogues.Count > 0)
         {
             //대화 큐에서 대화 하나 뽑아오기
-            currentDialogue = _dialogues.Dequeue();
-            characterName.text = currentDialogue.name;
-        
-            //해당 대화 내 대사들을 대사 큐에 저장하기
-            _lines.Clear();
-            foreach (string line in currentDialogue.contents)
-            {
-                _lines.Enqueue(line);
-            }
+            DialogueTextType dialogue = _dialogues.Dequeue();
+            currentLine = dialogue.DialogueText;
+            nextDialogueID = dialogue.NextDialogueId;
         }
-        //대사 큐에서 대사 하나 뽑아오기
-        currentLine= _lines.Dequeue();
         
         StopAllCoroutines();
 
         StartCoroutine(TypeSentence(currentLine));
-        
     }
     
     IEnumerator TypeSentence(string dialogueLine)
     {
-        dialogueArea.text = "";
+        _dialogueArea.text = "";
 
         foreach (char letter in dialogueLine.ToCharArray())
         {
@@ -116,11 +137,11 @@ public class DialogueManager : MonoBehaviour
             //csv 파일 내 @을 , 로 변경하여 출력
             if (letter.Equals('@'))
             {
-                dialogueArea.text += ',';
+                _dialogueArea.text += ',';
             }
             else
             {
-                dialogueArea.text += letter;
+                _dialogueArea.text += letter;
             }
             yield return new WaitForSeconds(typingSpeed);
         }
@@ -136,8 +157,16 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         isDialogueActive = false;
-        dialogueUI.CloseUI();
-        GameManager.instance.story_info += dialogueCnt;
-        GameManager.instance.eventFlag = false;
+        _dialogueUI.SetActive(false);
+    }
+
+    void SetUI(DialogueStructure dialogueInfo)
+    {
+        if (!string.IsNullOrEmpty(dialogueInfo.CharacterId) &&
+            DataManager.Instance.characters.ContainsKey(dialogueInfo.CharacterId))
+        {
+            CharacterStructure characterInfo = DataManager.Instance.characters[dialogueInfo.CharacterId];
+            _characterName.text = characterInfo.CharacterName;
+        }
     }
 }

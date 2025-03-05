@@ -1,0 +1,32 @@
+"Character_001        주인공
+Character_002        안내음
+Character_003        나레이션
+Character_004        안내음
+Character_005        호아
+Character_006        올리브
+Character_007        에드가
+Character_008        포피",,,,
+,,,,
+,,,,
+,,,,
+,,,,
+DialogueId,CharacterId,InteractionType,DialogueText,NextDialogueId
+Dialogue_001,Character_001,NPC,여긴...?,
+Dialogue_002,Character_001,NPC,윽... 아무것도 기억나지 않아...,
+Dialogue_003,Character_002,NOTICE,의식 접속 확인,
+,,,직원 코드 H-00. 의뢰가 할당되었습니다. 업무에 임해주시기 바랍니다.,Dialogue_004
+Dialogue_004,Character_001,NPC,의뢰? 업무? 저쪽에 빛나고 있는 것을 조작하면 되는 건가?,
+Dialogue_005,Character_001,NPC,기억을 지워...? 내가 기억을 지우는 일을 했다는 건가?,
+,,,... 그랬던 것 같기도 한데@ 자세한 것들이 하나도 기억나지 않아.,
+,,,이 '의뢰'를 해결하면 무언가 더 기억이 날까...,
+Dialogue_006,Character_002,NOTICE,의뢰가 수리되었습니다. 의뢰인의 기억과 연결합니다.,
+,,,......,
+,,,연결 완료. 조정 룸에 입장해주시기 바랍니다.,
+Dialogue_007,Character_002,NOTICE,업무용 디바이스를 꺼내 주십시오.,Dialogue_008
+Dialogue_008,Character_001,NPC,업무용 디바이스... 혹시 이건가?,
+Dialogue_009,Character_002,NOTICE,"성공적인 기억의 삭제를 위해 기억을 자극해주시기 바랍니다.
+기억의 활성 수치 및 현재 상태는 상단에서 확인할 수 있습니다.",
+Dialogue_010,Character_001,NPC,개에게 물린 기억을 지우면 개를 더이상 두려워하지 않을 수 있다니@ 좋은걸.,
+Dialogue_011,Character_001,NPC,저건... 뭐지? 가기 전에도 저런 게 있었던가?,
+Dialogue_012,Character_001,NPC,윽...!,
+Dialogue_013,Character_003,Narration,,
