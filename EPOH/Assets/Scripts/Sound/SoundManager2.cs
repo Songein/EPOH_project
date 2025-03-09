@@ -29,10 +29,45 @@ public class SoundManager2 : MonoBehaviour
 
 
     }
-    public enum SfXSound { 
-    Footstep,
-    Teleport,
-    Attack
+    public enum SfXSound {
+    Player_Teleport,
+    Player_Rebirth,
+    Player_Death,
+    Player_Jump1,
+    Player_Jump2,
+    Player_Footstep,
+    Player_Attack,
+    Dog_Running,
+    Dog_Howling,
+    Dog_Stamp,
+    Dog_Scratch,
+    Dog_Trace,
+    Dog_Bite,
+    PT_Swaping,
+    PT_Sauce,
+    PT_Throwing,
+    PT_Receipt,
+    PT_Pepper,
+    PT_Bubble,
+    PT_Knife,
+    FMN_Seed,
+    FMN_Ball,
+    FMN_Cookie,
+    FMN_Doll,
+    FMN_Lullaby,
+    FMN_Lullaby2,
+    FMN_Picture,
+    Criminal_Keyboard,
+    Criminal_MoneyRain,
+    Criminal_Runaway_Laugh,
+    Criminal_Runaway,
+    Criminal_Catch,
+    Criminal_Catch2,
+    Hoa_Arm,
+    Hoa_Light,
+    Hoa_Electric,
+    Hoa_Rain,
+    Hoa_Snipe
     }
  
 

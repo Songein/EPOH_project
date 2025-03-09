@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsRun", true);
             if (!animator.GetBool("IsJump") && !animator.GetBool("IsDoubleJump"))
             {
-                SoundManager2.instance.PlaySFX(4);
+                SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Player_Footstep);
             }
 
         }
@@ -95,12 +95,13 @@ public class PlayerController : MonoBehaviour
                 case 0 : //첫 점프일 때
                     rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
                     animator.SetBool("IsJump", true);
-                    SoundManager2.instance.PlaySFX(3);
+                    SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Player_Jump1);
                     break;
                 case 1 : //2단 점프일 때
                     rigid.velocity = new Vector2(rigid.velocity.x, jumpForce * doubleJumpForce); //2단 점프는 좀 더 낮게 점프
                     animator.SetBool("IsDoubleJump", true);
-                  
+                    SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Player_Jump1);
+
                     break;
                     
             }
@@ -124,7 +125,7 @@ public class PlayerController : MonoBehaviour
             else //표식을 설치하지 않은 경우
             {
                 animator.SetBool("IsInstallMark", true); //순간이동 표식 설치 애니메이션 실행
-                SoundManager2.instance.PlaySFX(0);
+                SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Player_Teleport);
                 teleport_pos = transform.position; //플레이어의 현재 위치 받아오기
                 can_teleport = true; //순간이동 할 수 있다고 상태 변경
             }
@@ -153,20 +154,31 @@ public class PlayerController : MonoBehaviour
 
         //떨어지는 중이 아니더라도 땅을 감지하면 애니메이션이 중지되도록 변경
         groundRayHit = Physics2D.Raycast(rigid.position, Vector2.down, 2.5f, LayerMask.GetMask("Ground"));
-        //땅을 감지하고
-        if (groundRayHit.collider != null)
+        //소리 관련: 거리가 5미만이고 내려가는 중일때 JUMP2 소리 나오게 한다
+        if (groundRayHit.distance < 5f && rigid.velocity.y < 0f)
         {
-            //거리가 3.0 미만이면
-            if (groundRayHit.distance < 2.45f && rigid.velocity.y < 0f)
-            {
-                //Debug.LogWarning(groundRayHit.distance);
-                //점프 애니메이션 해제
-                animator.SetBool("IsFall", false);
-                animator.SetBool("IsJump", false);
-                animator.SetBool("IsDoubleJump", false);
-                animator.Play("Landing");
-                player_jump_cnt = 0; //바닥에 닿으면 플레이어 점프 횟수 초기화
-            }
+            SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Player_Jump2);
+        }
+            //땅을 감지하고
+            if (groundRayHit.collider != null)
+        {
+
+          
+                //거리가 3.0 미만이면
+                if (groundRayHit.distance < 2.45f && rigid.velocity.y < 0f)
+                {
+                    
+                    //Debug.LogWarning(groundRayHit.distance);
+                    //점프 애니메이션 해제
+                    animator.SetBool("IsFall", false);
+                    animator.SetBool("IsJump", false);
+                    animator.SetBool("IsDoubleJump", false);
+                    animator.Play("Landing");
+                    player_jump_cnt = 0; //바닥에 닿으면 플레이어 점프 횟수 초기화
+
+                }
+            
+
         }
     }
     
