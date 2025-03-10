@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1611299285968250542}
   - component: {fileID: 4047825241171068822}
+  - component: {fileID: 253940452}
   m_Layer: 0
   m_Name: Lullaby
   m_TagString: Untagged
@@ -84,3 +85,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &253940452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611299285968250529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29754882e88614c779455b175af4a74d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _notePrefabList:
+  - {fileID: 3667897573644482418, guid: 82d90ed66e7e84e6aa5ce6cdf7df2478, type: 3}
+  - {fileID: 1633415566031143638, guid: e22279416ed274a548999ddc251deb31, type: 3}
+  - {fileID: 8134556121040989405, guid: 2bf89cfb9c2d045b5ba762799e4e3199, type: 3}
+  _duration: 20
+  _noteCnt: 5
+  _noteDistance: 5
+  _generateDuration: 5

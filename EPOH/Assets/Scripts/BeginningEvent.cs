@@ -47,6 +47,6 @@ public class BeginningEvent : MonoBehaviour
 
         }
 
-        SceneManager.LoadScene("MainRoom");
+        SceneManager.LoadScene("MainRoomTest");
     }
 }

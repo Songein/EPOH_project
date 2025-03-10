@@ -199,7 +199,7 @@ public class UP_ElectricBall : MonoBehaviour
             Debug.Log("pop 횟수: " + number);
 
         }
-      
+        BossManagerNew.Current.OnSkillEnd?.Invoke();
 
     }
 

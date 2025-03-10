@@ -17,19 +17,10 @@ public class Rain : MonoBehaviour, BossSkillInterface
 
     public void Activate()
     {
-        if (BossManagerNew.Instance == null)
-        {
-            Debug.LogError("BossManagerNew instance is not found!");
-            return;
-        }
-      
+       
 
-        BossData bossData = BossManagerNew.Instance.bossData;
-        if (bossData == null)
-        {
-            Debug.LogError("BossData is not assigned in BossManagerNew!");
-            return;
-        }
+        BossData bossData = BossManagerNew.Current.bossData;
+      
 
         StartCoroutine(rain(bossData));
     }
@@ -55,10 +46,10 @@ public class Rain : MonoBehaviour, BossSkillInterface
             }
             yield return new WaitForSeconds(1f);
         }
-        
+
+        BossManagerNew.Current.OnSkillEnd?.Invoke();
 
 
-        
 
 
 

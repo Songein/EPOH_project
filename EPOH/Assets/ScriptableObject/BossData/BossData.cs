@@ -12,4 +12,7 @@ public class BossData : ScriptableObject
     [Space(5)] [Header("보스맵 정보")] 
     public Vector3 _rightTop;
     public Vector3 _leftBottom;
+
+    [Space(5)] [Header("보스 BGM")]
+    public AudioClip BGMClip;
 }

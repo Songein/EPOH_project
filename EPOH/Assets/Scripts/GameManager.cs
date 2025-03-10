@@ -20,36 +20,33 @@ public class GameManager : MonoBehaviour
 
     public bool[] boss_clear_info = new bool[boss_cnt]; // 보스 클리어 여부 확인
 
-    public GameState gameState;
-    public BossRoomState bossRoomState;
-    public EndingState endingState;
+    public ProgressId ProgressState;
 
-    public enum GameState
+    public enum ProgressId
     {
-        GameStart,
-        Tutorial,
-        Dog,
-        PartTime,
-        ForgetNotMe,
-        Criminal,
-        GetOffWork,
-        Ending,
-        GameEnd
-    }
-
-    public enum BossRoomState
-    {
-        BeforeMissionAssignment,
-        MissionAssignment,
-        EnterBossRoom,
-        MissonComplete,
-    }
-
-    public enum EndingState
-    {
-        NormalEnding,
-        BadEnding,
-        HiddenEnding
+        Progress_Beginning,
+        Progress_Req1,
+        Progress_Req1_Start,
+        Progress_Req1_Fail,
+        Progress_Req1_Clear,
+        Progress_Req2,
+        Progress_Req2_Start,
+        Progress_Req2_Fail,
+        Progress_Req2_Clear,
+        Progress_Req3,
+        Progress_Req3_Start,
+        Progress_Req3_Fail,
+        Progress_Req3_Clear,
+        Progress_Req4,
+        Progress_Req4_Start,
+        Progress_Req4_Fail,
+        Progress_Req4_Clear,
+        Progress_EndPoint,
+        Progress_Ending1,
+        Progress_Ending2,
+        Progress_Hoa_Start,
+        Progress_Hoa_Fail,
+        Progress_Ending3
     }
     
     // Start is called before the first frame update
@@ -75,6 +72,5 @@ public class GameManager : MonoBehaviour
         boss_clear_info[2] = false;
         boss_clear_info[3] = false;
         boss_clear_info[4] = false;
-        boss_clear_info[5] = false;
     }
 }

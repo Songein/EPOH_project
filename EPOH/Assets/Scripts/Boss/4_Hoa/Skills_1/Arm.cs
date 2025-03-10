@@ -30,18 +30,10 @@ public class Arm : MonoBehaviour, BossSkillInterface
 
     public void Activate()
     {
-        if (BossManagerNew.Instance == null)
-        {
-            Debug.LogError("BossManagerNew instance is not found!");
-            return;
-        }
+       
 
-        BossData bossData = BossManagerNew.Instance.bossData;
-        if (bossData == null)
-        {
-            Debug.LogError("BossData is not assigned in BossManagerNew!");
-            return;
-        }
+        BossData bossData = BossManagerNew.Current.bossData;
+       
         int angle = Random.Range(10, 45);
 
         SetData(bossData, angle);
@@ -80,6 +72,7 @@ public class Arm : MonoBehaviour, BossSkillInterface
         // 팔 제거 대기
         yield return new WaitForSeconds(armDestroyTime);
         Destroy(arm);
+        BossManagerNew.Current.OnSkillEnd?.Invoke();
     }
 
     private Vector3 GetPositionAtAngle(float angle, float radius, Vector3 spawnPoint)

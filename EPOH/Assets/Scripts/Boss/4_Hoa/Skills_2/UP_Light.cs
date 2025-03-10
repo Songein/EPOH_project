@@ -165,6 +165,8 @@ public class UP_Light : MonoBehaviour, BossSkillInterface
             yield return coroutine;
 
         }
+
+        BossManagerNew.Current.OnSkillEnd?.Invoke();
     }
 
     private IEnumerator MoveUpMachine(GameObject machine)

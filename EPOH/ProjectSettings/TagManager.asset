@@ -15,6 +15,9 @@ TagManager:
   - HoaMachine
   - Jail
   - RainDrop
+  - Wall
+  - Neuron
+  - PanelBGM
   layers:
   - Default
   - TransparentFX
@@ -30,8 +33,8 @@ TagManager:
   - AttackableObject
   - Wall
   - CriminalAI
-  - Jail
-  - 
+  - JailDetect
+  - JailBorder
   - 
   - 
   - 

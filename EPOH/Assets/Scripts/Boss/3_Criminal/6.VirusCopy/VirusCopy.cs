@@ -9,14 +9,15 @@ public class VirusCopy : Attackable
     [SerializeField] private bool _isFirstVirus;
     private void OnEnable()
     {
+        // 콜라이더 비활성화
+        _collider = GetComponent<BoxCollider2D>();
+        _collider.enabled = false;
+        
         if (_isFirstVirus)
         {
             StartCoroutine(FirstVirusAct());
             return;
         }
-        // 콜라이더 비활성화
-        _collider = GetComponent<BoxCollider2D>();
-        _collider.enabled = false;
         // 증식하고 특정 시간 뒤에 폭발
         StartCoroutine(Explode());
     }

@@ -9,7 +9,7 @@ public class Cross : MonoBehaviour, BossSkillInterface
     [SerializeField] private GameObject CrossArms;
 
     public void Activate() {
-        BossData bossData = BossManagerNew.Instance.bossData;
+        BossData bossData = BossManagerNew.Current.bossData;
         StartCoroutine(LightMoving(bossData));
     }
 
@@ -32,6 +32,8 @@ public class Cross : MonoBehaviour, BossSkillInterface
                 yield return new WaitForSeconds(3.0f); //3초동안 경고
                 Instantiate(CrossArms, hoaArmPositions[Randomnum], Quaternion.identity);  //세로
                 Instantiate(CrossArms, adjustPosition, Quaternion.Euler(0, 0, 90)); //가로
+                yield return new WaitForSeconds(1.5f);
+                BossManagerNew.Current.OnSkillEnd?.Invoke();
             }
             else
             {
@@ -42,6 +44,8 @@ public class Cross : MonoBehaviour, BossSkillInterface
                 yield return new WaitForSeconds(3.0f); //3초동안 경고
                 Instantiate(CrossArms, hoaArmPositions[Randomnum], Quaternion.identity);  //세로
                 Instantiate(CrossArms, adjustPosition, Quaternion.Euler(0, 0, 90)); //가로
+                yield return new WaitForSeconds(1.5f);
+                BossManagerNew.Current.OnSkillEnd?.Invoke();
             }
         }
 
@@ -67,7 +71,8 @@ public class Cross : MonoBehaviour, BossSkillInterface
             Instantiate(CrossArms, hoaArmPositions[Randomnum], Quaternion.Euler(0, 0, 170));
            
             yield return new WaitForSeconds(1.5f);  // 추가적인 대기 시간
-            
+            BossManagerNew.Current.OnSkillEnd?.Invoke();
+
 
         }
 

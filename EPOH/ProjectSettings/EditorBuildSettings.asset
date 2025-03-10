@@ -20,9 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainRoom.unity
     guid: 2dbc4e57308a01246872e4696186ea6c
-  - enabled: 1
-    path: Assets/Scenes/Corrider.unity
-    guid: 6eb941954cf0b26448e048f70ea9042c
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/BossRoom/BossRoomDog.unity
     guid: d08cfd1e6cf61c04f87933598d8ca608
@@ -59,9 +59,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ending/TrueEnding.unity
     guid: 1457a2dfcd74e4543af3cb1970146338
-  - enabled: 1
-    path: Assets/Scenes/FirstEvent.unity
-    guid: 39066a96b4ef2414e9d8867c26466d32
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Beginning.unity
     guid: 8e983858133984c9ba73164c742b5c1b
@@ -77,4 +77,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CutScene/CutScene4.unity
     guid: f3d0c1e6505eb48b59c37a4b80be8810
+  - enabled: 1
+    path: Assets/Editor/Test/MainRoomTest.unity
+    guid: 049aa7253eac44b6da5ef6ac146d02fb
   m_configObjects: {}

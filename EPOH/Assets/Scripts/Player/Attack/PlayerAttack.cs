@@ -37,6 +37,7 @@ public class PlayerAttack : MonoBehaviour
     {
         is_attacking = true;
         transform.GetComponent<Animator>().Play("Attack One");
+        SoundManager2.instance.PlaySFX(5);
     }
     
 }

@@ -52,6 +52,7 @@ public class Knit : Hittable
         Debug.Log($"[Knit] : 5단계 완성. 해킹 포인트 {HackPoint}% 감소");
         BossManagerNew.Current.OnDecreaseHackingPoint?.Invoke(HackPoint);
         //해킹 포인트 감소
+        FindObjectOfType<KnittingSkill>().CompleteKnit();
         Destroy(gameObject);
     }
 
@@ -59,6 +60,7 @@ public class Knit : Hittable
     {
         base.OnRemoved();
         Debug.Log($"[Knit] : 최종 파괴 성공.");
+        FindObjectOfType<KnittingSkill>().CompleteKnit();
         Destroy(gameObject);
     }
 }
