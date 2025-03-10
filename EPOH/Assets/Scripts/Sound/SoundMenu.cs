@@ -6,8 +6,10 @@ using UnityEngine;
 public class SoundMenu : MonoBehaviour
 {
     public static SoundMenu instance;
-    public GameObject panel;
-   
+    public GameObject bgmPanel;
+    public GameObject sizePanel;
+    public GameObject wholePanel;
+
 
 
     private void Awake()
@@ -39,11 +41,39 @@ public class SoundMenu : MonoBehaviour
     public void DeActivate()
     {
         Debug.Log("DeActivate");
-        panel.SetActive(false);
+        bgmPanel.SetActive(false);
         Time.timeScale = 1;
         SoundManager2.instance.bgmSource.Play(); // BGM 재생
     }
 
+    public void screenMove() {
+        bgmPanel.SetActive(false);
+        sizePanel.SetActive(true);
+
+    }
+
+    public void bgmMove()
+    {
+        bgmPanel.SetActive(true);
+        sizePanel.SetActive(false);
+
+    }
+
+    public void DeActivateWhole() {
+        wholePanel.SetActive(false);
+        Time.timeScale = 1;
+        if (!SoundManager2.instance.bgmSource.isPlaying)
+        {
+            SoundManager2.instance.bgmSource.Play(); // BGM이 완전히 멈춘 경우 재생
+        }
+    }
+
+    public void ActivateWhole()
+    {
+        wholePanel.SetActive(true);
+        Time.timeScale = 0;
+        SoundManager2.instance.bgmSource.Pause(); // BGM 정지
+    }
 
     // Update is called once per frame
     void Update()
@@ -53,8 +83,10 @@ public class SoundMenu : MonoBehaviour
         {
 
             Debug.Log("Escape");
-            bool isActive = panel.activeSelf;
-            panel.SetActive(!isActive);
+            GameObject canvas = GameObject.FindWithTag("PanelBGM");
+            Transform child = canvas.transform.GetChild(0); //Wholepanel 찾기
+            bool isActive = child.gameObject.activeSelf;
+            child.gameObject.SetActive(!isActive);
 
             if (!isActive)
             {
@@ -64,7 +96,10 @@ public class SoundMenu : MonoBehaviour
             else
             {
                 Time.timeScale = 1;
-                SoundManager2.instance.bgmSource.Play(); // BGM 재생
+                if (!SoundManager2.instance.bgmSource.isPlaying)
+                {
+                    SoundManager2.instance.bgmSource.Play(); // BGM이 완전히 멈춘 경우 재생
+                }
             }
         }
     }

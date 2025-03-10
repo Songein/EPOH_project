@@ -15,6 +15,7 @@ public class SaveManager : MonoBehaviour
     {
         
         public string progressId;
+       
     }
 
 
@@ -24,7 +25,7 @@ public class SaveManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            //SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -35,12 +36,14 @@ public class SaveManager : MonoBehaviour
 
 
     // SaveGameState 수정: progressId도 함께 저장
+    //progressId를 바꿔준 다음 SaveGameState을 불러와줘야함
     public void SaveGameState()
     {
         GameState state = new GameState
         {
-            
-            progressId = this.progressId  // SaveManager의 progressId 사용
+
+           progressId = this.progressId  // SaveManager의 progressId 사용
+       // progressId =  GameManager.instance.ProgressState.ToString()
         };
 
         string json = JsonUtility.ToJson(state,true);
@@ -64,6 +67,12 @@ public class SaveManager : MonoBehaviour
         }
     }
 
+    public bool HasSavedGame()
+    {
+        return File.Exists(Application.persistentDataPath + "/gamedata.json");
+    }
+
+
     // GettheId 수정: progressId를 업데이트하고 반환
     public string GettheId(string id)
     {
@@ -72,15 +81,23 @@ public class SaveManager : MonoBehaviour
     }
 
 
+    /*
     ///scene 관리 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         string sceneId = scene.name;
-        Debug.Log("Scene loaded: " + sceneId);
-        IdManage(sceneId);
+        Debug.LogWarning("Scene loaded: " + sceneId);
+        SaveGameState();
 
     }
+    */
+    
+    private void GoToScene() {
+        SceneManager.LoadScene("MainRoom");
+    }
 
+
+    /*
     private void GoToScene() {
         if (this.progressId == "Player_Clear")
         {
@@ -108,5 +125,6 @@ public class SaveManager : MonoBehaviour
             return;
         }
     }
+    */
 
 }

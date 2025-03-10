@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c45855e304c5fe9448b3e7496a5fd91f, type: 3}
-  m_Name: Player_Jump
+  m_Name: Player_Jump1
   m_EditorClassIdentifier: 
-  name: Player_Jump
-  number: 3
-  sfxClip: {fileID: 8300000, guid: b8a7f4c4b2b384b4995b4c93db1a8e11, type: 3}
+  name: Player_Jump1
+  sfxClip: {fileID: 8300000, guid: 20c0c4920f4129a478f8a0aa98bc79c7, type: 3}
   loop: 0
   volume: 1
-  delay: 0
+  delay: 0.2
