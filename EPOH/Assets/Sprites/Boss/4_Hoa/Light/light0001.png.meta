@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: aa7a102de483d4952af057a69d5ad284
+guid: a310f06a307c45b42b41cabf3daa7d19
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -45,14 +45,14 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 2
+  spritePivot: {x: 0.5, y: 1}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 505, y: 930, z: 520, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -115,18 +115,56 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
-    outline: []
-    physicsShape: []
+    sprites:
+    - serializedVersion: 2
+      name: light0001_0
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 928
+        width: 90
+        height: 152
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -45, y: 76}
+        - {x: -45, y: 62}
+        - {x: -20, y: -66}
+        - {x: -8, y: -75}
+        - {x: 29, y: -75}
+        - {x: 36, y: -66}
+        - {x: 36, y: 13}
+        - {x: 24, y: 76}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9328c541758c454f90c489f310711dc
+      internalID: 1209249981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline:
+    - - {x: -35.5, y: 394}
+      - {x: -65.5, y: 540}
+      - {x: 39.5, y: 540}
+      - {x: 35.5, y: 386}
+    physicsShape:
+    - - {x: -17.5, y: 389}
+      - {x: -61.5, y: 540}
+      - {x: 21.5, y: 540}
+      - {x: 30.5, y: 394}
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      light0001_0: 1209249981
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

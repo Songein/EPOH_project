@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: aa7a102de483d4952af057a69d5ad284
+guid: 340dca2ba23a0a0429f8da564219d95c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -45,10 +45,10 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 2
+  spritePivot: {x: 0.5, y: 1}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 517, y: 779, z: 508, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -115,18 +115,59 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: light0007_0
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 782
+        width: 122
+        height: 298
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25, y: 149}
+        - {x: -47, y: 88}
+        - {x: -31, y: -19}
+        - {x: -40, y: -100}
+        - {x: -10, y: -148}
+        - {x: 25, y: -148}
+        - {x: 32, y: -101}
+        - {x: 51, y: -13}
+        - {x: 49, y: 95}
+        - {x: 59, y: 149}
+      - - {x: 13, y: 130}
+        - {x: 13, y: 136}
+        - {x: 16, y: 139}
+        - {x: 15, y: 146}
+        - {x: 14, y: 136}
+        - {x: 15, y: 135}
+        - {x: 15, y: 132}
+        - {x: 16, y: 131}
+        - {x: 15, y: 129}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 433cfdf1d81ccb64e9f0c1d4779f9052
+      internalID: 966812280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      light0007_0: 966812280
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
