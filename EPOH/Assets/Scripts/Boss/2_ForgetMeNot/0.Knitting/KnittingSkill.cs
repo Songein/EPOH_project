@@ -1,11 +1,11 @@
-using System;
+//using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class KnittingSkill : MonoBehaviour, BossSkillInterface
 {
-    [SerializeField] private GameObject _knitPrefab;
+    [SerializeField] private List<GameObject> _knitPrefab;
     [SerializeField] private List<Transform> _spawnPoints;
     [SerializeField] private int _knitCnt = 3;
     [SerializeField] private int _knitCompleteCnt = 0;
@@ -22,12 +22,24 @@ public class KnittingSkill : MonoBehaviour, BossSkillInterface
 
     public void Activate()
     {
+        List<int> randomnum = numbers();
         _isSkillEnd = false;
         //3개의 목도리 생성
         for (int i = 0; i < _knitCnt; i++)
         {
-            Instantiate(_knitPrefab, _spawnPoints[i].position, Quaternion.identity);
+            Instantiate(_knitPrefab[randomnum[i]], _spawnPoints[i].position, Quaternion.identity);
         }
+    }
+
+    List<int> numbers() {
+        List<int> shuffle = new List<int> { 0,1,2 };
+
+        for (int i = 0; i < 3; i++) {
+            int temp = Random.Range(i, 3);
+            (shuffle[i] ,shuffle[temp]) = (shuffle[temp], shuffle[i]);
+        }
+
+        return shuffle;
     }
 
     public void CompleteKnit()

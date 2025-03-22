@@ -11,7 +11,7 @@ public class LullabySkill : MonoBehaviour,BossSkillInterface
         BossData bossData = BossManagerNew.Current.bossData;
         float _x = (bossData._leftBottom.x + bossData._rightTop.x)/2.0f;
         float _y = bossData._rightTop.y;
-        Vector3 randomPos = new Vector3(_x, _y, 0);
+        Vector3 randomPos = new Vector3(_x, _y -3f, 0);
 
         Instantiate(_lullabyPrefab, randomPos, Quaternion.identity);
     }

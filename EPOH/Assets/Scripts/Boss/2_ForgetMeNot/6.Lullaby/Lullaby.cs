@@ -7,7 +7,7 @@ public class Lullaby : MonoBehaviour
     [SerializeField] private List<GameObject> _notePrefabList = new List<GameObject>();
     [SerializeField] private float _duration = 20f;
     [SerializeField] private int _noteCnt = 5;
-    [SerializeField] private float _noteDistance = 10f;
+    [SerializeField] private float _noteDistance;
     [SerializeField] private float _generateDuration = 5f;
     
     void Start()
