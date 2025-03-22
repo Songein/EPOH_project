@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 5170497967144867577}
   - component: {fileID: 4644596626016242823}
   - component: {fileID: 4559317479648231768}
+  - component: {fileID: 3626464831717383510}
   m_Layer: 0
-  m_Name: Code_Black_R
+  m_Name: Code_Black_Ror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,3 +107,24 @@ MonoBehaviour:
   _movingSpeed: 50
   _hackPoint: 3
   _isReverse: 1
+--- !u!95 &3626464831717383510
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8516508563629665183}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a175c6f51381aab4dbd78bd0c0bc3c06, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
