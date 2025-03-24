@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class BossRunning : MonoBehaviour, BossSkillInterface
 {
-    private BossDogController dog; //BossDogController 참조
-
+    private GameObject _dog;
     public GameObject player; // 플레이어 게임 오브젝트
     public GameObject runningPrefab;
 
@@ -18,11 +17,14 @@ public class BossRunning : MonoBehaviour, BossSkillInterface
 
     // 보스 표식 스프라이트
     public GameObject bossIconPrefab;
+    
+    // 보스 정보
+    private BossData _bossData;
 
-
-    private void Awake()
+    void Start()
     {
-        player = FindObjectOfType<PlayerController>().gameObject;
+        player = BossManagerNew.Current.player.gameObject;
+        _bossData = BossManagerNew.Current.bossData;
     }
 
     public void Activate()
@@ -38,13 +40,13 @@ public class BossRunning : MonoBehaviour, BossSkillInterface
 
         if (Random.Range(0, 2) == 0) // 0이면 Left, 1이면 Right
         {
-            startPosition = dog.spawnLeftPoint;
-            targetPosition = dog.spawnRightPoint;
+            startPosition = _bossData._leftBottom;
+            targetPosition = new Vector2(_bossData._rightTop.x, _bossData._leftBottom.y);
         }
         else
         {
-            startPosition = dog.spawnRightPoint;
-            targetPosition = dog.spawnLeftPoint;
+            startPosition = new Vector2(_bossData._rightTop.x, _bossData._leftBottom.y);
+            targetPosition = _bossData._leftBottom;
         }
         
         GameObject warningContainer = new GameObject("WarningContainer");
