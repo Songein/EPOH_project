@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossBiting : MonoBehaviour, BossSkillInterface
 {
-    public GameObject player; // 플레이어 게임 오브젝트
+    private GameObject player; // 플레이어 게임 오브젝트
 
     public GameObject biteReadyPrefab; // Bite Ready 프리팹
     public GameObject bitePrefab; // Bite 프리팹
@@ -18,9 +18,9 @@ public class BossBiting : MonoBehaviour, BossSkillInterface
 
     public AnimationCurve curve; // 포물선 이동을 위한 AnimationCurve 선언
 
-    private void Awake()
+    private void Start()
     {
-        player = FindObjectOfType<PlayerController>().gameObject;
+        player = BossManagerNew.Current.player.gameObject;
     }
 
 

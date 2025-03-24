@@ -305,12 +305,15 @@ MonoBehaviour:
   - {fileID: 12630899}
   - {fileID: 12630898}
   phase1List:
-  - skillIndex: 0
-    skillCnt: 0
-    skillTerm: 0
-  - skillIndex: 0
-    skillCnt: 0
-    skillTerm: 0
+  - skillIndex: 6
+    skillCnt: 3
+    skillTerm: 3
+  - skillIndex: 1
+    skillCnt: 1
+    skillTerm: 5
+  - skillIndex: 7
+    skillCnt: 1
+    skillTerm: 2
   phase2List: []
   phase3List: []
   _isSkillEnd: 0
@@ -342,7 +345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d057c2ceeef0e4795b4992efdf8df596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   tracking_eye_prefab: {fileID: 8982902104962463404, guid: 9fbf317a58a6c4c32b10965c738a5457, type: 3}
   tracking_effect_prefab: {fileID: 8982902104962463404, guid: 39d2cad1bf8bf4dc79f9abf933e22a3c, type: 3}
   tracking_pop_prefab: {fileID: 8982902104962463404, guid: 453fb190e6d7a44b0bb8958ba82ffb68, type: 3}
@@ -358,7 +360,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f562463bfe46e49b69b912c67b03cd15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   scratch_prefab: {fileID: 8306289788758409414, guid: f77f81680eeb342e291d842f96fea4d7, type: 3}
   scratch_pop: {fileID: 8306289788758409414, guid: 579c13866060b42229503eb52e37784f, type: 3}
 --- !u!114 &12630900
@@ -391,7 +392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebdb7ef74db4844c2bc93c6fb8f3aaca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   biteReadyPrefab: {fileID: 3798098871553349891, guid: de720e099483c4b0f95ceda5149dda74, type: 3}
   bitePrefab: {fileID: 3798098871553349891, guid: ae427bc68e4714f8da54e49dbb17dc8c, type: 3}
   shadow_speed: 10
@@ -2273,7 +2273,7 @@ RectTransform:
   m_Children:
   - {fileID: 497436332}
   m_Father: {fileID: 1880858397}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -2324,8 +2324,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: BossDogController, Assembly-CSharp
+      - m_Target: {fileID: 12630896}
+        m_TargetAssemblyTypeName: BossManagerNew, Assembly-CSharp
         m_MethodName: StartPhase3
         m_Mode: 1
         m_Arguments:
@@ -3044,8 +3044,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: BossDogController, Assembly-CSharp
+      - m_Target: {fileID: 12630896}
+        m_TargetAssemblyTypeName: BossManagerNew, Assembly-CSharp
         m_MethodName: StartPhase1
         m_Mode: 1
         m_Arguments:
@@ -3127,7 +3127,7 @@ RectTransform:
   m_Children:
   - {fileID: 2060817480}
   m_Father: {fileID: 1880858397}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -3178,8 +3178,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: BossDogController, Assembly-CSharp
+      - m_Target: {fileID: 12630896}
+        m_TargetAssemblyTypeName: BossManagerNew, Assembly-CSharp
         m_MethodName: StartPhase2
         m_Mode: 1
         m_Arguments:
@@ -3994,8 +3994,8 @@ RectTransform:
   - {fileID: 1361521686}
   - {fileID: 1688139573}
   - {fileID: 1375217043}
-  - {fileID: 1011962438}
   - {fileID: 1490841070}
+  - {fileID: 1011962438}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
