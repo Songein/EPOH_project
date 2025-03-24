@@ -26,7 +26,6 @@ public class GroundController : MonoBehaviour
             Debug.Log("땅에 의해 공격 받음");
             Player.GetComponent<PlayerHealth>().Damage(GroundAttackPower);
         }
-        
     }
 
     public void ActiveAttack()

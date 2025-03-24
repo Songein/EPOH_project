@@ -304,7 +304,13 @@ MonoBehaviour:
   - {fileID: 12630900}
   - {fileID: 12630899}
   - {fileID: 12630898}
-  phase1List: []
+  phase1List:
+  - skillIndex: 0
+    skillCnt: 0
+    skillTerm: 0
+  - skillIndex: 0
+    skillCnt: 0
+    skillTerm: 0
   phase2List: []
   phase3List: []
   _isSkillEnd: 0
@@ -410,14 +416,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cebf8959041014e8e83223132aa97170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dogPrefab: {fileID: 4567274052030474634, guid: 087c6712923b34023959120d60daee09, type: 3}
   stompingPrecursorTime: 2
-  rockCnt: 12
+  rockCnt: 8
   rockSet: 4
   rockFallPower: 0
-  rockSetDuration: 1.5
+  rockSetDuration: 3
   rockStartSpawn: {x: -9, y: 10, z: 0}
   rockEndSpawn: {x: 9, y: 20, z: 0}
-  rockPrefab: {fileID: 0}
+  rockPrefabs:
+  - {fileID: 8187107076634366749, guid: c46e9f6176bba40a393eec1465aedb61, type: 3}
+  - {fileID: 3539277068259639573, guid: 7d5200a8398874ebabb865531d669d5d, type: 3}
+  - {fileID: 6668524905819132096, guid: df5cfc980e5564c5bb13ee741fcc37d7, type: 3}
+  - {fileID: 6060176214259416633, guid: 872bff55f97be4c069431a7885375015, type: 3}
+  - {fileID: 1372717931062650830, guid: bd578e5db98064ae9bca3f491f26cc29, type: 3}
+  - {fileID: 7025643094124865684, guid: 4b355ebc9d8ba48629c1d0c5a0d096d5, type: 3}
   warning: {fileID: 1997940264}
 --- !u!114 &12630903
 MonoBehaviour:
