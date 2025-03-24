@@ -7,8 +7,7 @@ public class Howling2Behaviour : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        BossDogController dogController = FindObjectOfType<BossDogController>();
-        Howling2 howling2 = dogController.GetComponent<Howling2>();
+        Howling2 howling2 = FindObjectOfType<Howling2>();
 
         howling2.absorbFlag = false;
         Instantiate(howling2.shockWavePrefab, animator.transform.position, Quaternion.identity);
@@ -23,9 +22,7 @@ public class Howling2Behaviour : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        BossDogController dogController = FindObjectOfType<BossDogController>();
         Destroy(animator.gameObject);
-        dogController.bossList.Clear();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
