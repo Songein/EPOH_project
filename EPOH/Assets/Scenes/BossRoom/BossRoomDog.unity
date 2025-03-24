@@ -431,8 +431,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31786989fa3d54d12a566971b4445eba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dogPrefab: {fileID: 4567274052030474634, guid: 087c6712923b34023959120d60daee09, type: 3}
+  _shockWavePrefab: {fileID: 2420338657994739230, guid: cd34f628b5f3448c48c51d533cf4bd42, type: 3}
+  shockWaveCnt: 4
   facingTime: 0.5
   precursorTime: 2
+  waveTime: 0.5
+  firstWavePos: 8
+  shockWaveY: 0
+  waveTerm: 5
 --- !u!114 &12630904
 MonoBehaviour:
   m_ObjectHideFlags: 0
