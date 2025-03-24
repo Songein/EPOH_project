@@ -21,9 +21,7 @@ public class Howling1Behaviour : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        BossDogController dogController = FindObjectOfType<BossDogController>();
         Destroy(animator.gameObject);
-        dogController.bossList.Clear();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

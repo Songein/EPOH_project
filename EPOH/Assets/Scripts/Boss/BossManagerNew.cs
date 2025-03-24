@@ -88,4 +88,19 @@ public class BossManagerNew : MonoBehaviour
     {
         _isSkillEnd = true;
     }
+    
+    // 플레이어가 보스 오른쪽에 위치하는지 체크할 수 있는 함수
+    public void SetBossFlip(Transform boss)
+    {
+        
+        if (FindObjectOfType<PlayerController>().transform.position.x - boss.position.x >= 0)
+        {
+            //Debug.Log("right");
+            boss.GetComponent<SpriteRenderer>().flipX = true;
+            return;
+        }
+        
+        //Debug.Log("left");
+        boss.GetComponent<SpriteRenderer>().flipX = false;
+    }
 }

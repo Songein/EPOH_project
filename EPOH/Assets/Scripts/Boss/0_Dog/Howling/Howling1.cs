@@ -6,11 +6,18 @@ using Random = UnityEngine.Random;
 
 public class Howling1 : MonoBehaviour, BossSkillInterface
 {
-    [SerializeField] private GameManager dogPrefab; //하울링 보스 개 프리팹
+    [SerializeField] private GameObject dogPrefab; //하울링 보스 개 프리팹
     public  GameObject shockWavePrefab;  //충격파 프리팹
     
     //보스 개 스폰 난수
     private int _random;
+    //보스 정보
+    private BossData _bossData;
+
+    void Start()
+    {
+        _bossData = BossManagerNew.Current.bossData;
+    }
     
     public void Activate()
     {        
@@ -19,21 +26,24 @@ public class Howling1 : MonoBehaviour, BossSkillInterface
         if (_random == 0)
         {
             //중앙에 보스 생성
-            //_dog.GenerateDog(_dog.spawnMiddlePoint);
+            Vector2 middlePoint = new Vector2(0, _bossData._leftBottom.y);
+            SpawnDog(middlePoint);
         }
         else if (_random == 1)
         {
             //맵 양 끝에 보스 생성
-            //_dog.GenerateDog(_dog.spawnLeftPoint);
-            //_dog.GenerateDog(_dog.spawnRightPoint);
+            Vector2 leftPoint = new Vector2(_bossData._leftBottom.x, _bossData._leftBottom.y);
+            Vector2 rightPoint = new Vector2(_bossData._rightTop.x, _bossData._leftBottom.y);
+            SpawnDog(leftPoint);
+            SpawnDog(rightPoint);
         }
+    }
 
-        /*
-        foreach (var dog in _dog.bossList)
-        {
-            Animator animator = dog.GetComponent<Animator>();
-            animator.SetTrigger("Howling1");
-        }
-        */
+    void SpawnDog(Vector2 spawnPoint)
+    {
+        GameObject boss = Instantiate(dogPrefab, spawnPoint, Quaternion.identity);
+        BossManagerNew.Current.SetBossFlip(boss.transform);
+        Animator animator = boss.GetComponent<Animator>();
+        animator.SetTrigger("Howling1");
     }
 }
