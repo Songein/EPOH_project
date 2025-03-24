@@ -42,7 +42,7 @@ public class Howling1 : MonoBehaviour, BossSkillInterface
     void SpawnDog(Vector2 spawnPoint)
     {
         GameObject boss = Instantiate(dogPrefab, spawnPoint, Quaternion.identity);
-        BossManagerNew.Current.SetBossFlip(boss.transform);
+        BossManagerNew.Current.IsPlayerRight(boss.transform);
         Animator animator = boss.GetComponent<Animator>();
         animator.SetTrigger("Howling1");
     }

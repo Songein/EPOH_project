@@ -308,6 +308,7 @@ MonoBehaviour:
   phase2List: []
   phase3List: []
   _isSkillEnd: 0
+  player: {fileID: 0}
 --- !u!4 &12630897
 Transform:
   m_ObjectHideFlags: 0
@@ -386,7 +387,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   biteReadyPrefab: {fileID: 3798098871553349891, guid: de720e099483c4b0f95ceda5149dda74, type: 3}
-  bitePrefab: {fileID: 0}
+  bitePrefab: {fileID: 3798098871553349891, guid: ae427bc68e4714f8da54e49dbb17dc8c, type: 3}
   shadow_speed: 10
   reach_distance_short: 0
   Dog_yposition: 0
@@ -448,6 +449,7 @@ MonoBehaviour:
   absorbPower: 250
   absorbFlag: 0
   shockWavePrefab: {fileID: 2758488871968504048, guid: 27df7d44a22d446018408a1bd1997f64, type: 3}
+  _dogPrefab: {fileID: 163800075624518437, guid: 3ca9bcf9944704b4eafcdf28347bc399, type: 3}
 --- !u!114 &12630905
 MonoBehaviour:
   m_ObjectHideFlags: 0

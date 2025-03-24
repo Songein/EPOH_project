@@ -24,6 +24,8 @@ public class BossManagerNew : MonoBehaviour
     [SerializeField] private bool _isSkillEnd = false;
     public Action OnSkillEnd;
     
+    // 플레이어 관련
+    public PlayerController player;
     private void Awake()
     {
         Current = this; // 현재 씬의 BossManager를 저장
@@ -33,6 +35,7 @@ public class BossManagerNew : MonoBehaviour
     private void Start()
     {
         SoundManager2.instance.PlayAudio();
+        player = FindObjectOfType<PlayerController>();
     }
 
     public void StartBossRaid()
@@ -90,17 +93,18 @@ public class BossManagerNew : MonoBehaviour
     }
     
     // 플레이어가 보스 오른쪽에 위치하는지 체크할 수 있는 함수
-    public void SetBossFlip(Transform boss)
+    public bool IsPlayerRight(Transform boss)
     {
         
-        if (FindObjectOfType<PlayerController>().transform.position.x - boss.position.x >= 0)
+        if (player.transform.position.x - boss.position.x >= 0)
         {
             //Debug.Log("right");
             boss.GetComponent<SpriteRenderer>().flipX = true;
-            return;
+            return true;
         }
         
         //Debug.Log("left");
         boss.GetComponent<SpriteRenderer>().flipX = false;
+        return false;
     }
 }
