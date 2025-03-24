@@ -9,6 +9,7 @@ public class BossManagerNew : MonoBehaviour
     public class Phase
     {
         public int skillIndex;
+        public int skillCnt;
         public float skillTerm;
     }
     
@@ -68,9 +69,11 @@ public class BossManagerNew : MonoBehaviour
 
             if (skillInterface != null)
             {
-                skillInterface.Activate();
-                EPOH.Debug.LogWarning(skill);
                 Debug.LogWarning($"Skill{skill.skillIndex} 스킬 시작");
+                for (int i = 0; i < skill.skillCnt; i++)
+                {
+                    skillInterface.Activate();
+                }
                 yield return new WaitForSeconds(skill.skillTerm);
                 Debug.LogWarning($"Skill{skill.skillIndex} 스킬 끝");
             }

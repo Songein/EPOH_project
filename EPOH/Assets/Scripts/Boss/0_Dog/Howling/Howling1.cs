@@ -6,8 +6,8 @@ using Random = UnityEngine.Random;
 
 public class Howling1 : MonoBehaviour, BossSkillInterface
 {
-    //충격파 프리팹
-    public GameObject shockWavePrefab;
+    [SerializeField] private GameManager dogPrefab; //하울링 보스 개 프리팹
+    public  GameObject shockWavePrefab;  //충격파 프리팹
     
     //보스 개 스폰 난수
     private int _random;
