@@ -34,14 +34,9 @@ public class Snipe : MonoBehaviour, BossSkillInterface
         tracking_eye.SetActive(false); // 시작 시 비활성화
 
         //크기 조정
-        tracking_eye.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); // 눈동자 크기를 2배로 설정
+       // tracking_eye.transform.localScale = new Vector3(2f, 2f, 1f); // 눈동자 크기를 2배로 설정
 
-        // Animator 컴포넌트 가져오기
-        trackingAnimator = tracking_eye.GetComponent<Animator>();
-        if (trackingAnimator == null)
-        {
-            Debug.LogError("Animator component is missing on the tracking_eye prefab.");
-        }
+       
 
     }
 
@@ -58,11 +53,13 @@ public class Snipe : MonoBehaviour, BossSkillInterface
     {
         tracking_eye.SetActive(true); // 추적 눈동자 활성화
 
+        /*
         // 추적 눈동자 애니메이션 재생
         if (trackingAnimator != null)
         {
             trackingAnimator.Play("Tracking_eye"); // Animator에 설정된 애니메이션 이름
         }
+        */
 
 
         StartCoroutine(Tracking());
@@ -81,13 +78,13 @@ public class Snipe : MonoBehaviour, BossSkillInterface
 
             effectSpawnPosition.y += 0.2f;
 
-            GameObject tracking_effect = Instantiate(tracking_effect_prefab, effectSpawnPosition, Quaternion.identity);
+            //GameObject tracking_effect = Instantiate(tracking_effect_prefab, effectSpawnPosition, Quaternion.identity);
 
             // 1초 후 추적 폭발 이펙트 발생
             yield return new WaitForSeconds(interval);
 
             // 추적 폭발 이펙트 발생 (추적 이펙트 삭제 및 폭발 이펙트 생성)
-            Destroy(tracking_effect); // 기존 이펙트 삭제
+            //Destroy(tracking_effect); // 기존 이펙트 삭제
             GameObject explode_object = Instantiate(tracking_pop_prefab, effectSpawnPosition, Quaternion.identity); // 폭발 이펙트 생성
 
 
