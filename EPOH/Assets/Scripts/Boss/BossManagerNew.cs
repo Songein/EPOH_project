@@ -5,15 +5,21 @@ using UnityEngine;
 
 public class BossManagerNew : MonoBehaviour
 {
+    [System.Serializable]
+    public class Phase
+    {
+        public int skillIndex;
+        public float skillTerm;
+    }
+    
     public static BossManagerNew Current { get; private set; }
     public BossData bossData;
     public Action<float> OnDecreaseHackingPoint;
     public Action<float> OnIncreaseHackingPoint;
     public List<MonoBehaviour> skillList = new List<MonoBehaviour>();
-    public List<int> phase1List = new List<int>();
-    public List<int> phase2List = new List<int>();
-    public List<int> phase3List = new List<int>();
-    public float skillTerm = 3f;
+    public List<Phase> phase1List = new List<Phase>();
+    public List<Phase> phase2List = new List<Phase>();
+    public List<Phase> phase3List = new List<Phase>();
     [SerializeField] private bool _isSkillEnd = false;
     public Action OnSkillEnd;
     
@@ -53,24 +59,20 @@ public class BossManagerNew : MonoBehaviour
         StartCoroutine(ActivateSkill(phase3List));
     }
 
-    public IEnumerator ActivateSkill(List<int> phase)
+    public IEnumerator ActivateSkill(List<Phase> phase)
     {
-        foreach (var skillNum in phase)
+        foreach (var skill in phase)
         {
-            MonoBehaviour skill = skillList[skillNum];
-            BossSkillInterface skillInterface = skill as BossSkillInterface;
+            MonoBehaviour skillScript = skillList[skill.skillIndex];
+            BossSkillInterface skillInterface = skillScript as BossSkillInterface;
 
             if (skillInterface != null)
             {
                 skillInterface.Activate();
-                _isSkillEnd = false;
                 EPOH.Debug.LogWarning(skill);
-                Debug.LogWarning($"Skill{skillNum} 스킬 시작");
-
-                yield return new WaitUntil(() => _isSkillEnd);
-                Debug.LogWarning($"Skill{skillNum} 스킬 끝");
-            
-                yield return new WaitForSeconds(skillTerm);
+                Debug.LogWarning($"Skill{skill.skillIndex} 스킬 시작");
+                yield return new WaitForSeconds(skill.skillTerm);
+                Debug.LogWarning($"Skill{skill.skillIndex} 스킬 끝");
             }
             else
             {

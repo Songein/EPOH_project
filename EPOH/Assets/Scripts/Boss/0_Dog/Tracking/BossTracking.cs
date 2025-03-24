@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BossTracking : MonoBehaviour, BossSkillInterface
 {
-    private BossDogController dog; //BossDogController 참조
-
     public GameObject player; // 플레이어 게임 오브젝트
 
     //추적 변수
@@ -19,9 +17,7 @@ public class BossTracking : MonoBehaviour, BossSkillInterface
 
     private void Awake()
     {
-        dog = GameObject.FindWithTag("Boss").GetComponent<BossDogController>();
-        player = dog._player;
-        
+        player = FindObjectOfType<PlayerController>().gameObject;
     }
 
     // Start is called before the first frame update

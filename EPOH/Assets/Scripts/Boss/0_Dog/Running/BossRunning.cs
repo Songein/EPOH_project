@@ -22,9 +22,7 @@ public class BossRunning : MonoBehaviour, BossSkillInterface
 
     private void Awake()
     {
-        dog = GameObject.FindWithTag("Boss").GetComponent<BossDogController>();
-        player = dog._player;
-        
+        player = FindObjectOfType<PlayerController>().gameObject;
     }
 
     public void Activate()

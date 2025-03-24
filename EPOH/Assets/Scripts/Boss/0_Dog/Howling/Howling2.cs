@@ -26,8 +26,7 @@ public class Howling2 : MonoBehaviour, BossSkillInterface
     
     void Start()
     {
-        _dog = GetComponent<BossDogController>();
-        _pc = _dog._player.GetComponent<PlayerController>();
+        _pc = FindObjectOfType<PlayerController>();
     }
     
     void FixedUpdate()

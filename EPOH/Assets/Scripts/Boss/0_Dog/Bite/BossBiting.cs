@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BossBiting : MonoBehaviour, BossSkillInterface
 {
-    private BossDogController dog; //BossDogController 참조
-
     public GameObject player; // 플레이어 게임 오브젝트
 
     public GameObject biteReadyPrefab; // Bite Ready 프리팹
@@ -22,9 +20,7 @@ public class BossBiting : MonoBehaviour, BossSkillInterface
 
     private void Awake()
     {
-        dog = GameObject.FindWithTag("Boss").GetComponent<BossDogController>();
-        player = dog._player;
-        
+        player = FindObjectOfType<PlayerController>().gameObject;
     }
 
 
@@ -62,7 +58,8 @@ public class BossBiting : MonoBehaviour, BossSkillInterface
     public IEnumerator Biting()
     {
         // 그림자 오브젝트 생성
-        Vector3 shadowStartPosition = dog.spawnMiddlePoint;
+        float middlePoint = (BossManagerNew.Current.bossData._rightTop.x - BossManagerNew.Current.bossData._leftBottom.x) / 2;
+        Vector3 shadowStartPosition = new Vector3(middlePoint, transform.position.y, transform.position.z);
         GameObject bite_ready_object = Instantiate(biteReadyPrefab, shadowStartPosition, Quaternion.identity);
 
         // 통일된 크기 정의
