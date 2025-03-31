@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 5222232749139865391}
   - component: {fileID: 5222232749139865387}
   - component: {fileID: 5222232749139865386}
-  - component: {fileID: -6683592489409368614}
-  - component: {fileID: -9038463691214075763}
+  - component: {fileID: -7431450147683474472}
   m_Layer: 0
   m_Name: Rain
   m_TagString: RainDrop
@@ -135,7 +134,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-6683592489409368614
+--- !u!114 &-7431450147683474472
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,28 +143,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5222232749139865390}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97277954b1470418b8f72fabca27135d, type: 3}
+  m_Script: {fileID: 11500000, guid: d2f013b3f37ba5749a82ed8156bab915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 0
   _healthDamage: 10
-  _hackPointDamage: 0
-  _attackHealth: 1
-  _attackHackPoint: 0
---- !u!114 &-9038463691214075763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5222232749139865390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d0aea193244b4b8f952cc348f0e6421, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _duration: 0
-  _healthDamage: 0
   _hackPointDamage: 0
   _attackHealth: 1
   _attackHackPoint: 0

@@ -23,10 +23,12 @@ public class Half : MonoBehaviour, BossSkillInterface
         yield return new WaitForSeconds(0.5f); //여기에 애니메이션 추가
         Vector3 spawnPosition = Random.Range(0, 2) == 0 ? lightleftPostion : lightrightPostion;
         GameObject lightWarning = Instantiate(lightwarningPrefab, spawnPosition, Quaternion.identity);
-        yield return new WaitForSeconds(3f); //3초간 빛난 뒤 light 생성
+        yield return new WaitForSeconds(2.7f); //3초간 빛난 뒤 light 생성
+        SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Hoa_Electric); //소리
+        yield return new WaitForSeconds(0.3f);
         Destroy(lightWarning);
-        GameObject light= Instantiate(lightPrefab, spawnPosition, Quaternion.identity);
-        yield return new WaitForSeconds(1.5f);//light나온 뒤 1.5초 뒤에 light 삭제(애니메이션 추가)
+        GameObject light = Instantiate(lightPrefab, spawnPosition, Quaternion.identity);
+        yield return new WaitForSeconds(2.5f);//light나온 뒤 1.5초 뒤에 light 삭제(애니메이션 추가)
         Destroy(light);
         Destroy(hoa);
         BossManagerNew.Current.OnSkillEnd?.Invoke();

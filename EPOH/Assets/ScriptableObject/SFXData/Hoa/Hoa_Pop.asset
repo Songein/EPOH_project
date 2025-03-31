@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c45855e304c5fe9448b3e7496a5fd91f, type: 3}
-  m_Name: Criminal_Catch
+  m_Name: Hoa_Pop
   m_EditorClassIdentifier: 
-  name: Criminal_Catch
-  sfxClip: {fileID: 8300000, guid: 36e1c9ca1280b7d46a9f782931be094b, type: 3}
-  loop: 1
+  name: Hoa_Pop
+  sfxClip: {fileID: 8300000, guid: 7c25daf8c45d22447abd8fafc7b10992, type: 3}
+  loop: 0
   volume: 1
   delay: 0

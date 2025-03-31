@@ -14,8 +14,8 @@ public class UP_Light : MonoBehaviour, BossSkillInterface
     [SerializeField] private GameObject laserPrefab;
     [SerializeField] private float moveDuration;
     [SerializeField] private float destroyDelay;
-    [SerializeField] private float growSpeed;
-    [SerializeField] private float maxLength;
+  //  [SerializeField] private float growSpeed;
+   // [SerializeField] private float maxLength;
     
 
     private void Start()
@@ -33,7 +33,8 @@ public class UP_Light : MonoBehaviour, BossSkillInterface
         // X축으로 K씩 차이나는 위치 K개 생성
         for (int i = 0; i < this.spawnPositions.Length; i++)
         {
-            this.spawnPositions[i] = new Vector3(bossData._leftBottom.x + i * 3, bossData._rightTop.y + 2.5f, 0);  ///[[[[[[[[기계간 간격 조정은 x축 (i-4) 에서 조절(machine)]]]]]]]
+            float xPos = Mathf.Lerp(bossData._leftBottom.x +2, bossData._rightTop.x -2, (float)i / (spawnPositions.Length - 1));
+            this.spawnPositions[i] = new Vector3(xPos, bossData._rightTop.y + 2.5f, 0);  ///[[[[[[[[기계간 간격 조정은 x축 (i-4) 에서 조절(machine)]]]]]]]
         }
         RandomThree(spawnPositions);
     }
@@ -96,6 +97,7 @@ public class UP_Light : MonoBehaviour, BossSkillInterface
 
         private IEnumerator MoveMachine(GameObject machine, Vector3 startPosition, Vector3 endPosition, float moveDuration) //이동한 뒤 쏘는거
     {
+        SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Hoa_Light); //소리
         float timeElapsed = 0f; // 경과 시간
 
         // 1초 동안 천천히 이동
@@ -116,7 +118,7 @@ public class UP_Light : MonoBehaviour, BossSkillInterface
     
     private IEnumerator ShootLaser(Vector3 endPosition)
     {
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(1f);
 
         float ychange = endPosition.y;
         GameObject laser = Instantiate(laserPrefab, new Vector3(endPosition.x, ychange, 0), Quaternion.identity);  // [[[[[[[[[[laser postion 조정]]]]]]]]]

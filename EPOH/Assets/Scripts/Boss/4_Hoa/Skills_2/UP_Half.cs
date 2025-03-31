@@ -31,10 +31,12 @@ public class UP_Half : MonoBehaviour, BossSkillInterface
         GameObject lightWarning = Instantiate(lightwarningPrefab, positionSide[index], Quaternion.identity);
         yield return new WaitForSeconds(2f); //3초간 빛난 뒤 light 생성
         StartCoroutine(OtherArmComingUp(bossData, index, hoa));
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.7f);
+        SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Hoa_Electric);
+        yield return new WaitForSeconds(0.3f);
         Destroy(lightWarning);
         GameObject light = Instantiate(lightPrefab, positionSide[index], Quaternion.identity);
-        yield return new WaitForSeconds(1.0f);//light나온 뒤 1.5초 뒤에 light 삭제(애니메이션 추가)
+        yield return new WaitForSeconds(1.5f);//light나온 뒤 1.5초 뒤에 light 삭제(애니메이션 추가)
         Destroy(light);
         //yield return new WaitForSeconds(2f);
 
@@ -55,10 +57,12 @@ public class UP_Half : MonoBehaviour, BossSkillInterface
             (bossData._leftBottom.y + bossData._rightTop.y) / 2, 0); //x: 중간지점과 right끝의 중간지점에 생성
         Vector3 spawnPosition = positionSide[1 - index];
         GameObject lightWarning = Instantiate(lightwarningPrefab, spawnPosition, Quaternion.identity);
-        yield return new WaitForSeconds(3f); //3초간 빛난 뒤 light 생성
+        yield return new WaitForSeconds(2.7f); //3초간 빛난 뒤 light 생성
+        SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Hoa_Electric);
+        yield return new WaitForSeconds(0.3f);
         Destroy(lightWarning);
         GameObject light = Instantiate(lightPrefab, spawnPosition, Quaternion.identity);
-        yield return new WaitForSeconds(1.0f);//light나온 뒤 1.0초 뒤에 light 삭제(애니메이션 추가)
+        yield return new WaitForSeconds(1.5f);//light나온 뒤 1.0초 뒤에 light 삭제(애니메이션 추가)
         Destroy(light);
         Destroy(hoa);
         BossManagerNew.Current.OnSkillEnd?.Invoke();

@@ -22,6 +22,7 @@ public class JailManager : MonoBehaviour
     
     private void OnEnable()
     {
+        SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Criminal_Catch); //내려오는 소리
         // 활성화되면 천천히 하강
         _isSuccess = false;
         _isEnd = false;
@@ -41,6 +42,8 @@ public class JailManager : MonoBehaviour
             }
             yield return null;
         }
+        SoundManager2.instance.GetComponent<AudioSource>().Stop(); // 소리 정지하고
+        SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Criminal_Catch2); //갇히는 소리
 
         // 철창이 최저 높이에 도달하면 감옥 닫힘
         Debug.Log("감옥이 완전히 닫혔습니다!");

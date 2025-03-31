@@ -51,6 +51,7 @@ public class Snipe : MonoBehaviour, BossSkillInterface
 
     public void Activate()
     {
+        SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Hoa_Snipe); //소리
         tracking_eye.SetActive(true); // 추적 눈동자 활성화
 
         /*

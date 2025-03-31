@@ -84,7 +84,11 @@ public class ElectricBall : MonoBehaviour
          
             if (ballAnimator != null)
             {
+                SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Hoa_Pop);
+
                 ballAnimator.SetTrigger("Pop");
+             
+
             }
             else
             {
