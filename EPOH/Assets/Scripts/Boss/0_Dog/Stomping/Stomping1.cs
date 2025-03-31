@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class Stomping1 : MonoBehaviour, BossSkillInterface
 {
-    //BossDogController 참조
-    private BossDogController _dog;
+    //BossDog 프리팹
+    [SerializeField] private GameObject _dogPrefab;
+    [SerializeField] private GameObject _shockWavePrefab;
+    private GameObject _dog;
     
     //Stomping1 스킬 변수
+    [SerializeField] private int shockWaveCnt = 4;
     [SerializeField] private float facingTime = 0.5f; //플레이어를 바라보는 시간
     [SerializeField] private float precursorTime = 2f; //발구르기 일반 공격 전조 시간
-
-    private void Awake()
-    {
-        _dog = GetComponent<BossDogController>();
-    }
+    [SerializeField] private float waveTime = 0.5f; //충격파 간 간격 시간
+    
+    //충격파 관련 변수
+    [SerializeField] private float firstWavePos;
+    [SerializeField] private float shockWaveY;
+    [SerializeField] private float waveTerm;
     
     public void Activate()
     {
@@ -23,25 +27,44 @@ public class Stomping1 : MonoBehaviour, BossSkillInterface
     
     public IEnumerator StartStomping1()
     {
-        //보스 리스트 초기화
-        _dog.bossList.Clear();
-        
         //개 그림자가 플레이어 위치에 생성
-        Vector2 playerPos = _dog._player.transform.position;
-        _dog.GenerateDog(playerPos);
+        Vector2 playerPos = BossManagerNew.Current.player.transform.position;
+        SpawnDog(playerPos);
         
         //facingTime 이후 플레이어가 위치한 방향을 바라본다
         yield return new WaitForSeconds(facingTime);
+        BossManagerNew.Current.IsPlayerRight(_dog.transform);
         
         //stomping wave 오브젝트 활성화
-        GameObject stompingWave = _dog.bossList[0].transform.GetChild(2).gameObject;
         yield return new WaitForSeconds(precursorTime);
+        _dog.GetComponent<Animator>().SetTrigger("Stomping1");
+        // 보스가 왼쪽을 바라보고 있는지 오른쪽을 바라보고 있는지 체크
+        GameObject shockWaveParent;
+        if (_dog.GetComponent<SpriteRenderer>().flipX)
+        {
+            // 오른쪽
+            shockWaveParent = _dog.transform.GetChild(1).gameObject;
+        }
+        else
+        {
+            // 왼쪽
+            shockWaveParent = _dog.transform.GetChild(0).gameObject;
+        }
         
-        //플레이어 위치에 따라 보스가 바라보는 방향 변경 및 왼/오 wave 활성화
-        stompingWave.SetActive(true);
-        stompingWave.GetComponent<Animator>()
-            .Play(_dog.IsPlayerRight(_dog.bossList[0]) ? "Right Explosion" : "Left Explosion");
-        
-        yield return new WaitForSeconds(1.5f);
+        foreach (Transform shockwave in shockWaveParent.transform)
+        {
+            shockwave.gameObject.SetActive(true);
+            yield return new WaitForSeconds(waveTime);
+        }
+
+        yield return new WaitForSeconds(waveTime);
+        Destroy(_dog);
+    }
+    
+    void SpawnDog(Vector2 spawnPoint)
+    {
+        _dog = null;
+        GameObject boss = Instantiate(_dogPrefab, spawnPoint, Quaternion.identity);
+        _dog = boss;
     }
 }

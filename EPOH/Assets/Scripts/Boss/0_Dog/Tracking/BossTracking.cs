@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class BossTracking : MonoBehaviour, BossSkillInterface
 {
-    private BossDogController dog; //BossDogController 참조
-
-    public GameObject player; // 플레이어 게임 오브젝트
+    private GameObject player; // 플레이어 게임 오브젝트
 
     //추적 변수
     public GameObject tracking_eye_prefab; // 추적 눈동자 프리팹
@@ -15,19 +13,11 @@ public class BossTracking : MonoBehaviour, BossSkillInterface
 
     private GameObject tracking_eye; // 추적 눈동자 오브젝트
     private Animator trackingAnimator; // 추적 눈동자 애니메이터
-
-
-    private void Awake()
-    {
-        dog = GameObject.FindWithTag("Boss").GetComponent<BossDogController>();
-        player = dog._player;
-        
-    }
-
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = BossManagerNew.Current.player.gameObject;
         // 추적 눈동자 생성
         Vector3 eyePosition = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
         tracking_eye = Instantiate(tracking_eye_prefab, eyePosition, Quaternion.identity);

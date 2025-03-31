@@ -13,7 +13,7 @@ public class ElectricBall : MonoBehaviour
 
     //ball 변수
     [SerializeField] private GameObject ball_prefab; // ball 프리팹
-    [SerializeField] private GameObject ball_pop; // 폭발 프리팹
+                                                     //[SerializeField] private GameObject ball_pop; // 폭발 프리팹
 
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class ElectricBall : MonoBehaviour
 
     void Start()
     {
-      
+
     }
 
     public void Activate()
@@ -48,9 +48,9 @@ public class ElectricBall : MonoBehaviour
         {
             // 할퀸 자국이 플레이어 x축 위치로부터 -10, 10 이내에서만 생성되도록 설정
             //float minX = Mathf.Max(leftEdge.x, player.transform.position.x - 10f);
-           // float maxX = Mathf.Min(rightEdge.x, player.transform.position.x + 10f);
+            // float maxX = Mathf.Min(rightEdge.x, player.transform.position.x + 10f);
 
-            // 할퀸 자국 프리팹 생성
+
             Vector3 ball_position = new Vector3(Random.Range(leftEdge.x, rightEdge.x), Random.Range(leftEdge.y, rightEdge.y), 0);
             GameObject ball_object = Instantiate(ball_prefab, ball_position, Quaternion.identity); // 프리팹 사용
             this.balls.Add(ball_object);
@@ -62,27 +62,11 @@ public class ElectricBall : MonoBehaviour
             {
                 Debug.Log("Failed to instantiate ball prefab");
             }
-            //ball_object.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
-            /*
 
-            // Animator 컴포넌트를 가져와 scratch_scar 애니메이션 재생
-            Animator scratchAnimator = ball_object.GetComponent<Animator>();
-            if (scratchAnimator != null)
-            {
-                Debug.Log("ball Animator Runtime Controller: " + scratchAnimator.runtimeAnimatorController.name);
-                scratchAnimator.Play("Scratching_scar");
-            }
-            else
-            {
-                Debug.Log("ball Animator Not Found");
-            }
-            */
-
-           // Destroy(ball_object);
             number++;
             Debug.Log("ball 횟수: " + number);
 
-           yield return new WaitForSeconds(0.5f); // 애니메이션 길이에 맞춰 대기
+            yield return new WaitForSeconds(1f); // 애니메이션 길이에 맞춰 대기
         }
     }
 
@@ -93,34 +77,22 @@ public class ElectricBall : MonoBehaviour
         int number = 0;
         for (int i = 0; i < ball_count; i++)
         {
-            Vector3 currentScale = balls[i].transform.localScale; // 위치 저장
-            Vector3 currentPosition = balls[i].transform.position;
-            yield return new WaitForSeconds(0.5f);
-            //ball_object.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
-            /*
+            yield return new WaitForSeconds(1f);
 
-            // Animator 컴포넌트를 가져와 scratch_scar 애니메이션 재생
-            Animator scratchAnimator = ball_object.GetComponent<Animator>();
-            if (scratchAnimator != null)
+            Animator ballAnimator = balls[i].GetComponent<Animator>();
+
+         
+            if (ballAnimator != null)
             {
-                Debug.Log("ball Animator Runtime Controller: " + scratchAnimator.runtimeAnimatorController.name);
-                scratchAnimator.Play("Scratching_scar");
+                ballAnimator.SetTrigger("Pop");
             }
             else
             {
                 Debug.Log("ball Animator Not Found");
             }
-            */
 
-            // Destroy(ball_object);
-            
-
-           
-            Destroy(balls[i]);  // 기존 scratch_prefab 오브젝트 삭제
-
-            GameObject pop_object = Instantiate(ball_pop, currentPosition, Quaternion.identity); // ball_pop로 교체
-            pop_object.transform.localScale = currentScale; // 이전 오브젝트의 크기 유지
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.0f);
+            Destroy(balls[i]);
 
             /*
 
@@ -134,10 +106,9 @@ public class ElectricBall : MonoBehaviour
             yield return new WaitForSeconds(popAnimator.GetCurrentAnimatorStateInfo(0).length);
             */
 
-            Destroy(pop_object);
+            //Destroy(pop_object);
             number++;
             Debug.Log("pop 횟수: " + number);
-            BossManagerNew.Current.OnSkillEnd?.Invoke();
 
             /*
                 // 다음 ball 자국 생성 전 1초 대기
@@ -148,7 +119,10 @@ public class ElectricBall : MonoBehaviour
             */
             //yield return new WaitForSeconds(0.2f);
         }
+        BossManagerNew.Current.OnSkillEnd?.Invoke();
+
     }
+
 
 }
     

@@ -10,7 +10,7 @@ public class PictureSkill : MonoBehaviour, BossSkillInterface
     [SerializeField] private float _duration;
     [SerializeField] private float _damage;
     [SerializeField] private Camera _captureCamera; // 캡처용 카메라
-    [SerializeField] private int _captureWidth = 500; // 캡처 영역의 가로 크기
+    [SerializeField] private int _captureWidth = 500; // 캡처 영역의 가로 크기 //정사각형으로 해야 찌부가 안돼서 나옴 원래는 500이었음
     [SerializeField] private int _captureHeight = 300; // 캡처 영역의 세로 크기
     [SerializeField] private float _cameraZPosition = -11f; // 카메라 Z 위치 (2D 환경)
     
@@ -54,6 +54,7 @@ public class PictureSkill : MonoBehaviour, BossSkillInterface
 
         // 캡처 카메라 위치 설정
         _captureCamera.transform.position = randomPosition;
+       
 
         // 캡처 카메라 크기 설정 (2D 환경에서는 Orthographic Size 사용)
         Debug.Log($"캡처 카메라 설정 완료: Size {_captureCamera.orthographicSize}, Position {_captureCamera.transform.position}");

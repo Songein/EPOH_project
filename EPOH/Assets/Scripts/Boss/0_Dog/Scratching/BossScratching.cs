@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class BossScratching : MonoBehaviour, BossSkillInterface
 {
-    private BossDogController dog; //BossDogController 참조
-
-    public GameObject player; // 플레이어 게임 오브젝트
+    private GameObject player; // 플레이어 게임 오브젝트
 
     private Vector3 leftEdge;
     private Vector3 rightEdge;
@@ -15,16 +13,10 @@ public class BossScratching : MonoBehaviour, BossSkillInterface
     public GameObject scratch_prefab; // 할퀸 자국 프리팹
     public GameObject scratch_pop; // 폭발 프리팹
 
-    private void Awake()
-    {
-        dog = GameObject.FindWithTag("Boss").GetComponent<BossDogController>();
-        player = dog._player;
-        
-    }
-
     // Start is called before the first frame update
     void Start()
     {
+        player = BossManagerNew.Current.player.gameObject;
         // Scene의 가장 왼쪽과 오른쪽 좌표를 설정
         leftEdge = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, 0));
         rightEdge = Camera.main.ViewportToWorldPoint(new Vector3(1, 0.5f, 0));

@@ -8,7 +8,7 @@ public class UP_Light : MonoBehaviour, BossSkillInterface
 
     private Vector3 topSpawnPoint; // 카메라 상단에서 Y축 +2 위치
     [SerializeField] private Vector3[] spawnPositions; // X축으로 떨어진 5개 위치
-    [SerializeField] private Vector3 SpawnPoint;
+   // [SerializeField] private Vector3 SpawnPoint;
     [SerializeField] private GameObject machinePrefab;
     [SerializeField] private GameObject YmachinePrefab;
     [SerializeField] private GameObject laserPrefab;
@@ -33,7 +33,7 @@ public class UP_Light : MonoBehaviour, BossSkillInterface
         // X축으로 K씩 차이나는 위치 K개 생성
         for (int i = 0; i < this.spawnPositions.Length; i++)
         {
-            this.spawnPositions[i] = new Vector3(bossData._leftBottom.x + i * 3, bossData._rightTop.y+ 2.5f, 0);  ///[[[[[[[[기계간 간격 조정은 x축 (i-4) 에서 조절(machine)]]]]]]]
+            this.spawnPositions[i] = new Vector3(bossData._leftBottom.x + i * 3, bossData._rightTop.y + 2.5f, 0);  ///[[[[[[[[기계간 간격 조정은 x축 (i-4) 에서 조절(machine)]]]]]]]
         }
         RandomThree(spawnPositions);
     }
@@ -64,14 +64,14 @@ public class UP_Light : MonoBehaviour, BossSkillInterface
             for (int i = 0; i < 3; i++)
             {
                 GameObject Ymachine = Instantiate(YmachinePrefab, shuffledPositions[i], Quaternion.identity);   //In 5 places, create the laser (randomly)
-                Vector3 endPosition = new Vector3(shuffledPositions[i].x, shuffledPositions[i].y - 2.5f, 0);
+                Vector3 endPosition = new Vector3(shuffledPositions[i].x, shuffledPositions[i].y - 1.8f, 0);
                 StartCoroutine(MoveYMachine(Ymachine, shuffledPositions[i], endPosition, moveDuration));
         }
             for (int i = 3; i < shuffledPositions.Count; i++)
             {
                 GameObject Nmachine = Instantiate(machinePrefab, shuffledPositions[i], Quaternion.identity);   //In 5 places, create the laser (randomly)
 
-                Vector3 endPosition = new Vector3(shuffledPositions[i].x, shuffledPositions[i].y - 2.5f, 0);  // [[[[[[[[[y축 조정은 여기서(machine)]]]]]]]]]]]]]]]
+                Vector3 endPosition = new Vector3(shuffledPositions[i].x, shuffledPositions[i].y - 1.8f, 0);  // [[[[[[[[[y축 조정은 여기서(machine)]]]]]]]]]]]]]]]
 
                 StartCoroutine(MoveMachine(Nmachine, shuffledPositions[i], endPosition, moveDuration));  //2. Get the five machine and move them down
             }
@@ -116,12 +116,13 @@ public class UP_Light : MonoBehaviour, BossSkillInterface
     
     private IEnumerator ShootLaser(Vector3 endPosition)
     {
+        yield return new WaitForSeconds(1f);
 
-        float ychange = endPosition.y - 0.8f;
+        float ychange = endPosition.y;
         GameObject laser = Instantiate(laserPrefab, new Vector3(endPosition.x, ychange, 0), Quaternion.identity);  // [[[[[[[[[[laser postion 조정]]]]]]]]]
 
 
-
+        /*
         // laser가 점점 아래로 길어지는 애니메이션
         while (laser.transform.localScale.y < maxLength)
         {
@@ -137,6 +138,8 @@ public class UP_Light : MonoBehaviour, BossSkillInterface
 
             yield return null; // 다음 프레임까지 대기
         }
+        */
+        yield return new WaitForSeconds(1f);
 
         // laser 삭제 후 기계 유지(destroy laser then stay the machine)
         Destroy(laser);

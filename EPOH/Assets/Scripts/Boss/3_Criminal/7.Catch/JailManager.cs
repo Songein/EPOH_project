@@ -9,8 +9,8 @@ public class JailManager : MonoBehaviour
     public LayerMask prisonerLayer;
     
     public float lowerSpeed = 1f; // 철창이 내려오는 속도
-    public float minHeight = -8.5f; // 철창이 멈출 최저 높이
-    public float closeHeight = -7.2f; // 철창이 닫힌 것으로 판단할 높이 기준
+    [SerializeField] private float minHeight ; // 철창이 멈출 최저 높이
+    [SerializeField] private float closeHeight ; // 철창이 닫힌 것으로 판단할 높이 기준
     
     private bool isLowering = true;
     public bool jailClosed = false;
