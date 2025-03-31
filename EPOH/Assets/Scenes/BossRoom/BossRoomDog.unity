@@ -300,17 +300,17 @@ MonoBehaviour:
   - {fileID: 12630904}
   - {fileID: 12630903}
   - {fileID: 12630902}
-  - {fileID: 12630901}
   - {fileID: 12630900}
   - {fileID: 12630899}
   - {fileID: 12630898}
+  - {fileID: 12630901}
   phase1List:
   - skillIndex: 6
-    skillCnt: 3
-    skillTerm: 3
-  - skillIndex: 1
     skillCnt: 1
-    skillTerm: 5
+    skillTerm: 2
+  - skillIndex: 0
+    skillCnt: 1
+    skillTerm: 4
   - skillIndex: 7
     skillCnt: 1
     skillTerm: 2
