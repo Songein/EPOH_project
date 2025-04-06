@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Criminal_Keyboard
   m_EditorClassIdentifier: 
   name: Criminal_Keyboard
-  number: 26
-  sfxClip: {fileID: 0}
+  sfxClip: {fileID: 8300000, guid: 0488913d9de28284dad0964d68ed00a5, type: 3}
   loop: 0
   volume: 1
   delay: 0

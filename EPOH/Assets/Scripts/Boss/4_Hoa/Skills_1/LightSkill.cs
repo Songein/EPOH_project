@@ -12,8 +12,8 @@ public class LightSkill : MonoBehaviour, BossSkillInterface
     [SerializeField] private GameObject laserPrefab;
     [SerializeField] private float moveDuration;
     [SerializeField] private float destroyDelay;
-    [SerializeField] private float growSpeed ;
-    [SerializeField] private float maxLength;
+   // [SerializeField] private float growSpeed ;
+   // [SerializeField] private float maxLength;
 
 
     private void Start()
@@ -31,7 +31,8 @@ public class LightSkill : MonoBehaviour, BossSkillInterface
         // X축으로 K씩 차이나는 위치 K개 생성
         for (int i = 0; i < this.spawnPositions.Length; i++)
         {
-            this.spawnPositions[i] = new Vector3(bossData._leftBottom.x + i * 3, bossData._rightTop.y + 2.5f, 0);  ///[[[[[[[[기계간 간격 조정은 x축 (i-4) 에서 조절(machine)]]]]]]]
+            float xPos = Mathf.Lerp(bossData._leftBottom.x + 2, bossData._rightTop.x - 2, (float)i / (spawnPositions.Length - 1));
+            this.spawnPositions[i] = new Vector3(xPos, bossData._rightTop.y + 2.5f, 0);  ///[[[[[[[[기계간 간격 조정은 x축 (i-4) 에서 조절(machine)]]]]]]]
         }
         RandomFive(spawnPositions);
     }
@@ -68,7 +69,7 @@ public class LightSkill : MonoBehaviour, BossSkillInterface
 
    private IEnumerator MoveMachine(GameObject laser, Vector3 startPosition, Vector3 endPosition, float moveDuration) {
         float timeElapsed = 0f; // 경과 시간
-
+        SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Hoa_Light); //소리
         // 1초 동안 천천히 이동
         while (timeElapsed < moveDuration)
         {
@@ -79,8 +80,7 @@ public class LightSkill : MonoBehaviour, BossSkillInterface
 
         // 정확한 최종 위치 설정
         laser.transform.position = endPosition;
-
-
+        
         StartCoroutine(ShootLaser(endPosition));  // 3.Shoot the laser
 
     }
@@ -89,6 +89,7 @@ public class LightSkill : MonoBehaviour, BossSkillInterface
        
         float ychange = endPosition.y ;
         GameObject laser = Instantiate(laserPrefab, new Vector3(endPosition.x, ychange,0), Quaternion.identity);  // [[[[[[[[[[laser postion 조정]]]]]]]]]
+   
 
 
         /*

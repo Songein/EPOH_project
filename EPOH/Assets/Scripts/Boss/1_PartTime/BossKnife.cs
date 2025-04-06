@@ -95,6 +95,6 @@ public class BossKnife : MonoBehaviour, BossSkillInterface
         }
 
         // knife 비활성화
-        knife.SetActive(false);
+       knife.SetActive(false);
     }
 }

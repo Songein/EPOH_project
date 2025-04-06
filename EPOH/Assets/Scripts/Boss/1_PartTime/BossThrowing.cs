@@ -44,6 +44,7 @@ public class BossThrowing : MonoBehaviour
             // 왼쪽 또는 오른쪽에서 랜덤으로 스폰
             Vector3 spawnPoint = Random.Range(0, 2) == 0 ? leftSpawnPoint : rightSpawnPoint;
 
+            SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.PT_Throwing);
             // 접시 생성
             GameObject plate = Instantiate(platePrefab, spawnPoint, Quaternion.identity);
             if (plate == null)

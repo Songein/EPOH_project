@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Hoa_Electric
   m_EditorClassIdentifier: 
   name: Hoa_Electric
-  number: 34
   sfxClip: {fileID: 8300000, guid: 7d4628afd5f98ab4598f484f3ba13a87, type: 3}
   loop: 0
-  volume: 1
+  volume: 0.5
   delay: 0

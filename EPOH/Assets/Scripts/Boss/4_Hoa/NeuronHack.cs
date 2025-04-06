@@ -6,9 +6,9 @@ public class NeuronHack : MonoBehaviour
 { private int hitCount = 0;
    
 
-    private float timeInTrigger = 0f;
-    private float triggerDelay = 0.7f;
-    private float triggerDelay2 = 0.9f;
+  //  private float timeInTrigger = 0f;
+  //  private float triggerDelay = 0.7f;
+   // private float triggerDelay2 = 0.9f;
     private bool movingUp = true;
     private Vector3 startPos;
       private Vector3 targetPos;

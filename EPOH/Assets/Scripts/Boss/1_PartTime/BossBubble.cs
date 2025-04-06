@@ -29,7 +29,7 @@ public class BossBubble : MonoBehaviour
         float bubbleWidth = Mathf.Abs(dog.spawnRightPoint.x - dog.spawnLeftPoint.x);
         int bubbleCount = Mathf.CeilToInt(bubbleWidth / bubbleObject.transform.localScale.x);
         float bubbleSpacing = bubbleObject.transform.localScale.x;
-
+        SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.PT_Bubble); //소리
         for (int i = 0; i < bubbleCount; i++)
         {
             float yOffset = 3.0f;
@@ -39,7 +39,7 @@ public class BossBubble : MonoBehaviour
                 (dog.spawnLeftPoint.y + dog.spawnRightPoint.y) / 2.0f + yOffset,
                 (dog.spawnLeftPoint.z + dog.spawnRightPoint.z) / 2.0f
             );
-
+          
             GameObject bubble = Instantiate(bubbleObject, bubblePosition, Quaternion.identity, bubbleContainer.transform);
 
             Collider2D bubbleCollider = bubble.GetComponent<Collider2D>();

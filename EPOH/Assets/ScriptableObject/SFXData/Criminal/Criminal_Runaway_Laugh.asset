@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Criminal_Runaway_Laugh
   m_EditorClassIdentifier: 
   name: Criminal_Runaway_Laugh
-  number: 28
-  sfxClip: {fileID: 0}
+  sfxClip: {fileID: 8300000, guid: 6d724989c1a9b614b970adc5fde6b188, type: 3}
   loop: 0
   volume: 1
   delay: 0

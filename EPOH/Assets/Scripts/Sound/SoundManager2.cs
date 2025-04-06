@@ -7,13 +7,13 @@ public class SoundManager2 : MonoBehaviour
 {
     public static SoundManager2 instance;
 
-    [SerializeField] public AudioSource bgmSource;
-    [SerializeField] private AudioSource sfxSource;
+    public AudioSource bgmSource;
+    public AudioSource sfxSource;
     [SerializeField] private AudioClip[] BGM_List;
     [SerializeField] private SfxData[] sfxData;
     //[SerializeField] private AudioClip[] SFX_List;
 
-    private AudioSource[] audioSources;
+    public AudioSource[] audioSources;
     private float footstepDelay = 0.6f; // 발자국 소리 간격
     private float lastTime;
 
@@ -66,6 +66,7 @@ public class SoundManager2 : MonoBehaviour
     Hoa_Arm,
     Hoa_Light,
     Hoa_Electric,
+    Hoa_Pop,
     Hoa_Rain,
     Hoa_Snipe
     }
@@ -139,8 +140,16 @@ public class SoundManager2 : MonoBehaviour
 
 
     public void PlaySFX(int index)
-    {
-        if (Time.time - lastTime >= sfxData[index].delay)
+    { //PlayOneShot은 loop 재생이 안돼서...
+        if (index == (int)SfXSound.Criminal_Catch)
+        {
+            float currentVolume = audioSources[1].volume * sfxData[index].volume; // 현재 슬라이더에 설정된 볼륨
+            sfxSource.clip = sfxData[index].sfxClip; // 클립 설정
+            sfxSource.volume = currentVolume;         // 볼륨 설정
+            sfxSource.loop = sfxData[index].loop;     // 루프 설정
+            sfxSource.Play();                         // 정상 재생
+        }
+        else if (Time.time - lastTime >= sfxData[index].delay)
         {
             float currentVolume = audioSources[1].volume * sfxData[index].volume; // 현재 슬라이더에 설정된 볼륨
             sfxSource.PlayOneShot(sfxData[index].sfxClip, currentVolume);
