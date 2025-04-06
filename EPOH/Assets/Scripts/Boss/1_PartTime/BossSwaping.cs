@@ -90,6 +90,7 @@ public class BossSwaping : MonoBehaviour, BossSkillInterface
 
         Destroy(warningContainer); // 전조 영역 삭제
 
+        SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.PT_Swaping);
         // Animator 컴포넌트 추가 및 설정
         GameObject running_object = Instantiate(runningPrefab, startPosition, Quaternion.identity);
 

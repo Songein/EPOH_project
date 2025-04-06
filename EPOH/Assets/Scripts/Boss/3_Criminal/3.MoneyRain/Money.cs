@@ -12,7 +12,7 @@ public class Money : Attackable
         // 땅에 닿으면 파괴
         if (other.CompareTag("Ground"))
         {
-            SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Criminal_MoneyRain);
+          
             Destroy(gameObject);
         }
     }

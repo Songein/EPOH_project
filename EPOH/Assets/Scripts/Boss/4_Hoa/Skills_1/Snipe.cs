@@ -10,7 +10,7 @@ public class Snipe : MonoBehaviour, BossSkillInterface
 
     //추적 변수
     public GameObject tracking_eye_prefab; // 추적 눈동자 프리팹
-    public GameObject tracking_effect_prefab; // 추적 이펙트 프리팹
+   // public GameObject tracking_effect_prefab; // 추적 이펙트 프리팹
     public GameObject tracking_pop_prefab; // 추적 이펙트 프리팹
 
     private GameObject tracking_eye; // 추적 눈동자 오브젝트
@@ -86,6 +86,7 @@ public class Snipe : MonoBehaviour, BossSkillInterface
 
             // 추적 폭발 이펙트 발생 (추적 이펙트 삭제 및 폭발 이펙트 생성)
             //Destroy(tracking_effect); // 기존 이펙트 삭제
+            SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Hoa_Pop); //소리
             GameObject explode_object = Instantiate(tracking_pop_prefab, effectSpawnPosition, Quaternion.identity); // 폭발 이펙트 생성
 
 
@@ -103,8 +104,9 @@ public class Snipe : MonoBehaviour, BossSkillInterface
             */
 
             // 일정 시간 후 폭발 이펙트 제거
-            yield return new WaitForSeconds(2.0f); // 폭발 이펙트 유지 시간
+            yield return new WaitForSeconds(0.4f); // 폭발 이펙트 유지 시간
             Destroy(explode_object); // 폭발 이펙트 제거
+
 
             elapsedTime += interval; // 경과 시간 증가
         }

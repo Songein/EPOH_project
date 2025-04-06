@@ -59,7 +59,7 @@ public class BossSauce : MonoBehaviour
             lid.transform.position.y - (lid.transform.localScale.y / 2), // 뚜껑의 아래 중심
             lid.transform.position.z
         );
-
+        SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.PT_Sauce);
         // 물줄기 생성
         GameObject sauce = Instantiate(saucePrefab, spawnPosition, Quaternion.identity);
 

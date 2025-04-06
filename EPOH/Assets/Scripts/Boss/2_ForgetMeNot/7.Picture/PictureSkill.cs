@@ -74,8 +74,9 @@ public class PictureSkill : MonoBehaviour, BossSkillInterface
         screenshot.ReadPixels(new Rect(0, 0, _captureWidth, _captureHeight), 0, 0);
         screenshot.Apply();
         Debug.Log("랜덤 스크린샷 캡처 완료!");
-        
+
         //찰칵 소리
+        SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.FMN_Picture);
         //해당 위치 내에 플레이어가 있으면 Damage 입히기
         if (IsPlayerInCamera())
         {

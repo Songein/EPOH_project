@@ -26,6 +26,7 @@ public class MoneyRainSkill : MonoBehaviour, BossSkillInterface
     {
         for (int rain = 0; rain < _rainCnt; rain++)
         {
+            SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Criminal_MoneyRain);
             _moneyList.Clear();
             for (int i = 0; i < _moneyCnt; i++)
             {

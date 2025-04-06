@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c45855e304c5fe9448b3e7496a5fd91f, type: 3}
-  m_Name: Criminal_Catch
+  m_Script: {fileID: 11500000, guid: f5ca0ad174d8c4191bac77dd32a87dd2, type: 3}
+  m_Name: PartTimeData
   m_EditorClassIdentifier: 
-  name: Criminal_Catch
-  sfxClip: {fileID: 8300000, guid: 97fa5d9f272be5f499e63574d4d7b157, type: 3}
-  loop: 1
-  volume: 1
-  delay: 0
+  name: PartTime
+  _maxHealth: 0
+  _rightTop: {x: 25, y: 12, z: 0}
+  _leftBottom: {x: -25, y: -4, z: 0}
+  BGMClip: {fileID: 8300000, guid: bad1db020c642304e8ec724e6647d451, type: 3}

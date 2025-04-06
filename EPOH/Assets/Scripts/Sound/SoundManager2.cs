@@ -7,13 +7,13 @@ public class SoundManager2 : MonoBehaviour
 {
     public static SoundManager2 instance;
 
-    [SerializeField] public AudioSource bgmSource;
-    [SerializeField] private AudioSource sfxSource;
+    public AudioSource bgmSource;
+    public AudioSource sfxSource;
     [SerializeField] private AudioClip[] BGM_List;
     [SerializeField] private SfxData[] sfxData;
     //[SerializeField] private AudioClip[] SFX_List;
 
-    private AudioSource[] audioSources;
+    public AudioSource[] audioSources;
     private float footstepDelay = 0.6f; // 발자국 소리 간격
     private float lastTime;
 

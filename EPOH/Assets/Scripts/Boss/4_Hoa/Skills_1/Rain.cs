@@ -30,6 +30,7 @@ public class Rain : MonoBehaviour, BossSkillInterface
         
         for (int i = 0; i < 3; i++)
         {
+            SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Hoa_Rain);
             for (int j = 0; j < raindropCount; j++)
             {
                 float spawnX = Random.Range(bossData._leftBottom.x, bossData._rightTop.x); // 랜덤 위치

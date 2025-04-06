@@ -32,6 +32,20 @@ public class JailManager : MonoBehaviour
 
     private IEnumerator LowerJailDoor()
     {
+        while (jailDoor.position.y > minHeight +0.4f)
+        {
+            jailDoor.position -= new Vector3(0, lowerSpeed * Time.deltaTime, 0);
+            if (jailDoor.position.y <= closeHeight)
+            {
+                jailClosed = true;
+                Debug.Log("감옥이 범죄자 머리 아래로 내려옴.");
+               
+            }
+            yield return null;
+        }
+        SoundManager2.instance.audioSources[1].Stop(); // 소리 정지하고
+        SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Criminal_Catch2); //갇히는 소리
+
         while (jailDoor.position.y > minHeight)
         {
             jailDoor.position -= new Vector3(0, lowerSpeed * Time.deltaTime, 0);
@@ -39,11 +53,10 @@ public class JailManager : MonoBehaviour
             {
                 jailClosed = true;
                 Debug.Log("감옥이 범죄자 머리 아래로 내려옴.");
+
             }
             yield return null;
         }
-        SoundManager2.instance.GetComponent<AudioSource>().Stop(); // 소리 정지하고
-        SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Criminal_Catch2); //갇히는 소리
 
         // 철창이 최저 높이에 도달하면 감옥 닫힘
         Debug.Log("감옥이 완전히 닫혔습니다!");
