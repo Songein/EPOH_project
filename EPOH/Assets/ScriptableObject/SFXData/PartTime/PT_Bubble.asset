@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: PT_Bubble
   m_EditorClassIdentifier: 
   name: PT_Bubble
-  number: 17
-  sfxClip: {fileID: 8300000, guid: 585f920b31efef9468022f1f50529609, type: 3}
+  sfxClip: {fileID: 8300000, guid: 1417766c40d7bde40991fb39ed59345a, type: 3}
   loop: 0
   volume: 1
   delay: 0
