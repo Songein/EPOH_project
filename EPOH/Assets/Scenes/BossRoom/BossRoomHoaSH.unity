@@ -3997,7 +3997,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1302889383}
   tracking_eye_prefab: {fileID: 4179432557092076147, guid: fa81a18cfc6c5fe42b1a7fa6376679fb, type: 3}
-  tracking_effect_prefab: {fileID: 2420338657994739230, guid: 8f7e0b47820824f3d8f284e3d44bbaa6, type: 3}
   tracking_pop_prefab: {fileID: 7583853714583533449, guid: a3058b22bda026143a0e2f973b875296, type: 3}
 --- !u!114 &1117407623
 MonoBehaviour:

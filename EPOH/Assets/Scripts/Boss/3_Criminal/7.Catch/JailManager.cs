@@ -43,7 +43,7 @@ public class JailManager : MonoBehaviour
             }
             yield return null;
         }
-        SoundManager2.instance.audioSources[1].Stop(); // 소리 정지하고
+        //SoundManager2.instance.audioSources[1].Stop(); // 소리 정지하고
         SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Criminal_Catch2); //갇히는 소리
 
         while (jailDoor.position.y > minHeight)
