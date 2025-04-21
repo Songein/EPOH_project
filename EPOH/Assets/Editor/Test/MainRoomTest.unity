@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42c8009db15074a2a8e9a2cd3dd5ff8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startEventID: Event_002
+  startEventID: Event_001
   currentEventID: 
   nextEventID: 
   canExecute: 1
@@ -346,6 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc0f4fd9cd6c4f3895f2c9ee349e8d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestroy: 1
   currentLine: 
   nextDialogueID: 
   _dialogueUI: {fileID: 601847435}
@@ -770,7 +771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4578192908810528636, guid: fb214ae72a6594cb096ce455f7b526cb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.000009536743
+      value: -0.000011444092
       objectReference: {fileID: 0}
     - target: {fileID: 4578192908810528636, guid: fb214ae72a6594cb096ce455f7b526cb, type: 3}
       propertyPath: m_LocalPosition.y

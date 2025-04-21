@@ -2,9 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Event
-{
-    public class EventManager : MonoBehaviour
+public class EventManager : MonoBehaviour
     {
         private static EventManager _instance;
 
@@ -63,14 +61,14 @@ namespace Event
                 return false;
             }
         
-            if (!DataManager.Instance.events.ContainsKey(eventID))
+            if (!DataManager.Instance.Events.ContainsKey(eventID))
             {
                 Debug.LogWarning($"{eventID}는 존재하지 않는 이벤트입니다.");
                 return false;
             }
         
             // 이벤트의 Condition Type 체크
-            EventStructure curEvent = DataManager.Instance.events[eventID];
+            EventStructure curEvent = DataManager.Instance.Events[eventID];
             if (curEvent.ConditionType == "or")
             {
                 foreach (var condition in curEvent.Conditions)
@@ -111,7 +109,7 @@ namespace Event
         {
             if (CheckExecutable(eventID))
             {
-                EventStructure eventStructure = DataManager.Instance.events[eventID];
+                EventStructure eventStructure = DataManager.Instance.Events[eventID];
                 currentEventID = eventID;
                 Debug.Log($"{eventID} 실행 : {eventStructure.Description}");
                 foreach (var result in eventStructure.Results)
@@ -127,12 +125,12 @@ namespace Event
                 }
                 
                 // 다음 이벤트 아이디 확인
-                if (!string.IsNullOrEmpty(eventStructure.NextEvent) && DataManager.Instance.events.ContainsKey(eventStructure.NextEvent))
+                if (!string.IsNullOrEmpty(eventStructure.NextEvent) && DataManager.Instance.Events.ContainsKey(eventStructure.NextEvent))
                 {
                     nextEventID = eventStructure.NextEvent;
                     Debug.LogWarning($"다음 이벤트 아이디 갱신! -> {nextEventID}");
                 
-                    if (DataManager.Instance.events[eventStructure.NextEvent].IsAuto == "true")
+                    if (DataManager.Instance.Events[eventStructure.NextEvent].IsAuto == "true")
                     {
                         Debug.LogWarning($"{nextEventID}의 IsAuto 값이 true여서 바로 실행");
                         ExecuteEvent(eventStructure.NextEvent);
@@ -159,10 +157,10 @@ namespace Event
         IEnumerator DoEffect(string effectID)
         {
             if(string.IsNullOrEmpty(effectID)) yield return null;
-            if (DataManager.Instance.effects.ContainsKey(effectID))
+            if (DataManager.Instance.Effects.ContainsKey(effectID))
             {
                 Debug.Log($"{effectID} 이펙트 실행");
-                EffectStructure effect = DataManager.Instance.effects[effectID];
+                EffectStructure effect = DataManager.Instance.Effects[effectID];
                 if (effect.IsWait == "true")
                 {
                     yield return new WaitUntil(() => canExecute);
@@ -190,7 +188,7 @@ namespace Event
         void DoDialogue(string dialogueID)
         {
             if(string.IsNullOrEmpty(dialogueID)) return;
-            if (DataManager.Instance.dialogues.ContainsKey(dialogueID))
+            if (DataManager.Instance.Dialogues.ContainsKey(dialogueID))
             {
                 canExecute = false;
                 Debug.Log($"{dialogueID} 대화 실행");
@@ -198,4 +196,3 @@ namespace Event
             }
         }
     }
-}

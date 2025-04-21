@@ -8,6 +8,23 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    [Header("다이얼로그 정보")]
+    private DialogueStructure _currentDialogue;
+    public string currentLine;
+    public string nextDialogueID;
+    private Queue<DialogueTextType> _dialogues = new Queue<DialogueTextType>();
+
+    [Header("UI 관련 변수")] [SerializeField] private GameObject _dialogueUI;
+    [SerializeField] TextMeshProUGUI _characterName;
+    [SerializeField] TextMeshProUGUI _dialogueArea;
+    
+    [Header("대사 출력 변수")]
+    [SerializeField] bool isDialogueActive = false;
+    [SerializeField] bool isTyping = false;
+    [SerializeField] bool isLineEnd = false;
+    [SerializeField] float typingSpeed = 0.1f;
+    [SerializeField] float lineChangeSpeed = 0.5f;
+
     private static DialogueManager _instance;
 
     public static DialogueManager Instance
@@ -41,24 +58,6 @@ public class DialogueManager : MonoBehaviour
         }
     }
     
-    [Header("다이얼로그 정보")]
-    private DialogueStructure _currentDialogue;
-    public string currentLine;
-    public string nextDialogueID;
-    private Queue<DialogueTextType> _dialogues = new Queue<DialogueTextType>();
-
-    [Header("UI 관련 변수")] [SerializeField] private GameObject _dialogueUI;
-    [SerializeField] TextMeshProUGUI _characterName;
-    [SerializeField] TextMeshProUGUI _dialogueArea;
-    
-    [Header("대사 출력 변수")]
-    [SerializeField] bool isDialogueActive = false;
-    [SerializeField] bool isTyping = false;
-    [SerializeField] bool isLineEnd = false;
-    [SerializeField] float typingSpeed = 0.1f;
-    [SerializeField] float lineChangeSpeed = 0.5f;
-
-    
     
     void Update()
     {
@@ -81,7 +80,7 @@ public class DialogueManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         // 다이얼로그 가져오기
-        _currentDialogue = DataManager.Instance.dialogues[dialogueID]; 
+        _currentDialogue = DataManager.Instance.Dialogues[dialogueID]; 
         isDialogueActive = true;
         
         //대화 큐에 대화 넣기
@@ -163,9 +162,9 @@ public class DialogueManager : MonoBehaviour
     void SetUI(DialogueStructure dialogueInfo)
     {
         if (!string.IsNullOrEmpty(dialogueInfo.CharacterId) &&
-            DataManager.Instance.characters.ContainsKey(dialogueInfo.CharacterId))
+            DataManager.Instance.Characters.ContainsKey(dialogueInfo.CharacterId))
         {
-            CharacterStructure characterInfo = DataManager.Instance.characters[dialogueInfo.CharacterId];
+            CharacterStructure characterInfo = DataManager.Instance.Characters[dialogueInfo.CharacterId];
             _characterName.text = characterInfo.CharacterName;
         }
     }

@@ -1,8 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Networking;
+using Cysharp.Threading.Tasks;
 
 public struct DialogueTextType
 {
@@ -19,22 +19,23 @@ public class DialogueStructure
 
 public class DialogueParser
 {
-    public Dictionary<string, DialogueStructure> Parse(string _CSVFileName)
+    public async UniTask<Dictionary<string, DialogueStructure>> Parse(string sheetName)
     {
         //딕셔너리 생성하기
         Dictionary<string, DialogueStructure> dictionary = new Dictionary<string, DialogueStructure>();
         
-        //CSV 데이터 가져오기
-        TextAsset csvData = Resources.Load<TextAsset>(_CSVFileName);
-
-        if (csvData == null)
+        string csvUrl = $"https://docs.google.com/spreadsheets/d/1F8Kp36JIyAbTImLd5hE6USwS9ohh9LfMvEWrDHSHcXc/gviz/tq?tqx=out:csv&sheet={sheetName}";
+        
+        // CSV 데이터 가져오기
+        string csvData = await LoadCSVFromURL(csvUrl);
+        if (string.IsNullOrWhiteSpace(csvData))
         {
-            Debug.Log(_CSVFileName + " 이름의 csv file을 찾을 수 없음.");
+            Debug.Log("CSV 데이터를 로드할 수 없습니다.");
             return dictionary;
         }
         
         //엔터를 기준으로 줄 나누기
-        string[] lines = csvData.text.Split('\n');
+        string[] lines = csvData.Split("\n");
         int totalLines = lines.Length - 6;
 
         string currentKey = "";
@@ -51,7 +52,8 @@ public class DialogueParser
             string key = values[0].Trim();
             string characterID = values[1].Trim();
             string interactionType = values.Length > 2 ? values[2].Trim() : "";
-            string text = values.Length > 3 ? values[3].Trim() : "";
+            string rawText = values.Length > 3 ? values[3].Trim() : "";
+            string text = rawText.Replace("\\", "\n");  // \를 \n로 변경
             string nextID = values.Length > 4 ? values[4].Trim() : "";
 
             if (!string.IsNullOrEmpty(key)) // 새로운 대사 시작
@@ -90,7 +92,33 @@ public class DialogueParser
             };
         }
 
-        Debug.LogWarning($"{_CSVFileName} 데이터 파싱 완료! 대사 개수: " + dictionary.Count);
+        Debug.LogWarning("대화 데이터 파싱 완료! 대사 개수: " + dictionary.Count);
         return dictionary;
+    }
+    
+    private async UniTask<string> LoadCSVFromURL(string url)
+    {
+        // 캐시에 없으면 다운로드
+        using (UnityWebRequest www = UnityWebRequest.Get(url))
+        {
+            try
+            {
+                await www.SendWebRequest();
+
+                if (www.result != UnityWebRequest.Result.Success)
+                {
+                    Debug.LogError($"CSV 다운로드 실패: {www.error}");
+                    return string.Empty;
+                }
+
+                string csvText = www.downloadHandler.text;
+                return csvText;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"CSV 다운로드 중 오류: {e.Message}");
+                return string.Empty;
+            }
+        }
     }
 }
