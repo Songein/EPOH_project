@@ -4142,7 +4142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5475711150737818985, guid: 1798fccc825e741998eadc340af4ab3c, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5475711150737818985, guid: 1798fccc825e741998eadc340af4ab3c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4337,7 +4337,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1290779610
 GameObject:
@@ -6229,8 +6229,16 @@ PrefabInstance:
       value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7554576526619495476, guid: 081dfe07c71fc3e4bbed16eea9c088c5, type: 3}
+      propertyPath: neuronPosition.Array.data[2].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554576526619495476, guid: 081dfe07c71fc3e4bbed16eea9c088c5, type: 3}
       propertyPath: neuronPosition.Array.data[2].y
       value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554576526619495476, guid: 081dfe07c71fc3e4bbed16eea9c088c5, type: 3}
+      propertyPath: neuronPosition.Array.data[3].x
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 7554576526619495476, guid: 081dfe07c71fc3e4bbed16eea9c088c5, type: 3}
       propertyPath: neuronPosition.Array.data[3].y
@@ -6300,6 +6308,10 @@ PrefabInstance:
       propertyPath: _text
       value: 
       objectReference: {fileID: 23166288}
+    - target: {fileID: 7554576526619495479, guid: 081dfe07c71fc3e4bbed16eea9c088c5, type: 3}
+      propertyPath: neuron
+      value: 
+      objectReference: {fileID: 7764093371953649824, guid: e8d2b51e823f8d140b817218de047f3c, type: 3}
     - target: {fileID: 7554576526619495479, guid: 081dfe07c71fc3e4bbed16eea9c088c5, type: 3}
       propertyPath: hackingGoal
       value: 50
@@ -6386,7 +6398,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9.2001505
+  orthographic size: 5.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6410,12 +6422,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936034454}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.6, y: 3.25, z: -10}
+  m_LocalPosition: {x: -8.6, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!81 &1936034458
 AudioListener:

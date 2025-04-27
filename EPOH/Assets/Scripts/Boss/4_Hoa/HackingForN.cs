@@ -50,6 +50,7 @@ public class HackingForN : MonoBehaviour
         {
             _hackingPoint = hackingGoal;
             BossManagerNew.Current.EndBossRaid();
+        
         }
         else
         {

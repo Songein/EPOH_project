@@ -26,12 +26,7 @@ public class NeuronActive : MonoBehaviour
         HackingForN hacking = FindObjectOfType<HackingForN>();
         while (hacking._hackingPoint < hacking.hackingGoal)
         {
-            if (hacking._hackingPoint >= hacking.hackingGoal) // 종료 조건 재확인
-            {
-                Debug.Log("해킹 목표 도달! 뉴런 생성 중단!");
-                yield break; // 코루틴 종료
-            }
-
+            Debug.Log("뉴런 생성");
             int randomNum = Random.Range(0, neuronPosition.Length);
             GameObject g_neuron = Instantiate(neuron, neuronPosition[randomNum], Quaternion.identity);
             yield return new WaitForSeconds(10f);

@@ -766,11 +766,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7554576526619495476, guid: 081dfe07c71fc3e4bbed16eea9c088c5, type: 3}
       propertyPath: neuronPosition.Array.data[0].y
-      value: -9
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 7554576526619495476, guid: 081dfe07c71fc3e4bbed16eea9c088c5, type: 3}
       propertyPath: neuronPosition.Array.data[1].y
-      value: -9
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 7554576526619495476, guid: 081dfe07c71fc3e4bbed16eea9c088c5, type: 3}
       propertyPath: neuronPosition.Array.data[2].y
@@ -920,7 +920,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 760377071}
-        m_TargetAssemblyTypeName: PasswordSkill, Assembly-CSharp
+        m_TargetAssemblyTypeName: newPasswordSkill, Assembly-CSharp
         m_MethodName: Activate
         m_Mode: 1
         m_Arguments:
@@ -978,10 +978,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 760377065}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42d8bec85efd54fbb9c10bd731902bcd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2933aaf47fb72d24182f5e2bb4479cc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wordPrefab: {fileID: 5222605675565453546, guid: 1b6499f7a0e4846b0ae581d4d55d73a7, type: 3}
+  BluePasswordObject: {fileID: 5222605675565453546, guid: db92e5c4ee3bb7347842925a1abc969b, type: 3}
+  YellowPasswordObject: {fileID: 5222605675565453546, guid: 09a634e993c904b469e17a9faa4dce6f, type: 3}
+  passwordSprites:
+  - {fileID: 21300000, guid: e6f3ca8d89c83b842b71548b5aa36258, type: 3}
+  - {fileID: 21300000, guid: cfcc0009656782a459c2881575d051ea, type: 3}
+  - {fileID: 21300000, guid: e06d82f1b674eac4a9e263e6db0ca0d3, type: 3}
+  - {fileID: 21300000, guid: 691f719f28cddc444b6349e488116c1b, type: 3}
+  - {fileID: 21300000, guid: dbc30d5e0f5a9ee418832488aaea4c81, type: 3}
+  - {fileID: 21300000, guid: 691f719f28cddc444b6349e488116c1b, type: 3}
+  - {fileID: 21300000, guid: 97ff0cdd49bde2943a76a9f133a0ad8f, type: 3}
+  - {fileID: 21300000, guid: 456ff49f4e1e5de448bd86f8ccc7a453, type: 3}
+  - {fileID: 21300000, guid: 2bef2d19944f19649b95d5408c15078f, type: 3}
 --- !u!1 &792744088
 GameObject:
   m_ObjectHideFlags: 0
@@ -2910,10 +2921,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _criminalPrefabList:
   - {fileID: 2649482153741351512, guid: 8080129f4bd92409280e040f7614d87d, type: 3}
-  - {fileID: 4068837899869172857, guid: e36517d434d67480b96cf0112c58f5da, type: 3}
+  - {fileID: 2649482153741351512, guid: 917da44a30169504880807a28e00f8d3, type: 3}
   - {fileID: 7046482310498105202, guid: d15592a66234c4739a73577e9006458b, type: 3}
-  - {fileID: 3265107144402766453, guid: 5de5d868117b34c0f9ebb433248404c5, type: 3}
-  - {fileID: 8217599590691575860, guid: ea0662616862749dbb68d71d5f8f8369, type: 3}
+  - {fileID: 2649482153741351512, guid: fbffa6ef40c290847aabda32f0e30d37, type: 3}
+  - {fileID: 2649482153741351512, guid: 65556e15a8757ff45ad1e431426e800d, type: 3}
   _criminals: []
   _shuffleCnt: 3
   swapDuration: 0.5
