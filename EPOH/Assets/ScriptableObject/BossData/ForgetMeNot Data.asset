@@ -17,3 +17,4 @@ MonoBehaviour:
   _rightTop: {x: 9, y: 9, z: 0}
   _leftBottom: {x: -9, y: -9, z: 0}
   BGMClip: {fileID: 8300000, guid: 2a7dd7a862e9ff04c8f7bd2bf78dfe96, type: 3}
+  Nueron: {fileID: 21300000, guid: 9e62e89896c9dc74aa67664c3e682dee, type: 3}

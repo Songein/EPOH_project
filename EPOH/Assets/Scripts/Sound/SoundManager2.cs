@@ -141,6 +141,7 @@ public class SoundManager2 : MonoBehaviour
 
     public void PlaySFX(int index)
     { //PlayOneShot은 loop 재생이 안돼서...
+        /*
         if (index == (int)SfXSound.Criminal_Catch)
         {
             float currentVolume = audioSources[1].volume * sfxData[index].volume; // 현재 슬라이더에 설정된 볼륨
@@ -149,7 +150,8 @@ public class SoundManager2 : MonoBehaviour
             sfxSource.loop = sfxData[index].loop;     // 루프 설정
             sfxSource.Play();                         // 정상 재생
         }
-        else if (Time.time - lastTime >= sfxData[index].delay)
+        */
+         if (Time.time - lastTime >= sfxData[index].delay)
         {
             float currentVolume = audioSources[1].volume * sfxData[index].volume; // 현재 슬라이더에 설정된 볼륨
             sfxSource.PlayOneShot(sfxData[index].sfxClip, currentVolume);

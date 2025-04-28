@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2830692365946647307}
   - component: {fileID: 8368600547685841018}
   - component: {fileID: 1385924549323256595}
-  - component: {fileID: -7970331030455922007}
+  - component: {fileID: -1330814013717393079}
   m_Layer: 0
   m_Name: BubbleSprite
   m_TagString: Interaction
@@ -76,15 +76,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4ee38e2de221c40e08394d20baf34229, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.56, y: 2.56}
+  m_Size: {x: 35.28, y: 10.801054}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &8368600547685841018
@@ -100,18 +100,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.80468035, y: 0.7862973}
+  m_Offset: {x: 0, y: -5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 2.56}
-    newSize: {x: 2.56, y: 2.56}
+    oldSize: {x: 35.28, y: 10.801054}
+    newSize: {x: 35.28, y: 10.801054}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.1135817, y: 2.5725946}
+  m_Size: {x: 35, y: 2}
   m_EdgeRadius: 0
 --- !u!95 &1385924549323256595
 Animator:
@@ -134,7 +134,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-7970331030455922007
+--- !u!114 &-1330814013717393079
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,11 +143,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2046269840837140296}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97277954b1470418b8f72fabca27135d, type: 3}
+  m_Script: {fileID: 11500000, guid: 3dfda84982b78414fa91824406202d5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _duration: 0
-  _healthDamage: 10
-  _hackPointDamage: 0
-  _attackHealth: 1
-  _attackHackPoint: 0

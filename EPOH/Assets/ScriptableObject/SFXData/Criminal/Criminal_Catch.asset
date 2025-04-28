@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Criminal_Catch
   m_EditorClassIdentifier: 
   name: Criminal_Catch
-  sfxClip: {fileID: 8300000, guid: 97fa5d9f272be5f499e63574d4d7b157, type: 3}
-  loop: 1
+  sfxClip: {fileID: 8300000, guid: 0e11b80b2757f0e4bad75b9ec47f541a, type: 3}
+  loop: 0
   volume: 1
   delay: 0

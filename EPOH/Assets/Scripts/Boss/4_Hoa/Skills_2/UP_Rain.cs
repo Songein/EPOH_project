@@ -44,8 +44,8 @@ public class UP_Rain : MonoBehaviour
         float spawnX = Random.Range(bossData._leftBottom.x, bossData._rightTop.x);
         float spawnY = Random.Range(bossData._leftBottom.y, bossData._leftBottom.y +10); // 랜덤 위치
         int raindropCount = Random.Range(minRaindrops, maxRaindrops + 1);  // 랜덤 개수 결정
-        Vector3 safePosition = new Vector3(spawnX, bossData._leftBottom.y, 0);
-        GameObject safeZone = Instantiate(safePrefab, safePosition, Quaternion.identity);
+        Vector3 safePosition = new Vector3(spawnX, bossData._leftBottom.y + 2, 0);
+        GameObject safeZone = Instantiate(safePrefab, safePosition, Quaternion.Euler(0,0,-90));
 
         yield return new WaitForSeconds(2.0f);
 
