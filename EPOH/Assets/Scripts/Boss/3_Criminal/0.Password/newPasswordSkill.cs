@@ -21,13 +21,14 @@ public class newPasswordSkill : MonoBehaviour
         int ranNum = Random.Range(0, 2);
         if (ranNum == 0)
         { //Cat -> Cut 일때
+            float _y = Random.Range(BossManagerNew.Current.bossData._leftBottom.y,
+                   BossManagerNew.Current.bossData._rightTop.y);
             for (int i = 0; i < 3; i++)
             {
-              
-                float _x = Random.Range(BossManagerNew.Current.bossData._leftBottom.x,
-           BossManagerNew.Current.bossData._rightTop.x);
-                float _y = Random.Range(BossManagerNew.Current.bossData._leftBottom.y,
-                    BossManagerNew.Current.bossData._rightTop.y);
+                float _x = Mathf.Lerp(BossManagerNew.Current.bossData._leftBottom.x +4 , BossManagerNew.Current.bossData._rightTop.x -4 , (float) i / 2);
+                //float _x = Random.Range(BossManagerNew.Current.bossData._leftBottom.x,
+          // BossManagerNew.Current.bossData._rightTop.x);
+               
                 Vector2 newPos = new Vector2(_x, _y);
 
                 if (i == 1)
@@ -65,12 +66,13 @@ public class newPasswordSkill : MonoBehaviour
 
         else if (ranNum == 1)
         {
+            float _y = Random.Range(BossManagerNew.Current.bossData._leftBottom.y,
+                    BossManagerNew.Current.bossData._rightTop.y);
             for (int i = 4; i < 8; i++)
             {
-                float _x = Random.Range(BossManagerNew.Current.bossData._leftBottom.x,
-           BossManagerNew.Current.bossData._rightTop.x);
-                float _y = Random.Range(BossManagerNew.Current.bossData._leftBottom.y,
-                    BossManagerNew.Current.bossData._rightTop.y);
+                //float _x = Random.Range(BossManagerNew.Current.bossData._leftBottom.x,
+                //BossManagerNew.Current.bossData._rightTop.x);
+                float _x = Mathf.Lerp(BossManagerNew.Current.bossData._leftBottom.x+2 , BossManagerNew.Current.bossData._rightTop.x -2, (float)(i -4) / 3);
                 Vector2 newPos = new Vector2(_x, _y);
                 if (i == 4)
                 {
