@@ -49,12 +49,12 @@ public class DialogueParser
 
             if (values.Length < 2) continue;
 
-            string key = values[0].Trim();
-            string characterID = values[1].Trim();
-            string interactionType = values.Length > 2 ? values[2].Trim() : "";
-            string rawText = values.Length > 3 ? values[3].Trim() : "";
-            string text = rawText.Replace("\\", "\n");  // \를 \n로 변경
-            string nextID = values.Length > 4 ? values[4].Trim() : "";
+            string key = values[0].Trim().Replace("\"", "");;
+            string characterID = values[1].Trim().Replace("\"", "");;
+            string interactionType = values.Length > 2 ? values[2].Trim().Replace("\"", "") : "";
+            string rawText = values.Length > 3 ? values[3].Trim().Replace("\"", "") : "";
+            string text = rawText.Replace("\"", "").Replace("\\", "\n");  // \를 \n로 변경
+            string nextID = values.Length > 4 ? values[4].Trim().Replace("\"", "") : "";
 
             if (!string.IsNullOrEmpty(key)) // 새로운 대사 시작
             {

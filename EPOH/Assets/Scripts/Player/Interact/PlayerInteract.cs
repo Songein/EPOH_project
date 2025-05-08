@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -21,14 +22,42 @@ public class PlayerInteract : MonoBehaviour
     //보스 맵 내 상호작용 패턴
     public Action OnInteract;
 
+    private static PlayerInteract _instance;
+
+    public static PlayerInteract Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<PlayerInteract>();
+
+                if (_instance == null)
+                {
+                    GameObject singletonObject = new GameObject(typeof(PlayerInteract).Name);
+                    _instance = singletonObject.AddComponent<PlayerInteract>();
+                }
+            }
+            return _instance;
+        }
+    }
+
     void Awake()
     {
-        PlayerInteract.instance = this;
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject); // 씬이 바뀌어도 유지됨
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject); // 중복 생성 방지
+        }
     }
     
     void Update()
     {
-        if (Input.GetButtonDown("Interact") && OnInteract != null) // 상호작용
+        if (canInteract && Input.GetButtonDown("Interact") && OnInteract != null) // 상호작용
         {
             OnInteract?.Invoke();
             OnInteract = null;

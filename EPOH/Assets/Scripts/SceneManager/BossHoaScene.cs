@@ -123,8 +123,8 @@ public class BossHoaScene : MonoBehaviour
         if (boss_manager.battle_start && boss_manager.hacking_point == 200)
         {
             boss_manager.battle_start = false;
-            GameManager.instance.boss_clear_info[4] = false;
-            GameManager.instance.boss_clear_info[5] = true;
+            GameManager.instance.bossClearInfo[4] = false;
+            GameManager.instance.bossClearInfo[5] = true;
 
             bossHoaMissionClear();
 

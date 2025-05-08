@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using Cinemachine;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public class EventManager : MonoBehaviour
     {
@@ -43,12 +45,15 @@ public class EventManager : MonoBehaviour
         public string nextEventID = "";
     
         // 이벤트 성공 여부 
-        public Action OnResultEnd;
         public bool canExecute = true;
+        
+        // 카메라 관련 변수
+        private int _maxPriority = 20;
+        private int _minPriority = 1;
 
         void Start()
         {
-            ExecuteEvent(startEventID);
+            ExecuteEvent(startEventID).Forget();
         }
     
         // 이벤트 실행 가능 여부 검사
@@ -105,16 +110,17 @@ public class EventManager : MonoBehaviour
         }
     
         // 이벤트 실행 함수
-        public void ExecuteEvent(string eventID)
+        public async UniTask ExecuteEvent(string eventID)
         {
             if (CheckExecutable(eventID))
             {
                 EventStructure eventStructure = DataManager.Instance.Events[eventID];
                 currentEventID = eventID;
                 Debug.Log($"{eventID} 실행 : {eventStructure.Description}");
+                
                 foreach (var result in eventStructure.Results)
                 {
-                    ExecuteResult(result);
+                    await ExecuteResult(result);
                 }
                 
                 // 결과를 다 실행하면 진행도 업데이트
@@ -140,59 +146,114 @@ public class EventManager : MonoBehaviour
         }
     
         // 결과 실행 함수
-        void ExecuteResult(string resultID)
+        private async UniTask ExecuteResult(string resultID)
         {
-            if (string.IsNullOrEmpty(resultID)) return;
+            if (string.IsNullOrEmpty(resultID))
+            {
+                return;
+            }
 
             if (resultID.StartsWith("Effect"))
             {
-                StartCoroutine(DoEffect(resultID));
+                await DoEffect(resultID);
             }
             else if (resultID.StartsWith("Dialogue"))
             {
-                DoDialogue(resultID);
+                await DoDialogue(resultID);
             }
         }
 
-        IEnumerator DoEffect(string effectID)
+        private async UniTask DoEffect(string effectID)
         {
-            if(string.IsNullOrEmpty(effectID)) yield return null;
+            if(string.IsNullOrEmpty(effectID)) UniTask.Yield();
             if (DataManager.Instance.Effects.ContainsKey(effectID))
             {
-                Debug.Log($"{effectID} 이펙트 실행");
                 EffectStructure effect = DataManager.Instance.Effects[effectID];
-                if (effect.IsWait == "true")
-                {
-                    yield return new WaitUntil(() => canExecute);
-                }
-            
+                Debug.LogWarning($"{effect.Description} 실행");
+                
                 switch (effect.EffectType)
                 {
+                    case "Request":
+                        Debug.LogWarning($"Request 타입의 {effect.EffectId} 실행");
+                        UIManager.Instance.OpenUI(UIManager.Instance.requestUI,effect);
+                        break;
                     case "ArtResource":
-                        Debug.Log($"ArtResource 타입의 {effect.EffectId} 실행");
+                        Debug.LogWarning($"ArtResource 타입의 {effect.EffectId} 실행");
+                        UIManager.Instance.OpenUI(UIManager.Instance.popUpUI,effect);
                         break;
                     case "Camera":
-                        Debug.Log($"Camera 타입의 {effect.EffectId} 실행");
+                        Debug.LogWarning($"Camera 타입의 {effect.EffectId} 실행");
+                        GameObject effectObj = GameObject.Find(effect.EffectId);
+                        GameObject camera = effectObj.transform.GetChild(0).gameObject;
+                        camera.SetActive(true);
+                        camera.GetComponent<CinemachineVirtualCamera>().Priority = _maxPriority;
                         break;
                     case "Animation":
-                        Debug.Log($"Animation 타입의 {effect.EffectId} 실행");
+                        Debug.LogWarning($"Animation 타입의 {effect.EffectId} 실행");
                         break;
                     case "Screen":
-                        Debug.Log($"Screen 타입의 {effect.EffectId} 실행");
+                        Debug.LogWarning($"Screen 타입의 {effect.EffectId} 실행");
+                        if (effect.EffectId == "Effect_011")
+                        {
+                            GameManager.instance.playerPosTemp = PlayerController.Instance.transform.position;
+                            switch (GameManager.instance.ProgressState)
+                            {
+                                case GameManager.ProgressId.Progress_Req1_Clear:
+                                    SceneChanger.Instance.ChangeScene("CutScene1").Forget();
+                                    break;
+                                case GameManager.ProgressId.Progress_Req2_Clear:
+                                    SceneChanger.Instance.ChangeScene("CutScene2").Forget();
+                                    break;
+                                case GameManager.ProgressId.Progress_Req3_Clear:
+                                    SceneChanger.Instance.ChangeScene("CutScene3").Forget();
+                                    break;
+                                case GameManager.ProgressId.Progress_Req4_Clear:
+                                    SceneChanger.Instance.ChangeScene("CutScene4").Forget();
+                                    break;
+                            }
+                        }
+                        else if(effect.EffectId == "Effect_012")
+                        {
+                            SceneChanger.Instance.ChangeScene("MainRoomTest").Forget();
+                        }
                         break;
                 }
-                Debug.Log($"{effect.Description}");
+                
+                if (effect.IsWait == "true")
+                {
+                    await WaitForEffectEndAsync();
+                    Debug.LogWarning($"IsWait True 타입의 {effect.EffectId} 끝날 때까지 대기 완료");
+                }
+                Debug.LogWarning($"IsWait False 타입의 {effect.EffectId} 실행 끝");
             }
         }
 
-        void DoDialogue(string dialogueID)
+        private async UniTask DoDialogue(string dialogueID)
         {
             if(string.IsNullOrEmpty(dialogueID)) return;
             if (DataManager.Instance.Dialogues.ContainsKey(dialogueID))
             {
                 canExecute = false;
-                Debug.Log($"{dialogueID} 대화 실행");
+                Debug.LogWarning($"{dialogueID} 대화 실행");
                 StartCoroutine(DialogueManager.Instance.StartDialogue(dialogueID));
+                await WaitForDialogueEndAsync();
+                Debug.LogWarning($"{dialogueID} 대화 끝");
             }
+        }
+        
+        private async UniTask WaitForDialogueEndAsync()
+        {
+            DialogueManager.Instance.OnDialogueEnd = null;
+            var tcs = new UniTaskCompletionSource();
+            DialogueManager.Instance.OnDialogueEnd += () => tcs.TrySetResult();
+            await tcs.Task;
+        }
+    
+        private async UniTask WaitForEffectEndAsync()
+        {
+            EffectManager.Instance.OnEffectEnd = null;
+            var tcs = new UniTaskCompletionSource();
+            EffectManager.Instance.OnEffectEnd += () => tcs.TrySetResult();
+            await tcs.Task;
         }
     }

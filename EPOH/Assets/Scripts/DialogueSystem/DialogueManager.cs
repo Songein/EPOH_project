@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Event;
@@ -6,7 +7,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.UI;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueManager : UIBase
 {
     [Header("다이얼로그 정보")]
     private DialogueStructure _currentDialogue;
@@ -14,7 +15,7 @@ public class DialogueManager : MonoBehaviour
     public string nextDialogueID;
     private Queue<DialogueTextType> _dialogues = new Queue<DialogueTextType>();
 
-    [Header("UI 관련 변수")] [SerializeField] private GameObject _dialogueUI;
+    [Header("UI 관련 변수")]
     [SerializeField] TextMeshProUGUI _characterName;
     [SerializeField] TextMeshProUGUI _dialogueArea;
     
@@ -24,6 +25,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] bool isLineEnd = false;
     [SerializeField] float typingSpeed = 0.1f;
     [SerializeField] float lineChangeSpeed = 0.5f;
+
+    public Action OnDialogueEnd;
 
     private static DialogueManager _instance;
 
@@ -57,9 +60,20 @@ public class DialogueManager : MonoBehaviour
             Destroy(gameObject); // 중복 생성 방지
         }
     }
+
+    public override void OnOpen()
+    {
+        base.OnOpen();
+        transform.GetChild(0).gameObject.SetActive(true);
+    }
+
+    public override void OnClose()
+    {
+        base.OnClose();
+        transform.GetChild(0).gameObject.SetActive(false);
+    }
     
-    
-    void Update()
+    public override void HandleMouseInput()
     {
         if (Input.GetKeyDown(KeyCode.Space) && isTyping)
         {
@@ -75,7 +89,7 @@ public class DialogueManager : MonoBehaviour
             DisplayNextDialogueLine();
         }
     }
-
+    
     public IEnumerator StartDialogue(string dialogueID)
     {
         yield return new WaitForSeconds(1f);
@@ -92,8 +106,8 @@ public class DialogueManager : MonoBehaviour
         
         //대사 UI창 열기
         SetUI(_currentDialogue);
-        _dialogueUI.SetActive(true);
-        
+        if(!UIManager.Instance.IsUIOpen(UIManager.Instance.dialogueUI))
+            UIManager.Instance.OpenUI(UIManager.Instance.dialogueUI);
         DisplayNextDialogueLine();
     }
 
@@ -104,7 +118,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (nextDialogueID != "")
             {
-                StartDialogue(nextDialogueID);
+                StartCoroutine(StartDialogue(nextDialogueID));
                 return;
             }
             EndDialogue();
@@ -156,7 +170,8 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         isDialogueActive = false;
-        _dialogueUI.SetActive(false);
+        UIManager.Instance.CloseTopUI();
+        OnDialogueEnd?.Invoke();
     }
 
     void SetUI(DialogueStructure dialogueInfo)

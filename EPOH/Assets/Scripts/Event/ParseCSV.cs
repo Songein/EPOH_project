@@ -59,11 +59,11 @@ public class ParseCSV
                 }
                 else
                 {
-                    if (headers[j].StartsWith("Condition")) 
+                    if (header.StartsWith("Condition")) 
                     {
                         conditionsList.Add(value);
                     }
-                    else if (headers[j].StartsWith("Result")) 
+                    else if (header.StartsWith("Result")) 
                     {
                         resultsList.Add(value);
                     }
