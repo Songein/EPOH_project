@@ -80,4 +80,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Editor/Test/MainRoomTest.unity
     guid: 049aa7253eac44b6da5ef6ac146d02fb
+  - enabled: 1
+    path: Assets/Scenes/BossRoom/BossRoomTest.unity
+    guid: 8c80de3752efb46789754c507f3ca529
   m_configObjects: {}

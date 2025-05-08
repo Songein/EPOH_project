@@ -18,6 +18,8 @@ TagManager:
   - Wall
   - Neuron
   - PanelBGM
+  - Portal
+  - AutoTrigger
   layers:
   - Default
   - TransparentFX

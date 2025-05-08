@@ -1,8 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cysharp.Threading.Tasks;
 
 public class BeginningEvent : MonoBehaviour
 {
@@ -24,6 +24,12 @@ public class BeginningEvent : MonoBehaviour
     void Start()
     {
         StartCoroutine(displayMessages());
+        StartLoading().Forget();
+    }
+    
+    private async UniTaskVoid StartLoading()
+    {
+        await DataManager.Instance.InitializeData();
     }
 
     IEnumerator displayMessages()
@@ -44,9 +50,7 @@ public class BeginningEvent : MonoBehaviour
             {
                 yield return new WaitForSeconds(1f); 
             }
-
         }
-
         SceneManager.LoadScene("MainRoomTest");
     }
 }

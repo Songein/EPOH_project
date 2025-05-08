@@ -10,6 +10,48 @@ using Vector2 = UnityEngine.Vector2;
 
 public class PlayerController : MonoBehaviour
 {
+    private static PlayerController _instance;
+
+    public static PlayerController Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<PlayerController>();
+
+                if (_instance == null)
+                {
+                    GameObject singletonObject = new GameObject(typeof(PlayerController).Name);
+                    _instance = singletonObject.AddComponent<PlayerController>();
+                }
+            }
+            return _instance;
+        }
+    }
+
+    void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject); // 씬이 바뀌어도 유지됨
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject); // 중복 생성 방지
+        }
+        
+        //Rigidbody2D 컴포넌트 할당
+        rigid = GetComponent<Rigidbody2D>();
+        //Animator 컴포넌트 할당
+        animator = GetComponent<Animator>();
+        //Sprite Renderer 컴포넌트 할당
+        sr = GetComponent<SpriteRenderer>();
+        //Trail Renderer 컴포넌트 할당
+        tr = GetComponent<TrailRenderer>();
+    }
+    
     //플레이어 리지드바디 컴포넌트
     private Rigidbody2D rigid;
     //플레이어 애니메이터
@@ -20,6 +62,7 @@ public class PlayerController : MonoBehaviour
     public RaycastHit2D groundRayHit;
     
     //플레이어 좌우 이동
+    public bool canMove = true;
     private float horizontal; //수평 값
     public float moveSpeed; //이동 속도
     private bool is_facing_right = true; //플레이어가 오른쪽을 쳐다보고 있는지
@@ -45,22 +88,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject mark_prefab; //순간이동 포트 프리팹
     private GameObject mark; //순간이동 포트
     
-    void Awake()
-    {
-        //Rigidbody2D 컴포넌트 할당
-        rigid = GetComponent<Rigidbody2D>();
-        //Animator 컴포넌트 할당
-        animator = GetComponent<Animator>();
-        //Sprite Renderer 컴포넌트 할당
-        sr = GetComponent<SpriteRenderer>();
-        //Trail Renderer 컴포넌트 할당
-        tr = GetComponent<TrailRenderer>();
-    }
-    
     void Update()
     {
         //대쉬, 순간이동, 대화, 상호작용, 공격 중일 때에는 이동 금지
-        if (is_dashing || is_teleporting || PlayerInteract.instance.is_interacting || PlayerInteract.instance.is_talking || PlayerAttack.instance.is_attacking)
+        if (!canMove || is_dashing || is_teleporting || PlayerInteract.Instance.is_interacting || PlayerInteract.Instance.is_talking || PlayerInteract.Instance.GetComponent<PlayerAttack>().is_attacking)
         {
             return;
         }
@@ -136,7 +167,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         //대쉬, 순간이동, 대화, 상호작용, 공격 중일 때에는 이동 금지
-        if (is_dashing || is_teleporting || PlayerInteract.instance.is_interacting || PlayerInteract.instance.is_talking || PlayerAttack.instance.is_attacking)
+        if (!canMove || is_dashing || is_teleporting || PlayerInteract.Instance.is_interacting || PlayerInteract.Instance.is_talking || PlayerInteract.Instance.GetComponent<PlayerAttack>().is_attacking)
         {
             return;
         }
@@ -193,14 +224,14 @@ public class PlayerController : MonoBehaviour
             //sprite renderer flipx 값 변경하기
             sr.flipX = !is_facing_right;
             //공격 범위도 뒤집기
-            PlayerAttack.instance.attack_area.GetComponent<AttackArea>().Flip();
+            PlayerInteract.Instance.GetComponent<PlayerAttack>().attack_area.GetComponent<AttackArea>().Flip();
         }
     }
 
     public void Flip(bool value)
     {
         sr.flipX = value;
-        PlayerAttack.instance.attack_area.GetComponent<AttackArea>().Flip(value);
+        PlayerInteract.Instance.GetComponent<PlayerAttack>().attack_area.GetComponent<AttackArea>().Flip(value);
     }
 
     //대쉬
@@ -262,5 +293,4 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-    
 }
