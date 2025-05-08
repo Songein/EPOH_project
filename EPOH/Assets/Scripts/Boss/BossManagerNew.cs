@@ -5,18 +5,27 @@ using UnityEngine;
 
 public class BossManagerNew : MonoBehaviour
 {
+    [System.Serializable]
+    public class Phase
+    {
+        public int skillIndex;
+        public int skillCnt;
+        public float skillTerm;
+    }
+    
     public static BossManagerNew Current { get; private set; }
     public BossData bossData;
     public Action<float> OnDecreaseHackingPoint;
     public Action<float> OnIncreaseHackingPoint;
     public List<MonoBehaviour> skillList = new List<MonoBehaviour>();
-    public List<int> phase1List = new List<int>();
-    public List<int> phase2List = new List<int>();
-    public List<int> phase3List = new List<int>();
-    public float skillTerm = 3f;
+    public List<Phase> phase1List = new List<Phase>();
+    public List<Phase> phase2List = new List<Phase>();
+    public List<Phase> phase3List = new List<Phase>();
     [SerializeField] private bool _isSkillEnd = false;
     public Action OnSkillEnd;
     
+    // 플레이어 관련
+    public PlayerController player;
     private void Awake()
     {
         Current = this; // 현재 씬의 BossManager를 저장
@@ -26,6 +35,7 @@ public class BossManagerNew : MonoBehaviour
     private void Start()
     {
         SoundManager2.instance.PlayAudio();
+        player = FindObjectOfType<PlayerController>();
     }
 
     public void StartBossRaid()
@@ -53,24 +63,22 @@ public class BossManagerNew : MonoBehaviour
         StartCoroutine(ActivateSkill(phase3List));
     }
 
-    public IEnumerator ActivateSkill(List<int> phase)
+    public IEnumerator ActivateSkill(List<Phase> phase)
     {
-        foreach (var skillNum in phase)
+        foreach (var skill in phase)
         {
-            MonoBehaviour skill = skillList[skillNum];
-            BossSkillInterface skillInterface = skill as BossSkillInterface;
+            MonoBehaviour skillScript = skillList[skill.skillIndex];
+            BossSkillInterface skillInterface = skillScript as BossSkillInterface;
 
             if (skillInterface != null)
             {
-                skillInterface.Activate();
-                _isSkillEnd = false;
-                EPOH.Debug.LogWarning(skill);
-                Debug.LogWarning($"Skill{skillNum} 스킬 시작");
-
-                yield return new WaitUntil(() => _isSkillEnd);
-                Debug.LogWarning($"Skill{skillNum} 스킬 끝");
-            
-                yield return new WaitForSeconds(skillTerm);
+                Debug.LogWarning($"Skill{skill.skillIndex} 스킬 시작");
+                for (int i = 0; i < skill.skillCnt; i++)
+                {
+                    skillInterface.Activate();
+                }
+                yield return new WaitForSeconds(skill.skillTerm);
+                Debug.LogWarning($"Skill{skill.skillIndex} 스킬 끝");
             }
             else
             {
@@ -82,5 +90,21 @@ public class BossManagerNew : MonoBehaviour
     private void EndSkill()
     {
         _isSkillEnd = true;
+    }
+    
+    // 플레이어가 보스 오른쪽에 위치하는지 체크할 수 있는 함수
+    public bool IsPlayerRight(Transform boss)
+    {
+        
+        if (player.transform.position.x - boss.position.x >= 0)
+        {
+            //Debug.Log("right");
+            boss.GetComponent<SpriteRenderer>().flipX = true;
+            return true;
+        }
+        
+        //Debug.Log("left");
+        boss.GetComponent<SpriteRenderer>().flipX = false;
+        return false;
     }
 }
