@@ -323,8 +323,86 @@ MonoBehaviour:
   - skillIndex: 7
     skillCnt: 1
     skillTerm: 4
-  phase2List: []
-  phase3List: []
+  - skillIndex: 3
+    skillCnt: 1
+    skillTerm: 10
+  - skillIndex: 6
+    skillCnt: 1
+    skillTerm: 10
+  - skillIndex: 0
+    skillCnt: 1
+    skillTerm: 10
+  phase2List:
+  - skillIndex: 5
+    skillCnt: 2
+    skillTerm: 10
+  - skillIndex: 1
+    skillCnt: 1
+    skillTerm: 10
+  - skillIndex: 0
+    skillCnt: 1
+    skillTerm: 10
+  - skillIndex: 5
+    skillCnt: 2
+    skillTerm: 10
+  - skillIndex: 6
+    skillCnt: 1
+    skillTerm: 10
+  - skillIndex: 0
+    skillCnt: 1
+    skillTerm: 10
+  - skillIndex: 3
+    skillCnt: 1
+    skillTerm: 10
+  - skillIndex: 5
+    skillCnt: 2
+    skillTerm: 10
+  - skillIndex: 1
+    skillCnt: 1
+    skillTerm: 10
+  - skillIndex: 7
+    skillCnt: 1
+    skillTerm: 10
+  - skillIndex: 0
+    skillCnt: 1
+    skillTerm: 10
+  phase3List:
+  - skillIndex: 5
+    skillCnt: 2
+    skillTerm: 10
+  - skillIndex: 2
+    skillCnt: 1
+    skillTerm: 10
+  - skillIndex: 6
+    skillCnt: 1
+    skillTerm: 10
+  - skillIndex: 4
+    skillCnt: 1
+    skillTerm: 10
+  - skillIndex: 7
+    skillCnt: 1
+    skillTerm: 10
+  - skillIndex: 1
+    skillCnt: 1
+    skillTerm: 10
+  - skillIndex: 0
+    skillCnt: 1
+    skillTerm: 10
+  - skillIndex: 5
+    skillCnt: 2
+    skillTerm: 10
+  - skillIndex: 5
+    skillCnt: 2
+    skillTerm: 10
+  - skillIndex: 3
+    skillCnt: 1
+    skillTerm: 10
+  - skillIndex: 7
+    skillCnt: 1
+    skillTerm: 10
+  - skillIndex: 2
+    skillCnt: 1
+    skillTerm: 10
   _isSkillEnd: 0
   player: {fileID: 0}
 --- !u!4 &12630897
@@ -4667,7 +4745,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &2028434994
 SpriteRenderer:
   m_ObjectHideFlags: 0
