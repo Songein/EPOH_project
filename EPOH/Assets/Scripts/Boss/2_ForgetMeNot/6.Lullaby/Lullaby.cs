@@ -32,7 +32,8 @@ public class Lullaby : MonoBehaviour
         int intervalAngle = 180 / (_noteCnt-1);
         float height = GetComponent<Renderer>().bounds.size.y; // Lullaby 높이
 
-        for(int i=0; i<_noteCnt; i++)
+        SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.FMN_Lullaby);
+        for (int i=0; i<_noteCnt; i++)
         {
             int randomNoteIndex = Random.Range(0, _notePrefabList.Count);
             GameObject prefab = _notePrefabList[randomNoteIndex];
@@ -41,7 +42,6 @@ public class Lullaby : MonoBehaviour
             Vector2 spawnPosition = (Vector2)transform.position + forwardDirection * _noteDistance + new Vector2(0,-height/2);
             Instantiate(prefab, spawnPosition, Quaternion.Euler(0, 0, angle));
         }
-
         yield return new WaitForSeconds(_generateDuration);
         StartCoroutine(GenerateNote());
     }

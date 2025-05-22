@@ -32,7 +32,9 @@ public class UP_Cross : MonoBehaviour
                 Instantiate(CrossWarningArms, adjustPosition2, Quaternion.Euler(0, 0, 90)); //가로
                 yield return new WaitForSeconds(2.0f);
                 StartCoroutine(LightMoving2(bossData, Randomnum));
-                yield return new WaitForSeconds(1.0f); //3초동안 경고
+                yield return new WaitForSeconds(0.7f);
+                SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Hoa_Electric); //소리
+                yield return new WaitForSeconds(0.3f);  //3초동안 경고
                 Instantiate(CrossArms, adjustPosition1, Quaternion.identity);  //가로
                 Instantiate(CrossArms, adjustPosition2, Quaternion.Euler(0, 0, 90)); //세로
 
@@ -46,7 +48,9 @@ public class UP_Cross : MonoBehaviour
 
                 yield return new WaitForSeconds(2.0f);
                 StartCoroutine(LightMoving2(bossData, Randomnum));
-                yield return new WaitForSeconds(1.0f);
+                yield return new WaitForSeconds(0.7f);
+                SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Hoa_Electric); //소리
+                yield return new WaitForSeconds(0.3f);  //3초동안 경고
                 Instantiate(CrossArms, adjustPosition1, Quaternion.identity);  //가로
                 Instantiate(CrossArms, adjustPosition2, Quaternion.Euler(0, 0, 90)); //세로
             }
@@ -69,7 +73,9 @@ public class UP_Cross : MonoBehaviour
 
             yield return new WaitForSeconds(2.0f);
             StartCoroutine(LightMoving2(bossData, Randomnum));
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(0.7f);
+            SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Hoa_Electric); //소리
+            yield return new WaitForSeconds(0.3f);  //3초동안 경고
 
             // 오른쪽 대각선 생성 (최종)
             Instantiate(CrossArms, adjustPosition1, Quaternion.Euler(0, 0, 80));
@@ -107,10 +113,13 @@ public class UP_Cross : MonoBehaviour
                 Instantiate(CrossWarningArms, adjustPosition1, Quaternion.identity);  //세로
                 Instantiate(CrossWarningArms, adjustPosition2, Quaternion.Euler(0, 0, 90)); //가로
 
-                yield return new WaitForSeconds(3.0f); //3초동안 경고
+                yield return new WaitForSeconds(2.7f);
+                SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Hoa_Electric); //소리
+                yield return new WaitForSeconds(0.3f);  //3초동안 경고
                 Instantiate(CrossArms, adjustPosition1, Quaternion.identity);  //가로
                 Instantiate(CrossArms, adjustPosition2, Quaternion.Euler(0, 0, 90)); //세로
-                yield return new WaitForSeconds(1.5f);
+
+                yield return new WaitForSeconds(2.5f);
                 BossManagerNew.Current.OnSkillEnd?.Invoke();
             }
                 else
@@ -121,10 +130,13 @@ public class UP_Cross : MonoBehaviour
                 Instantiate(CrossWarningArms, adjustPosition2, Quaternion.Euler(0, 0, 90)); //가로
 
 
-                yield return new WaitForSeconds(3.0f); //3초동안 경고
+                yield return new WaitForSeconds(2.7f);
+                SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Hoa_Electric); //소리
+                yield return new WaitForSeconds(0.3f);  //3초동안 경고
+
                 Instantiate(CrossArms, adjustPosition1, Quaternion.identity);  //가로
                 Instantiate(CrossArms, adjustPosition2, Quaternion.Euler(0, 0, 90)); //세로
-                yield return new WaitForSeconds(1.5f);
+                yield return new WaitForSeconds(2.5f);
                 BossManagerNew.Current.OnSkillEnd?.Invoke();
             }
             }
@@ -150,7 +162,10 @@ public class UP_Cross : MonoBehaviour
 
 
 
-            yield return new WaitForSeconds(3.0f); // 3초 동안 경고
+            yield return new WaitForSeconds(2.7f);
+            SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Hoa_Electric); //소리
+            yield return new WaitForSeconds(0.3f);  //3초동안 경고
+
 
             // 오른쪽 대각선 생성 (최종)
             Instantiate(CrossArms, adjustPosition1, Quaternion.Euler(0, 0, 80));
@@ -160,7 +175,7 @@ public class UP_Cross : MonoBehaviour
             Instantiate(CrossArms, adjustPosition2, Quaternion.Euler(0, 0, 170));
 
 
-            yield return new WaitForSeconds(1.5f);  // 추가적인 대기 시간
+            yield return new WaitForSeconds(2.5f);  // 추가적인 대기 시간
             BossManagerNew.Current.OnSkillEnd?.Invoke();
 
 

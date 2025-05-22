@@ -102,7 +102,7 @@ public class UP_ElectricBall : MonoBehaviour
     public IEnumerator  electric_pop()
     {
         yield return new WaitForSeconds(3.0f);
-
+        SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Hoa_Pop);
         for (int i = 0; i < ball_count - 4; i++)
         {//기본 볼 한꺼번에 삭제
 

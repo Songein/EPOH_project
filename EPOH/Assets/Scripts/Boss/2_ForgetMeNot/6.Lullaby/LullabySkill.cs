@@ -14,5 +14,6 @@ public class LullabySkill : MonoBehaviour,BossSkillInterface
         Vector3 randomPos = new Vector3(_x, _y -3f, 0);
 
         Instantiate(_lullabyPrefab, randomPos, Quaternion.identity);
+     
     }
 }

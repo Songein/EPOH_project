@@ -1,40 +1,49 @@
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Event
 {
     public class EventTrigger : MonoBehaviour
     {
-        [SerializeField] private List<string> _eventIDList = new List<string>();
+        [System.Serializable]
+        public class EventInfo
+        {
+            public string eventID;
+            public bool isExecuted;
+        }
+        [SerializeField] private List<EventInfo> _eventIDList = new List<EventInfo>();
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Player") && PlayerInteract.instance.canInteract)
+            if (other.CompareTag("Player") && PlayerInteract.Instance.canInteract)
             {
-                foreach (var eventID in _eventIDList)
+                foreach (var _event in _eventIDList)
                 {
-                    if (EventManager.Instance.CheckExecutable(eventID))
+                    if (EventManager.Instance.CheckExecutable(_event.eventID))
                     {
+                        if(_event.eventID == "Event_010" && _event.isExecuted) return;
                         switch (tag)
                         {
                             case "AutoTrigger":
-                                EventManager.Instance.ExecuteEvent(eventID);
-                                break;
+                                EventManager.Instance.ExecuteEvent(_event.eventID).Forget();
+                                _event.isExecuted = true;
+                                return;
                             case "Interaction":
-                                PlayerInteract.instance.OnInteract += () =>
+                                PlayerInteract.Instance.OnInteract += () =>
                                 {
-                                    Debug.LogWarning($"{eventID} 플레이어 OnInteract에 할당");
-                                    EventManager.Instance.ExecuteEvent(eventID);
+                                    Debug.LogWarning($"{_event.eventID} 플레이어 OnInteract에 할당");
+                                    EventManager.Instance.ExecuteEvent(_event.eventID).Forget();
+                                    _event.isExecuted = true;
                                 };
-                                break;
-                            case "Portal":
-                                break;
+                                return;
                         }
                     }
                     else
                     {
-                        Debug.LogWarning($"{eventID}는 현재 실행 불가능");
+                        Debug.LogWarning($"{_event.eventID}는 현재 실행 불가능");
                     }
                 }
             }
@@ -44,7 +53,7 @@ namespace Event
         {
             if (other.CompareTag("Player") && other.GetComponent<PlayerInteract>().canInteract)
             {
-                PlayerInteract.instance.OnInteract = null;
+                PlayerInteract.Instance.OnInteract = null;
             }
         }
     }

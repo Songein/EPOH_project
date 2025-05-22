@@ -6,20 +6,36 @@ public class NeuronHack : MonoBehaviour
 { private int hitCount = 0;
    
 
-    private float timeInTrigger = 0f;
-    private float triggerDelay = 0.7f;
-    private float triggerDelay2 = 0.9f;
+  //  private float timeInTrigger = 0f;
+  //  private float triggerDelay = 0.7f;
+   // private float triggerDelay2 = 0.9f;
     private bool movingUp = true;
     private Vector3 startPos;
-      private Vector3 targetPos;
-    
-      void Start()
+   private Vector3 targetPos;
+    private SpriteRenderer sr;
+    private HackingForN hacking;
+
+
+    private void Awake()
+    {
+        hacking = FindObjectOfType<HackingForN>();
+        BossData bossdata = BossManagerNew.Current.bossData;
+        sr = GetComponent<SpriteRenderer>();
+        sr.sprite = bossdata.Nueron;
+    }
+    void Start()
       {
-          startPos = transform.position;
+       
+        startPos = transform.position;
           targetPos = startPos + new Vector3(0, 0.00001f, 0); //y축으로 1만큼 이동
         StartCoroutine(MoveLoop());
       }
-          
+    private void Update()
+    {
+        if (hacking._hackingPoint >= hacking.hackingGoal) {
+            Destroy(gameObject);
+        }
+    }
 
 
     private void OnTriggerEnter2D(Collider2D other)

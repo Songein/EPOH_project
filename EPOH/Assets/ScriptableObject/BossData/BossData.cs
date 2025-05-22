@@ -15,4 +15,8 @@ public class BossData : ScriptableObject
 
     [Space(5)] [Header("보스 BGM")]
     public AudioClip BGMClip;
+
+    [Space(5)]
+    [Header("뉴런 Sprite")]
+    public Sprite Nueron;
 }

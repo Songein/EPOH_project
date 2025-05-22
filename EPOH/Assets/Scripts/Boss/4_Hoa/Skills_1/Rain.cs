@@ -30,10 +30,16 @@ public class Rain : MonoBehaviour, BossSkillInterface
         
         for (int i = 0; i < 3; i++)
         {
+            SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Hoa_Rain);
             for (int j = 0; j < raindropCount; j++)
             {
                 float spawnX = Random.Range(bossData._leftBottom.x, bossData._rightTop.x); // 랜덤 위치
                 Vector3 spawnPosition = new Vector3(spawnX, bossData._rightTop.y, 0);
+                /*
+                float soundDelay = Random.Range(0.08f, 0.2f);  // 0.08~0.2초 사이 랜덤
+                yield return new WaitForSeconds(soundDelay);
+                SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Hoa_Rain);
+                */
                 GameObject rainDrop = Instantiate(rainPrefab, spawnPosition, Quaternion.identity);
 
                 float fallSpeed = Random.Range(minSpeed, maxSpeed); // 랜덤 속도

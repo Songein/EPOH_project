@@ -79,6 +79,7 @@ public class BossPepper : MonoBehaviour, BossSkillInterface
             Vector3 currentPosition = pepper_object.transform.position; // 위치 저장
             Destroy(pepper_object);  // 기존 pepper_prefab 오브젝트 삭제
 
+            SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.PT_Pepper);
             GameObject pop_object = Instantiate(pepper_pop, currentPosition, Quaternion.identity); // scratch_pop로 교체
             pop_object.transform.localScale = currentScale; // 이전 오브젝트의 크기 유지
 

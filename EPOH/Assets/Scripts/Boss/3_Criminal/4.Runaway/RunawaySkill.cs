@@ -30,16 +30,22 @@ public class RunawaySkill : MonoBehaviour, BossSkillInterface
         BossData bossData = BossManagerNew.Current.bossData;
         // 셔플 먼저 진행
         yield return StartCoroutine(ShuffleObjectsCoroutine(_shuffleCnt));
-        
-        // 셔플 진행 후, 맵 내의 랜덤한 위치로 범죄자들 이동
-        foreach (var criminal in _criminals)
+
+            // 셔플 진행 후, 맵 내의 랜덤한 위치로 범죄자들 이동
+            foreach (var criminal in _criminals)
         {
+            Animator animator = criminal.GetComponent<Animator>();
+            animator.SetTrigger("Default");
+
             float randomX = Random.Range(bossData._leftBottom.x, bossData._rightTop.x);
             float randomY = Random.Range(bossData._leftBottom.y, bossData._rightTop.y);
             Vector2 destPos = new Vector2(randomX, randomY);
             yield return StartCoroutine(MovePositions(criminal,criminal.position, destPos, moveDuration));
             // 이동 완료 후에 해당 범죄자와 상호작용 가능하도록 설정
+
+                animator.SetTrigger("Idle");
             criminal.GetComponent<Criminal>().canInteract = true;
+
         }
     }
 
@@ -98,5 +104,7 @@ public class RunawaySkill : MonoBehaviour, BossSkillInterface
         
         // 최종 위치 설정
         obj.position = destPos;
+
+        
     }
 }

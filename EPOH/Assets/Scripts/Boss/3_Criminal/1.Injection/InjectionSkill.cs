@@ -27,7 +27,7 @@ public class InjectionSkill : MonoBehaviour,BossSkillInterface
         float step = (_startY - _endY) / 4;
 
         float _y = _startY;
-
+        SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Criminal_Keyboard); //소리
         foreach (var code in _codeShuffleLists)
         {
             Vector2 newPos = new Vector2(BossManagerNew.Current.bossData._rightTop.x, _y);

@@ -13,6 +13,7 @@ public class DollSkill : MonoBehaviour,BossSkillInterface
         float _y = Random.Range(bossData._leftBottom.y, bossData._rightTop.y);
 
         Vector3 dollPos = new Vector3(_x, _y, 0);
+        SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.FMN_Doll);
         Instantiate(_dollPrefab, dollPos, Quaternion.identity);
     }
 }

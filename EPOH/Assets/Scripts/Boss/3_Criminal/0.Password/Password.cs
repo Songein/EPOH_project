@@ -7,9 +7,9 @@ public class Password : Interactable
 {
     [SerializeField] private float _damage = 10f;
     [SerializeField] private float _hackPoint = 3f;
-    [SerializeField] private float _duration = 5f;
+    [SerializeField] private float _duration;
     [SerializeField] private SpriteRenderer _sr;
-    [SerializeField] private Sprite _changedSprite;
+    public Sprite _changedSprite;
     private bool _isChanged = false;
     
     void OnEnable()
@@ -37,6 +37,6 @@ public class Password : Interactable
             //바꾸는 것 실패 -> 데미지 및 해킹포인트 감소
             BossManagerNew.Current.OnDecreaseHackingPoint?.Invoke(_hackPoint);
         }
-        Destroy(gameObject);
+       // Destroy(gameObject);
     }
 }

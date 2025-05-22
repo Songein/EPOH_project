@@ -74,8 +74,9 @@ public class PictureSkill : MonoBehaviour, BossSkillInterface
         screenshot.ReadPixels(new Rect(0, 0, _captureWidth, _captureHeight), 0, 0);
         screenshot.Apply();
         Debug.Log("랜덤 스크린샷 캡처 완료!");
-        
+
         //찰칵 소리
+        SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.FMN_Picture);
         //해당 위치 내에 플레이어가 있으면 Damage 입히기
         if (IsPlayerInCamera())
         {
@@ -121,15 +122,24 @@ public class PictureSkill : MonoBehaviour, BossSkillInterface
             return false;
         }
         Bounds playerBounds = playerCollider.bounds;
+
         
+        float z = Mathf.Abs(_captureCamera.transform.position.z - _player.transform.position.z);
+        Vector3 camBottomLeft = _captureCamera.ViewportToWorldPoint(new Vector3(0, 0, z));
+        Vector3 camTopRight = _captureCamera.ViewportToWorldPoint(new Vector3(1, 1, z));
+
+        /*
         Vector3 camBottomLeft = _captureCamera.ViewportToWorldPoint(new Vector3(0, 0, 0));
         Vector3 camTopRight = _captureCamera.ViewportToWorldPoint(new Vector3(1, 1, 0));
+        */
         Bounds cameraBounds = new Bounds();
         cameraBounds.SetMinMax(camBottomLeft, camTopRight);
         
         Debug.Log($"Camera Bounds: Min({cameraBounds.min}), Max({cameraBounds.max})");
         Debug.Log($"Player Bounds: Min({playerBounds.min}), Max({playerBounds.max})");
 
+
         return playerBounds.Intersects(cameraBounds);
     }
+
 }

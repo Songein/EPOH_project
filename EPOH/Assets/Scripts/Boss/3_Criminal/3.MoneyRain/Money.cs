@@ -12,6 +12,7 @@ public class Money : Attackable
         // 땅에 닿으면 파괴
         if (other.CompareTag("Ground"))
         {
+          
             Destroy(gameObject);
         }
     }

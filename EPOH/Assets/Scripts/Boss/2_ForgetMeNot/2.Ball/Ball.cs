@@ -37,12 +37,21 @@ public class Ball : Attackable
         StartCoroutine(StopSkill());
     }
 
+
     private void OnCollisionEnter2D(Collision2D other)
     {
+        // 땅에 닿으면 소리
+        if (other.collider.CompareTag("Ground") || other.collider.CompareTag("OneWayPlatform"))
+        {
+            SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.FMN_Ball);
+
+        }
+
         base.OnCollisionEnter2D(other);
         var speed = Mathf.Max(_lastVelocity.magnitude, _ballSpeed * 0.5f);;
         var direction = Vector3.Reflect(_lastVelocity.normalized, other.contacts[0].normal);
 
         _rigidbody.velocity = direction * speed;
+
     }
 }
