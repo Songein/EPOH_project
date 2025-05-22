@@ -123,57 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &5044447
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5044449}
-  - component: {fileID: 5044448}
-  m_Layer: 0
-  m_Name: BossManagerNew (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &5044448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5044447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e40ab0aaa5184a44bc03a6c3f1c2216, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bossData: {fileID: 11400000, guid: 80e6f6299bdf806499894e0d54ce5b19, type: 2}
-  skillList: []
-  phase1List: []
-  phase2List: []
-  phase3List: []
-  _isSkillEnd: 0
-  player: {fileID: 0}
---- !u!4 &5044449
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5044447}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.0184772, y: -6.2579236, z: -9.890209}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &52967657
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,13 +849,102 @@ RectTransform:
   - {fileID: 540624205}
   - {fileID: 213559959}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &488646793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 488646795}
+  - component: {fileID: 488646794}
+  m_Layer: 7
+  m_Name: BossPartTimeManager
+  m_TagString: Boss
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &488646794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488646793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b063c144cf144f285b0b4f5d281c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossPrefab: {fileID: 7980823611527157787, guid: 83945ae5dec6249c7b0a947284cefffb, type: 3}
+  bossList: []
+  _player: {fileID: 0}
+  _playerRigid: {fileID: 0}
+  spawnLeftPoint: {x: -13, y: -2, z: 0}
+  spawnMiddlePoint: {x: 0, y: -2, z: 0}
+  spawnRightPoint: {x: 5, y: -2, z: 0}
+  phase1List:
+  - tracking
+  - howling1
+  - scratching
+  - scratching
+  - scratching
+  - biting
+  - stomping1
+  - tracking
+  - running
+  phase2List:
+  - scratching
+  - howling1
+  - running
+  - scratching
+  - tracking
+  - running
+  - stomping1
+  - scratching
+  - howling1
+  - Biting
+  - Running
+  phase3List:
+  - scratching
+  - howling2
+  - tracking
+  - stomping2
+  - biting
+  - howling1
+  - running
+  - scratching
+  - scratching
+  - stomping1
+  - biting
+  - howling2
+  - running
+  - 
+  skillDuration: 0
+--- !u!4 &488646795
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488646793}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &523373749
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,7 +1375,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7554576526619495477, guid: 081dfe07c71fc3e4bbed16eea9c088c5, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7554576526619495477, guid: 081dfe07c71fc3e4bbed16eea9c088c5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1398,7 +1436,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1135570096004489944, guid: a09e07b2772e4044cab98e2e1c24913b, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1135570096004489944, guid: a09e07b2772e4044cab98e2e1c24913b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2515,6 +2553,15 @@ GameObject:
   m_Component:
   - component: {fileID: 1733380059}
   - component: {fileID: 1733380058}
+  - component: {fileID: 1733380069}
+  - component: {fileID: 1733380067}
+  - component: {fileID: 1733380066}
+  - component: {fileID: 1733380065}
+  - component: {fileID: 1733380064}
+  - component: {fileID: 1733380063}
+  - component: {fileID: 1733380062}
+  - component: {fileID: 1733380061}
+  - component: {fileID: 1733380060}
   m_Layer: 0
   m_Name: BossManagerNew
   m_TagString: Untagged
@@ -2535,12 +2582,102 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossData: {fileID: 11400000, guid: 80e6f6299bdf806499894e0d54ce5b19, type: 2}
-  skillList: []
-  phase1List: []
-  phase2List: []
-  phase3List: []
+  skillList:
+  - {fileID: 1733380069}
+  - {fileID: 1733380061}
+  - {fileID: 575705509}
+  - {fileID: 1733380064}
+  - {fileID: 1733380066}
+  - {fileID: 1733380065}
+  - {fileID: 1733380067}
+  - {fileID: 1733380063}
+  - {fileID: 1733380062}
+  phase1List:
+  - skillIndex: 3
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 6
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 1
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 0
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 1
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 2
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 7
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 4
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 6
+    skillCnt: 0
+    skillTerm: 10
+  phase2List:
+  - skillIndex: 5
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 1
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 4
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 1
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 0
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 2
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 2
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 2
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 6
+    skillCnt: 0
+    skillTerm: 10
+  phase3List:
+  - skillIndex: 5
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 3
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 8
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 0
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 6
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 2
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 4
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 0
+    skillCnt: 0
+    skillTerm: 10
+  - skillIndex: 8
+    skillCnt: 0
+    skillTerm: 10
   _isSkillEnd: 0
-  player: {fileID: 0}
+  player: {fileID: 1778748782}
 --- !u!4 &1733380059
 Transform:
   m_ObjectHideFlags: 0
@@ -2556,6 +2693,142 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1733380060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733380057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2a73c3894a9e040a7f3d3c99b83d29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubblePrefab: {fileID: 4724500512668667137, guid: 47cee36978ce25f4d9f1fad2b04e99b4, type: 3}
+--- !u!114 &1733380061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733380057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 524afeb17684430489d7e60db004244b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLength: 5
+  growSpeed: 5
+  ketchup: {fileID: 7015248438757542676, guid: 7a85e73d21428c344b1dabaeddb6f815, type: 3}
+  mustard: {fileID: 7015248438757542676, guid: 8e8e12bdc5762d14bad826913e825687, type: 3}
+  ketchupSauce: {fileID: 9048731928923756952, guid: 52a35274724004f41a2289c3b28b400f, type: 3}
+  mustardSauce: {fileID: 9048731928923756952, guid: aa9ece43ceb49ab42832dc0ec7cec22e, type: 3}
+  lidList: []
+  sauceList: []
+--- !u!114 &1733380062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733380057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1accbc67d82207746b550741708e18af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1778748781}
+  knifePrefab: {fileID: 3338149558959726008, guid: 9744d30c985044a20bba2f0d8b546694, type: 3}
+--- !u!114 &1733380063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733380057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b070421553669f34f82c062bf9441715, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  knifePrefab: {fileID: 3338149558959726008, guid: 9744d30c985044a20bba2f0d8b546694, type: 3}
+--- !u!114 &1733380064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733380057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc1110a17f5114434a5be7a54ee2a999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1778748781}
+  receipt_prefab: {fileID: 528189908814442619, guid: 837942be3004e490c947cde66370d26c, type: 3}
+  receipt_pop: {fileID: 0}
+--- !u!114 &1733380065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733380057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e781e9fba8e15433eb9371e2b5677710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubbleObject: {fileID: 2046269840837140296, guid: df1e666a5de194d04a15651ced77bddc, type: 3}
+--- !u!114 &1733380066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733380057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab1f95964a1e472f9b67e745aa3a171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1778748781}
+  pepper_prefab: {fileID: 3477557593359293911, guid: 71f735f0de08141b583ee29cbd938980, type: 3}
+  pepper_pop: {fileID: 3477557593359293911, guid: cedad101f3646494eb922b959c644646, type: 3}
+--- !u!114 &1733380067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733380057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9596fb16311464ce483962e17bc7996d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1778748781}
+  fork: {fileID: 8142072990911158202, guid: fdce5bd5fd8584694b6cf507f6d3409a, type: 3}
+--- !u!114 &1733380069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733380057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1debccaa8d86a484bb9bb076abac7559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1778748781}
+  runningPrefab: {fileID: 1237795267379599906, guid: 03eace25eba1a4842845b809fe27c881, type: 3}
+  shadow_speed: 10
+  warning_duration: 3
+  warning_color: {r: 1, g: 0, b: 0, a: 1}
+  bossIconPrefab: {fileID: 5474589133209643891, guid: 25afa047b0bbf461ea93ff28d8b23a53, type: 3}
 --- !u!1 &1759421622
 GameObject:
   m_ObjectHideFlags: 0
@@ -2645,7 +2918,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5475711150737818985, guid: 1798fccc825e741998eadc340af4ab3c, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 5475711150737818985, guid: 1798fccc825e741998eadc340af4ab3c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2689,6 +2962,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1798fccc825e741998eadc340af4ab3c, type: 3}
+--- !u!1 &1778748781 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 245169945507368180, guid: 1798fccc825e741998eadc340af4ab3c, type: 3}
+  m_PrefabInstance: {fileID: 1778748780}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1778748782 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8455355706436006818, guid: 1798fccc825e741998eadc340af4ab3c, type: 3}
+  m_PrefabInstance: {fileID: 1778748780}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778748781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ae43a92558a44ad1bfc429a8bb16ccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1844224727
 GameObject:
   m_ObjectHideFlags: 0
