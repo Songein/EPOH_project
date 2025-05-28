@@ -4,27 +4,14 @@ using UnityEngine;
 
 public class BossKnife_Up2 : MonoBehaviour
 {
-    private BossDogController dog; //BossDogController 참조
-
-    public GameObject player; // 플레이어 게임 오브젝트
+    public Transform player; // 플레이어 게임 오브젝트
 
     // 추적 변수
     public GameObject knifePrefab; // knife 프리팹
 
     private List<GameObject> knives = new List<GameObject>(); // knife 오브젝트 리스트
     private Animator knifeAnimator; // knife 애니메이터
-
-
-    private void Awake()
-    {
-        dog = GameObject.FindWithTag("Boss").GetComponent<BossDogController>();
-        player = dog._player;
-
-    }
-
-
-
-
+    
     // void Update()
     // {
     //     // 매 프레임마다 눈동자가 플레이어의 x축과 y축을 따라다니도록 설정
@@ -49,13 +36,14 @@ public class BossKnife_Up2 : MonoBehaviour
 
     public IEnumerator KnifeUp()
     {
+        player = BossManagerNew.Current.player.transform;
         float trackingDuration = 2.0f; // 추적 지속 시간
         float fallSpeed = 15.0f; // 나이프 낙하 속도
 
         // 나이프 3개 생성
         for (int i = 0; i < 3; i++)
         {
-            Vector3 knifePosition = new Vector3(player.transform.position.x + (i - 1) * 2.0f, player.transform.position.y + 8.0f, player.transform.position.z);
+            Vector3 knifePosition = new Vector3(player.position.x + (i - 1) * 2.0f, player.position.y + 8.0f, player.position.z);
             GameObject knife = Instantiate(knifePrefab, knifePosition, Quaternion.identity);
 
             // 크기 조정
@@ -79,7 +67,7 @@ public class BossKnife_Up2 : MonoBehaviour
             {
                 if (knives[i] != null && player != null)
                 {
-                    knives[i].transform.position = new Vector3(player.transform.position.x + (i - 1) * 2.0f, player.transform.position.y + 8.0f, knives[i].transform.position.z);
+                    knives[i].transform.position = new Vector3(player.position.x + (i - 1) * 2.0f, player.position.y + 8.0f, knives[i].transform.position.z);
                 }
             }
 
@@ -101,7 +89,7 @@ public class BossKnife_Up2 : MonoBehaviour
 
         for (int i = 0; i < knives.Count; i++)
         {
-         knives[i].transform.position = Vector3.MoveTowards(knives[i].transform.position, new Vector3(player.transform.position.x + (i - 1) * 2.0f, player.transform.position.y + 5, knives[i].transform.position.z), fallSpeed * Time.deltaTime);
+         knives[i].transform.position = Vector3.MoveTowards(knives[i].transform.position, new Vector3(player.position.x + (i - 1) * 2.0f, player.position.y + 5, knives[i].transform.position.z), fallSpeed * Time.deltaTime);
         }
 
 

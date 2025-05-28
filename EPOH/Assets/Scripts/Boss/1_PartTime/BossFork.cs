@@ -4,22 +4,14 @@ using UnityEngine;
 
 public class BossFork : MonoBehaviour, BossSkillInterface
 {
-    private BossDogController dog; //BossDogController 참조
-
-    public GameObject player; // 플레이어 게임 오브젝트
+    public Transform player; // 플레이어 게임 오브젝트
 
     private Vector3 leftEdge;
     private Vector3 rightEdge;
 
     //할퀴기 변수
     public GameObject fork; // 할퀸 자국 프리팹을 fork로 변경
-
-
-    private void Awake()
-    {
-        dog = GameObject.FindWithTag("Boss").GetComponent<BossDogController>();
-        player = dog._player;
-    }
+    
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +19,8 @@ public class BossFork : MonoBehaviour, BossSkillInterface
         // Scene의 가장 왼쪽과 오른쪽 좌표를 설정
         leftEdge = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, 0));
         rightEdge = Camera.main.ViewportToWorldPoint(new Vector3(1, 0.5f, 0));
+
+        player = BossManagerNew.Current.player.transform;
     }
 
     public void Activate()
@@ -42,11 +36,11 @@ public class BossFork : MonoBehaviour, BossSkillInterface
         for (int i = 0; i < fork_count; i++)
         {
             // 할퀸 자국이 플레이어 x축 위치로부터 -10, 10 이내에서만 생성되도록 설정
-            float minX = Mathf.Max(leftEdge.x, player.transform.position.x - 10f);
-            float maxX = Mathf.Min(rightEdge.x, player.transform.position.x + 10f);
+            float minX = Mathf.Max(leftEdge.x, player.position.x - 10f);
+            float maxX = Mathf.Min(rightEdge.x, player.position.x + 10f);
             
             // 할퀸 자국 프리팹 생성
-            Vector3 fork_position = new Vector3(Random.Range(minX, maxX), player.transform.position.y, 0);
+            Vector3 fork_position = new Vector3(Random.Range(minX, maxX), player.position.y, 0);
             GameObject fork_object = Instantiate(fork, fork_position, Quaternion.identity); // fork로 변경
             if (fork_object != null)
             {

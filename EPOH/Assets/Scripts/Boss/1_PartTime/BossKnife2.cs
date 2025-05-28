@@ -2,26 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossKnife2 : MonoBehaviour
+public class BossKnife2 : MonoBehaviour, BossSkillInterface
 {
-    private BossDogController dog; //BossDogController 참조
-
-    public GameObject player; // 플레이어 게임 오브젝트
+    public Transform player; // 플레이어 게임 오브젝트
 
     // 추적 변수
     public GameObject knifePrefab; // 나이프 프리팹
 
     //  private GameObject knife; // 나이프 오브젝트
     // private Animator knifeAnimator; // 나이프 애니메이터
-
-
-    private void Awake()
-    {
-        dog = GameObject.FindWithTag("Boss").GetComponent<BossDogController>();
-        player = dog._player;
-
-    }
-
 
 
     // void Update()
@@ -35,13 +24,13 @@ public class BossKnife2 : MonoBehaviour
 
     public void Activate()
     {
-
         StartCoroutine(Knife());
     }
 
     public IEnumerator Knife()
     {
-        Vector3 knifePosition = new Vector3(player.transform.position.x, player.transform.position.y + 8.0f, player.transform.position.z);
+        player = BossManagerNew.Current.player.transform;
+        Vector3 knifePosition = new Vector3(player.transform.position.x, player.position.y + 8.0f, player.position.z);
         GameObject knife = Instantiate(knifePrefab, knifePosition, Quaternion.identity);
 
         // 크기 조정
@@ -64,7 +53,7 @@ public class BossKnife2 : MonoBehaviour
         {
             if (knife != null && player != null)
             {
-                knife.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 8.0f, knife.transform.position.z);
+                knife.transform.position = new Vector3(player.position.x, player.position.y + 8.0f, knife.transform.position.z);
             }
 
             elapsedTime += Time.deltaTime;
@@ -80,7 +69,7 @@ public class BossKnife2 : MonoBehaviour
         // 낙하 단계
         if (knife != null)
         {
-            Vector3 targetPosition = new Vector3(knife.transform.position.x, player.transform.position.y, knife.transform.position.z);
+            Vector3 targetPosition = new Vector3(knife.transform.position.x, player.position.y, knife.transform.position.z);
 
             knife.transform.position = Vector3.MoveTowards(knife.transform.position, targetPosition, fallSpeed * Time.deltaTime);
         }
