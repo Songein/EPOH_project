@@ -15,8 +15,6 @@ public class GameManager : MonoBehaviour
 
     public ProgressId ProgressState;
 
-    public Vector3 playerPosTemp;
-
     public enum ProgressId
     {
         Progress_Beginning,

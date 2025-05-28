@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class BossReceipt : MonoBehaviour, BossSkillInterface
 {
-
-    private BossDogController dog; //BossDogController 참조
-
-    public GameObject player; // 플레이어 게임 오브젝트
+    public Transform player; // 플레이어 게임 오브젝트
 
     private Vector3 leftEdge;
     private Vector3 rightEdge;
@@ -16,20 +13,14 @@ public class BossReceipt : MonoBehaviour, BossSkillInterface
     public GameObject receipt_prefab; // 할퀸 자국 프리팹
     public GameObject receipt_pop; // 폭발 프리팹
 
-    private void Awake()
-    {
-        dog = GameObject.FindWithTag("Boss").GetComponent<BossDogController>();
-        player = dog._player;
-        
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         // Scene의 가장 왼쪽과 오른쪽 좌표를 설정
         leftEdge = Camera.main.ViewportToWorldPoint(new Vector3(0, 0.5f, 0));
         rightEdge = Camera.main.ViewportToWorldPoint(new Vector3(1, 0.5f, 0));
-        
+
+        player = BossManagerNew.Current.player.transform;
     }
 
     public void Activate()
@@ -40,11 +31,11 @@ public class BossReceipt : MonoBehaviour, BossSkillInterface
     public IEnumerator Receipt()
     {
         // receipt 오브젝트가 플레이어 x축 위치로부터 -10, 10 이내에서만 생성되도록 설정
-        float minX = Mathf.Max(leftEdge.x, player.transform.position.x - 10f);
-        float maxX = Mathf.Min(rightEdge.x, player.transform.position.x + 10f);
+        float minX = Mathf.Max(leftEdge.x, player.position.x - 10f);
+        float maxX = Mathf.Min(rightEdge.x, player.position.x + 10f);
 
         // receipt 오브젝트 생성
-        Vector3 receipt_position = new Vector3(Random.Range(minX, maxX), player.transform.position.y, 0);
+        Vector3 receipt_position = new Vector3(Random.Range(minX, maxX), player.position.y, 0);
         GameObject receipt_object = Instantiate(receipt_prefab, receipt_position, Quaternion.identity); // 프리팹 사용
 
         if (receipt_object != null)

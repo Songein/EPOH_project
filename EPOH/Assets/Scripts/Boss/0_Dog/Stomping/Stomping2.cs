@@ -94,7 +94,7 @@ public class Stomping2 : MonoBehaviour, BossSkillInterface
             float randX = Random.Range(rockStartSpawn.x, rockMiddle1SpawnX);
             float randY = Random.Range(rockStartSpawn.y, rockEndSpawn.y);
             GameObject rock = Instantiate(SetRandomRock(), new Vector2(randX, randY), Quaternion.identity);
-            float randGravity = Random.Range(1, 3);
+            float randGravity = Random.Range(0.2f, 0.4f);
             rock.GetComponent<Rigidbody2D>().gravityScale = randGravity;
             rockList.Add(rock);
         }
@@ -103,7 +103,7 @@ public class Stomping2 : MonoBehaviour, BossSkillInterface
             float randX = Random.Range(rockMiddle1SpawnX, rockMiddle2SpawnX);
             float randY = Random.Range(rockStartSpawn.y, rockEndSpawn.y);
             GameObject rock = Instantiate(SetRandomRock(), new Vector2(randX, randY), Quaternion.identity);
-            float randGravity = Random.Range(1, 3);
+            float randGravity = Random.Range(0.2f, 0.4f);
             rock.GetComponent<Rigidbody2D>().gravityScale = randGravity;
             rockList.Add(rock);
         }
@@ -112,7 +112,7 @@ public class Stomping2 : MonoBehaviour, BossSkillInterface
             float randX = Random.Range(rockMiddle2SpawnX, rockEndSpawn.x);
             float randY = Random.Range(rockStartSpawn.y, rockEndSpawn.y);
             GameObject rock = Instantiate(SetRandomRock(), new Vector2(randX, randY), Quaternion.identity);
-            float randGravity = Random.Range(1, 3);
+            float randGravity = Random.Range(0.2f, 0.4f);
             rock.GetComponent<Rigidbody2D>().gravityScale = randGravity;
             rockList.Add(rock);
         }

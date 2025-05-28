@@ -11,6 +11,10 @@ public class AttackBehaviour : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        // 플레이어 Animator 상태 초기화
+        animator.SetBool("IsJump", false);
+        animator.SetBool("IsDoubleJump", false);
+        PlayerController.Instance.InitJump();
         //공격 상태 true로 변경
         PlayerAttack.instance.is_attacking = true;
         //콤보 공격 여부 false로 초기화

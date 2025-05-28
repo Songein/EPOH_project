@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class BossSwaping : MonoBehaviour, BossSkillInterface
 {
-    private BossDogController dog; //BossDogController 참조
-
-    public GameObject player; // 플레이어 게임 오브젝트
     public GameObject runningPrefab;
 
     public float shadow_speed = 10.0f; // 그림자 이동 속도
@@ -18,15 +15,7 @@ public class BossSwaping : MonoBehaviour, BossSkillInterface
 
     // 보스 표식 스프라이트
     public GameObject bossIconPrefab;
-
-
-    private void Awake()
-    {
-        dog = GameObject.FindWithTag("Boss").GetComponent<BossDogController>();
-        player = dog._player;
-        
-    }
-
+    
     public void Activate()
     {
         StartCoroutine(Swaping());
@@ -38,15 +27,18 @@ public class BossSwaping : MonoBehaviour, BossSkillInterface
         Vector3 startPosition;
         Vector3 targetPosition;
 
+        BossData bossData = BossManagerNew.Current.bossData;
         if (Random.Range(0, 2) == 0) // 0이면 Left, 1이면 Right
         {
-            startPosition = dog.spawnLeftPoint;
-            targetPosition = dog.spawnRightPoint;
+            startPosition = bossData._leftBottom;
+            targetPosition = new Vector3(bossData._rightTop.x,
+                bossData._leftBottom.y, bossData._leftBottom.z);
         }
         else
         {
-            startPosition = dog.spawnRightPoint;
-            targetPosition = dog.spawnLeftPoint;
+            startPosition = new Vector3(bossData._rightTop.x,
+                bossData._leftBottom.y, bossData._leftBottom.z);
+            targetPosition = bossData._leftBottom;
         }
         
         GameObject warningContainer = new GameObject("WarningContainer");
