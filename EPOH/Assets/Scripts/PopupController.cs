@@ -47,7 +47,7 @@ public class PopupController : MonoBehaviour
         if (player_controller != null)
         {
             is_open = false;
-            PlayerInteract.instance.is_interacting = false;
+            PlayerInteract.Instance.is_interacting = false;
         }
         
     }

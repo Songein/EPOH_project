@@ -193,10 +193,8 @@ public class PlayerController : MonoBehaviour
             //땅을 감지하고
             if (groundRayHit.collider != null)
         {
-
-          
                 //거리가 3.0 미만이면
-                if (groundRayHit.distance < 2.45f && rigid.velocity.y < 0f)
+                if (groundRayHit.distance < 2.48f && rigid.velocity.y < 0f)
                 {
                     
                     //Debug.LogWarning(groundRayHit.distance);
@@ -292,5 +290,10 @@ public class PlayerController : MonoBehaviour
             mark.GetComponent<SpriteRenderer>().flipX = true;
         }
         
+    }
+
+    public void InitJump()
+    {
+        player_jump_cnt = 0;
     }
 }
