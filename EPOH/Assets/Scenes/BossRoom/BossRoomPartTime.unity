@@ -4332,7 +4332,7 @@ MonoBehaviour:
   skillList:
   - {fileID: 1733380069}
   - {fileID: 1733380061}
-  - {fileID: 0}
+  - {fileID: 1733380070}
   - {fileID: 1733380064}
   - {fileID: 1733380066}
   - {fileID: 1733380065}
