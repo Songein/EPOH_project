@@ -12,7 +12,7 @@ public class Stomping1 : MonoBehaviour, BossSkillInterface
     //Stomping1 스킬 변수
     [SerializeField] private int shockWaveCnt = 4;
     [SerializeField] private float facingTime = 0.5f; //플레이어를 바라보는 시간
-    [SerializeField] private float precursorTime = 2f; //발구르기 일반 공격 전조 시간
+    [SerializeField] private float precursorTime = 1.5f; //발구르기 일반 공격 전조 시간
     [SerializeField] private float waveTime = 0.5f; //충격파 간 간격 시간
     
     //충격파 관련 변수
@@ -34,10 +34,14 @@ public class Stomping1 : MonoBehaviour, BossSkillInterface
         //facingTime 이후 플레이어가 위치한 방향을 바라본다
         yield return new WaitForSeconds(facingTime);
         BossManagerNew.Current.IsPlayerRight(_dog.transform);
-        
-        //stomping wave 오브젝트 활성화
+
         yield return new WaitForSeconds(precursorTime);
+
         _dog.GetComponent<Animator>().SetTrigger("Stomping1");
+
+        //stomping wave 오브젝트 활성화
+        yield return new WaitForSeconds(0.7f);
+
         // 보스가 왼쪽을 바라보고 있는지 오른쪽을 바라보고 있는지 체크
         GameObject shockWaveParent;
         if (_dog.GetComponent<SpriteRenderer>().flipX)
