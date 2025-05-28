@@ -105,6 +105,40 @@ public class EventManager : MonoBehaviour
                 Debug.LogWarning($"현재 ProgressID가 올바르지 않습니다. {GameManager.instance.ProgressState.ToString()} != {conditionID}");
                 return false;
             }
+            
+            if (conditionID.StartsWith("Before_Progress"))
+            {
+                string parseProgressState = conditionID.Substring(7);
+                if (Enum.TryParse(parseProgressState, false, out GameManager.ProgressId progressId))
+                {
+                    if (GameManager.instance.ProgressState < progressId)
+                    {
+                        Debug.LogWarning($"조건{conditionID}을 만족합니다. 현재 상태{GameManager.instance.ProgressState.ToString()} < {progressId.ToString()}");
+                        return true;
+                    }
+                    Debug.LogWarning($"조건{conditionID}을 만족하지 않습니다. 현재 상태{GameManager.instance.ProgressState.ToString()} >= {progressId.ToString()}");
+                    return false;
+                }
+                Debug.LogError($"{parseProgressState}라는 진행도 상태가 존재하지 않음.");
+                return false;
+            }
+
+            if (conditionID.StartsWith("After_Progress"))
+            {
+                string parseProgressState = conditionID.Substring(6);
+                if (Enum.TryParse(parseProgressState, false, out GameManager.ProgressId progressId))
+                {
+                    if (GameManager.instance.ProgressState >= progressId)
+                    {
+                        Debug.LogWarning($"조건{conditionID}을 만족합니다. 현재 상태{GameManager.instance.ProgressState.ToString()} >= {progressId.ToString()}");
+                        return true;
+                    }
+                    Debug.LogWarning($"조건{conditionID}을 만족하지 않습니다. 현재 상태{GameManager.instance.ProgressState.ToString()} < {progressId.ToString()}");
+                    return false;
+                }
+                Debug.LogError($"{parseProgressState}라는 진행도 상태가 존재하지 않음.");
+                return false;
+            }
 
             return true;
         }
@@ -195,7 +229,6 @@ public class EventManager : MonoBehaviour
                         Debug.LogWarning($"Screen 타입의 {effect.EffectId} 실행");
                         if (effect.EffectId == "Effect_011")
                         {
-                            GameManager.instance.playerPosTemp = PlayerController.Instance.transform.position;
                             switch (GameManager.instance.ProgressState)
                             {
                                 case GameManager.ProgressId.Progress_Req1_Clear:
