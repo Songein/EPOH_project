@@ -4531,32 +4531,74 @@ MonoBehaviour:
   - {fileID: 2104686141}
   - {fileID: 2104686140}
   phase1List:
-  - skillIndex: 0
-    skillCnt: 1
-    skillTerm: 10
-  - skillIndex: 1
-    skillCnt: 1
-    skillTerm: 5
-  - skillIndex: 2
-    skillCnt: 2
-    skillTerm: 2
-  - skillIndex: 3
-    skillCnt: 2
-    skillTerm: 5
-  - skillIndex: 4
-    skillCnt: 2
-    skillTerm: 2
   - skillIndex: 5
     skillCnt: 1
+    skillTerm: 4
+  - skillIndex: 4
+    skillCnt: 1
+    skillTerm: 8
+  - skillIndex: 5
+    skillCnt: 1
+    skillTerm: 4
+  - skillIndex: 0
+    skillCnt: 1
+    skillTerm: 20
+  - skillIndex: 2
+    skillCnt: 1
     skillTerm: 5
+  - skillIndex: 5
+    skillCnt: 1
+    skillTerm: 4
+  phase2List:
   - skillIndex: 6
     skillCnt: 1
-    skillTerm: 2
-  - skillIndex: 7
+    skillTerm: 20
+  - skillIndex: 4
+    skillCnt: 1
+    skillTerm: 8
+  - skillIndex: 2
     skillCnt: 1
     skillTerm: 5
-  phase2List: []
-  phase3List: []
+  - skillIndex: 5
+    skillCnt: 1
+    skillTerm: 4
+  - skillIndex: 5
+    skillCnt: 1
+    skillTerm: 4
+  - skillIndex: 3
+    skillCnt: 1
+    skillTerm: 2
+  - skillIndex: 2
+    skillCnt: 1
+    skillTerm: 5
+  - skillIndex: 5
+    skillCnt: 1
+    skillTerm: 4
+  - skillIndex: 5
+    skillCnt: 1
+    skillTerm: 4
+  phase3List:
+  - skillIndex: 1
+    skillCnt: 1
+    skillTerm: 20
+  - skillIndex: 7
+    skillCnt: 1
+    skillTerm: 20
+  - skillIndex: 2
+    skillCnt: 1
+    skillTerm: 5
+  - skillIndex: 4
+    skillCnt: 1
+    skillTerm: 8
+  - skillIndex: 2
+    skillCnt: 1
+    skillTerm: 5
+  - skillIndex: 0
+    skillCnt: 1
+    skillTerm: 20
+  - skillIndex: 5
+    skillCnt: 1
+    skillTerm: 4
   _isSkillEnd: 0
   player: {fileID: 0}
 --- !u!4 &2104686139
