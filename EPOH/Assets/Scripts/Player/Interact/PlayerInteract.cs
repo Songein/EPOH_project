@@ -6,9 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerInteract : MonoBehaviour
 {
-    //인스턴스화
-    public static PlayerInteract instance;
-    
     //플레이어 상호작용
     public bool canInteract = true;
     private GameObject interact_obj; //플레이어가 상호작용할 오브젝트

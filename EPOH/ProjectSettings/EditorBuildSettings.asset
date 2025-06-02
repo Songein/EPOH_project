@@ -48,7 +48,7 @@ EditorBuildSettings:
     path: Assets/Scenes/BossRoom/BossRoomCriminal.unity
     guid: 3bf82df8a1a7941df9b65e632b0a3450
   - enabled: 1
-    path: Assets/Scenes/BossRoom/BossRoomHoa.unity
+    path: Assets/Scenes/BossRoom/ForWorking/BossRoomHoaRegacy.unity
     guid: 3a56e9b5aee654171854d41cc7065155
   - enabled: 1
     path: Assets/Scenes/Ending/BadEnding.unity
@@ -81,6 +81,6 @@ EditorBuildSettings:
     path: Assets/Editor/Test/MainRoomTest.unity
     guid: 049aa7253eac44b6da5ef6ac146d02fb
   - enabled: 1
-    path: Assets/Scenes/BossRoom/BossRoomTest.unity
+    path: Assets/Scenes/BossRoom/ForWorking/BossRoomTest.unity
     guid: 8c80de3752efb46789754c507f3ca529
   m_configObjects: {}

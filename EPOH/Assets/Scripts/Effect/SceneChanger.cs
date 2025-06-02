@@ -58,22 +58,19 @@ public class SceneChanger : MonoBehaviour
             .OnComplete(() =>
             {
                 _fadeImg.blocksRaycasts = false;
-                PlayerController.Instance.canMove =true;
-                EffectManager.Instance.OnEffectEnd?.Invoke();
-
-                if ((EventManager.Instance.currentEventID == "Event_021" ||
-                    EventManager.Instance.currentEventID == "Event_032" ||
-                    EventManager.Instance.currentEventID == "Event_043" ||
-                    EventManager.Instance.currentEventID == "Event_053")
-                    && scene.name == "MainRoomTest")
+                if (scene.name == "CutScene1" || scene.name == "CutScene2" || scene.name == "CutScene3" ||
+                    scene.name == "CutScene4")
                 {
-                    Debug.LogWarning("플레이어 위치 강제 변경");
-                    Vector2 playerPos = new Vector2(GameManager.instance.playerPosTemp.x,
-                        GameManager.instance.playerPosTemp.y + 1f);
-                    PlayerController.Instance.GetComponent<Rigidbody2D>().isKinematic = true;
-                    PlayerController.Instance.GetComponent<Rigidbody2D>().MovePosition(playerPos);
-                    PlayerController.Instance.GetComponent<Rigidbody2D>().isKinematic = false;
+                    PlayerController.Instance.canMove = false;
+                    PlayerInteract.Instance.canInteract = false;
                 }
+                else
+                {
+                    PlayerController.Instance.canMove = true;
+                    PlayerInteract.Instance.canInteract = true;
+                }
+                
+                EffectManager.Instance.OnEffectEnd?.Invoke();
             });
     }
 
@@ -82,9 +79,10 @@ public class SceneChanger : MonoBehaviour
         await _fadeImg.DOFade(1, fadeDuration)
             .OnStart(() => {
                 _fadeImg.blocksRaycasts = true;
-                if (PlayerController.Instance!=null)
+                if (PlayerController.Instance != null)
                 {
                     PlayerController.Instance.canMove = false;
+                    PlayerInteract.Instance.canInteract = false;
                 }
                 //SoundManager.Instance.StopBGM();
             })

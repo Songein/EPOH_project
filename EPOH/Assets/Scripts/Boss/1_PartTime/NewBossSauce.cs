@@ -85,12 +85,5 @@ public class NewBossSauce : MonoBehaviour, BossSkillInterface
             {
                 Destroy(sauce); // 씬에서 제거
             }
-
-        
     }
-
-   
-
-    
-   
 }

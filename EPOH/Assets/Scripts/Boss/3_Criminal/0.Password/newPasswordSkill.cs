@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class newPasswordSkill : MonoBehaviour
+public class newPasswordSkill : MonoBehaviour, BossSkillInterface
 {
     public GameObject BluePasswordObject;
     public GameObject YellowPasswordObject;
