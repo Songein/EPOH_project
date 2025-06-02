@@ -26,6 +26,7 @@ public class PlayerAttack : MonoBehaviour
         //공격 버튼을 누르고 공격 중이지 않으면
         if (Input.GetButtonDown("Attack") && !is_attacking && !PlayerInteract.Instance.is_interacting && !PlayerInteract.Instance.is_talking)
         {
+            //####instance -> Instance 로 변경#####
             // 플레이어가 하강 중일 때이면 하강 애니메이션 취소 후 공격
             if (GetComponent<Rigidbody2D>().velocity.y < 0f)
             {
