@@ -1,54 +1,124 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Networking;
+using Cysharp.Threading.Tasks;
 
-public class DialogueParser : MonoBehaviour
+public struct DialogueTextType
 {
-    public Dialogue[] Parse(string _CSVFileName)
+    public string DialogueText;
+    public string NextDialogueId;
+}
+public class DialogueStructure
+{
+    public string DialogueId;
+    public string CharacterId;
+    public string InteractionType;
+    public DialogueTextType[] Texts;
+}
+
+public class DialogueParser
+{
+    public async UniTask<Dictionary<string, DialogueStructure>> Parse(string sheetName)
     {
-        //대사 리스트 생성
-        List<Dialogue> dialogueList = new List<Dialogue>();
-        //csv 파일 가져오기
-        TextAsset csvData = Resources.Load<TextAsset>(_CSVFileName);
-        //엔터 기준으로 줄마다 쪼개서 저장
-        String[] data = csvData.text.Split(new char[] { '\n' });
+        //딕셔너리 생성하기
+        Dictionary<string, DialogueStructure> dictionary = new Dictionary<string, DialogueStructure>();
         
-        for (int i = 1; i < data.Length;)
+        string csvUrl = $"https://docs.google.com/spreadsheets/d/1F8Kp36JIyAbTImLd5hE6USwS9ohh9LfMvEWrDHSHcXc/gviz/tq?tqx=out:csv&sheet={sheetName}";
+        
+        // CSV 데이터 가져오기
+        string csvData = await LoadCSVFromURL(csvUrl);
+        if (string.IsNullOrWhiteSpace(csvData))
         {
-            //헤더(StoryId, Name, Content, GameState, EndingState) 별로 쪼개기
-            string[] header = data[i].Split(new char[] { ',' });
-            Dialogue dialogue = new Dialogue();
-            
-            //이름 값 저장
-            //Debug.Log(header[0]);
-            dialogue.name = header[1];
-            
-            //대사내용 저정하기 위한 List 생성(대사 내용 수가 유동적이기에 List로 관리)
-            List<string> contentList = new List<string>();
+            Debug.Log("CSV 데이터를 로드할 수 없습니다.");
+            return dictionary;
+        }
+        
+        //엔터를 기준으로 줄 나누기
+        string[] lines = csvData.Split("\n");
+        int totalLines = lines.Length - 6;
 
-            do
+        string currentKey = "";
+        string currentCharacterId = "";
+        string currentInteractionType = "";
+        List<DialogueTextType> currentDialogues = new List<DialogueTextType>();
+
+        for (int i = 6; i < lines.Length; i++)
+        {
+            string[] values = lines[i].Split(',');
+
+            if (values.Length < 2) continue;
+
+            string key = values[0].Trim().Replace("\"", "");;
+            string characterID = values[1].Trim().Replace("\"", "");;
+            string interactionType = values.Length > 2 ? values[2].Trim().Replace("\"", "") : "";
+            string rawText = values.Length > 3 ? values[3].Trim().Replace("\"", "") : "";
+            string text = rawText.Replace("\"", "").Replace("\\", "\n");  // \를 \n로 변경
+            string nextID = values.Length > 4 ? values[4].Trim().Replace("\"", "") : "";
+
+            if (!string.IsNullOrEmpty(key)) // 새로운 대사 시작
             {
-                contentList.Add(header[2]);
-                //Debug.Log(header[2]);
-                if (++i < data.Length)
+                if (!string.IsNullOrEmpty(currentKey))
                 {
-                    //저장하고 data 내에 남은 줄이 있다면 다음 줄 읽어들이기
-                    header = data[i].Split(new char[] { ',' });
-                }
-                else
-                {
-                    break;
+                    dictionary[currentKey] = new DialogueStructure
+                    {
+                        DialogueId = currentKey,
+                        CharacterId = currentCharacterId,
+                        InteractionType = currentInteractionType,
+                        Texts = currentDialogues.ToArray()
+                    };
                 }
 
-            } while ((header[0] == "") && (header[1] == ""));
+                currentKey = key;
+                currentCharacterId = characterID;
+                currentInteractionType = interactionType;
+                currentDialogues = new List<DialogueTextType>();
+            }
 
-            //Debug.Log("대화리스트에 대화 하나 추가");
-            dialogue.contents = contentList.ToArray();
-            dialogueList.Add(dialogue);
+            if (!string.IsNullOrEmpty(text))
+            {
+                currentDialogues.Add(new DialogueTextType { DialogueText = text, NextDialogueId = nextID });
+            }
         }
 
-        return dialogueList.ToArray();
+        if (!string.IsNullOrEmpty(currentKey))
+        {
+            dictionary[currentKey] = new DialogueStructure
+            {
+                DialogueId = currentKey,
+                CharacterId = currentCharacterId,
+                InteractionType = currentInteractionType,
+                Texts = currentDialogues.ToArray()
+            };
+        }
+
+        Debug.LogWarning("대화 데이터 파싱 완료! 대사 개수: " + dictionary.Count);
+        return dictionary;
+    }
+    
+    private async UniTask<string> LoadCSVFromURL(string url)
+    {
+        // 캐시에 없으면 다운로드
+        using (UnityWebRequest www = UnityWebRequest.Get(url))
+        {
+            try
+            {
+                await www.SendWebRequest();
+
+                if (www.result != UnityWebRequest.Result.Success)
+                {
+                    Debug.LogError($"CSV 다운로드 실패: {www.error}");
+                    return string.Empty;
+                }
+
+                string csvText = www.downloadHandler.text;
+                return csvText;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"CSV 다운로드 중 오류: {e.Message}");
+                return string.Empty;
+            }
+        }
     }
 }

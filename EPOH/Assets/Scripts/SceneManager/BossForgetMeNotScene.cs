@@ -99,12 +99,12 @@ public class BossForgetMeNotScene : MonoBehaviour
         if (boss_manager.battle_start && boss_manager.hacking_point == 200)
         {
             boss_manager.battle_start = false;
-            GameManager.instance.boss_clear_info[2] = false;
-            GameManager.instance.boss_clear_info[3] = true;
+            GameManager.instance.bossClearInfo[2] = false;
+            GameManager.instance.bossClearInfo[3] = true;
 
             bossForgetMeNotMissionClear();
 
-            hacking.endBossBattle();
+            //hacking.endBossBattle();
 
             Debug.Log("Boss ForgetMeNot 클리어!");
         }

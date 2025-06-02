@@ -10,6 +10,16 @@ TagManager:
   - BossPhaseItem
   - Ground
   - BossAttack
+  - AttackArea
+  - BossBubble
+  - HoaMachine
+  - Jail
+  - RainDrop
+  - Wall
+  - Neuron
+  - PanelBGM
+  - Portal
+  - AutoTrigger
   layers:
   - Default
   - TransparentFX
@@ -22,11 +32,11 @@ TagManager:
   - PlayerDamaged
   - Invincible
   - BossAttack
-  - 
-  - 
-  - 
-  - 
-  - 
+  - AttackableObject
+  - Wall
+  - CriminalAI
+  - JailDetect
+  - JailBorder
   - 
   - 
   - 

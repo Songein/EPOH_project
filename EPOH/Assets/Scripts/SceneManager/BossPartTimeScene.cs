@@ -81,12 +81,12 @@ public class BossPartTimeScene : MonoBehaviour
         if (boss_manager.battle_start && boss_manager.hacking_point == 200)
         {
             boss_manager.battle_start = false;
-            GameManager.instance.boss_clear_info[1] = false;
-            GameManager.instance.boss_clear_info[2] = true;
+            GameManager.instance.bossClearInfo[1] = false;
+            GameManager.instance.bossClearInfo[2] = true;
 
             bossPartTimeMissionClear();
 
-            hacking.endBossBattle();
+            //hacking.endBossBattle();
 
             Debug.Log("Boss PartTime 클리어!");
         }

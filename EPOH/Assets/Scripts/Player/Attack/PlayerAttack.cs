@@ -24,8 +24,13 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         //공격 버튼을 누르고 공격 중이지 않으면
-        if (Input.GetButtonDown("Attack") && !is_attacking && !PlayerInteract.instance.is_interacting && !PlayerInteract.instance.is_talking)
+        if (Input.GetButtonDown("Attack") && !is_attacking && !PlayerInteract.Instance.is_interacting && !PlayerInteract.Instance.is_talking)
         {
+            // 플레이어가 하강 중일 때이면 하강 애니메이션 취소 후 공격
+            if (GetComponent<Rigidbody2D>().velocity.y < 0f)
+            {
+                GetComponent<Animator>().SetBool("IsFall", false);
+            }
             //공격 함수 호출
             Attack();
         }
@@ -37,6 +42,7 @@ public class PlayerAttack : MonoBehaviour
     {
         is_attacking = true;
         transform.GetComponent<Animator>().Play("Attack One");
+        SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Player_Attack);
     }
     
 }

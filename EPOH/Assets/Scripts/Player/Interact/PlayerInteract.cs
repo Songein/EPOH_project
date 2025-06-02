@@ -2,13 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInteract : MonoBehaviour
 {
-    //인스턴스화
-    public static PlayerInteract instance;
-    
     //플레이어 상호작용
+    public bool canInteract = true;
     private GameObject interact_obj; //플레이어가 상호작용할 오브젝트
     public bool is_interacting = false; //플레이어가 상호작용 중인지
     private Interaction interaction; //플레이어가 상호작용할 오브젝트에 부착된 Interact 스크립트
@@ -16,50 +15,49 @@ public class PlayerInteract : MonoBehaviour
     //플레이어 대화
     public bool is_talking = false;
     private TalkAction talk_action;
+    
+    //보스 맵 내 상호작용 패턴
+    public Action OnInteract;
+
+    private static PlayerInteract _instance;
+
+    public static PlayerInteract Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<PlayerInteract>();
+
+                if (_instance == null)
+                {
+                    GameObject singletonObject = new GameObject(typeof(PlayerInteract).Name);
+                    _instance = singletonObject.AddComponent<PlayerInteract>();
+                }
+            }
+            return _instance;
+        }
+    }
 
     void Awake()
     {
-        PlayerInteract.instance = this;
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject); // 씬이 바뀌어도 유지됨
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject); // 중복 생성 방지
+        }
     }
     
     void Update()
     {
-        if (Input.GetButtonDown("Interact")) // 상호작용
+        if (canInteract && Input.GetButtonDown("Interact") && OnInteract != null) // 상호작용
         {
-            if (is_talking) // 대화 중이면
-            {
-                talk_action.Action(); //다음 대화
-            }
-            else if (interact_obj != null) // 대화 중이 아니고 상호작용 할 오브젝트가 있을 경우
-            {
-                Debug.Log(interact_obj.name + "과 상호작용 시작");
-                interaction.Interact();
-                is_interacting = true;
-            }
+            OnInteract?.Invoke();
+            OnInteract = null;
         }
-    }
-    
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        //트리거 충돌한 오브젝트가 Interaction 태그를 갖고 있는 오브젝트일 경우
-        if (other.CompareTag("Interaction"))
-        {
-            //상호작용 할 오브젝트에 트리거 충돌 오브젝트를 할당
-            interact_obj = other.gameObject;
-            interaction = interact_obj.GetComponent<Interaction>(); // 충돌한 오브젝트의 Interaction 할당
-            Debug.Log("[PlayerController] : " + other.name + "과 상호작용 가능");
-        }
-    }
-    
-    void OnTriggerExit2D(Collider2D other)
-    {
-        //트리거 충돌 오브젝트에게서 멀어질 때
-        if (interact_obj != null)
-        {
-            //상호작용 할 오브젝트에 null 할당
-            interact_obj = null;
-            Debug.Log("[PlayerController] : " + other.name + "과 상호작용 불가능");
-        }
-        
     }
 }

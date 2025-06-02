@@ -9,13 +9,13 @@ public class MoveFromElevator : MonoBehaviour
     public void operateElevator()
     {
 
-        if(GameManager.instance != null && GameManager.instance.boss_clear_info[3])
+        if(GameManager.instance != null && GameManager.instance.bossClearInfo[3])
         {
             SceneManager.LoadScene("OfficeRoom4");
         }
         else
         {
-            PlayerInteract.instance.is_interacting = false;
+            PlayerInteract.Instance.is_interacting = false;
         }
     }
 }

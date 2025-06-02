@@ -101,12 +101,12 @@ public class BossCriminalScene : MonoBehaviour
         if (boss_manager.battle_start && boss_manager.hacking_point == 200)
         {
             boss_manager.battle_start = false;
-            GameManager.instance.boss_clear_info[3] = false;
-            GameManager.instance.boss_clear_info[4] = true;
+            GameManager.instance.bossClearInfo[3] = false;
+            GameManager.instance.bossClearInfo[4] = true;
 
             bossCriminalMissionClear();
 
-            hacking.endBossBattle();
+            //hacking.endBossBattle();
 
             Debug.Log("Boss Criminal 클리어!");
         }

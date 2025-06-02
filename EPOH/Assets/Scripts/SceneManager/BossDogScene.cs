@@ -80,12 +80,12 @@ public class BossDogScene : MonoBehaviour
         if (boss_manager.battle_start && boss_manager.hacking_point == 200)
         {
             boss_manager.battle_start = false;
-            GameManager.instance.boss_clear_info[0] = false;
-            GameManager.instance.boss_clear_info[1] = true;
+            GameManager.instance.bossClearInfo[0] = false;
+            GameManager.instance.bossClearInfo[1] = true;
 
             bossDogMissionClear();
 
-            hacking.endBossBattle();
+            //hacking.endBossBattle();
 
             Debug.Log("Boss Dog 클리어!");
         }

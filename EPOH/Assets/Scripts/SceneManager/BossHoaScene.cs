@@ -12,10 +12,14 @@ public class BossHoaScene : MonoBehaviour
     public Hacking hacking;
     public bool hacking_complete; // 해킹 완료
 
-    [SerializeField] private GameObject phase1_object_prefab; //페이즈1 오브젝트 프리팹
-    [SerializeField] private GameObject phase2_object_prefab; //페이즈2 오브젝트 프리팹
-    [SerializeField] private GameObject phase3_object_prefab; //페이즈3 오브젝트 프리팹
-    [SerializeField] private GameObject phase4_object_prefab; //페이즈4 오브젝트 프리팹
+    [SerializeField] 
+    private GameObject phase1_object_prefab; //페이즈1 오브젝트 프리팹
+    [SerializeField] 
+    private GameObject phase2_object_prefab; //페이즈2 오브젝트 프리팹
+    [SerializeField] 
+    private GameObject phase3_object_prefab; //페이즈3 오브젝트 프리팹
+    [SerializeField] 
+    private GameObject phase4_object_prefab; //페이즈4 오브젝트 프리팹
 
     private GameObject phase1_object_instance; //페이즈1 오브젝트 인스턴스
     private GameObject phase2_object_instance; //페이즈2 오브젝트 인스턴스
@@ -119,8 +123,8 @@ public class BossHoaScene : MonoBehaviour
         if (boss_manager.battle_start && boss_manager.hacking_point == 200)
         {
             boss_manager.battle_start = false;
-            GameManager.instance.boss_clear_info[4] = false;
-            GameManager.instance.boss_clear_info[5] = true;
+            GameManager.instance.bossClearInfo[4] = false;
+            GameManager.instance.bossClearInfo[5] = true;
 
             bossHoaMissionClear();
 
