@@ -3251,7 +3251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moneyPrefab: {fileID: 3445497346175684240, guid: af9c62ea740a340caa63a73e6c264f8a, type: 3}
-  _moneyCnt: 10
+  _moneyCnt: 8
   _rainCnt: 4
   _moneySpeed: 0
   _rainInterval: 2
@@ -3440,12 +3440,12 @@ MonoBehaviour:
   _vaccinePrefab: {fileID: 2387574069884063311, guid: 94ab320a01bef4685bed4422dba9c556, type: 3}
   _virusPrefab: {fileID: 8814852394709463941, guid: 02e2a3051e1d249daa4fc92a46b732fc, type: 3}
   _objectCnt: 2
-  _fallingCnt: 8
+  _fallingCnt: 4
   _fallingInteraval: 2
   _topSpawnRange: 3
   _minGravity: 0.5
   _maxGravity: 1.5
-  _fallingSpeed: 0.8
+  _fallingSpeed: 0.1
 --- !u!1 &1560450168
 GameObject:
   m_ObjectHideFlags: 0
@@ -4411,32 +4411,71 @@ MonoBehaviour:
   - {fileID: 1330111531}
   - {fileID: 1640272656}
   phase1List:
+  - skillIndex: 5
+    skillCnt: 1
+    skillTerm: 12
   - skillIndex: 0
     skillCnt: 1
-    skillTerm: 5
+    skillTerm: 8
   - skillIndex: 1
-    skillCnt: 1
-    skillTerm: 2
-  - skillIndex: 2
     skillCnt: 1
     skillTerm: 5
   - skillIndex: 3
     skillCnt: 1
-    skillTerm: 5
-  - skillIndex: 4
+    skillTerm: 8
+  - skillIndex: 0
     skillCnt: 1
-    skillTerm: 2
-  - skillIndex: 5
-    skillCnt: 2
+    skillTerm: 8
+  - skillIndex: 1
+    skillCnt: 1
     skillTerm: 5
   - skillIndex: 6
-    skillCnt: 3
-    skillTerm: 2
-  - skillIndex: 7
+    skillCnt: 1
+    skillTerm: 10
+  phase2List:
+  - skillIndex: 5
+    skillCnt: 1
+    skillTerm: 12
+  - skillIndex: 4
+    skillCnt: 1
+    skillTerm: 20
+  - skillIndex: 1
     skillCnt: 1
     skillTerm: 5
-  phase2List: []
-  phase3List: []
+  - skillIndex: 2
+    skillCnt: 1
+    skillTerm: 5
+  - skillIndex: 5
+    skillCnt: 1
+    skillTerm: 15
+  - skillIndex: 2
+    skillCnt: 1
+    skillTerm: 5
+  - skillIndex: 1
+    skillCnt: 1
+    skillTerm: 5
+  phase3List:
+  - skillIndex: 0
+    skillCnt: 1
+    skillTerm: 8
+  - skillIndex: 6
+    skillCnt: 1
+    skillTerm: 10
+  - skillIndex: 3
+    skillCnt: 1
+    skillTerm: 8
+  - skillIndex: 7
+    skillCnt: 1
+    skillTerm: 20
+  - skillIndex: 1
+    skillCnt: 1
+    skillTerm: 5
+  - skillIndex: 2
+    skillCnt: 1
+    skillTerm: 5
+  - skillIndex: 5
+    skillCnt: 1
+    skillTerm: 12
   _isSkillEnd: 0
   player: {fileID: 0}
 --- !u!4 &2104686139
