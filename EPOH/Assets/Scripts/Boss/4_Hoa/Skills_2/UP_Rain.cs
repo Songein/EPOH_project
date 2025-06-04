@@ -49,7 +49,7 @@ public class UP_Rain : MonoBehaviour
 
         yield return new WaitForSeconds(2.0f);
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
         {
             SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Hoa_Rain);
             for (int j = 0; j < raindropCount; j++)
@@ -71,7 +71,7 @@ public class UP_Rain : MonoBehaviour
                     rb.velocity = new Vector2(0, -fallSpeed); // 아래로 떨어지는 속도 설정
                 }
             }
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
         }
 
         Destroy(safeZone);
