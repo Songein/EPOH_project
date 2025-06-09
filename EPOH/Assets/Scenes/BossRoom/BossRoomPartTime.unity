@@ -4342,87 +4342,87 @@ MonoBehaviour:
   phase1List:
   - skillIndex: 3
     skillCnt: 1
-    skillTerm: 10
+    skillTerm: 5
   - skillIndex: 6
     skillCnt: 1
-    skillTerm: 10
+    skillTerm: 8
   - skillIndex: 1
     skillCnt: 1
-    skillTerm: 10
+    skillTerm: 7
   - skillIndex: 0
     skillCnt: 1
     skillTerm: 10
   - skillIndex: 1
     skillCnt: 1
-    skillTerm: 10
+    skillTerm: 7
   - skillIndex: 2
     skillCnt: 1
-    skillTerm: 10
+    skillTerm: 5
   - skillIndex: 7
     skillCnt: 1
-    skillTerm: 10
+    skillTerm: 5
   - skillIndex: 4
     skillCnt: 1
-    skillTerm: 10
+    skillTerm: 8
   - skillIndex: 6
     skillCnt: 1
-    skillTerm: 10
+    skillTerm: 8
   phase2List:
   - skillIndex: 5
-    skillCnt: 0
-    skillTerm: 10
+    skillCnt: 1
+    skillTerm: 3
   - skillIndex: 1
-    skillCnt: 0
-    skillTerm: 10
+    skillCnt: 1
+    skillTerm: 7
   - skillIndex: 4
-    skillCnt: 0
-    skillTerm: 10
+    skillCnt: 1
+    skillTerm: 8
   - skillIndex: 1
-    skillCnt: 0
-    skillTerm: 10
+    skillCnt: 1
+    skillTerm: 7
   - skillIndex: 0
-    skillCnt: 0
+    skillCnt: 1
     skillTerm: 10
   - skillIndex: 2
-    skillCnt: 0
+    skillCnt: 1
+    skillTerm: 5
+  - skillIndex: 2
+    skillCnt: 1
     skillTerm: 10
   - skillIndex: 2
-    skillCnt: 0
-    skillTerm: 10
-  - skillIndex: 2
-    skillCnt: 0
-    skillTerm: 10
+    skillCnt: 1
+    skillTerm: 5
   - skillIndex: 6
-    skillCnt: 0
-    skillTerm: 10
+    skillCnt: 1
+    skillTerm: 8
   phase3List:
   - skillIndex: 5
-    skillCnt: 0
-    skillTerm: 10
+    skillCnt: 1
+    skillTerm: 3
   - skillIndex: 3
-    skillCnt: 0
-    skillTerm: 10
+    skillCnt: 1
+    skillTerm: 5
   - skillIndex: 8
-    skillCnt: 0
-    skillTerm: 10
+    skillCnt: 1
+    skillTerm: 5
   - skillIndex: 0
-    skillCnt: 0
+    skillCnt: 1
     skillTerm: 10
   - skillIndex: 6
-    skillCnt: 0
-    skillTerm: 10
+    skillCnt: 1
+    skillTerm: 8
   - skillIndex: 2
-    skillCnt: 0
-    skillTerm: 10
+    skillCnt: 1
+    skillTerm: 5
   - skillIndex: 4
-    skillCnt: 0
-    skillTerm: 10
+    skillCnt: 1
+    skillTerm: 8
   - skillIndex: 0
-    skillCnt: 0
+    skillCnt: 1
     skillTerm: 10
   - skillIndex: 8
-    skillCnt: 0
-    skillTerm: 10
+    skillCnt: 1
+    skillTerm: 5
   _isSkillEnd: 0
   player: {fileID: 1778748782}
 --- !u!4 &1733380059
