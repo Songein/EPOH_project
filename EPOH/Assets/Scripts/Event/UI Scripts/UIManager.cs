@@ -44,6 +44,7 @@ public class UIManager : MonoBehaviour
     public UIBase requestUI;
     public UIBase popUpUI;
     public UIBase dialogueUI;
+    public UIBase takeObjectUI;
     public UIBase cutSceneUI;
     
     private void Update()

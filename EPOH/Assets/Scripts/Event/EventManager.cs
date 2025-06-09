@@ -215,6 +215,10 @@ public class EventManager : MonoBehaviour
                         Debug.LogWarning($"ArtResource 타입의 {effect.EffectId} 실행");
                         UIManager.Instance.OpenUI(UIManager.Instance.popUpUI,effect);
                         break;
+                    case "TakeObject":
+                        Debug.LogWarning($"TakeObject 타입의 {effect.EffectId} 실행");
+                        UIManager.Instance.OpenUI(UIManager.Instance.takeObjectUI,effect);
+                        break;
                     case "Camera":
                         Debug.LogWarning($"Camera 타입의 {effect.EffectId} 실행");
                         GameObject effectObj = GameObject.Find(effect.EffectId);
