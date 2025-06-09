@@ -11,6 +11,7 @@ public class Code : Attackable
     [SerializeField] private bool _isReverse = false;
     private Vector2 _targetPosition;
     private bool _canMove = false;
+   
 
     private void OnEnable()
     {
@@ -27,9 +28,12 @@ public class Code : Attackable
             if (Vector3.Distance(transform.position, _targetPosition) < 0.01f)
             {
                 _canMove = false;
-                DestroyCodes();
+                //DestroyCodes();
+
             }
         }
+ 
+        
     }
 
     IEnumerator MoveCode()
@@ -51,12 +55,14 @@ public class Code : Attackable
         }
     }
 
-    private void DestroyCodes()
-    {
-        Code[] _codes = FindObjectsOfType<Code>();
-        foreach (var code in _codes)
-        {
-            Destroy(code.gameObject);
-        }
-    }
+
+    //private void DestroyCodes()
+    //{
+    //    Code[] _codes = FindObjectsOfType<Code>();
+    //    foreach (var code in _codes)
+    //    {
+    //        Destroy(code.gameObject);
+    //    }
+    //}
+ 
 }

@@ -14,7 +14,7 @@ public class NewBossBubble : MonoBehaviour, BossSkillInterface
 
 
         SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.PT_Bubble); //소리
-        Vector3 bubblePosition = new Vector3((bossData._leftBottom.x + bossData._rightTop.x)/2, bossData._leftBottom.y +5,0);
+        Vector3 bubblePosition = new Vector3((bossData._leftBottom.x + bossData._rightTop.x)/2, bossData._leftBottom.y +4.2f,0);
             Instantiate(bubblePrefab, bubblePosition, Quaternion.identity);    
         
 

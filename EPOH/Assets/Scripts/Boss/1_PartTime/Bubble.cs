@@ -7,6 +7,7 @@ public class Bubble : MonoBehaviour
     private void Start()
     {
         Invoke("DestroyBubble", 5f);
+        Invoke("DestroyParentBubble", 5.5f);
     }
 
     public void DestroyBubble() {
@@ -14,6 +15,10 @@ public class Bubble : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+      
+    }
+    public void DestroyParentBubble() {
+        Destroy(gameObject);
     }
 
 
@@ -22,6 +27,7 @@ public class Bubble : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerController playerController = other.GetComponent<PlayerController>();
+
             if (playerController != null)
             {
                 Debug.Log("bubble이 player와 접촉!");

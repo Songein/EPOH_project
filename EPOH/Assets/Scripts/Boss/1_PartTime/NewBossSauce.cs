@@ -31,7 +31,7 @@ public class NewBossSauce : MonoBehaviour, BossSkillInterface
             int num = Random.Range(0, 2);
             //bossData._leftBottom.x + 3 + i * 6 수정 전
             float xPos = Mathf.Lerp(bossData._leftBottom.x + 3, bossData._rightTop.x - 3, (float)i / 6);
-            Vector3 saucePosition = new Vector3(xPos, bossData._rightTop.y -7, 0);
+            Vector3 saucePosition = new Vector3(xPos, bossData._rightTop.y -2.5f, 0);
 
             GameObject prefab = (num == 0) ? ketchup : mustard;
             GameObject lid = Instantiate(prefab, saucePosition, Quaternion.identity);
@@ -47,7 +47,7 @@ public class NewBossSauce : MonoBehaviour, BossSkillInterface
         {
             float xPos = Mathf.Lerp(bossData._leftBottom.x + 3, bossData._rightTop.x - 3, (float)i / 6);
 
-            Vector3 saucePrefabPosition = new Vector3(xPos, bossData._rightTop.y -7, 0);
+            Vector3 saucePrefabPosition = new Vector3(xPos -0.1f, bossData._rightTop.y -3, 0);
             string name = lidList[i].name;
             GameObject saucePrefab = (name.Contains("Ketchup")) ? ketchupSauce : mustardSauce;
             GameObject sauce = Instantiate(saucePrefab, saucePrefabPosition, Quaternion.identity);
