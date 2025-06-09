@@ -15,7 +15,10 @@ public class DialogueManager : UIBase
     public string nextDialogueID;
     private Queue<DialogueTextType> _dialogues = new Queue<DialogueTextType>();
 
-    [Header("UI 관련 변수")]
+    [Header("UI 관련 변수")] private GameObject _activeWindow;
+    [SerializeField] private GameObject _profileVer; // 초상화 필요한 대화창
+    [SerializeField] private GameObject _noProfileVer; // 초상화 필요하지 않은 대화창
+    [SerializeField] private Image _portraitImg;
     [SerializeField] TextMeshProUGUI _characterName;
     [SerializeField] TextMeshProUGUI _dialogueArea;
     
@@ -64,13 +67,13 @@ public class DialogueManager : UIBase
     public override void OnOpen()
     {
         base.OnOpen();
-        transform.GetChild(0).gameObject.SetActive(true);
+        _activeWindow.SetActive(true);
     }
 
     public override void OnClose()
     {
         base.OnClose();
-        transform.GetChild(0).gameObject.SetActive(false);
+        _activeWindow.SetActive(false);
     }
     
     public override void HandleMouseInput()
@@ -176,11 +179,40 @@ public class DialogueManager : UIBase
 
     void SetUI(DialogueStructure dialogueInfo)
     {
-        if (!string.IsNullOrEmpty(dialogueInfo.CharacterId) &&
-            DataManager.Instance.Characters.ContainsKey(dialogueInfo.CharacterId))
+        // NPC 대사인지(Portrait 필요 O) 그 외의 대사인지(Portrait 필요 X)
+        if (dialogueInfo.InteractionType == "NPC")
         {
-            CharacterStructure characterInfo = DataManager.Instance.Characters[dialogueInfo.CharacterId];
-            _characterName.text = characterInfo.CharacterName;
+            _characterName = _profileVer.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            _dialogueArea = _profileVer.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+            _portraitImg = _profileVer.transform.GetChild(2).GetComponent<Image>();
+            
+            if (!string.IsNullOrEmpty(dialogueInfo.CharacterId) &&
+                DataManager.Instance.Characters.ContainsKey(dialogueInfo.CharacterId))
+            {
+                CharacterStructure characterInfo = DataManager.Instance.Characters[dialogueInfo.CharacterId];
+                _characterName.text = characterInfo.CharacterName;
+                _portraitImg.sprite = characterInfo.GetSpriteFromFilePath(characterInfo.PortraitPath); // 초상화 스프라이트 불러오기
+            }
+            
+            _profileVer.SetActive(true);
+            _noProfileVer.SetActive(false);
+            _activeWindow = _profileVer;
+        }
+        else
+        {
+            _characterName = _noProfileVer.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            _dialogueArea = _noProfileVer.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+            
+            if (!string.IsNullOrEmpty(dialogueInfo.CharacterId) &&
+                DataManager.Instance.Characters.ContainsKey(dialogueInfo.CharacterId))
+            {
+                CharacterStructure characterInfo = DataManager.Instance.Characters[dialogueInfo.CharacterId];
+                _characterName.text = characterInfo.CharacterName;
+            }
+            
+            _profileVer.SetActive(false);
+            _noProfileVer.SetActive(true);
+            _activeWindow = _noProfileVer;
         }
     }
 }
