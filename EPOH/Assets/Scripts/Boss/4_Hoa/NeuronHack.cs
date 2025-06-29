@@ -130,8 +130,9 @@ public class NeuronHack : MonoBehaviour
             if (hitCount == 2)
             {
                 Debug.Log("hitCount: " + "3");
-                BossManagerNew.Current.OnIncreaseHackingPoint(10);
-                Destroy(gameObject);
+            //BossManagerNew.Current.OnIncreaseHackingPoint(10);
+            BossManagerNew.Current.OnIncreaseHackingPoint?.Invoke(10);
+            Destroy(gameObject);
                 hitCount = 0;
 
 
@@ -139,8 +140,9 @@ public class NeuronHack : MonoBehaviour
             else
             {
 
-                BossManagerNew.Current.OnIncreaseHackingPoint(damage);
-                hitCount++;
+                //BossManagerNew.Current.OnIncreaseHackingPoint(damage);
+            BossManagerNew.Current.OnIncreaseHackingPoint?.Invoke(damage);
+            hitCount++;
                 Debug.Log("hitCount: " + hitCount);
             }
 

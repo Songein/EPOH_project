@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElectricBall : MonoBehaviour
+public class ElectricBall : MonoBehaviour, BossSkillInterface
 {
     //  private BossDogController dog; 
     public GameObject player; // 플레이어 게임 오브젝트
     private List<GameObject> balls;
-    [SerializeField] private Vector3 leftEdgePoint;
-    [SerializeField] private Vector3 rightEdgePoint;
+    //[SerializeField] private Vector3 leftEdgePoint;
+    //[SerializeField] private Vector3 rightEdgePoint;
 
 
     //ball 변수
@@ -39,8 +39,9 @@ public class ElectricBall : MonoBehaviour
 
     public IEnumerator electricBall()
     {
-        Vector3 leftEdge = leftEdgePoint;
-        Vector3 rightEdge = rightEdgePoint;
+        BossData bossData = BossManagerNew.Current.bossData;
+        Vector3 leftEdge = new Vector3(bossData._leftBottom.x + 3, bossData._leftBottom.y +1, 0);
+        Vector3 rightEdge = new Vector3(bossData._rightTop.x -2 , bossData._rightTop.y -1, 0);
         int ball_count = 4; // 총 4번의 electricball 을 생성
         int number = 0;
         balls = new List<GameObject>();

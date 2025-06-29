@@ -18,6 +18,8 @@ public class Virus : Hittable
             
             Destroy(gameObject);
         }
+
+
     }
 
     public override void OnRemoved()

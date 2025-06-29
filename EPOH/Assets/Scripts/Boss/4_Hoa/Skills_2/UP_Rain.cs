@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UP_Rain : MonoBehaviour
+public class UP_Rain : MonoBehaviour, BossSkillInterface
 {
     [SerializeField] private int minRaindrops;
     [SerializeField] private int maxRaindrops;

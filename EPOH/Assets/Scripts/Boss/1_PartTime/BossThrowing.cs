@@ -12,23 +12,23 @@ public class BossThrowing : MonoBehaviour, BossSkillInterface
     public float attackDuration = 5.0f; // 공격 지속 시간
 
     private bool isThrowing = false; // 던지기 활성화 상태
-    //private Vector3 leftSpawnPoint; // 왼쪽 스폰 위치
-    //private Vector3 rightSpawnPoint; // 오른쪽 스폰 위치
+    private Vector3 leftSpawnPoint; // 왼쪽 스폰 위치
+    private Vector3 rightSpawnPoint; // 오른쪽 스폰 위치
 
-    //private void Start()
-    //{
-    //    // 카메라의 뷰포트를 기준으로 왼쪽과 오른쪽 끝 지점 계산
-    //    Camera mainCamera = Camera.main;
-    //    if (mainCamera != null)
-    //    {
-    //        leftSpawnPoint = mainCamera.ViewportToWorldPoint(new Vector3(0, 0.5f, mainCamera.nearClipPlane));
-    //        rightSpawnPoint = mainCamera.ViewportToWorldPoint(new Vector3(1, 0.5f, mainCamera.nearClipPlane));
+    private void Start()
+    {
+        // 카메라의 뷰포트를 기준으로 왼쪽과 오른쪽 끝 지점 계산
+        Camera mainCamera = Camera.main;
+        if (mainCamera != null)
+        {
+            leftSpawnPoint = mainCamera.ViewportToWorldPoint(new Vector3(0, 0.5f, mainCamera.nearClipPlane));
+            rightSpawnPoint = mainCamera.ViewportToWorldPoint(new Vector3(1, 0.5f, mainCamera.nearClipPlane));
 
-    //        // z값 보정 (2D 환경에서는 0으로 설정)
-    //        leftSpawnPoint.z = 0;
-    //        rightSpawnPoint.z = 0;
-    //    }
-    //}
+            // z값 보정 (2D 환경에서는 0으로 설정)
+            leftSpawnPoint.z = 0;
+            rightSpawnPoint.z = 0;
+        }
+    }
 
     public void Activate()
     {
@@ -38,9 +38,9 @@ public class BossThrowing : MonoBehaviour, BossSkillInterface
     private IEnumerator ThrowPlates()
     {
         float elapsedTime = 0f;
-        BossData bossData = BossManagerNew.Current.bossData;
-        Vector3 leftSpawnPoint = new Vector3(bossData._leftBottom.x, bossData._leftBottom.y + 3, 0);
-        Vector3 rightSpawnPoint = new Vector3(bossData._rightTop.x, bossData._leftBottom.y + 3, 0);
+        //BossData bossData = BossManagerNew.Current.bossData;
+        //Vector3 leftSpawnPoint = new Vector3(bossData._leftBottom.x, bossData._leftBottom.y + 3, 0);
+        //Vector3 rightSpawnPoint = new Vector3(bossData._rightTop.x, bossData._leftBottom.y + 3, 0);
 
         while (elapsedTime < attackDuration)
         {

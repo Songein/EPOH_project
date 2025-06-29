@@ -17,7 +17,7 @@ public class Half : MonoBehaviour, BossSkillInterface
 
     IEnumerator ArmComingUp(BossData bossData) {
         Vector3 hoaPostion = new Vector3((bossData._leftBottom.x + bossData._rightTop.x) / 2, (bossData._leftBottom.y + bossData._rightTop.y) / 2, 0);
-        Vector3 lightleftPostion = new Vector3(((bossData._leftBottom.x + bossData._rightTop.x) / 2 + bossData._leftBottom.x)/2, (bossData._leftBottom.y + bossData._rightTop.y)/2, 0); //x: 중간지점과 left끝의 중간지점에 생성
+        Vector3 lightleftPostion = new Vector3((((bossData._leftBottom.x + bossData._rightTop.x) / 2) + bossData._leftBottom.x)/2, (bossData._leftBottom.y + bossData._rightTop.y)/2, 0); //x: 중간지점과 left끝의 중간지점에 생성
         Vector3 lightrightPostion = new Vector3(((bossData._leftBottom.x + bossData._rightTop.x) / 2 + bossData._rightTop.x) / 2, (bossData._leftBottom.y + bossData._rightTop.y) / 2, 0); //x: 중간지점과 right끝의 중간지점에 생성
         GameObject hoa = Instantiate(hoaPrefab, hoaPostion, Quaternion.identity);
         yield return new WaitForSeconds(0.5f); //여기에 애니메이션 추가
