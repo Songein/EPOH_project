@@ -25,7 +25,6 @@ public class HackingForN : MonoBehaviour
             Debug.Log($"[Cookie] : 플레이어 해킹포인트 5%(텔레포트) 만큼 감소");
 
         }
-
     }
     public float GetHackingPoint()
     {
@@ -51,8 +50,7 @@ public class HackingForN : MonoBehaviour
         if (_hackingPoint + value >= hackingGoal)
         {
             _hackingPoint = hackingGoal;
-            BossManagerNew.Current.EndBossRaid();
-        
+            BossManagerNew.Current.ClearBossRaid();
         }
         else
         {
