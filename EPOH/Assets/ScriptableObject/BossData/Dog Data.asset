@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Dog Data
   m_EditorClassIdentifier: 
   name: Dog
+  bossIndex: 0
+  hackingGoal: 20
+  clearEventId: 
+  failEventId: 
   _maxHealth: 0
   _rightTop: {x: 9.7, y: 9.7, z: 0}
   _leftBottom: {x: -7, y: -5, z: 0}

@@ -8,14 +8,17 @@ public class HackingForN : MonoBehaviour
     private PlayerController pcontrol;
     private BossManagerNew _bossManager;
     public float _hackingPoint;
-    public int hackingGoal;
+    private int hackingGoal;
+
     [SerializeField] private TextMeshProUGUI _text;
     public void Start()
     {
+        BossData bossdata = BossManagerNew.Current.bossData;
         pcontrol = FindObjectOfType<PlayerController>();
         _bossManager = FindObjectOfType<BossManagerNew>();
         _bossManager.OnDecreaseHackingPoint += DecreaseHackingPoint;
         _bossManager.OnIncreaseHackingPoint += IncreaseHackingPoint;
+        hackingGoal = bossdata.hackingGoal;
         Debug.Log("HackingNeuron시작");
     }
     private void Update()

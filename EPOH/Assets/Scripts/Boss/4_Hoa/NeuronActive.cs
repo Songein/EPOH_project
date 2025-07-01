@@ -7,11 +7,14 @@ public class NeuronActive : MonoBehaviour
     [SerializeField] private Vector3[] neuronPosition;
     [SerializeField] private GameObject neuron;
     private HackingForN hacking;
+    private int hackingGoal;
 
     public static NeuronActive NM;
 
     private void Start()
     {
+        BossData bossdata = BossManagerNew.Current.bossData;
+        hackingGoal = bossdata.hackingGoal;
         Activate();
     }
     public void Activate()
@@ -24,9 +27,9 @@ public class NeuronActive : MonoBehaviour
     IEnumerator createNeuron()
     {
         HackingForN hacking = FindObjectOfType<HackingForN>();
-        while (hacking._hackingPoint < hacking.hackingGoal)
+        while (hacking._hackingPoint < hackingGoal)
         {
-            Debug.Log("뉴런 생성");
+            Debug.Log("뉴런 생성 Hacking Goal: " + hackingGoal);
             int randomNum = Random.Range(0, neuronPosition.Length);
             GameObject g_neuron = Instantiate(neuron, neuronPosition[randomNum], Quaternion.identity);
             yield return new WaitForSeconds(10f);

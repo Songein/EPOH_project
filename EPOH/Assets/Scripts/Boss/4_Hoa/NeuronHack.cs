@@ -10,6 +10,7 @@ public class NeuronHack : MonoBehaviour
   //  private float triggerDelay = 0.7f;
    // private float triggerDelay2 = 0.9f;
     private bool movingUp = true;
+    private BossData bossdata;
     private Vector3 startPos;
    private Vector3 targetPos;
     private SpriteRenderer sr;
@@ -19,7 +20,7 @@ public class NeuronHack : MonoBehaviour
     private void Awake()
     {
         hacking = FindObjectOfType<HackingForN>();
-        BossData bossdata = BossManagerNew.Current.bossData;
+        bossdata = BossManagerNew.Current.bossData;
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = bossdata.Nueron;
     }
@@ -32,7 +33,7 @@ public class NeuronHack : MonoBehaviour
       }
     private void Update()
     {
-        if (hacking._hackingPoint >= hacking.hackingGoal) {
+        if (hacking._hackingPoint >= bossdata.hackingGoal) {
             Destroy(gameObject);
         }
     }

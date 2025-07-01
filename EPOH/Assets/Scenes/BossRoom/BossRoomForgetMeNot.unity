@@ -4607,7 +4607,13 @@ MonoBehaviour:
   - skillIndex: 5
     skillCnt: 1
     skillTerm: 4
+  phase4List: []
+  phase5List: []
+  phase6List: []
+  _isRaidRunning: 0
   _isSkillEnd: 0
+  _isPhaseEnd: 0
+  isGeneralRaid: 0
   player: {fileID: 0}
 --- !u!4 &2104686139
 Transform:
