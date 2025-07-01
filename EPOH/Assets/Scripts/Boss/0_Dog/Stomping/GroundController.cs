@@ -20,10 +20,10 @@ public class GroundController : MonoBehaviour
 
     private void Update()
     {
-        if (canAttack && (Player.GetComponent<PlayerController>().groundRayHit.distance < 2.5f))
+        if (canAttack && (Player.GetComponent<PlayerController>().groundRayHit.collider.name == "Ground"))
         {
             canAttack = false;
-            Debug.Log("땅에 의해 공격 받음");
+            Debug.Log($"땅에 의해 공격 받음 {Player.GetComponent<PlayerController>().groundRayHit.collider}");
             Player.GetComponent<PlayerHealth>().Damage(GroundAttackPower);
         }
     }
