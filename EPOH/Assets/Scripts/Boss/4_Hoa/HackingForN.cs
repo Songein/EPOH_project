@@ -8,7 +8,7 @@ public class HackingForN : MonoBehaviour
     private PlayerController pcontrol;
     private BossManagerNew _bossManager;
     public float _hackingPoint;
-    private int hackingGoal;
+    private float hackingGoal;
 
     [SerializeField] private TextMeshProUGUI _text;
     public void Start()

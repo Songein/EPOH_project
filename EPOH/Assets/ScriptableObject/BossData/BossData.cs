@@ -8,7 +8,7 @@ public class BossData : ScriptableObject
     [Header("보스 정보")]
     public string name;
     public int bossIndex;
-    public int hackingGoal;
+    public float hackingGoal;
     public string clearEventId;
     public string failEventId;
     [SerializeField] private float _maxHealth;
