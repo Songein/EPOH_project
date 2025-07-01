@@ -23,7 +23,6 @@ public class HackingForN : MonoBehaviour
             BossManagerNew.Current.OnDecreaseHackingPoint(10);
           
         }
-
     }
     public float GetHackingPoint()
     {
@@ -49,8 +48,7 @@ public class HackingForN : MonoBehaviour
         if (_hackingPoint + value >= hackingGoal)
         {
             _hackingPoint = hackingGoal;
-            BossManagerNew.Current.EndBossRaid();
-        
+            BossManagerNew.Current.ClearBossRaid();
         }
         else
         {
