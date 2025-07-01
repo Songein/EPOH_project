@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: HoaData
   m_EditorClassIdentifier: 
   name: Hoa
+  bossIndex: 0
+  hackingGoal: 100
+  clearEventId: 
+  failEventId: 
   _maxHealth: 0
   _rightTop: {x: 12.5, y: 9, z: 0}
   _leftBottom: {x: -16, y: -3.3, z: 0}

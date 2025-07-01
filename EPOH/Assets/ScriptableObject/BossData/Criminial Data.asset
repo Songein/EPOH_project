@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Criminial Data
   m_EditorClassIdentifier: 
   name: Criminal
+  bossIndex: 0
+  hackingGoal: 50
+  clearEventId: 
+  failEventId: 
   _maxHealth: 0
   _rightTop: {x: 12, y: 6, z: 0}
   _leftBottom: {x: -12, y: -6.2, z: 0}
