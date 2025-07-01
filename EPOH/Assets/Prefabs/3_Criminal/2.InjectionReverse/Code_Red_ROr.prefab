@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 366904795066393709}
   - component: {fileID: 1594315544079661329}
   - component: {fileID: -5236607020543612774}
+  - component: {fileID: -8828706823770186053}
   m_Layer: 0
   m_Name: Code_Red_ROr
   m_TagString: Untagged
@@ -128,3 +129,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-8828706823770186053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4906455564993404438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff6eb83d79dfc247be26b08ca39d003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 3.6

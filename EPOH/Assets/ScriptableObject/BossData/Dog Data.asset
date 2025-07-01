@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Dog
   _maxHealth: 0
-  _rightTop: {x: 7, y: 5, z: 0}
+  _rightTop: {x: 9.7, y: 9.7, z: 0}
   _leftBottom: {x: -7, y: -5, z: 0}
-  BGMClip: {fileID: 0}
+  BGMClip: {fileID: 8300000, guid: 2e72b28350884c8448c5152469cb175c, type: 3}
+  Nueron: {fileID: 21300000, guid: 1babc0be7d5a2464fbad9d45b52d1dd0, type: 3}

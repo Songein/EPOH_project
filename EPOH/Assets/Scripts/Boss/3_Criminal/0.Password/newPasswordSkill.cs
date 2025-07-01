@@ -21,8 +21,8 @@ public class newPasswordSkill : MonoBehaviour, BossSkillInterface
         int ranNum = Random.Range(0, 2);
         if (ranNum == 0)
         { //Cat -> Cut 일때
-            float _y = Random.Range(BossManagerNew.Current.bossData._leftBottom.y,
-                   BossManagerNew.Current.bossData._rightTop.y);
+            float _y = Random.Range(BossManagerNew.Current.bossData._leftBottom.y +1 ,
+                   BossManagerNew.Current.bossData._rightTop.y -1);
             for (int i = 0; i < 3; i++)
             {
                 float _x = Mathf.Lerp(BossManagerNew.Current.bossData._leftBottom.x +4 , BossManagerNew.Current.bossData._rightTop.x -4 , (float) i / 2);
@@ -66,8 +66,8 @@ public class newPasswordSkill : MonoBehaviour, BossSkillInterface
 
         else if (ranNum == 1)
         {
-            float _y = Random.Range(BossManagerNew.Current.bossData._leftBottom.y,
-                    BossManagerNew.Current.bossData._rightTop.y);
+            float _y = Random.Range(BossManagerNew.Current.bossData._leftBottom.y +1,
+                    BossManagerNew.Current.bossData._rightTop.y -1);
             for (int i = 4; i < 8; i++)
             {
                 //float _x = Random.Range(BossManagerNew.Current.bossData._leftBottom.x,

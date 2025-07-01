@@ -14,14 +14,16 @@ public class HackingForN : MonoBehaviour
     {
         pcontrol = FindObjectOfType<PlayerController>();
         _bossManager = FindObjectOfType<BossManagerNew>();
-        _bossManager.OnDecreaseHackingPoint = DecreaseHackingPoint;
-        _bossManager.OnIncreaseHackingPoint = IncreaseHackingPoint;
+        _bossManager.OnDecreaseHackingPoint += DecreaseHackingPoint;
+        _bossManager.OnIncreaseHackingPoint += IncreaseHackingPoint;
+        Debug.Log("HackingNeuron시작");
     }
     private void Update()
     {
         if (Input.GetButtonDown("Teleport") && pcontrol.can_teleport == false) {
-            BossManagerNew.Current.OnDecreaseHackingPoint(10);
-          
+            BossManagerNew.Current.OnDecreaseHackingPoint?.Invoke(5);
+            Debug.Log($"[Cookie] : 플레이어 해킹포인트 5%(텔레포트) 만큼 감소");
+
         }
 
     }

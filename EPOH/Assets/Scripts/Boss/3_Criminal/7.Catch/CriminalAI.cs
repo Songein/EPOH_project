@@ -8,6 +8,7 @@ public class CriminalAI : MonoBehaviour
     [SerializeField] private float _hitForce = 5f; // 타격 시 밀리는 힘
     [SerializeField] private float _hitDuration = 1.5f; // 타격 지속 시간
     private Rigidbody2D _rb;
+    private Animator _ani;
     private SpriteRenderer _sr;
     private bool _isHit = false;
     private Coroutine _moveCoroutine;
@@ -19,6 +20,7 @@ public class CriminalAI : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _sr = GetComponent<SpriteRenderer>();
+        _ani = GetComponent<Animator>();
         _obstacleLayer = LayerMask.GetMask("Wall", "JailBorder");
         _moveCoroutine = StartCoroutine(Move());
     }
@@ -76,6 +78,7 @@ public class CriminalAI : MonoBehaviour
     public void EndMove()
     {
         StopAllCoroutines();
+        _ani.enabled = false;
         _isInJail = true;
         _rb.velocity = Vector2.zero;
     }
