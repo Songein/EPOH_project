@@ -100,7 +100,7 @@ public class UP_Arm : MonoBehaviour, BossSkillInterface
 
 
             //전류생성
-            GameObject armElect = Instantiate(armElectPrefab, warningPosition, Quaternion.identity);
+            GameObject armElect = Instantiate(armElectPrefab, new Vector3(warningPosition.x -1f , warningPosition.y, 0), Quaternion.identity);
             armElect.transform.rotation = Quaternion.LookRotation(Vector3.forward, direction) * Quaternion.AngleAxis(180, Vector3.forward);
             //팔 다시 들어가기
             //armRb.velocity = direction * -armSpeed;

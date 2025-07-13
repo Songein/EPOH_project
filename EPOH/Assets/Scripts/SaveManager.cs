@@ -161,6 +161,7 @@ public class SaveManager : MonoBehaviour
 
         // 플레이어 위치 초기화 (원하는 초기 위치 값으로 세팅)
         player_Pos = new Vector3(-9.5f, -8.16f, -1f);
+      
 
         Debug.Log("SaveManager 데이터 초기화 완료");
     }
