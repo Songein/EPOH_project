@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PartTimeData
   m_EditorClassIdentifier: 
   name: PartTime
-  bossIndex: 0
+  bossIndex: 1
   hackingGoal: 40
   clearEventId: 
   failEventId: 

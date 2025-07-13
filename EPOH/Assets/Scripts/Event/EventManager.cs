@@ -162,6 +162,7 @@ public class EventManager : MonoBehaviour
                 {
                     GameManager.instance.ProgressState = (GameManager.ProgressId)Enum.Parse(typeof(GameManager.ProgressId), eventStructure.ProgressId);
                     Debug.LogWarning($"진행도 업데이트! -> {eventStructure.ProgressId}");
+                SaveManager.instance.GettheId(eventStructure.ProgressId);
                 }
                 
                 // 다음 이벤트 아이디 확인
@@ -169,6 +170,7 @@ public class EventManager : MonoBehaviour
                 {
                     nextEventID = eventStructure.NextEvent;
                     Debug.LogWarning($"다음 이벤트 아이디 갱신! -> {nextEventID}");
+                SaveManager.instance.GettheEvent(nextEventID);
                 
                     if (DataManager.Instance.Events[eventStructure.NextEvent].IsAuto == "true")
                     {

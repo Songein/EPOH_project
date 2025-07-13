@@ -45,4 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  progressId: num_1
+  player_Pos: {x: 0, y: 0, z: 0}
+  progressId: 

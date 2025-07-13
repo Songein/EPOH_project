@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HoaData
   m_EditorClassIdentifier: 
   name: Hoa
-  bossIndex: 0
+  bossIndex: 4
   hackingGoal: 100
   clearEventId: 
   failEventId: 

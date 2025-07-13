@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Criminial Data
   m_EditorClassIdentifier: 
   name: Criminal
-  bossIndex: 0
+  bossIndex: 3
   hackingGoal: 50
   clearEventId: 
   failEventId: 
