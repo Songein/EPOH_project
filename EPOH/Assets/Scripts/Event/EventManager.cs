@@ -53,7 +53,8 @@ public class EventManager : MonoBehaviour
 
         void Start()
         {
-            ExecuteEvent(startEventID).Forget();
+            currentEventID = startEventID;
+            //ExecuteEvent(startEventID).Forget();
         }
     
         // 이벤트 실행 가능 여부 검사

@@ -29,6 +29,12 @@ public class DialogueManager : UIBase
     [SerializeField] float typingSpeed = 0.1f;
     [SerializeField] float lineChangeSpeed = 0.5f;
 
+    [Header("이미지 관리")]
+    [SerializeField] private List<Sprite> portraitSprites;
+    [SerializeField] private List<Sprite> portraitBackgroundSprites;
+    [SerializeField] private Sprite pastBackgroundSprite;
+    [SerializeField] private Sprite defaultBackgroundSprite;
+
     public Action OnDialogueEnd;
 
     private static DialogueManager _instance;

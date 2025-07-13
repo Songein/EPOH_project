@@ -466,6 +466,7 @@ MonoBehaviour:
   requestUI: {fileID: 477819351671807598}
   popUpUI: {fileID: 477819351724998737}
   dialogueUI: {fileID: 477819351612445900}
+  takeObjectUI: {fileID: 0}
   cutSceneUI: {fileID: 0}
 --- !u!1 &477819351612445902
 GameObject:
@@ -571,18 +572,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477819351653487802}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 477819351020049367}
-  m_Father: {fileID: 477819351681758207}
-  m_RootOrder: 1
+  m_Father: {fileID: 477819351802755439}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -855}
+  m_AnchoredPosition: {x: 449.99997, y: -680}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &477819351653487806
@@ -782,7 +783,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 477819351802755439}
-  - {fileID: 477819351653487801}
   m_Father: {fileID: 477819351671807599}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1027,7 +1027,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 477819351653487801}
   m_Father: {fileID: 477819351681758207}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
