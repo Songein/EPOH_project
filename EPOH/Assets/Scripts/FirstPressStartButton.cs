@@ -5,14 +5,28 @@ public class FirstPressStartButton : MonoBehaviour
 {
     public void onStartButtonClick()
     {
+        //if (GameManager.instance.if_first) // 게임 실행 후 '시작 버튼' 첫 클릭시
+        //{
+        //    GameManager.instance.if_first = false; // GameManager에 시작버튼 첫 클릭 기록
+        //    SceneManager.LoadScene("Beginning"); // Beginning 씬으로 이동
+        //}
+        //else
+        //{
+        //    SceneManager.LoadScene("MainRoomTest"); // 게임 실행 후 '시작 버튼' 첫 클릭이 아닐 경우 MainRoom으로 이동
+
+        //}
+
         if (GameManager.instance.if_first) // 게임 실행 후 '시작 버튼' 첫 클릭시
         {
             GameManager.instance.if_first = false; // GameManager에 시작버튼 첫 클릭 기록
             SceneManager.LoadScene("Beginning"); // Beginning 씬으로 이동
         }
-        else
+        else if (SaveManager.instance.progressId == "Progress_Req1_Start" || SaveManager.instance.progressId == "Progress_Req1_Fail" || SaveManager.instance.progressId == "Progress_Req1_Clear")
         {
-            SceneManager.LoadScene("MainRoom"); // 게임 실행 후 '시작 버튼' 첫 클릭이 아닐 경우 MainRoom으로 이동
+            SceneManager.LoadScene("OfficeRoom1");
+        }
+        else {
+            SceneManager.LoadScene("MainRoomTest");
         }
     }
 }

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ForgetMeNot Data
   m_EditorClassIdentifier: 
   name: ForgetMeNot
-  bossIndex: 0
-  hackingGoal: 10
+  bossIndex: 2
+  hackingGoal: 40
   clearEventId: 
   failEventId: 
   _maxHealth: 0
