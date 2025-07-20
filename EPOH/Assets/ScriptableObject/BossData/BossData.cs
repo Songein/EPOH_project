@@ -23,4 +23,5 @@ public class BossData : ScriptableObject
     [Space(5)]
     [Header("뉴런 Sprite")]
     public Sprite Nueron;
+
 }

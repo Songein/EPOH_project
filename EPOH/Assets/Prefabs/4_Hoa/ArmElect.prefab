@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5510980698276568214}
   - component: {fileID: 5510980698276568215}
   - component: {fileID: 5510980698276568208}
-  - component: {fileID: 5510980698276568211}
+  - component: {fileID: 4014983740055153214}
   m_Layer: 0
   m_Name: ArmElect
   m_TagString: Untagged
@@ -26,8 +26,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5510980698276568212}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.3, y: -1.8, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7024855, w: 0.7116981}
+  m_LocalPosition: {x: -12.1092615, y: 1.4408313, z: 0}
   m_LocalScale: {x: 3, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -103,8 +103,8 @@ MonoBehaviour:
   _hackPointDamage: 0
   _attackHealth: 1
   _attackHackPoint: 0
---- !u!60 &5510980698276568211
-PolygonCollider2D:
+--- !u!61 &4014983740055153214
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -113,7 +113,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -126,9 +126,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.5, y: 0.5}
-      - {x: -0.5, y: -0.5}
-      - {x: 0.5, y: -0.5}
-      - {x: 0.5, y: 0.5}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 3}
+  m_EdgeRadius: 0

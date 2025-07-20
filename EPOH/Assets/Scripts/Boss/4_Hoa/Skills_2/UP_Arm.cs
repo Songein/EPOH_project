@@ -145,9 +145,9 @@ public class UP_Arm : MonoBehaviour, BossSkillInterface
             yield return new WaitForSeconds(0.5f);
 
             //전류생성
-            GameObject armElect = Instantiate(armElectPrefab, warningPosition, Quaternion.identity);
+            GameObject armElect = Instantiate(armElectPrefab, new Vector3(warningPosition.x + 1f, warningPosition.y, 0), Quaternion.identity);
             armElect.transform.up = (warningPosition - spawnPoint).normalized;
-            armElect.transform.localScale = new Vector3(-armElect.transform.localScale.x,
+            armElect.transform.localScale = new Vector3(-armElect.transform.localScale.x ,
                                       armElect.transform.localScale.y,
                                       armElect.transform.localScale.z); //대칭
             yield return new WaitForSeconds(0.5f);

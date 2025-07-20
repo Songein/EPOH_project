@@ -20,26 +20,48 @@ public class FirstPressStartButton : MonoBehaviour
         //{
         //    SceneManager.LoadScene("MainRoomTest"); // 게임 실행 후 '시작 버튼' 첫 클릭이 아닐 경우 MainRoom으로 이동
 
-            //}
+        //}
 
-            //if (!File.Exists(path))
-            //{ //저장 파일 없으면 다시 beginning으로 Reset 실행
-            //    SceneManager.LoadScene("Beginning");
-            //    return;
-            //}
-        if (GameManager.instance.if_first) // 게임 실행 후 '시작 버튼' 첫 클릭시
+        //if (!File.Exists(path))
+        //{ //저장 파일 없으면 다시 beginning으로 Reset 실행
+        //    SceneManager.LoadScene("Beginning");
+        //    return;
+        //}
+        switch (SaveManager.instance.SceneName)
         {
-            GameManager.instance.if_first = false; // GameManager에 시작버튼 첫 클릭 기록
-            SceneManager.LoadScene("Beginning"); // Beginning 씬으로 이동
+            
+            case "MainRoomTest":
+                SceneManager.LoadScene("MainRoomTest");
+                break;
+            case "OfficeRoom1":
+                SceneManager.LoadScene("OfficeRoom1");
+                break;
+            case "OfficeRoom2":
+                SceneManager.LoadScene("OfficeRoom2");
+                break;
+            case "OfficeRoom3":
+                SceneManager.LoadScene("OfficeRoom3");
+                break;
+            case "OfficeRoom4":
+                SceneManager.LoadScene("OfficeRoom4");
+                break;
+            case "BossRoomDog":
+                SceneManager.LoadScene("OfficeRoom1");
+                break;
+            case "BossRoomPartTime":
+                SceneManager.LoadScene("OffiecRoom2");
+                break;
+            case "BossRoomForgetMeNot":
+                SceneManager.LoadScene("OfficeRoom3");
+                break;
+            case "BossRoomHoa":
+                SceneManager.LoadScene("OfficeRoom4");
+                break;
 
-        }
-        else if (SaveManager.instance.progressId == "Progress_Req1_Start" || SaveManager.instance.progressId == "Progress_Req1_Fail" || SaveManager.instance.progressId == "Progress_Req1_Clear")
-        {
-            SceneManager.LoadScene("OfficeRoom1");
-        }
-        else
-        {
-            SceneManager.LoadScene("MainRoomTest");
+            default:
+                Debug.LogWarning("알 수 없는 씬 이름: " + SaveManager.instance.SceneName);
+                SceneManager.LoadScene("Beginning");
+                break;
         }
 
 

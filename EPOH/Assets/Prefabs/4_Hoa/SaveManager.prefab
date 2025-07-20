@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1026107716306260430}
   - component: {fileID: 1026107716306260425}
+  - component: {fileID: 1724921849337239838}
   m_Layer: 0
   m_Name: SaveManager
   m_TagString: Untagged
@@ -46,4 +47,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   player_Pos: {x: 0, y: 0, z: 0}
+  SceneName: 
   progressId: 
+  eventId: Event_001
+  bossClearInfo: 0000000000
+--- !u!114 &1724921849337239838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026107716306260424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 401604b33bada8f4bb881cc001c6b4f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainRoomTest: {x: 5, y: 0, z: 0}
+  OfficeRoom1: {x: 0, y: 0, z: 0}
+  OfficeRoom2: {x: 5, y: 0, z: 0}
+  OfficeRoom3: {x: 7, y: 0, z: 0}
+  OfficeRoom4: {x: 0, y: 0, z: 0}

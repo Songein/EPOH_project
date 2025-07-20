@@ -1466,18 +1466,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SaveManager
       objectReference: {fileID: 0}
-    - target: {fileID: 1026107716306260425, guid: b864e918fc3d2ed48821bd21d23c9cba, type: 3}
-      propertyPath: x
-      value: -9.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026107716306260425, guid: b864e918fc3d2ed48821bd21d23c9cba, type: 3}
-      propertyPath: y
-      value: -8.16
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026107716306260425, guid: b864e918fc3d2ed48821bd21d23c9cba, type: 3}
-      propertyPath: bossClearInfo.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 1026107716306260430, guid: b864e918fc3d2ed48821bd21d23c9cba, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1521,6 +1509,18 @@ PrefabInstance:
     - target: {fileID: 1026107716306260430, guid: b864e918fc3d2ed48821bd21d23c9cba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1724921849337239838, guid: b864e918fc3d2ed48821bd21d23c9cba, type: 3}
+      propertyPath: OfficeRoom1.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1724921849337239838, guid: b864e918fc3d2ed48821bd21d23c9cba, type: 3}
+      propertyPath: MainRoomTest.x
+      value: -9.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1724921849337239838, guid: b864e918fc3d2ed48821bd21d23c9cba, type: 3}
+      propertyPath: MainRoomTest.y
+      value: -8.16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b864e918fc3d2ed48821bd21d23c9cba, type: 3}
