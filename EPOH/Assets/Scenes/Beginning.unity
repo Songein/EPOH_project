@@ -153,12 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   if_first: 0
-  items_all_collected: 0
-  story_info: 0
-  office_room: 0
-  boss_num: 0
-  eventFlag: 0
-  boss_clear_info: 0000000000
+  bossClearInfo: 0000000000
+  bossObjectAcquiredInfo: 00000000
   ProgressState: 0
 --- !u!4 &162987998
 Transform:
@@ -272,6 +268,7 @@ GameObject:
   - component: {fileID: 881256558}
   - component: {fileID: 881256557}
   - component: {fileID: 881256556}
+  - component: {fileID: 881256561}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -374,6 +371,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &881256561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881256555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42af519f0e772d24dba0d164c75eb5be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1043917507
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,11 +412,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d68a1ab9dd4db48bd8fc19c6c7788cc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dontDestroy: 1
-  _eventFileName: EventCSV
-  _dialogueFileName: DialogueCSV
-  _effectFileName: EffectCSV
-  _characterFileName: CharacterCSV
 --- !u!4 &1043917509
 Transform:
   m_ObjectHideFlags: 0

@@ -16,15 +16,18 @@ public class ForPosition : MonoBehaviour
             case "MainRoomTest":
                 
                 pos = inital_Location.instance.MainRoomTest;
+                Debug.LogWarning($"{SaveManager.instance.SceneName} 이동 완료!!");
                 break;
 
             case "OfficeRoom1":
                 pos = inital_Location.instance.OfficeRoom1;
+                Debug.LogWarning($"{SaveManager.instance.SceneName} 이동 완료!!");
                 break;
 
             // 다른 씬도 추가 가능
             case "OfficeRoom2":
                 pos = inital_Location.instance.OfficeRoom2;
+                Debug.LogWarning($"{SaveManager.instance.SceneName} 이동 완료!!");
                 break;
             case "OfficeRoom3":
                 pos = inital_Location.instance.OfficeRoom3;
