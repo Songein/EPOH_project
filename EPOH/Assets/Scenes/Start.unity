@@ -1512,7 +1512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1724921849337239838, guid: b864e918fc3d2ed48821bd21d23c9cba, type: 3}
       propertyPath: OfficeRoom1.x
-      value: 7
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1724921849337239838, guid: b864e918fc3d2ed48821bd21d23c9cba, type: 3}
       propertyPath: MainRoomTest.x
@@ -1524,7 +1524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1724921849337239838, guid: b864e918fc3d2ed48821bd21d23c9cba, type: 3}
       propertyPath: MainRoomTest.z
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b864e918fc3d2ed48821bd21d23c9cba, type: 3}
