@@ -8,7 +8,13 @@ public class EventManager : MonoBehaviour
     {
         private static EventManager _instance;
 
-        public static EventManager Instance
+        // 다음 이벤트 정보
+        [Header("이벤트 실행 정보")]
+        public string startEventID = "";
+        public string currentEventID = "";
+        public string nextEventID = "";
+
+    public static EventManager Instance
         {
             get
             {
@@ -26,23 +32,34 @@ public class EventManager : MonoBehaviour
             }
         }
 
-        void Awake()
+    void Awake()
+    {
+        if (_instance == null)
         {
-            if (_instance == null)
-            {
-                _instance = this;
-                DontDestroyOnLoad(gameObject); // 씬이 바뀌어도 유지됨
-            }
-            else if (_instance != this)
-            {
-                Destroy(gameObject); // 중복 생성 방지
-            }
+            _instance = this;
+            DontDestroyOnLoad(gameObject); // 씬이 바뀌어도 유지됨
         }
-        // 다음 이벤트 정보
-        [Header("이벤트 실행 정보")]
-        public string startEventID = "";
-        public string currentEventID = "";
-        public string nextEventID = "";
+        else if (_instance != this)
+        {
+            Destroy(gameObject); // 중복 생성 방지
+        }
+        if (SaveManager.instance != null)
+        {
+            // eventId가 비어 있거나 null인 경우 "Event_001"을 사용
+            if (string.IsNullOrEmpty(SaveManager.instance.eventId))
+            {
+                this.startEventID = "Event_001";
+            }
+            else
+            {
+                this.startEventID = SaveManager.instance.eventId;
+            }
+            //this.currentEventID = this.startEventID;
+
+          
+        }
+    }
+
     
         // 이벤트 성공 여부 
         public bool canExecute = true;
@@ -52,8 +69,11 @@ public class EventManager : MonoBehaviour
         private int _minPriority = 1;
 
         void Start()
-        {
-            ExecuteEvent(startEventID).Forget();
+    {
+        
+        Debug.LogWarning($"실행할 startEventID: {startEventID}");
+
+        ExecuteEvent(startEventID).Forget();
         }
     
         // 이벤트 실행 가능 여부 검사
@@ -151,8 +171,9 @@ public class EventManager : MonoBehaviour
                 EventStructure eventStructure = DataManager.Instance.Events[eventID];
                 currentEventID = eventID;
                 Debug.Log($"{eventID} 실행 : {eventStructure.Description}");
-                
-                foreach (var result in eventStructure.Results)
+                SaveManager.instance.GettheEvent(eventID);
+
+            foreach (var result in eventStructure.Results)
                 {
                     await ExecuteResult(result);
                 }
@@ -170,7 +191,6 @@ public class EventManager : MonoBehaviour
                 {
                     nextEventID = eventStructure.NextEvent;
                     Debug.LogWarning($"다음 이벤트 아이디 갱신! -> {nextEventID}");
-                SaveManager.instance.GettheEvent(nextEventID);
                 
                     if (DataManager.Instance.Events[eventStructure.NextEvent].IsAuto == "true")
                     {

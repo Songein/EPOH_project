@@ -13,38 +13,43 @@ public class SaveManager : MonoBehaviour
 
 
 
-    public Vector3 player_Pos;
+// public Vector3 player_Pos;
+    public string SceneName;
     public string progressId;  // progressId를 SaveManager 클래스에서 직접 관리
     public string eventId;
     public bool[] bossClearInfo;
-    public float x;
-    public float y;
-    public float z;
+    //public float x;
+    //public float y;
+    //public float z;
 
 
 
     //종료 될때 위치 저장
     void OnApplicationQuit()
     {
-        SavePlayerPosition();
-        //SaveGameState();
+        GetSceneName();  
+        SaveGameState();
+    }
+
+    public void GetSceneName() {
+        this.SceneName = SceneManager.GetActiveScene().name;
     }
 
 
-    void SavePlayerPosition()
-    {
+    //void SavePlayerPosition()
+    //{
 
 
-            GameObject foundPlayer = GameObject.FindWithTag("Player");
-             player = foundPlayer.transform;
-                Debug.Log("Player 찾음: " + player.position);
+    //        GameObject foundPlayer = GameObject.FindWithTag("Player");
+    //         player = foundPlayer.transform;
+    //            Debug.Log("Player 찾음: " + player.position);
             
 
-            Vector3 player_Pos = player.position;
-                this.player_Pos = player_Pos;
-            Debug.Log("플레이어 위치 저장됨: "+ player_Pos);
+    //        Vector3 player_Pos = player.position;
+    //            this.player_Pos = player_Pos;
+    //        Debug.Log("플레이어 위치 저장됨: "+ player_Pos);
         
-    }
+    //}
 
     [System.Serializable]
     public class GameState
@@ -53,10 +58,11 @@ public class SaveManager : MonoBehaviour
         public string progressId;
         public string eventId;
         public bool[] bossClearInfo;
+        public string SceneName;
 
-        public float x;
-        public float y;
-        public float z;
+        //public float x;
+        //public float y;
+        //public float z;
 
     }
 
@@ -89,13 +95,14 @@ public class SaveManager : MonoBehaviour
             progressId = this.progressId, // SaveManager의 progressId 사용
             eventId = this.eventId,
             bossClearInfo = GameManager.instance.bossClearInfo,
+            SceneName = this.SceneName
 
-            x = this.player_Pos.x,
-            y = this.player_Pos.y,
-            z = this.player_Pos.z
+    //x = this.player_Pos.x,
+    //y = this.player_Pos.y,
+    //z = this.player_Pos.z
 
-            // progressId =  GameManager.instance.ProgressState.ToString()
-        };
+    // progressId =  GameManager.instance.ProgressState.ToString()
+};
 
         string json = JsonUtility.ToJson(state,true);
         Debug.Log(json);
@@ -116,9 +123,10 @@ public class SaveManager : MonoBehaviour
             progressId = state.progressId;  // progressId 업데이트
             eventId = state.eventId;
             bossClearInfo = state.bossClearInfo;
-            x = state.x;
-            y = state.y;
-            z = state.z;
+            SceneName = state.SceneName;
+            //x = state.x;
+            //y = state.y;
+            //z = state.z;
 
             //GameManager에게도 progress 넘기기
             GameManager.instance.SetProgressByString(progressId);
@@ -151,6 +159,7 @@ public class SaveManager : MonoBehaviour
         // progressId, eventId 초기화 (초기값에 맞게 수정하세요)
         progressId = ""; // 예시 초기 상태
         eventId = "";                      // 초기 상태가 빈 문자열이라면 이렇게
+        SceneName = "";
 
         // GameManager의 bossClearInfo 배열 초기화
         for (int i = 0; i < 5; i++)
@@ -158,11 +167,7 @@ public class SaveManager : MonoBehaviour
             GameManager.instance.bossClearInfo[i] = false;
             SaveManager.instance.bossClearInfo[i] = false;
         }
-
-        // 플레이어 위치 초기화 (원하는 초기 위치 값으로 세팅)
-        player_Pos = new Vector3(-9.5f, -8.16f, -1f);
       
-
         Debug.Log("SaveManager 데이터 초기화 완료");
     }
 
