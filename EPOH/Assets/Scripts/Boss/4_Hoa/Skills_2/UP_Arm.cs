@@ -100,7 +100,7 @@ public class UP_Arm : MonoBehaviour, BossSkillInterface
 
 
             //전류생성
-            GameObject armElect = Instantiate(armElectPrefab, warningPosition, Quaternion.identity);
+            GameObject armElect = Instantiate(armElectPrefab, new Vector3(warningPosition.x -0.2f , warningPosition.y, 0), Quaternion.identity);
             armElect.transform.rotation = Quaternion.LookRotation(Vector3.forward, direction) * Quaternion.AngleAxis(180, Vector3.forward);
             //팔 다시 들어가기
             //armRb.velocity = direction * -armSpeed;
@@ -145,10 +145,10 @@ public class UP_Arm : MonoBehaviour, BossSkillInterface
             yield return new WaitForSeconds(0.5f);
 
             //전류생성
-            GameObject armElect = Instantiate(armElectPrefab, warningPosition, Quaternion.identity);
+            GameObject armElect = Instantiate(armElectPrefab, new Vector3(warningPosition.x + 0.5f, warningPosition.y, 0), Quaternion.identity);
             armElect.transform.up = (warningPosition - spawnPoint).normalized;
-            armElect.transform.localScale = new Vector3(-armElect.transform.localScale.x,
-                                      armElect.transform.localScale.y,
+            armElect.transform.localScale = new Vector3(-armElect.transform.localScale.x ,
+                                      -armElect.transform.localScale.y,
                                       armElect.transform.localScale.z); //대칭
             yield return new WaitForSeconds(0.5f);
             Destroy(arm);

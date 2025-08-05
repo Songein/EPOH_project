@@ -143,7 +143,8 @@ public class BossManagerNew : MonoBehaviour
     public void ClearBossRaid()
     {
         EndBossRaid();
-        GameManager.instance.bossClearInfo[bossData.bossIndex] = true;
+        GameManager.instance.bossClearInfo[bossData.bossIndex] = true; //GameManager에 전달
+        SaveManager.instance.SaveGameState();  //SaveManager가 GameManager의 값을 받음
         EventManager.Instance.ExecuteEvent(bossData.clearEventId).Forget();
         
         // 메인 룸으로 이동

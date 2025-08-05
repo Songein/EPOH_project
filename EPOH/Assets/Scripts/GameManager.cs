@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -63,9 +64,37 @@ public class GameManager : MonoBehaviour
             bossClearInfo[boss] = false;
         }
 
+        //초기화 때문에 여기서 saveManager의 clearinfo를 가져옴
+        LoadBossClearInfo(SaveManager.instance.bossClearInfo);
+
         for (int item = 0; item < bossObjectAcquiredInfo.Length; item++)
         {
             bossObjectAcquiredInfo[item] = false;
+        }
+    }
+
+
+    //SaveManager에서 state 복원하기
+    public void SetProgressByString(string progressIdString)
+    {
+        if (Enum.TryParse(progressIdString, out ProgressId parsedProgress))
+        {
+            ProgressState = parsedProgress;
+            Debug.Log($"진행도 복원 완료: {ProgressState}");
+        }
+        else
+        {
+            Debug.LogError($"진행도 변환 실패: {progressIdString}");
+        }
+    }
+
+    public void LoadBossClearInfo(bool[] savedInfo)
+    {
+       GameManager.instance.bossClearInfo = savedInfo;
+        Debug.Log("보스 클리어 정보 복원 완료" );
+        for (int i = 0; i < GameManager.instance.bossClearInfo.Length; i++)
+        {
+            Debug.Log($"bossClearInfo[{i}] = {GameManager.instance.bossClearInfo[i]}");
         }
     }
 }

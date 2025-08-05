@@ -52,6 +52,8 @@ GameObject:
   - component: {fileID: 3071168757805857865}
   - component: {fileID: 4517311596578302682}
   - component: {fileID: 4671202162930431033}
+  - component: {fileID: 1114007475}
+  - component: {fileID: 1516154889}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -121,7 +123,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.288, y: 3.94}
+  m_Size: {x: 17.08, y: 12.42}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -259,6 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae43a92558a44ad1bfc429a8bb16ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMove: 1
   moveSpeed: 8
   jumpForce: 25
   doubleJumpForce: 0.8
@@ -267,6 +270,7 @@ MonoBehaviour:
   is_dashing: 0
   dash_time: 0.3
   dash_cool_time: 2
+  can_teleport: 0
   is_teleporting: 0
   mark_prefab: {fileID: 8433638777037277523, guid: acf264dcdeb4e468da143a10910c7aa3, type: 3}
 --- !u!114 &8016535364077029130
@@ -315,9 +319,9 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 7
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &3071168757805857865
 CapsuleCollider2D:
@@ -347,6 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a4abf8db39174974920804dba7f3348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteract: 1
   is_interacting: 0
   is_talking: 0
 --- !u!114 &4671202162930431033
@@ -362,8 +367,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss_manager: {fileID: 0}
+  _playerMaxHP: 200
   player_hp: 200
   is_invincible: 0
+--- !u!114 &1114007475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245169945507368180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda68e35da25e4fd89aeda49769e7703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1516154889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245169945507368180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e54151c1c6f1bc649a2992f3ec1afc16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1889359883389631050
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,6 +405,7 @@ GameObject:
   - component: {fileID: 884943376621139529}
   - component: {fileID: 6040114913706024078}
   - component: {fileID: 1029385330}
+  - component: {fileID: 1386387422}
   m_Layer: 0
   m_Name: Attack2Area
   m_TagString: AttackArea
@@ -444,6 +475,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 6040114913706024078}
+--- !u!114 &1386387422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889359883389631050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001ceb773cda44447815865fd9a01850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 6040114913706024078}
 --- !u!1 &8505008103421376674
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,6 +499,7 @@ GameObject:
   - component: {fileID: 826479962533040516}
   - component: {fileID: 6421399593071902974}
   - component: {fileID: 358624131}
+  - component: {fileID: 1386387423}
   m_Layer: 0
   m_Name: Attack1Area
   m_TagString: AttackArea
@@ -512,6 +557,19 @@ PolygonCollider2D:
       - {x: 0.58778536, y: -2.3039217}
       - {x: 4.9659433, y: -3.2360432}
 --- !u!114 &358624131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8505008103421376674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001ceb773cda44447815865fd9a01850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 6421399593071902974}
+--- !u!114 &1386387423
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
