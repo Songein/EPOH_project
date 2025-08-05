@@ -189,8 +189,8 @@ public class DialogueManager : UIBase
         if (dialogueInfo.InteractionType == "NPC")
         {
             _characterName = _profileVer.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-            _dialogueArea = _profileVer.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-            _portraitImg = _profileVer.transform.GetChild(2).GetComponent<Image>();
+            _dialogueArea = _profileVer.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+            _portraitImg = _profileVer.transform.GetChild(1).GetComponent<Image>();
             
             if (!string.IsNullOrEmpty(dialogueInfo.CharacterId) &&
                 DataManager.Instance.Characters.ContainsKey(dialogueInfo.CharacterId))
