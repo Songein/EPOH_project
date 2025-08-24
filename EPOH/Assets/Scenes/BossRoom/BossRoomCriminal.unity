@@ -5107,6 +5107,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hacking
       objectReference: {fileID: 0}
+    - target: {fileID: 4672365544441569015, guid: fcde507e67fca42d39fedd629eefeb85, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4672365545685083887, guid: fcde507e67fca42d39fedd629eefeb85, type: 3}
       propertyPath: m_Color.a
       value: 0

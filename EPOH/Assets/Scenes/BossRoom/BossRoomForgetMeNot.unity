@@ -818,6 +818,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 700896075}
     m_Modifications:
+    - target: {fileID: 224024009256910827, guid: 8c1092638fedd104290661a3d28a2c6b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224024009256910827, guid: 8c1092638fedd104290661a3d28a2c6b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 700337266907613930, guid: 8c1092638fedd104290661a3d28a2c6b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -865,6 +873,18 @@ PrefabInstance:
     - target: {fileID: 700337266907613931, guid: 8c1092638fedd104290661a3d28a2c6b, type: 3}
       propertyPath: m_Name
       value: PlayerUI_WithHackHealth
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559285056931109398, guid: 8c1092638fedd104290661a3d28a2c6b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559285056931109398, guid: 8c1092638fedd104290661a3d28a2c6b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6559285057256752397, guid: 8c1092638fedd104290661a3d28a2c6b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c1092638fedd104290661a3d28a2c6b, type: 3}
@@ -5104,6 +5124,10 @@ PrefabInstance:
     - target: {fileID: 4672365544262362327, guid: fcde507e67fca42d39fedd629eefeb85, type: 3}
       propertyPath: m_Name
       value: Hacking
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672365544441569015, guid: fcde507e67fca42d39fedd629eefeb85, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4672365545685083887, guid: fcde507e67fca42d39fedd629eefeb85, type: 3}
       propertyPath: m_Color.a
