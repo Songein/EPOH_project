@@ -65,6 +65,6 @@ public class HackingForN : MonoBehaviour
 
     public void UpdateText()
     {
-        _text.text = $"{_hackingPoint/ hackingGoal * 100}" + "%";
+        _text.text = $"{(int)(_hackingPoint/ hackingGoal * 100)}" + "%";
     }
 }
