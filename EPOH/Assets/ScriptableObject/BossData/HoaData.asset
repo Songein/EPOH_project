@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Hoa
   bossIndex: 4
-  hackingGoal: 80
+  hackingGoal: 800
   clearEventId: 
   failEventId: 
   _maxHealth: 0

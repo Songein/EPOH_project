@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Dog
   bossIndex: 0
-  hackingGoal: 20
+  hackingGoal: 200
   clearEventId: 
   failEventId: 
   _maxHealth: 0
