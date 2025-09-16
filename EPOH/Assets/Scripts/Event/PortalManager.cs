@@ -68,7 +68,11 @@ public class PortalManager : MonoBehaviour
                 if (GameManager.instance.ProgressState == GameManager.ProgressId.Progress_Req1_Start
                     || GameManager.instance.ProgressState == GameManager.ProgressId.Progress_Req2_Start
                     || GameManager.instance.ProgressState == GameManager.ProgressId.Progress_Req3_Start
-                    || GameManager.instance.ProgressState == GameManager.ProgressId.Progress_Req4_Start) return true;
+                    || GameManager.instance.ProgressState == GameManager.ProgressId.Progress_Req4_Start
+                    || GameManager.instance.ProgressState == GameManager.ProgressId.Progress_Req1_Fail
+                    || GameManager.instance.ProgressState == GameManager.ProgressId.Progress_Req2_Fail
+                    || GameManager.instance.ProgressState == GameManager.ProgressId.Progress_Req3_Fail
+                    || GameManager.instance.ProgressState == GameManager.ProgressId.Progress_Req4_Fail) return true;
                 return false;
             // 그 외의 상태에서는 포탈 이동에 제약이 없음.
             default:

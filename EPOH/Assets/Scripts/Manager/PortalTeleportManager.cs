@@ -69,7 +69,7 @@ public class PortalTeleportManager : MonoBehaviour
             _portalInfos.Add(PortalState.MainToOffice, new PortalInfo("OfficeRoom1", officeroomLeftPortal));
             _portalInfos.Add(PortalState.OfficeToMain, new PortalInfo("MainRoomTest", mainroomPortal));
             _portalInfos.Add(PortalState.BossToOffice, new PortalInfo("OfficeRoom1", officeroomRightPortal));
-            _portalInfos.Add(PortalState.OfficeToBoss, new PortalInfo("BossRoomTest", bossroomPortal));
+            _portalInfos.Add(PortalState.OfficeToBoss, new PortalInfo(GetBossRoomName(), bossroomPortal));
         }
         else if (_instance != this)
         {
@@ -83,6 +83,27 @@ public class PortalTeleportManager : MonoBehaviour
         {
             // 씬 로드 이벤트 해제
             SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+    }
+
+    public string GetBossRoomName()
+    {
+        switch (GameManager.instance.ProgressState)
+        {
+            case GameManager.ProgressId.Progress_Req1_Start:
+            case GameManager.ProgressId.Progress_Req1_Fail:
+                return "BossRoomDog";
+            case GameManager.ProgressId.Progress_Req2_Start:
+            case GameManager.ProgressId.Progress_Req2_Fail:
+                return "BossRoomPartTime";
+            case GameManager.ProgressId.Progress_Req3_Start:
+            case GameManager.ProgressId.Progress_Req3_Fail:
+                return "BossRoomForgetMeNot";
+            case GameManager.ProgressId.Progress_Req4_Start:
+            case GameManager.ProgressId.Progress_Req4_Fail:
+                return "BossRoomCriminal";
+            default:
+                return null;
         }
     }
 
