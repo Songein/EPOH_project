@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: PartTime
   bossIndex: 1
-  hackingGoal: 40
+  hackingGoal: 400
   clearEventId: 
   failEventId: 
   _maxHealth: 0

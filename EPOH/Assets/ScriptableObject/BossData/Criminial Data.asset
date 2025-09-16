@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Criminal
   bossIndex: 3
-  hackingGoal: 50
+  hackingGoal: 600
   clearEventId: 
   failEventId: 
   _maxHealth: 0
