@@ -289,7 +289,12 @@ MonoBehaviour:
   mainroomPortal: {x: 17, y: -8.16, z: -1}
   officeroomLeftPortal: {x: -24.75, y: -2.4, z: -1}
   officeroomRightPortal: {x: 24.9, y: -2.4, z: -1}
-  bossroomPortal: {x: 0.34, y: -8.16, z: -1}
+  playerSpawnPos:
+  - {fileID: 6536746889341201507, guid: 5f072f805b0f1904ea77f82cf12df564, type: 3}
+  - {fileID: 5793876768877790723, guid: c31bcb6b2c7d35f45a2e34f301249047, type: 3}
+  - {fileID: 7987756612260304710, guid: 3f4678ea21367584389af02fb8a86338, type: 3}
+  - {fileID: 1612521508963532973, guid: 868e819be2ede3f46b7feae0785d1b9d, type: 3}
+  - {fileID: 4758847645110693165, guid: 2a5bd294f0317464199c04c6ce211857, type: 3}
   portalState: 0
 --- !u!4 &226729691
 Transform:
@@ -1276,7 +1281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4578192908810528636, guid: fb214ae72a6594cb096ce455f7b526cb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.500014
+      value: -9.500006
       objectReference: {fileID: 0}
     - target: {fileID: 4578192908810528636, guid: fb214ae72a6594cb096ce455f7b526cb, type: 3}
       propertyPath: m_LocalPosition.y

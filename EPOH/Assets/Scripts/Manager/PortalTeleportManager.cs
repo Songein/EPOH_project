@@ -12,7 +12,8 @@ public class PortalTeleportManager : MonoBehaviour
     [SerializeField] private Vector3 mainroomPortal;
     [SerializeField] private Vector3 officeroomLeftPortal;
     [SerializeField] private Vector3 officeroomRightPortal;
-    [SerializeField] private Vector3 bossroomPortal;
+
+    [SerializeField] private List<GameObject> playerSpawnPos = new List<GameObject>();
 
     public enum PortalState
     {
@@ -69,7 +70,6 @@ public class PortalTeleportManager : MonoBehaviour
             _portalInfos.Add(PortalState.MainToOffice, new PortalInfo("OfficeRoom1", officeroomLeftPortal));
             _portalInfos.Add(PortalState.OfficeToMain, new PortalInfo("MainRoomTest", mainroomPortal));
             _portalInfos.Add(PortalState.BossToOffice, new PortalInfo("OfficeRoom1", officeroomRightPortal));
-            _portalInfos.Add(PortalState.OfficeToBoss, new PortalInfo(GetBossRoomName(), bossroomPortal));
         }
         else if (_instance != this)
         {
@@ -86,7 +86,7 @@ public class PortalTeleportManager : MonoBehaviour
         }
     }
 
-    public string GetBossRoomName()
+    private string GetBossRoomName()
     {
         switch (GameManager.instance.ProgressState)
         {
@@ -107,6 +107,27 @@ public class PortalTeleportManager : MonoBehaviour
         }
     }
 
+    private Vector3 GetBossPortalPos()
+    {
+        switch (GameManager.instance.ProgressState)
+        {
+            case GameManager.ProgressId.Progress_Req1_Start:
+            case GameManager.ProgressId.Progress_Req1_Fail:
+                return playerSpawnPos[0].transform.position;
+            case GameManager.ProgressId.Progress_Req2_Start:
+            case GameManager.ProgressId.Progress_Req2_Fail:
+                return playerSpawnPos[1].transform.position;
+            case GameManager.ProgressId.Progress_Req3_Start:
+            case GameManager.ProgressId.Progress_Req3_Fail:
+                return playerSpawnPos[2].transform.position;
+            case GameManager.ProgressId.Progress_Req4_Start:
+            case GameManager.ProgressId.Progress_Req4_Fail:
+                return playerSpawnPos[3].transform.position;
+            default:
+                return playerSpawnPos[0].transform.position;
+        } 
+    }
+
 
     public IEnumerator StartOperatePortal(PortalState state)
     {
@@ -119,6 +140,15 @@ public class PortalTeleportManager : MonoBehaviour
         // 애니메이션 종료 후 씬 이동
         yield return new WaitForSeconds(1f);
         portalState = state;
+
+        if(state == PortalState.OfficeToBoss)
+        {
+            // 보스룸 씬 이름과 포탈 위치 동적으로 설정
+            string bossRoomName = GetBossRoomName();
+            Vector3 bossPortalPos = GetBossPortalPos();
+            _portalInfos[PortalState.OfficeToBoss] = new PortalInfo(bossRoomName, bossPortalPos);
+        }
+
         SceneManager.LoadScene(_portalInfos[state].MoveSceneName);
     }
 
