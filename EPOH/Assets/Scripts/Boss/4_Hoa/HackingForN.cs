@@ -53,7 +53,7 @@ public class HackingForN : MonoBehaviour
         if (_hackingPoint + value >= hackingGoal)
         {
             _hackingPoint = hackingGoal;
-            BossManagerNew.Current.ClearBossRaid();
+            BossManagerNew.Current.ClearBossRaidAsync();
         }
         else
         {

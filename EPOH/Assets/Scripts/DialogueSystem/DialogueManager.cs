@@ -84,18 +84,20 @@ public class DialogueManager : UIBase
     
     public override void HandleMouseInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isTyping)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            StopAllCoroutines();
-            isTyping = false;
-            _dialogueArea.text = currentLine;
-            Invoke("ChangeLineTime", lineChangeSpeed);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) && isLineEnd)
-        {
-            isLineEnd = false;
-            DisplayNextDialogueLine();
+            if (isTyping)
+            {
+                isTyping = false;
+                StopAllCoroutines();
+                _dialogueArea.text = currentLine;
+                Invoke("ChangeLineTime", lineChangeSpeed);
+            }
+            else if(isLineEnd)
+            {
+                isLineEnd = false;
+                DisplayNextDialogueLine();
+            }
         }
     }
     

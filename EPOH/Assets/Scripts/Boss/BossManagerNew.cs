@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using Random = UnityEngine.Random;
+using System.Threading.Tasks;
 
 public class BossManagerNew : MonoBehaviour
 {
@@ -140,24 +141,34 @@ public class BossManagerNew : MonoBehaviour
     }
     
     // 보스 레이드 클리어
-    public void ClearBossRaid()
+    public async UniTask ClearBossRaidAsync()
     {
         EndBossRaid();
         GameManager.instance.bossClearInfo[bossData.bossIndex] = true; //GameManager에 전달
         SaveManager.instance.SaveGameState();  //SaveManager가 GameManager의 값을 받음
-        EventManager.Instance.ExecuteEvent(bossData.clearEventId).Forget();
-        
+        await EventManager.Instance.ExecuteEvent(bossData.clearEventId);
+
         // 메인 룸으로 이동
+        MoveToMainRoom();
     }
     // 보스 레이드 실패
-    public void FailBossRaid()
+    public async UniTask FailBossRaidAsync()
     {
         EndBossRaid();
         GameManager.instance.bossClearInfo[bossData.bossIndex] = false;
-        EventManager.Instance.ExecuteEvent(bossData.failEventId).Forget();
-        
-        // 어디로 이동??
+        await EventManager.Instance.ExecuteEvent(bossData.failEventId);
+
+        // 메인 룸으로 이동
+        MoveToMainRoom();
     }
+
+    private void MoveToMainRoom()
+    {
+        Debug.LogWarning("메인 룸으로 이동");
+        PortalTeleportManager.PortalState state = PortalTeleportManager.PortalState.OfficeToMain;
+        StartCoroutine(PortalTeleportManager.Instance.StartOperatePortal(PortalTeleportManager.PortalState.OfficeToMain));
+    }
+
     public void StartPhase1()
     {
         StartCoroutine(ActivateSkill(phase1List));

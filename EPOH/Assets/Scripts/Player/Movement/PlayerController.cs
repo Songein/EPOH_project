@@ -296,4 +296,33 @@ public class PlayerController : MonoBehaviour
     {
         player_jump_cnt = 0;
     }
+
+    void InitPlayerAnimation()
+    {
+        animator.SetBool("IsRun", false);
+        animator.SetBool("IsJump", false);
+        animator.SetBool("IsDoubleJump", false);
+        animator.SetBool("IsFall", false);
+        animator.SetBool("IsDash", false);
+        animator.SetBool("IsInstallMark", false);
+
+        animator.Play("Idle"); //애니메이션 초기화
+    }
+
+    public void LockPlayer()
+    {
+        canMove = false; //플레이어 이동 불가능
+        can_dash = false; //플레이어 대쉬 불가능
+        can_teleport = false; //플레이어 순간이동 불가능
+        PlayerInteract.Instance.canInteract = false; //플레이어 상호작용 불가능
+        InitPlayerAnimation();
+    }
+
+    public void UnlockPlayer()
+    {
+        canMove = true; //플레이어 이동 가능
+        can_dash = true; //플레이어 대쉬 가능
+        can_teleport = true; //플레이어 순간이동 가능
+        PlayerInteract.Instance.canInteract = true; //플레이어 상호작용 가능
+    }
 }
