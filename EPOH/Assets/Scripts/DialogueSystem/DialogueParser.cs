@@ -53,7 +53,11 @@ public class DialogueParser
             string characterID = values[1].Trim().Replace("\"", "");;
             string interactionType = values.Length > 2 ? values[2].Trim().Replace("\"", "") : "";
             string rawText = values.Length > 3 ? values[3].Trim().Replace("\"", "") : "";
-            string text = rawText.Replace("\"", "").Replace("\\", "\n");  // \를 \n로 변경
+            string text = rawText
+                .Replace("\"", "")
+                .Replace("@", ",")
+                .Replace("/", "\n")
+                .Replace("\\", "\n");
             string nextID = values.Length > 4 ? values[4].Trim().Replace("\"", "") : "";
 
             if (!string.IsNullOrEmpty(key)) // 새로운 대사 시작

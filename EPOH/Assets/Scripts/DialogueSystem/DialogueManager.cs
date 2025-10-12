@@ -103,7 +103,7 @@ public class DialogueManager : UIBase
     
     public IEnumerator StartDialogue(string dialogueID)
     {
-        yield return new WaitForSeconds(1f);
+        yield return null;
         // 다이얼로그 가져오기
         _currentDialogue = DataManager.Instance.Dialogues[dialogueID]; 
         isDialogueActive = true;
