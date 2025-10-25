@@ -2314,16 +2314,16 @@ MonoBehaviour:
   bossObjectInfos:
   - objectName: Robot Dog
     itemPrefab: {fileID: 1054337687339161755, guid: 9abc4178480b24b23ad94fa0869b8807, type: 3}
-    spawnPos: {x: -3.6, y: -2.68, z: 0}
+    spawnPos: {x: -5.05, y: -2.92, z: 0}
   - objectName: Diary
     itemPrefab: {fileID: 7631214299646686995, guid: 19aebd313416b4574927e919bb12de44, type: 3}
-    spawnPos: {x: -3.6, y: -2.68, z: 0}
+    spawnPos: {x: -4.05, y: -2.92, z: 0}
   - objectName: Picture
     itemPrefab: {fileID: 3260408299352677088, guid: f44ad11718c294711a986ed11cc9b65f, type: 3}
-    spawnPos: {x: -3.6, y: -2.68, z: 0}
+    spawnPos: {x: -3.05, y: -2.92, z: 0}
   - objectName: Chocolate
     itemPrefab: {fileID: 8411674326746508763, guid: 20b9bacf45532415188575d88c0413d5, type: 3}
-    spawnPos: {x: -0.5, y: -2.68, z: 0}
+    spawnPos: {x: -2.05, y: -2.92, z: 0}
 --- !u!4 &2104430954
 Transform:
   m_ObjectHideFlags: 0
@@ -2339,6 +2339,63 @@ Transform:
   m_Father: {fileID: 676501249}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &5868919029669193166
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5868919030522090849, guid: 4e3a6157915be4029b62269b6b844000, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868919030522090849, guid: 4e3a6157915be4029b62269b6b844000, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868919030522090849, guid: 4e3a6157915be4029b62269b6b844000, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868919030522090849, guid: 4e3a6157915be4029b62269b6b844000, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868919030522090849, guid: 4e3a6157915be4029b62269b6b844000, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868919030522090849, guid: 4e3a6157915be4029b62269b6b844000, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868919030522090849, guid: 4e3a6157915be4029b62269b6b844000, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868919030522090849, guid: 4e3a6157915be4029b62269b6b844000, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868919030522090849, guid: 4e3a6157915be4029b62269b6b844000, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868919030522090849, guid: 4e3a6157915be4029b62269b6b844000, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868919030522090849, guid: 4e3a6157915be4029b62269b6b844000, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868919030522090851, guid: 4e3a6157915be4029b62269b6b844000, type: 3}
+      propertyPath: m_Name
+      value: StartBGM
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4e3a6157915be4029b62269b6b844000, type: 3}
 --- !u!4 &6642683222374658188
 Transform:
   m_ObjectHideFlags: 0

@@ -137,8 +137,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3993018627657489701}
   - component: {fileID: 2668897225766478829}
-  - component: {fileID: 2548632762898344566}
   - component: {fileID: 548396894724568308}
+  - component: {fileID: 8615584085408863439}
   m_Layer: 0
   m_Name: Chocolate
   m_TagString: Interaction
@@ -155,7 +155,7 @@ Transform:
   m_GameObject: {fileID: 8411674326746508763}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3352052750005670334}
@@ -214,7 +214,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2548632762898344566
+--- !u!114 &548396894724568308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8411674326746508763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ef960588f9034b5783339eabf876463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventIDList:
+  - eventID: Event_075
+    isExecuted: 0
+  - eventID: Event_059
+    isExecuted: 0
+--- !u!61 &8615584085408863439
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,25 +255,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.5, y: 4}
+  m_Size: {x: 2.56, y: 2.56}
   m_EdgeRadius: 0
---- !u!114 &548396894724568308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8411674326746508763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ef960588f9034b5783339eabf876463, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _eventIDList:
-  - eventID: Event_075
-    isExecuted: 0
-  - eventID: Event_059
-    isExecuted: 0
 --- !u!1 &8843739002011578202
 GameObject:
   m_ObjectHideFlags: 0
