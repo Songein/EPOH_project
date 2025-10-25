@@ -93,6 +93,7 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("[PlayerHealth] : 플레이어 사망");
         PlayerController.Instance.LockPlayer();
+        BossManagerNew.Current.EndBossRaid();
         _animator.SetTrigger("Die");
     }
 

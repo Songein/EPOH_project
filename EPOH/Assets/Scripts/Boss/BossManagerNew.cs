@@ -73,7 +73,7 @@ public class BossManagerNew : MonoBehaviour
     public void StartGeneralBossRaid()
     {
         _isRaidRunning = true;
-        CoroutineManager.Instance.StartCoroutine(GeneralRaidFlow());
+        _raidCoroutine = StartCoroutine(GeneralRaidFlow());
         Debug.LogWarning($"{bossData.name} 레이드 시작");
     }
 
@@ -84,7 +84,7 @@ public class BossManagerNew : MonoBehaviour
         for (int i = 1; i <= 3; i++)
         {
             Debug.LogWarning($"초기 페이즈{i} 시작");
-            yield return CoroutineManager.Instance.StartCoroutine(RunPhase(i));
+            yield return StartCoroutine(RunPhase(i));
             yield return new WaitUntil(() => _isPhaseEnd);
             yield return null;
         }
@@ -93,7 +93,7 @@ public class BossManagerNew : MonoBehaviour
         {
             int phaseNum = Random.Range(1, 4);
             Debug.LogWarning($"랜덤 페이즈{phaseNum} 시작");
-            yield return CoroutineManager.Instance.StartCoroutine(RunPhase(phaseNum));
+            yield return StartCoroutine(RunPhase(phaseNum));
             yield return new WaitUntil(() => _isPhaseEnd);
             yield return null;
         }
@@ -110,30 +110,31 @@ public class BossManagerNew : MonoBehaviour
         switch (num)
         {
             case 1:
-                yield return CoroutineManager.Instance.StartCoroutine(ActivateSkill(phase1List));
+                yield return _skillCoroutine = StartCoroutine(ActivateSkill(phase1List));
                 break;
             case 2:
-                yield return CoroutineManager.Instance.StartCoroutine(ActivateSkill(phase2List));
+                yield return _skillCoroutine = StartCoroutine(ActivateSkill(phase2List));
                 break;
             case 3:
-                yield return CoroutineManager.Instance.StartCoroutine(ActivateSkill(phase3List));
+                yield return _skillCoroutine = StartCoroutine(ActivateSkill(phase3List));
                 break;
             case 4:
-                yield return CoroutineManager.Instance.StartCoroutine(ActivateSkill(phase4List));
+                yield return _skillCoroutine = StartCoroutine(ActivateSkill(phase4List));
                 break;
             case 5:
-                yield return CoroutineManager.Instance.StartCoroutine(ActivateSkill(phase5List));
+                yield return _skillCoroutine = StartCoroutine(ActivateSkill(phase5List));
                 break;
             case 6:
-                yield return CoroutineManager.Instance.StartCoroutine(ActivateSkill(phase6List));
+                yield return _skillCoroutine = StartCoroutine(ActivateSkill(phase6List));
                 break;
         }
     }
     
-    void EndBossRaid()
+    public void EndBossRaid()
     {
         _isRaidRunning = false;
-        CoroutineManager.Instance.StopAll();
+        StopAllCoroutines();
+        StopAllCoroutinesEverywhere();
         RemoveAllClones();
         Debug.LogWarning($"{bossData.name} 레이드 종료");
     }
@@ -153,7 +154,6 @@ public class BossManagerNew : MonoBehaviour
     // 보스 레이드 실패
     public async UniTask FailBossRaidAsync()
     {
-        EndBossRaid();
         await UniTask.WaitForSeconds(1f);
         GameManager.instance.bossClearInfo[bossData.bossIndex] = false;
         await EventManager.Instance.ExecuteEvent(bossData.failEventId);
@@ -178,17 +178,17 @@ public class BossManagerNew : MonoBehaviour
 
     public void StartPhase1()
     {
-        CoroutineManager.Instance.StartCoroutine(ActivateSkill(phase1List));
+        StartCoroutine(ActivateSkill(phase1List));
     }
 
     public void StartPhase2()
     {
-        CoroutineManager.Instance.StartCoroutine(ActivateSkill(phase2List));
+        StartCoroutine(ActivateSkill(phase2List));
     }
 
     public void StartPhase3()
     {
-        CoroutineManager.Instance.StartCoroutine(ActivateSkill(phase3List));
+        StartCoroutine(ActivateSkill(phase3List));
     }
 
     public IEnumerator ActivateSkill(List<Phase> phase)
@@ -262,5 +262,17 @@ public class BossManagerNew : MonoBehaviour
         }
 
         Debug.Log("모든 (Clone) 오브젝트를 제거했습니다.");
+    }
+    
+    public void StopAllCoroutinesEverywhere()
+    {
+        var allBehaviours = FindObjectsOfType<MonoBehaviour>(true); // 비활성 포함
+        int count = 0;
+        foreach (var behaviour in allBehaviours)
+        {
+            behaviour.StopAllCoroutines();
+            count++;
+        }
+        Debug.Log($"{count}개의 MonoBehaviour에 대해 StopAllCoroutines 호출 완료");
     }
 }
