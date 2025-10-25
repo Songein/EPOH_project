@@ -250,6 +250,9 @@ public class EventManager : MonoBehaviour
                         break;
                     case "Animation":
                         Debug.LogWarning($"Animation 타입의 {effect.EffectId} 실행");
+                        PlayerController.Instance.isException = true;
+                        Animator animator = PlayerController.Instance.GetComponent<Animator>();
+                        animator.SetTrigger(effect.AnimationType);
                         break;
                     case "Screen":
                         Debug.LogWarning($"Screen 타입의 {effect.EffectId} 실행");

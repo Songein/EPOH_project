@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigid;
     //플레이어 애니메이터
     private Animator animator;
+    public bool isException = false;
     //스프라이트 렌더러 컴포넌트
     private SpriteRenderer sr;
     //땅 레이캐스트 충돌
@@ -305,8 +306,9 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("IsFall", false);
         animator.SetBool("IsDash", false);
         animator.SetBool("IsInstallMark", false);
-
-        animator.Play("Idle"); //애니메이션 초기화
+        
+        if(!isException)
+            animator.Play("Idle"); //애니메이션 초기화
     }
 
     public void LockPlayer()
@@ -324,5 +326,10 @@ public class PlayerController : MonoBehaviour
         can_dash = true; //플레이어 대쉬 가능
         can_teleport = true; //플레이어 순간이동 가능
         PlayerInteract.Instance.canInteract = true; //플레이어 상호작용 가능
+    }
+
+    public void InitException()
+    {
+        isException = false;
     }
 }

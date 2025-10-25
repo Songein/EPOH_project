@@ -73,7 +73,7 @@ public class BossManagerNew : MonoBehaviour
     public void StartGeneralBossRaid()
     {
         _isRaidRunning = true;
-        _raidCoroutine = StartCoroutine(GeneralRaidFlow());
+        CoroutineManager.Instance.StartCoroutine(GeneralRaidFlow());
         Debug.LogWarning($"{bossData.name} 레이드 시작");
     }
 
@@ -84,7 +84,7 @@ public class BossManagerNew : MonoBehaviour
         for (int i = 1; i <= 3; i++)
         {
             Debug.LogWarning($"초기 페이즈{i} 시작");
-            yield return StartCoroutine(RunPhase(i));
+            yield return CoroutineManager.Instance.StartCoroutine(RunPhase(i));
             yield return new WaitUntil(() => _isPhaseEnd);
             yield return null;
         }
@@ -93,7 +93,7 @@ public class BossManagerNew : MonoBehaviour
         {
             int phaseNum = Random.Range(1, 4);
             Debug.LogWarning($"랜덤 페이즈{phaseNum} 시작");
-            yield return StartCoroutine(RunPhase(phaseNum));
+            yield return CoroutineManager.Instance.StartCoroutine(RunPhase(phaseNum));
             yield return new WaitUntil(() => _isPhaseEnd);
             yield return null;
         }
@@ -110,22 +110,22 @@ public class BossManagerNew : MonoBehaviour
         switch (num)
         {
             case 1:
-                yield return StartCoroutine(ActivateSkill(phase1List));
+                yield return CoroutineManager.Instance.StartCoroutine(ActivateSkill(phase1List));
                 break;
             case 2:
-                yield return StartCoroutine(ActivateSkill(phase2List));
+                yield return CoroutineManager.Instance.StartCoroutine(ActivateSkill(phase2List));
                 break;
             case 3:
-                yield return StartCoroutine(ActivateSkill(phase3List));
+                yield return CoroutineManager.Instance.StartCoroutine(ActivateSkill(phase3List));
                 break;
             case 4:
-                yield return StartCoroutine(ActivateSkill(phase4List));
+                yield return CoroutineManager.Instance.StartCoroutine(ActivateSkill(phase4List));
                 break;
             case 5:
-                yield return StartCoroutine(ActivateSkill(phase5List));
+                yield return CoroutineManager.Instance.StartCoroutine(ActivateSkill(phase5List));
                 break;
             case 6:
-                yield return StartCoroutine(ActivateSkill(phase6List));
+                yield return CoroutineManager.Instance.StartCoroutine(ActivateSkill(phase6List));
                 break;
         }
     }
@@ -133,17 +133,8 @@ public class BossManagerNew : MonoBehaviour
     void EndBossRaid()
     {
         _isRaidRunning = false;
-
-        if (_skillCoroutine != null)
-        {
-            StopCoroutine(_skillCoroutine);
-        }
-        if (_raidCoroutine != null)
-        {
-            StopCoroutine(_raidCoroutine);
-        }
-        
-        StopAllCoroutines();
+        CoroutineManager.Instance.StopAll();
+        RemoveAllClones();
         Debug.LogWarning($"{bossData.name} 레이드 종료");
     }
     
@@ -187,17 +178,17 @@ public class BossManagerNew : MonoBehaviour
 
     public void StartPhase1()
     {
-        StartCoroutine(ActivateSkill(phase1List));
+        CoroutineManager.Instance.StartCoroutine(ActivateSkill(phase1List));
     }
 
     public void StartPhase2()
     {
-        StartCoroutine(ActivateSkill(phase2List));
+        CoroutineManager.Instance.StartCoroutine(ActivateSkill(phase2List));
     }
 
     public void StartPhase3()
     {
-        StartCoroutine(ActivateSkill(phase3List));
+        CoroutineManager.Instance.StartCoroutine(ActivateSkill(phase3List));
     }
 
     public IEnumerator ActivateSkill(List<Phase> phase)
@@ -257,5 +248,19 @@ public class BossManagerNew : MonoBehaviour
     {
         CinemachineVirtualCamera vcam = FindObjectOfType<CinemachineVirtualCamera>();
         vcam.Follow = player.transform;
+    }
+    
+    public void RemoveAllClones()
+    {
+        // 모든 GameObject 탐색
+        foreach (var obj in FindObjectsOfType<GameObject>(true))
+        {
+            if (obj.name.Contains("(Clone)"))
+            {
+                Destroy(obj);
+            }
+        }
+
+        Debug.Log("모든 (Clone) 오브젝트를 제거했습니다.");
     }
 }
