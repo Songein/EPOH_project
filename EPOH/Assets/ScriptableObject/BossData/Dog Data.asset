@@ -15,8 +15,8 @@ MonoBehaviour:
   name: Dog
   bossIndex: 0
   hackingGoal: 200
-  clearEventId: 
-  failEventId: 
+  clearEventId: Event_015
+  failEventId: Event_014
   _maxHealth: 0
   _rightTop: {x: 9.7, y: 9.7, z: 0}
   _leftBottom: {x: -7, y: -5, z: 0}

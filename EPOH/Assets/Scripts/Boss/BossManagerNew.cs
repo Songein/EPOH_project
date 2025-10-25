@@ -5,6 +5,7 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using Random = UnityEngine.Random;
 using System.Threading.Tasks;
+using Cinemachine;
 
 public class BossManagerNew : MonoBehaviour
 {
@@ -51,6 +52,9 @@ public class BossManagerNew : MonoBehaviour
         SoundManager2.instance.PlayAudio();
         player = FindObjectOfType<PlayerController>();
         
+        // Virtual Camera 세팅
+        SetVCam();
+        
         // 뉴런, hp 등 레이드를 위한 기본 세팅 진행
 
         if (isGeneralRaid)
@@ -75,6 +79,7 @@ public class BossManagerNew : MonoBehaviour
 
     IEnumerator GeneralRaidFlow()
     {
+        yield return new WaitForSeconds(2f);
         // 일반적인 보스 레이드는 페이즈 1 > 2 > 3 순으로 진행.
         for (int i = 1; i <= 3; i++)
         {
@@ -137,6 +142,8 @@ public class BossManagerNew : MonoBehaviour
         {
             StopCoroutine(_raidCoroutine);
         }
+        
+        StopAllCoroutines();
         Debug.LogWarning($"{bossData.name} 레이드 종료");
     }
     
@@ -144,29 +151,38 @@ public class BossManagerNew : MonoBehaviour
     public async UniTask ClearBossRaidAsync()
     {
         EndBossRaid();
+        await UniTask.WaitForSeconds(1f);
         GameManager.instance.bossClearInfo[bossData.bossIndex] = true; //GameManager에 전달
         SaveManager.instance.SaveGameState();  //SaveManager가 GameManager의 값을 받음
         await EventManager.Instance.ExecuteEvent(bossData.clearEventId);
 
         // 메인 룸으로 이동
-        MoveToMainRoom();
+        MoveToMainRoomWhenClear();
     }
     // 보스 레이드 실패
     public async UniTask FailBossRaidAsync()
     {
         EndBossRaid();
+        await UniTask.WaitForSeconds(1f);
         GameManager.instance.bossClearInfo[bossData.bossIndex] = false;
         await EventManager.Instance.ExecuteEvent(bossData.failEventId);
 
         // 메인 룸으로 이동
-        MoveToMainRoom();
+        MoveToMainRoomWhenFail();
     }
 
-    private void MoveToMainRoom()
+    private void MoveToMainRoomWhenClear()
     {
         Debug.LogWarning("메인 룸으로 이동");
         PortalTeleportManager.PortalState state = PortalTeleportManager.PortalState.OfficeToMain;
         StartCoroutine(PortalTeleportManager.Instance.StartOperatePortal(PortalTeleportManager.PortalState.OfficeToMain));
+    }
+
+    private void MoveToMainRoomWhenFail()
+    {
+        Debug.LogWarning("메인 룸으로 이동");
+        PortalTeleportManager.PortalState state = PortalTeleportManager.PortalState.OfficeToMain;
+        PortalTeleportManager.Instance.StartOperatePortalWhenDie(PortalTeleportManager.PortalState.OfficeToMain);
     }
 
     public void StartPhase1()
@@ -235,5 +251,11 @@ public class BossManagerNew : MonoBehaviour
     public void SetSkillCoroutine(Coroutine skill)
     {
         _skillCoroutine = skill;
+    }
+
+    private void SetVCam()
+    {
+        CinemachineVirtualCamera vcam = FindObjectOfType<CinemachineVirtualCamera>();
+        vcam.Follow = player.transform;
     }
 }

@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         }
 
         //초기화 때문에 여기서 saveManager의 clearinfo를 가져옴
-        LoadBossClearInfo(SaveManager.instance.bossClearInfo);
+        //LoadBossClearInfo(SaveManager.instance.bossClearInfo);
 
         for (int item = 0; item < bossObjectAcquiredInfo.Length; item++)
         {

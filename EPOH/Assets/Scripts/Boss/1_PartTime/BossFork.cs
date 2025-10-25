@@ -57,7 +57,7 @@ public class BossFork : MonoBehaviour, BossSkillInterface
             if (forkAnimator != null)
             {
                 Debug.Log("Fork Animator Runtime Controller: " + forkAnimator.runtimeAnimatorController.name);
-                forkAnimator.Play("Scratching_scar"); // fork에 맞는 애니메이션 이름으로 설정
+                //forkAnimator.Play("Scratching_scar"); // fork에 맞는 애니메이션 이름으로 설정
             }
             else
             {

@@ -1439,7 +1439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4578192908810528636, guid: fb214ae72a6594cb096ce455f7b526cb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.489789
+      value: -2.497591
       objectReference: {fileID: 0}
     - target: {fileID: 4578192908810528636, guid: fb214ae72a6594cb096ce455f7b526cb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2314,16 +2314,16 @@ MonoBehaviour:
   bossObjectInfos:
   - objectName: Robot Dog
     itemPrefab: {fileID: 1054337687339161755, guid: 9abc4178480b24b23ad94fa0869b8807, type: 3}
-    spawnPos: {x: -15, y: -8.5, z: 0}
+    spawnPos: {x: -3.6, y: -2.68, z: 0}
   - objectName: Diary
     itemPrefab: {fileID: 7631214299646686995, guid: 19aebd313416b4574927e919bb12de44, type: 3}
-    spawnPos: {x: -11, y: -8.5, z: 0}
+    spawnPos: {x: -3.6, y: -2.68, z: 0}
   - objectName: Picture
     itemPrefab: {fileID: 3260408299352677088, guid: f44ad11718c294711a986ed11cc9b65f, type: 3}
-    spawnPos: {x: -7, y: -8.5, z: 0}
+    spawnPos: {x: -3.6, y: -2.68, z: 0}
   - objectName: Chocolate
     itemPrefab: {fileID: 8411674326746508763, guid: 20b9bacf45532415188575d88c0413d5, type: 3}
-    spawnPos: {x: -3, y: -8.5, z: 0}
+    spawnPos: {x: -0.5, y: -2.68, z: 0}
 --- !u!4 &2104430954
 Transform:
   m_ObjectHideFlags: 0

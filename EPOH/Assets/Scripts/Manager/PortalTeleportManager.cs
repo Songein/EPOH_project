@@ -151,6 +151,26 @@ public class PortalTeleportManager : MonoBehaviour
 
         SceneManager.LoadScene(_portalInfos[state].MoveSceneName);
     }
+    
+    public void StartOperatePortalWhenDie(PortalState state)
+    {
+        // 플레이어 움직임 막기
+        PlayerController.Instance.canMove = false;
+        PlayerInteract.Instance.canInteract = false;
+        
+        // 애니메이션 종료 후 씬 이동
+        portalState = state;
+
+        if(state == PortalState.OfficeToBoss)
+        {
+            // 보스룸 씬 이름과 포탈 위치 동적으로 설정
+            string bossRoomName = GetBossRoomName();
+            Vector3 bossPortalPos = GetBossPortalPos();
+            _portalInfos[PortalState.OfficeToBoss] = new PortalInfo(bossRoomName, bossPortalPos);
+        }
+
+        SceneManager.LoadScene(_portalInfos[state].MoveSceneName);
+    }
 
     public IEnumerator EndOperatePortal()
     {
@@ -186,6 +206,8 @@ public class PortalTeleportManager : MonoBehaviour
         // portal의 상태가 Default가 아니라면, 포탈을 통해 이동을 했다는 것임.
         if (portalState != PortalState.Default)
         {
+            SpriteRenderer sp = PlayerController.Instance.GetComponent<SpriteRenderer>();
+            sp.color = new Color(sp.color.r, sp.color.g, sp.color.b, 1f);
             StartCoroutine(EndOperatePortal());
         }
     }

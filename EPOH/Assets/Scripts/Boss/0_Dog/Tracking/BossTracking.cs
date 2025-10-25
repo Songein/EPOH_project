@@ -14,13 +14,18 @@ public class BossTracking : MonoBehaviour, BossSkillInterface
     private GameObject tracking_eye; // 추적 눈동자 오브젝트
     private Animator trackingAnimator; // 추적 눈동자 애니메이터
     
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        player = BossManagerNew.Current.player.gameObject;
+        player = FindObjectOfType<PlayerController>().gameObject;
+        if (player == null)
+        {
+            EPOH.Debug.LogError("Player가 없습니다.");
+            return;
+        }
         // 추적 눈동자 생성
         Vector3 eyePosition = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
         tracking_eye = Instantiate(tracking_eye_prefab, eyePosition, Quaternion.identity);
+        EPOH.Debug.LogWarning(tracking_eye);
         tracking_eye.SetActive(false); // 시작 시 비활성화
 
         //크기 조정
@@ -32,7 +37,6 @@ public class BossTracking : MonoBehaviour, BossSkillInterface
         {
             Debug.LogError("Animator component is missing on the tracking_eye prefab.");
         }
-
     }
 
     void Update()

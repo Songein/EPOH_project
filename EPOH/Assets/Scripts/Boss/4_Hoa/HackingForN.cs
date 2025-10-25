@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using TMPro;
 
@@ -53,7 +54,7 @@ public class HackingForN : MonoBehaviour
         if (_hackingPoint + value >= hackingGoal)
         {
             _hackingPoint = hackingGoal;
-            BossManagerNew.Current.ClearBossRaidAsync();
+            BossManagerNew.Current.ClearBossRaidAsync().Forget();
         }
         else
         {
