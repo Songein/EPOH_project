@@ -51,6 +51,7 @@ public class BossManagerNew : MonoBehaviour
     {
         SoundManager2.instance.PlayAudio();
         player = FindObjectOfType<PlayerController>();
+        player.InitTeleport();
         
         // Virtual Camera 세팅
         SetVCam();
