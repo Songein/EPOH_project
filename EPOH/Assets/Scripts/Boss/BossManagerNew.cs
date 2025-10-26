@@ -66,7 +66,7 @@ public class BossManagerNew : MonoBehaviour
         else
         {
             // 최종 보스 레이드면 최종 보스 레이드 시작
-            StartFinalBossRaid();
+            //StartFinalBossRaid();
         }
     }
 
@@ -103,7 +103,46 @@ public class BossManagerNew : MonoBehaviour
     // 최종 보스 레이드(호아)
     public void StartFinalBossRaid()
     {
+        _isRaidRunning = true;
+        _raidCoroutine = StartCoroutine(FinalRaidFlow1());
         Debug.LogWarning($"{bossData.name} 레이드 시작");
+    }
+    
+    // 최종 보스 레이드 페이즈1
+    IEnumerator FinalRaidFlow1()
+    {
+        yield return new WaitForSeconds(2f);
+        // 페이즈 1 > 2 > 3 순으로 진행.
+        for (int i = 1; i <= 3; i++)
+        {
+            Debug.LogWarning($"초기 페이즈{i} 시작");
+            yield return StartCoroutine(RunPhase(i));
+            yield return new WaitUntil(() => _isPhaseEnd);
+            yield return null;
+        }
+        
+        EPOH.Debug.LogWarning("호아 페이즈1 완료.");
+        // 페이즈1 완료 후 이벤트
+        _raidCoroutine = StartCoroutine(FinalRaidFlow2());
+    }
+
+    IEnumerator FinalRaidFlow2()
+    {
+        yield return new WaitForSeconds(2f);
+        // 페이즈 4 > 5 > 6 순으로 진행.
+        for (int i = 4; i <= 6; i++)
+        {
+            Debug.LogWarning($"초기 페이즈{i} 시작");
+            yield return StartCoroutine(RunPhase(i));
+            yield return new WaitUntil(() => _isPhaseEnd);
+            yield return null;
+        }
+        
+        // 페이즈2 완료되었는데 클리어 못했으면 실패??
+        EPOH.Debug.LogWarning("호아 페이즈2 완료.");
+        if(!FindObjectOfType<HackingForN>().IsClear())
+            FailBossRaidAsync().Forget();
+        else ClearFinalBossRaidAsync().Forget();
     }
 
     IEnumerator RunPhase(int num)
@@ -161,6 +200,16 @@ public class BossManagerNew : MonoBehaviour
 
         // 메인 룸으로 이동
         MoveToMainRoomWhenFail();
+    }
+    
+    // 최종 보스 레이드 클리어
+    public async UniTask ClearFinalBossRaidAsync()
+    {
+        EndBossRaid();
+        await UniTask.WaitForSeconds(1f);
+        GameManager.instance.bossClearInfo[bossData.bossIndex] = true; //GameManager에 전달
+        SaveManager.instance.SaveGameState(); //SaveManager가 GameManager의 값을 받음
+        await EventManager.Instance.ExecuteEvent(bossData.clearEventId);
     }
 
     private void MoveToMainRoomWhenClear()

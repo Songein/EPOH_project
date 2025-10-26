@@ -46,7 +46,9 @@ public class HackingForN : MonoBehaviour
         if (_hackingPoint + value >= hackingGoal)
         {
             _hackingPoint = hackingGoal;
-            BossManagerNew.Current.ClearBossRaidAsync().Forget();
+            if(BossManagerNew.Current.isGeneralRaid)
+                BossManagerNew.Current.ClearBossRaidAsync().Forget();
+            else BossManagerNew.Current.ClearFinalBossRaidAsync().Forget();
         }
         else
         {
@@ -59,5 +61,10 @@ public class HackingForN : MonoBehaviour
     public void UpdateText()
     {
         _text.text = $"{(int)(_hackingPoint/ hackingGoal * 100)}" + "%";
+    }
+
+    public bool IsClear()
+    {
+        return _hackingPoint == hackingGoal;
     }
 }

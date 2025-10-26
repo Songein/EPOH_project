@@ -15,8 +15,8 @@ MonoBehaviour:
   name: Hoa
   bossIndex: 4
   hackingGoal: 800
-  clearEventId: 
-  failEventId: 
+  clearEventId: Event_070
+  failEventId: Event_069
   _maxHealth: 0
   _rightTop: {x: 12.5, y: 9, z: 0}
   _leftBottom: {x: -16, y: -3.3, z: 0}

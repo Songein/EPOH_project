@@ -18,7 +18,7 @@ public class MainRoomManager : MonoBehaviour
     {
         for (int boss = 0; boss < bossObjectInfos.Count; boss++)
         {
-            if (GameManager.instance.bossClearInfo[boss])
+            if (GameManager.instance.bossClearInfo[boss] && !GameManager.instance.bossObjectAcquiredInfo[boss])
             {
                 Instantiate(bossObjectInfos[boss].itemPrefab, bossObjectInfos[boss].spawnPos, Quaternion.identity);
             }

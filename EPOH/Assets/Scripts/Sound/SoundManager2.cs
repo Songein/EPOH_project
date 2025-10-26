@@ -126,7 +126,7 @@ public class SoundManager2 : MonoBehaviour
     public void PlayBGM(int index)
     {
        
-        if (bgmSource.clip == BGM_List[index]) return;
+        if (bgmSource.clip == BGM_List[index] && bgmSource.isPlaying) return;
 
         bgmSource.clip = BGM_List[index];
         bgmSource.loop = true;

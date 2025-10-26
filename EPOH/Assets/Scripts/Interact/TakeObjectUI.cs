@@ -10,28 +10,36 @@ public class TakeObjectUI : UIBase
     public override void OnOpen(EffectStructure effect)
     {
         base.OnOpen(effect);
-        // 팝업 오브젝트 활성화
-        transform.GetChild(0).gameObject.SetActive(true);
+        
         // 현재 실행 중인 이벤트에 따라 오브젝트 할당
         switch (EventManager.Instance.currentEventID)
         {
             case "Event_056":
                 _bossObjectInfo = 0;
-                _bossObject = GameObject.Find("RobotDog");
+                _bossObject = GameObject.Find("RobotDog(Clone)");
                 break;
             case "Event_057":
                 _bossObjectInfo = 1;
-                _bossObject = GameObject.Find("Diary");
+                _bossObject = GameObject.Find("Diary(Clone)");
                 break;
             case "Event_058":
                 _bossObjectInfo = 2;
-                _bossObject = GameObject.Find("Picture");
+                _bossObject = GameObject.Find("Picture(Clone)");
                 break;
             case "Event_059":
                 _bossObjectInfo = 3;
-                _bossObject = GameObject.Find("Chocolate");
+                _bossObject = GameObject.Find("Chocolate(Clone)");
                 break;
         }
+        
+        if (GameManager.instance.bossObjectAcquiredInfo[_bossObjectInfo])
+        {
+            UIManager.Instance.CloseTopUI();
+            return;
+        }
+        
+        // 팝업 오브젝트 활성화
+        transform.GetChild(0).gameObject.SetActive(true);
     }
     
     public override void OnClose()
