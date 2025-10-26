@@ -45,5 +45,9 @@ public class PlayerAttack : MonoBehaviour
         transform.GetComponent<Animator>().Play("Attack One");
         SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Player_Attack);
     }
-    
+
+    public void AfterAttack()
+    {
+        is_attacking = false;
+    }
 }

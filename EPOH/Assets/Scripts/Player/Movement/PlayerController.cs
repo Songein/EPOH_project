@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
 using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigid;
     //플레이어 애니메이터
     private Animator animator;
+    public bool isException = false;
     //스프라이트 렌더러 컴포넌트
     private SpriteRenderer sr;
     //땅 레이캐스트 충돌
@@ -149,6 +151,9 @@ public class PlayerController : MonoBehaviour
         //순간이동 버튼을 누르면
         if (Input.GetButtonDown("Teleport"))
         {
+            if(BossManagerNew.Current == null) return;
+            
+            
             if (can_teleport) //순간이동을 할 수 있으면(표식을 설치한 경우)
             {
                 StartCoroutine(Teleport());
@@ -270,15 +275,25 @@ public class PlayerController : MonoBehaviour
     //순간이동
     public IEnumerator Teleport()
     {
-        //순간이동 시작 시
-        can_teleport = false; //순간이동 불가능으로 설정
-        is_teleporting = true; //순간이동 중으로 설정
-        Destroy(mark); //순간이동 표식 제거
-        gameObject.transform.position = new Vector2(teleport_pos.x, teleport_pos.y + 2f); //순간이동 표식보다 y축으로 2만큼 위로 이동
+        if (FindObjectOfType<HackingForN>()._hackingPoint < 5f)
+        {
+            EPOH.Debug.LogWarning("해킹 포인트 부족해서 순간이동 불가능");
+        }
+        else
+        {
+            BossManagerNew.Current.OnDecreaseHackingPoint?.Invoke(5);
+            Debug.Log($"순간이동 : 플레이어 해킹포인트 5%(텔레포트) 만큼 감소");
+        
+            //순간이동 시작 시
+            can_teleport = false; //순간이동 불가능으로 설정
+            is_teleporting = true; //순간이동 중으로 설정
+            Destroy(mark); //순간이동 표식 제거
+            gameObject.transform.position = new Vector2(teleport_pos.x, teleport_pos.y + 2f); //순간이동 표식보다 y축으로 2만큼 위로 이동
 
-        //순간이동 끝
-        yield return new WaitForSeconds(teleport_time);
-        is_teleporting = false; //순간이동 중 해제
+            //순간이동 끝
+            yield return new WaitForSeconds(teleport_time);
+            is_teleporting = false; //순간이동 중 해제
+        }
     }
 
     //순간이동 마크 설치 함수
@@ -295,5 +310,45 @@ public class PlayerController : MonoBehaviour
     public void InitJump()
     {
         player_jump_cnt = 0;
+    }
+
+    void InitPlayerAnimation()
+    {
+        animator.SetBool("IsRun", false);
+        animator.SetBool("IsJump", false);
+        animator.SetBool("IsDoubleJump", false);
+        animator.SetBool("IsFall", false);
+        animator.SetBool("IsDash", false);
+        animator.SetBool("IsInstallMark", false);
+        
+        if(!isException)
+            animator.Play("Idle"); //애니메이션 초기화
+    }
+
+    public void LockPlayer()
+    {
+        canMove = false; //플레이어 이동 불가능
+        can_dash = false; //플레이어 대쉬 불가능
+        can_teleport = false; //플레이어 순간이동 불가능
+        PlayerInteract.Instance.canInteract = false; //플레이어 상호작용 불가능
+        InitPlayerAnimation();
+    }
+
+    public void UnlockPlayer()
+    {
+        canMove = true; //플레이어 이동 가능
+        can_dash = true; //플레이어 대쉬 가능
+        can_teleport = true; //플레이어 순간이동 가능
+        PlayerInteract.Instance.canInteract = true; //플레이어 상호작용 가능
+    }
+
+    public void InitException()
+    {
+        isException = false;
+    }
+
+    public void InitTeleport()
+    {
+        can_teleport = false;
     }
 }

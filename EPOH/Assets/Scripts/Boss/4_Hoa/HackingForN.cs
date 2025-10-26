@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using TMPro;
 
@@ -20,14 +21,6 @@ public class HackingForN : MonoBehaviour
         _bossManager.OnIncreaseHackingPoint += IncreaseHackingPoint;
         hackingGoal = bossdata.hackingGoal;
         Debug.Log("HackingNeuron시작");
-    }
-    private void Update()
-    {
-        if (Input.GetButtonDown("Teleport") && pcontrol.can_teleport == false) {
-            BossManagerNew.Current.OnDecreaseHackingPoint?.Invoke(5);
-            Debug.Log($"[Cookie] : 플레이어 해킹포인트 5%(텔레포트) 만큼 감소");
-
-        }
     }
     public float GetHackingPoint()
     {
@@ -53,7 +46,9 @@ public class HackingForN : MonoBehaviour
         if (_hackingPoint + value >= hackingGoal)
         {
             _hackingPoint = hackingGoal;
-            BossManagerNew.Current.ClearBossRaid();
+            if(BossManagerNew.Current.isGeneralRaid)
+                BossManagerNew.Current.ClearBossRaidAsync().Forget();
+            else BossManagerNew.Current.ClearFinalBossRaidAsync().Forget();
         }
         else
         {
@@ -66,5 +61,10 @@ public class HackingForN : MonoBehaviour
     public void UpdateText()
     {
         _text.text = $"{(int)(_hackingPoint/ hackingGoal * 100)}" + "%";
+    }
+
+    public bool IsClear()
+    {
+        return _hackingPoint == hackingGoal;
     }
 }

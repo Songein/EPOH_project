@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ElectricBall : MonoBehaviour, BossSkillInterface
 {
-    //  private BossDogController dog; 
-    public GameObject player; // 플레이어 게임 오브젝트
     private List<GameObject> balls;
     //[SerializeField] private Vector3 leftEdgePoint;
     //[SerializeField] private Vector3 rightEdgePoint;

@@ -33,10 +33,7 @@ public class RequestUI : UIBase
     public override void HandleMouseInput()
     {
         // Space 버튼 입력 처리
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            UIManager.Instance.CloseTopUI();
-        }
+        
     }
 
     public void AcceptRequest()

@@ -183,7 +183,7 @@ public class EventManager : MonoBehaviour
                 {
                     GameManager.instance.ProgressState = (GameManager.ProgressId)Enum.Parse(typeof(GameManager.ProgressId), eventStructure.ProgressId);
                     Debug.LogWarning($"진행도 업데이트! -> {eventStructure.ProgressId}");
-                SaveManager.instance.GettheId(eventStructure.ProgressId);
+                    SaveManager.instance.GettheId(eventStructure.ProgressId);
                 }
                 
                 // 다음 이벤트 아이디 확인
@@ -195,7 +195,7 @@ public class EventManager : MonoBehaviour
                     if (DataManager.Instance.Events[eventStructure.NextEvent].IsAuto == "true")
                     {
                         Debug.LogWarning($"{nextEventID}의 IsAuto 값이 true여서 바로 실행");
-                        ExecuteEvent(eventStructure.NextEvent);
+                        ExecuteEvent(eventStructure.NextEvent).Forget();
                     }
                 }
             }
@@ -247,9 +247,25 @@ public class EventManager : MonoBehaviour
                         GameObject camera = effectObj.transform.GetChild(0).gameObject;
                         camera.SetActive(true);
                         camera.GetComponent<CinemachineVirtualCamera>().Priority = _maxPriority;
+                        if(effect.EffectId == "Effect_016" || effect.EffectId == "Effect_017" || effect.EffectId == "Effect_018")
+                            await UniTask.WaitForSeconds(2.5f);
                         break;
                     case "Animation":
                         Debug.LogWarning($"Animation 타입의 {effect.EffectId} 실행");
+                        PlayerController.Instance.isException = true;
+                        Animator animator = PlayerController.Instance.GetComponent<Animator>();
+                        animator.SetTrigger(effect.AnimationType);
+                        break;
+                    case "Act":
+                        Debug.LogWarning($"Act 타입의 {effect.EffectId} 실행");
+                        if (effect.EffectId == "Effect_026")
+                        {
+                            SceneChanger.Instance.ChangeScene("BossRoomHoa").Forget();
+                        }
+                        else if (effect.EffectId == "Effect_027")
+                        {
+                            BossManagerNew.Current.StartFinalBossRaid();
+                        }
                         break;
                     case "Screen":
                         Debug.LogWarning($"Screen 타입의 {effect.EffectId} 실행");
@@ -274,6 +290,24 @@ public class EventManager : MonoBehaviour
                         else if(effect.EffectId == "Effect_012")
                         {
                             SceneChanger.Instance.ChangeScene("MainRoomTest").Forget();
+                        }
+                        switch (effect.EffectId)
+                        {
+                            case "Effect_022":
+                                SceneChanger.Instance.ChangeScene("DarkScene").Forget();
+                                break;
+                            case "Effect_023":
+                                SceneChanger.Instance.ChangeScene("Ending1").Forget();
+                                break;
+                            case "Effect_024":
+                                SceneChanger.Instance.ChangeScene("Ending2-1").Forget();
+                                break;
+                            case "Effect_025":
+                                SceneChanger.Instance.ChangeScene("Ending2-2").Forget();
+                                break;
+                            case "Effect_028":
+                                SceneChanger.Instance.ChangeScene("Ending3").Forget();
+                                break;
                         }
                         break;
                 }

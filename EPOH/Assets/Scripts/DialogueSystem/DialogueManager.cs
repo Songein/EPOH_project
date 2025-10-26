@@ -29,6 +29,12 @@ public class DialogueManager : UIBase
     [SerializeField] float typingSpeed = 0.1f;
     [SerializeField] float lineChangeSpeed = 0.5f;
 
+    [Header("이미지 관리")]
+    [SerializeField] private List<Sprite> portraitSprites;
+    [SerializeField] private List<Sprite> portraitBackgroundSprites;
+    [SerializeField] private Sprite pastBackgroundSprite;
+    [SerializeField] private Sprite defaultBackgroundSprite;
+
     public Action OnDialogueEnd;
 
     private static DialogueManager _instance;
@@ -78,24 +84,26 @@ public class DialogueManager : UIBase
     
     public override void HandleMouseInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isTyping)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            StopAllCoroutines();
-            isTyping = false;
-            _dialogueArea.text = currentLine;
-            Invoke("ChangeLineTime", lineChangeSpeed);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) && isLineEnd)
-        {
-            isLineEnd = false;
-            DisplayNextDialogueLine();
+            if (isTyping)
+            {
+                isTyping = false;
+                StopAllCoroutines();
+                _dialogueArea.text = currentLine;
+                Invoke("ChangeLineTime", lineChangeSpeed);
+            }
+            else if(isLineEnd)
+            {
+                isLineEnd = false;
+                DisplayNextDialogueLine();
+            }
         }
     }
     
     public IEnumerator StartDialogue(string dialogueID)
     {
-        yield return new WaitForSeconds(1f);
+        yield return null;
         // 다이얼로그 가져오기
         _currentDialogue = DataManager.Instance.Dialogues[dialogueID]; 
         isDialogueActive = true;
@@ -183,8 +191,8 @@ public class DialogueManager : UIBase
         if (dialogueInfo.InteractionType == "NPC")
         {
             _characterName = _profileVer.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-            _dialogueArea = _profileVer.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-            _portraitImg = _profileVer.transform.GetChild(2).GetComponent<Image>();
+            _dialogueArea = _profileVer.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+            _portraitImg = _profileVer.transform.GetChild(1).GetComponent<Image>();
             
             if (!string.IsNullOrEmpty(dialogueInfo.CharacterId) &&
                 DataManager.Instance.Characters.ContainsKey(dialogueInfo.CharacterId))

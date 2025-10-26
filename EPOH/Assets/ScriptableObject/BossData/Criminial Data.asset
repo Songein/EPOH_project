@@ -15,8 +15,8 @@ MonoBehaviour:
   name: Criminal
   bossIndex: 3
   hackingGoal: 600
-  clearEventId: 
-  failEventId: 
+  clearEventId: Event_048
+  failEventId: Event_047
   _maxHealth: 0
   _rightTop: {x: 12, y: 6, z: 0}
   _leftBottom: {x: -12, y: -6.2, z: 0}

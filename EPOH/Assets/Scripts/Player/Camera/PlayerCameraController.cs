@@ -12,6 +12,7 @@ public class PlayerCameraController : MonoBehaviour
         // 씬 로드 시 이벤트 등록
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
+    
 
     private void OnDestroy()
     {

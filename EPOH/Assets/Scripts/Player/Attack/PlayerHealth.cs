@@ -1,27 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public BossManager boss_manager;
     [SerializeField] private float _playerMaxHP = 200;
     public float player_hp; //플레이어의 목숨
     public bool is_invincible; //무적 여부
     public event Action<float> OnHealthChanged;
     
     private SpriteRenderer sp; //플레이어 SpriteRenderer 참조
+    private Animator _animator;
 
     void Awake()
     {
         player_hp = _playerMaxHP;
-    }
-    void Start()
-    {
-        //SpriteRenderer 할당하기
+        _animator = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
-        //boss_manager = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossManager>();
     }
     
     //플레이어 데미지 관련
@@ -95,7 +92,15 @@ public class PlayerHealth : MonoBehaviour
     public void Die()
     {
         Debug.Log("[PlayerHealth] : 플레이어 사망");
-        gameObject.SetActive(false); //플레이어 오브젝트 비활성화
+        PlayerController.Instance.LockPlayer();
+        BossManagerNew.Current.EndBossRaid();
+        _animator.SetTrigger("Die");
     }
-    
+
+    public void AfterDie()
+    {
+        //gameObject.SetActive(false); //플레이어 오브젝트 비활성화
+        sp.color = new Color(sp.color.r, sp.color.g, sp.color.b, 0f);
+        BossManagerNew.Current.FailBossRaidAsync().Forget();
+    }
 }

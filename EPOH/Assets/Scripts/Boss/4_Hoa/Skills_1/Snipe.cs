@@ -6,7 +6,7 @@ public class Snipe : MonoBehaviour, BossSkillInterface
 {
     private BossDogController dog; //BossDogController 참조
 
-    public GameObject player; // 플레이어 게임 오브젝트
+    private GameObject player; // 플레이어 게임 오브젝트
 
     //추적 변수
     public GameObject tracking_eye_prefab; // 추적 눈동자 프리팹
@@ -15,30 +15,7 @@ public class Snipe : MonoBehaviour, BossSkillInterface
 
     private GameObject tracking_eye; // 추적 눈동자 오브젝트
     private Animator trackingAnimator; // 추적 눈동자 애니메이터
-
-
-    private void Awake()
-    {
-        //dog = GameObject.FindWithTag("Boss").GetComponent<BossDogController>();
-       // player = dog._player;
-
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-        // 추적 눈동자 생성
-        Vector3 eyePosition = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
-        tracking_eye = Instantiate(tracking_eye_prefab, eyePosition, Quaternion.identity);
-        tracking_eye.SetActive(false); // 시작 시 비활성화
-
-        //크기 조정
-       // tracking_eye.transform.localScale = new Vector3(2f, 2f, 1f); // 눈동자 크기를 2배로 설정
-
-       
-
-    }
+    
 
     void Update()
     {
@@ -51,6 +28,12 @@ public class Snipe : MonoBehaviour, BossSkillInterface
 
     public void Activate()
     {
+        // 추적 눈동자 생성
+        player = FindObjectOfType<PlayerController>().gameObject;
+        Vector3 eyePosition = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+        tracking_eye = Instantiate(tracking_eye_prefab, eyePosition, Quaternion.identity);
+        tracking_eye.SetActive(false); // 시작 시 비활성화
+        
         SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Hoa_Snipe); //소리
         tracking_eye.SetActive(true); // 추적 눈동자 활성화
 

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using Random = UnityEngine.Random;
+using System.Threading.Tasks;
+using Cinemachine;
 
 public class BossManagerNew : MonoBehaviour
 {
@@ -49,6 +51,10 @@ public class BossManagerNew : MonoBehaviour
     {
         SoundManager2.instance.PlayAudio();
         player = FindObjectOfType<PlayerController>();
+        player.InitTeleport();
+        
+        // Virtual Camera 세팅
+        SetVCam();
         
         // 뉴런, hp 등 레이드를 위한 기본 세팅 진행
 
@@ -60,7 +66,7 @@ public class BossManagerNew : MonoBehaviour
         else
         {
             // 최종 보스 레이드면 최종 보스 레이드 시작
-            StartFinalBossRaid();
+            //StartFinalBossRaid();
         }
     }
 
@@ -74,6 +80,7 @@ public class BossManagerNew : MonoBehaviour
 
     IEnumerator GeneralRaidFlow()
     {
+        yield return new WaitForSeconds(2f);
         // 일반적인 보스 레이드는 페이즈 1 > 2 > 3 순으로 진행.
         for (int i = 1; i <= 3; i++)
         {
@@ -96,7 +103,46 @@ public class BossManagerNew : MonoBehaviour
     // 최종 보스 레이드(호아)
     public void StartFinalBossRaid()
     {
+        _isRaidRunning = true;
+        _raidCoroutine = StartCoroutine(FinalRaidFlow1());
         Debug.LogWarning($"{bossData.name} 레이드 시작");
+    }
+    
+    // 최종 보스 레이드 페이즈1
+    IEnumerator FinalRaidFlow1()
+    {
+        yield return new WaitForSeconds(2f);
+        // 페이즈 1 > 2 > 3 순으로 진행.
+        for (int i = 1; i <= 3; i++)
+        {
+            Debug.LogWarning($"초기 페이즈{i} 시작");
+            yield return StartCoroutine(RunPhase(i));
+            yield return new WaitUntil(() => _isPhaseEnd);
+            yield return null;
+        }
+        
+        EPOH.Debug.LogWarning("호아 페이즈1 완료.");
+        // 페이즈1 완료 후 이벤트
+        _raidCoroutine = StartCoroutine(FinalRaidFlow2());
+    }
+
+    IEnumerator FinalRaidFlow2()
+    {
+        yield return new WaitForSeconds(2f);
+        // 페이즈 4 > 5 > 6 순으로 진행.
+        for (int i = 4; i <= 6; i++)
+        {
+            Debug.LogWarning($"초기 페이즈{i} 시작");
+            yield return StartCoroutine(RunPhase(i));
+            yield return new WaitUntil(() => _isPhaseEnd);
+            yield return null;
+        }
+        
+        // 페이즈2 완료되었는데 클리어 못했으면 실패??
+        EPOH.Debug.LogWarning("호아 페이즈2 완료.");
+        if(!FindObjectOfType<HackingForN>().IsClear())
+            FailBossRaidAsync().Forget();
+        else ClearFinalBossRaidAsync().Forget();
     }
 
     IEnumerator RunPhase(int num)
@@ -104,60 +150,82 @@ public class BossManagerNew : MonoBehaviour
         switch (num)
         {
             case 1:
-                yield return StartCoroutine(ActivateSkill(phase1List));
+                yield return _skillCoroutine = StartCoroutine(ActivateSkill(phase1List));
                 break;
             case 2:
-                yield return StartCoroutine(ActivateSkill(phase2List));
+                yield return _skillCoroutine = StartCoroutine(ActivateSkill(phase2List));
                 break;
             case 3:
-                yield return StartCoroutine(ActivateSkill(phase3List));
+                yield return _skillCoroutine = StartCoroutine(ActivateSkill(phase3List));
                 break;
             case 4:
-                yield return StartCoroutine(ActivateSkill(phase4List));
+                yield return _skillCoroutine = StartCoroutine(ActivateSkill(phase4List));
                 break;
             case 5:
-                yield return StartCoroutine(ActivateSkill(phase5List));
+                yield return _skillCoroutine = StartCoroutine(ActivateSkill(phase5List));
                 break;
             case 6:
-                yield return StartCoroutine(ActivateSkill(phase6List));
+                yield return _skillCoroutine = StartCoroutine(ActivateSkill(phase6List));
                 break;
         }
     }
     
-    void EndBossRaid()
+    public void EndBossRaid()
     {
         _isRaidRunning = false;
-
-        if (_skillCoroutine != null)
-        {
-            StopCoroutine(_skillCoroutine);
-        }
-        if (_raidCoroutine != null)
-        {
-            StopCoroutine(_raidCoroutine);
-        }
+        StopAllCoroutines();
+        StopAllCoroutinesEverywhere();
+        RemoveAllClones();
         Debug.LogWarning($"{bossData.name} 레이드 종료");
     }
     
     // 보스 레이드 클리어
-    public void ClearBossRaid()
+    public async UniTask ClearBossRaidAsync()
     {
         EndBossRaid();
+        await UniTask.WaitForSeconds(1f);
         GameManager.instance.bossClearInfo[bossData.bossIndex] = true; //GameManager에 전달
         SaveManager.instance.SaveGameState();  //SaveManager가 GameManager의 값을 받음
-        EventManager.Instance.ExecuteEvent(bossData.clearEventId).Forget();
-        
+        await EventManager.Instance.ExecuteEvent(bossData.clearEventId);
+
         // 메인 룸으로 이동
+        MoveToMainRoomWhenClear();
     }
     // 보스 레이드 실패
-    public void FailBossRaid()
+    public async UniTask FailBossRaidAsync()
+    {
+        await UniTask.WaitForSeconds(1f);
+        GameManager.instance.bossClearInfo[bossData.bossIndex] = false;
+        await EventManager.Instance.ExecuteEvent(bossData.failEventId);
+
+        // 메인 룸으로 이동
+        MoveToMainRoomWhenFail();
+    }
+    
+    // 최종 보스 레이드 클리어
+    public async UniTask ClearFinalBossRaidAsync()
     {
         EndBossRaid();
-        GameManager.instance.bossClearInfo[bossData.bossIndex] = false;
-        EventManager.Instance.ExecuteEvent(bossData.failEventId).Forget();
-        
-        // 어디로 이동??
+        await UniTask.WaitForSeconds(1f);
+        GameManager.instance.bossClearInfo[bossData.bossIndex] = true; //GameManager에 전달
+        SaveManager.instance.SaveGameState(); //SaveManager가 GameManager의 값을 받음
+        await EventManager.Instance.ExecuteEvent(bossData.clearEventId);
     }
+
+    private void MoveToMainRoomWhenClear()
+    {
+        Debug.LogWarning("메인 룸으로 이동");
+        PortalTeleportManager.PortalState state = PortalTeleportManager.PortalState.OfficeToMain;
+        StartCoroutine(PortalTeleportManager.Instance.StartOperatePortal(PortalTeleportManager.PortalState.OfficeToMain));
+    }
+
+    private void MoveToMainRoomWhenFail()
+    {
+        Debug.LogWarning("메인 룸으로 이동");
+        PortalTeleportManager.PortalState state = PortalTeleportManager.PortalState.OfficeToMain;
+        PortalTeleportManager.Instance.StartOperatePortalWhenDie(PortalTeleportManager.PortalState.OfficeToMain);
+    }
+
     public void StartPhase1()
     {
         StartCoroutine(ActivateSkill(phase1List));
@@ -224,5 +292,37 @@ public class BossManagerNew : MonoBehaviour
     public void SetSkillCoroutine(Coroutine skill)
     {
         _skillCoroutine = skill;
+    }
+
+    private void SetVCam()
+    {
+        CinemachineVirtualCamera vcam = FindObjectOfType<CinemachineVirtualCamera>();
+        vcam.Follow = player.transform;
+    }
+    
+    public void RemoveAllClones()
+    {
+        // 모든 GameObject 탐색
+        foreach (var obj in FindObjectsOfType<GameObject>(true))
+        {
+            if (obj.name.Contains("(Clone)"))
+            {
+                Destroy(obj);
+            }
+        }
+
+        Debug.Log("모든 (Clone) 오브젝트를 제거했습니다.");
+    }
+    
+    public void StopAllCoroutinesEverywhere()
+    {
+        var allBehaviours = FindObjectsOfType<MonoBehaviour>(true); // 비활성 포함
+        int count = 0;
+        foreach (var behaviour in allBehaviours)
+        {
+            behaviour.StopAllCoroutines();
+            count++;
+        }
+        Debug.Log($"{count}개의 MonoBehaviour에 대해 StopAllCoroutines 호출 완료");
     }
 }
