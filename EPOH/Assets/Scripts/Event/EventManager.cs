@@ -8,7 +8,13 @@ public class EventManager : MonoBehaviour
     {
         private static EventManager _instance;
 
-        public static EventManager Instance
+        // 다음 이벤트 정보
+        [Header("이벤트 실행 정보")]
+        public string startEventID = "";
+        public string currentEventID = "";
+        public string nextEventID = "";
+
+    public static EventManager Instance
         {
             get
             {
@@ -26,23 +32,34 @@ public class EventManager : MonoBehaviour
             }
         }
 
-        void Awake()
+    void Awake()
+    {
+        if (_instance == null)
         {
-            if (_instance == null)
-            {
-                _instance = this;
-                DontDestroyOnLoad(gameObject); // 씬이 바뀌어도 유지됨
-            }
-            else if (_instance != this)
-            {
-                Destroy(gameObject); // 중복 생성 방지
-            }
+            _instance = this;
+            DontDestroyOnLoad(gameObject); // 씬이 바뀌어도 유지됨
         }
-        // 다음 이벤트 정보
-        [Header("이벤트 실행 정보")]
-        public string startEventID = "";
-        public string currentEventID = "";
-        public string nextEventID = "";
+        else if (_instance != this)
+        {
+            Destroy(gameObject); // 중복 생성 방지
+        }
+        if (SaveManager.instance != null)
+        {
+            // eventId가 비어 있거나 null인 경우 "Event_001"을 사용
+            if (string.IsNullOrEmpty(SaveManager.instance.eventId))
+            {
+                this.startEventID = "Event_001";
+            }
+            else
+            {
+                this.startEventID = SaveManager.instance.eventId;
+            }
+            //this.currentEventID = this.startEventID;
+
+          
+        }
+    }
+
     
         // 이벤트 성공 여부 
         public bool canExecute = true;
@@ -52,8 +69,11 @@ public class EventManager : MonoBehaviour
         private int _minPriority = 1;
 
         void Start()
-        {
-            ExecuteEvent(startEventID).Forget();
+    {
+        
+        Debug.LogWarning($"실행할 startEventID: {startEventID}");
+
+        ExecuteEvent(startEventID).Forget();
         }
     
         // 이벤트 실행 가능 여부 검사
@@ -151,8 +171,9 @@ public class EventManager : MonoBehaviour
                 EventStructure eventStructure = DataManager.Instance.Events[eventID];
                 currentEventID = eventID;
                 Debug.Log($"{eventID} 실행 : {eventStructure.Description}");
-                
-                foreach (var result in eventStructure.Results)
+                SaveManager.instance.GettheEvent(eventID);
+
+            foreach (var result in eventStructure.Results)
                 {
                     await ExecuteResult(result);
                 }
@@ -162,6 +183,7 @@ public class EventManager : MonoBehaviour
                 {
                     GameManager.instance.ProgressState = (GameManager.ProgressId)Enum.Parse(typeof(GameManager.ProgressId), eventStructure.ProgressId);
                     Debug.LogWarning($"진행도 업데이트! -> {eventStructure.ProgressId}");
+                    SaveManager.instance.GettheId(eventStructure.ProgressId);
                 }
                 
                 // 다음 이벤트 아이디 확인
@@ -173,7 +195,7 @@ public class EventManager : MonoBehaviour
                     if (DataManager.Instance.Events[eventStructure.NextEvent].IsAuto == "true")
                     {
                         Debug.LogWarning($"{nextEventID}의 IsAuto 값이 true여서 바로 실행");
-                        ExecuteEvent(eventStructure.NextEvent);
+                        ExecuteEvent(eventStructure.NextEvent).Forget();
                     }
                 }
             }
@@ -215,15 +237,35 @@ public class EventManager : MonoBehaviour
                         Debug.LogWarning($"ArtResource 타입의 {effect.EffectId} 실행");
                         UIManager.Instance.OpenUI(UIManager.Instance.popUpUI,effect);
                         break;
+                    case "TakeObject":
+                        Debug.LogWarning($"TakeObject 타입의 {effect.EffectId} 실행");
+                        UIManager.Instance.OpenUI(UIManager.Instance.takeObjectUI,effect);
+                        break;
                     case "Camera":
                         Debug.LogWarning($"Camera 타입의 {effect.EffectId} 실행");
                         GameObject effectObj = GameObject.Find(effect.EffectId);
                         GameObject camera = effectObj.transform.GetChild(0).gameObject;
                         camera.SetActive(true);
                         camera.GetComponent<CinemachineVirtualCamera>().Priority = _maxPriority;
+                        if(effect.EffectId == "Effect_016" || effect.EffectId == "Effect_017" || effect.EffectId == "Effect_018")
+                            await UniTask.WaitForSeconds(2.5f);
                         break;
                     case "Animation":
                         Debug.LogWarning($"Animation 타입의 {effect.EffectId} 실행");
+                        PlayerController.Instance.isException = true;
+                        Animator animator = PlayerController.Instance.GetComponent<Animator>();
+                        animator.SetTrigger(effect.AnimationType);
+                        break;
+                    case "Act":
+                        Debug.LogWarning($"Act 타입의 {effect.EffectId} 실행");
+                        if (effect.EffectId == "Effect_026")
+                        {
+                            SceneChanger.Instance.ChangeScene("BossRoomHoa").Forget();
+                        }
+                        else if (effect.EffectId == "Effect_027")
+                        {
+                            BossManagerNew.Current.StartFinalBossRaid();
+                        }
                         break;
                     case "Screen":
                         Debug.LogWarning($"Screen 타입의 {effect.EffectId} 실행");
@@ -248,6 +290,24 @@ public class EventManager : MonoBehaviour
                         else if(effect.EffectId == "Effect_012")
                         {
                             SceneChanger.Instance.ChangeScene("MainRoomTest").Forget();
+                        }
+                        switch (effect.EffectId)
+                        {
+                            case "Effect_022":
+                                SceneChanger.Instance.ChangeScene("DarkScene").Forget();
+                                break;
+                            case "Effect_023":
+                                SceneChanger.Instance.ChangeScene("Ending1").Forget();
+                                break;
+                            case "Effect_024":
+                                SceneChanger.Instance.ChangeScene("Ending2-1").Forget();
+                                break;
+                            case "Effect_025":
+                                SceneChanger.Instance.ChangeScene("Ending2-2").Forget();
+                                break;
+                            case "Effect_028":
+                                SceneChanger.Instance.ChangeScene("Ending3").Forget();
+                                break;
                         }
                         break;
                 }

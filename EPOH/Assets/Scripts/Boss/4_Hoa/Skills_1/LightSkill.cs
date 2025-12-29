@@ -7,7 +7,7 @@ public class LightSkill : MonoBehaviour, BossSkillInterface
 
     private Vector3 topSpawnPoint; // 카메라 상단에서 Y축 +2 위치
     [SerializeField] private Vector3[] spawnPositions; // X축으로 떨어진 5개 위치
-    [SerializeField] private Vector3 SpawnPoint;
+   // [SerializeField] private Vector3 SpawnPoint;
     [SerializeField] private GameObject machinePrefab;
     [SerializeField] private GameObject laserPrefab;
     [SerializeField] private float moveDuration;
@@ -61,7 +61,7 @@ public class LightSkill : MonoBehaviour, BossSkillInterface
         for (int i = 0; i < randomfirstPositions.Count; i++) {
             GameObject machine = Instantiate(machinePrefab, randomfirstPositions[i], Quaternion.identity);   //In 5 places, create the laser (randomly)
 
-            Vector3 endPosition = new Vector3(randomfirstPositions[i].x, randomfirstPositions[i].y-1.8f,0);  // [[[[[[[[[y축 조정은 여기서(machine)]]]]]]]]]]]]]]]
+            Vector3 endPosition = new Vector3(randomfirstPositions[i].x, randomfirstPositions[i].y-3f,0);  // [[[[[[[[[y축 조정은 여기서(machine)]]]]]]]]]]]]]]]
 
             StartCoroutine(MoveMachine(machine, randomfirstPositions[i], endPosition, moveDuration));  //2. Get the five machine and move them down
         } 
@@ -144,7 +144,7 @@ public class LightSkill : MonoBehaviour, BossSkillInterface
     private IEnumerator MoveUpMachine(GameObject machine) {
         //4.Move up the machines back again(Making them up code)
         Vector3 startPosition = machine.transform.position;
-            Vector3 endPosition = new Vector3(startPosition.x, startPosition.y + 5, startPosition.z); // [[[[[[[[[[[[[[올라가는 y축 조정은 여기서(machine)]]]]]]]]]]]]
+            Vector3 endPosition = new Vector3(startPosition.x, startPosition.y + 6, startPosition.z); // [[[[[[[[[[[[[[올라가는 y축 조정은 여기서(machine)]]]]]]]]]]]]
 
             float timeElapsed = 0f;
 

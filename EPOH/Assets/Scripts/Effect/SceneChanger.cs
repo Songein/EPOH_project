@@ -58,6 +58,9 @@ public class SceneChanger : MonoBehaviour
             .OnComplete(() =>
             {
                 _fadeImg.blocksRaycasts = false;
+                
+                if (FindObjectOfType<PlayerController>() == null) return;
+                
                 if (scene.name == "CutScene1" || scene.name == "CutScene2" || scene.name == "CutScene3" ||
                     scene.name == "CutScene4")
                 {
@@ -89,6 +92,28 @@ public class SceneChanger : MonoBehaviour
             .AsyncWaitForCompletion();
 
         await LoadScene(sceneName);
+    }
+    
+    public async UniTaskVoid ChangeScene(string sceneName, Vector3 destPos)
+    {
+        await _fadeImg.DOFade(1, fadeDuration)
+            .OnStart(() => {
+                _fadeImg.blocksRaycasts = true;
+                if (PlayerController.Instance != null)
+                {
+                    PlayerController.Instance.canMove = false;
+                    PlayerInteract.Instance.canInteract = false;
+                }
+                //SoundManager.Instance.StopBGM();
+            })
+            .AsyncWaitForCompletion();
+
+        await LoadScene(sceneName);
+        if (PlayerController.Instance != null)
+        {
+            Transform t = PlayerController.Instance.GetComponent<Transform>();
+            t.position = destPos;
+        }
     }
     
     private async UniTask LoadScene(string sceneName)

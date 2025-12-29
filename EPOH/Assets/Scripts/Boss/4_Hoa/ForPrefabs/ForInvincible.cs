@@ -16,8 +16,19 @@ public class ForInvincible : MonoBehaviour
             {
                 Debug.Log("pH is null!");
             }
-
             pH.is_invincible = true;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            PlayerHealth pH = collision.GetComponent<PlayerHealth>();
+            if (pH != null)
+            {
+                pH.is_invincible = true; // 계속 무적으로 유지
+            }
         }
     }
 
@@ -27,8 +38,12 @@ public class ForInvincible : MonoBehaviour
         {
             Debug.Log("PH is exited!");
             PlayerHealth pH = collision.GetComponent<PlayerHealth>();
+           
 
             pH.is_invincible = false;
+
+
+
         }
     }
 

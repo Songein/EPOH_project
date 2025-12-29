@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class UP_ElectricBall : MonoBehaviour
+public class UP_ElectricBall : MonoBehaviour, BossSkillInterface
 {
     //  private BossDogController dog; 
    // public GameObject player; // 플레이어 게임 오브젝트

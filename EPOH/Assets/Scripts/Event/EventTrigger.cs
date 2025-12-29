@@ -25,6 +25,7 @@ namespace Event
                     if (EventManager.Instance.CheckExecutable(_event.eventID))
                     {
                         if(_event.eventID == "Event_010" && _event.isExecuted) return;
+                        if (_event.eventID == "Event_041" && _event.isExecuted) return;
                         switch (tag)
                         {
                             case "AutoTrigger":

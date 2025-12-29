@@ -9,18 +9,46 @@ public class ForContinueBtn : MonoBehaviour
 {
     [SerializeField] private Button continueButton;
 
-    //기록없애고 MainRoom으로
-    public void Reset()
+    void Start()
     {
         continueButton.interactable = SaveManager.instance.HasSavedGame();
+    }
+
+
+
+
+    //기록없애고 MainRoom으로
+    public void Reset_new()
+    {
 
         string path = Path.Combine(Application.persistentDataPath, "gamedata.json");
         if (File.Exists(path))
         {
             File.Delete(path);
+            SaveManager.instance.ResetSaveData();
+            Debug.Log("데이터 지움");
         }
 
-        SceneManager.LoadScene("Mainroom");
+        SceneManager.LoadScene("Beginning");
+    }
+
+
+
+
+
+
+    //기록없애고 MainRoom으로
+    public void Reset()
+    {
+        
+        string path = Path.Combine(Application.persistentDataPath, "gamedata.json");
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+            SaveManager.instance.ResetSaveData();
+        }
+
+        SceneManager.LoadScene("MainRoomTest");
     }
 
 

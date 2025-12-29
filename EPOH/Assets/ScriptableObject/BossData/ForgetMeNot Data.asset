@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: ForgetMeNot Data
   m_EditorClassIdentifier: 
   name: ForgetMeNot
+  bossIndex: 2
+  hackingGoal: 400
+  clearEventId: Event_037
+  failEventId: Event_036
   _maxHealth: 0
   _rightTop: {x: 11, y: 6, z: 0}
   _leftBottom: {x: -11, y: -6, z: 0}

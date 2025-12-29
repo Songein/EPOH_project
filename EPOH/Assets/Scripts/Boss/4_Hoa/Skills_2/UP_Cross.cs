@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UP_Cross : MonoBehaviour
+public class UP_Cross : MonoBehaviour, BossSkillInterface
 {
     [SerializeField] private Vector3[] hoaArmPositions;
     [SerializeField] private GameObject CrossWarningArms; //1번은 왼쪽 위 2번은 오른쪽 위 3번은 왼쪽 아래 4번은 오른쪽 아래

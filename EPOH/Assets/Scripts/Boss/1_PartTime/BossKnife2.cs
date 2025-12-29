@@ -63,7 +63,7 @@ public class BossKnife2 : MonoBehaviour, BossSkillInterface
         // 나이프 애니메이션 재생
         if (knifeAnimator != null)
         {
-            knifeAnimator.Play("Knife_Tracking"); // Animator에 설정된 애니메이션 이름
+            //knifeAnimator.Play("Knife_Tracking"); // Animator에 설정된 애니메이션 이름
         }
 
         // 낙하 단계

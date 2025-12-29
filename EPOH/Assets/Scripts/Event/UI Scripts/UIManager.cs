@@ -44,6 +44,7 @@ public class UIManager : MonoBehaviour
     public UIBase requestUI;
     public UIBase popUpUI;
     public UIBase dialogueUI;
+    public UIBase takeObjectUI;
     public UIBase cutSceneUI;
     
     private void Update()
@@ -51,7 +52,7 @@ public class UIManager : MonoBehaviour
         if (IsAnyUIOpen())
         {
             //플레이어 Lock
-            LockPlayer();
+            PlayerController.Instance.LockPlayer();
         }
     }
     
@@ -61,7 +62,7 @@ public class UIManager : MonoBehaviour
 
         // 스택에 추가하고 UI를 활성화
         // 상호작용 금지
-        LockPlayer();
+        PlayerController.Instance.LockPlayer();
         uiStack.Push(ui);
         topUI = ui;
         ui.OnOpen();
@@ -75,10 +76,10 @@ public class UIManager : MonoBehaviour
         {
             return;
         }
-        
+
         // 스택에 추가하고 UI를 활성화
         // 상호작용 금지
-        LockPlayer();
+        PlayerController.Instance.LockPlayer();
         uiStack.Push(ui);
         topUI = ui;
         ui.OnOpen(effect);
@@ -94,12 +95,12 @@ public class UIManager : MonoBehaviour
         if (uiStack.Count > 0)
         {
             this.topUI = uiStack.Peek();
-            LockPlayer();
+            PlayerController.Instance.LockPlayer();
         }
         else
         {
             this.topUI = null;
-            UnLockPlayer();
+            PlayerController.Instance.UnlockPlayer();
         }
     }
     

@@ -12,7 +12,8 @@ public class PortalTeleportManager : MonoBehaviour
     [SerializeField] private Vector3 mainroomPortal;
     [SerializeField] private Vector3 officeroomLeftPortal;
     [SerializeField] private Vector3 officeroomRightPortal;
-    [SerializeField] private Vector3 bossroomPortal;
+
+    [SerializeField] private List<GameObject> playerSpawnPos = new List<GameObject>();
 
     public enum PortalState
     {
@@ -69,7 +70,6 @@ public class PortalTeleportManager : MonoBehaviour
             _portalInfos.Add(PortalState.MainToOffice, new PortalInfo("OfficeRoom1", officeroomLeftPortal));
             _portalInfos.Add(PortalState.OfficeToMain, new PortalInfo("MainRoomTest", mainroomPortal));
             _portalInfos.Add(PortalState.BossToOffice, new PortalInfo("OfficeRoom1", officeroomRightPortal));
-            _portalInfos.Add(PortalState.OfficeToBoss, new PortalInfo("BossRoomTest", bossroomPortal));
         }
         else if (_instance != this)
         {
@@ -86,6 +86,48 @@ public class PortalTeleportManager : MonoBehaviour
         }
     }
 
+    private string GetBossRoomName()
+    {
+        switch (GameManager.instance.ProgressState)
+        {
+            case GameManager.ProgressId.Progress_Req1_Start:
+            case GameManager.ProgressId.Progress_Req1_Fail:
+                return "BossRoomDog";
+            case GameManager.ProgressId.Progress_Req2_Start:
+            case GameManager.ProgressId.Progress_Req2_Fail:
+                return "BossRoomPartTime";
+            case GameManager.ProgressId.Progress_Req3_Start:
+            case GameManager.ProgressId.Progress_Req3_Fail:
+                return "BossRoomForgetMeNot";
+            case GameManager.ProgressId.Progress_Req4_Start:
+            case GameManager.ProgressId.Progress_Req4_Fail:
+                return "BossRoomCriminal";
+            default:
+                return null;
+        }
+    }
+
+    private Vector3 GetBossPortalPos()
+    {
+        switch (GameManager.instance.ProgressState)
+        {
+            case GameManager.ProgressId.Progress_Req1_Start:
+            case GameManager.ProgressId.Progress_Req1_Fail:
+                return playerSpawnPos[0].transform.position;
+            case GameManager.ProgressId.Progress_Req2_Start:
+            case GameManager.ProgressId.Progress_Req2_Fail:
+                return playerSpawnPos[1].transform.position;
+            case GameManager.ProgressId.Progress_Req3_Start:
+            case GameManager.ProgressId.Progress_Req3_Fail:
+                return playerSpawnPos[2].transform.position;
+            case GameManager.ProgressId.Progress_Req4_Start:
+            case GameManager.ProgressId.Progress_Req4_Fail:
+                return playerSpawnPos[3].transform.position;
+            default:
+                return playerSpawnPos[0].transform.position;
+        } 
+    }
+
 
     public IEnumerator StartOperatePortal(PortalState state)
     {
@@ -98,6 +140,35 @@ public class PortalTeleportManager : MonoBehaviour
         // 애니메이션 종료 후 씬 이동
         yield return new WaitForSeconds(1f);
         portalState = state;
+
+        if(state == PortalState.OfficeToBoss)
+        {
+            // 보스룸 씬 이름과 포탈 위치 동적으로 설정
+            string bossRoomName = GetBossRoomName();
+            Vector3 bossPortalPos = GetBossPortalPos();
+            _portalInfos[PortalState.OfficeToBoss] = new PortalInfo(bossRoomName, bossPortalPos);
+        }
+
+        SceneManager.LoadScene(_portalInfos[state].MoveSceneName);
+    }
+    
+    public void StartOperatePortalWhenDie(PortalState state)
+    {
+        // 플레이어 움직임 막기
+        PlayerController.Instance.canMove = false;
+        PlayerInteract.Instance.canInteract = false;
+        
+        // 애니메이션 종료 후 씬 이동
+        portalState = state;
+
+        if(state == PortalState.OfficeToBoss)
+        {
+            // 보스룸 씬 이름과 포탈 위치 동적으로 설정
+            string bossRoomName = GetBossRoomName();
+            Vector3 bossPortalPos = GetBossPortalPos();
+            _portalInfos[PortalState.OfficeToBoss] = new PortalInfo(bossRoomName, bossPortalPos);
+        }
+
         SceneManager.LoadScene(_portalInfos[state].MoveSceneName);
     }
 
@@ -135,6 +206,8 @@ public class PortalTeleportManager : MonoBehaviour
         // portal의 상태가 Default가 아니라면, 포탈을 통해 이동을 했다는 것임.
         if (portalState != PortalState.Default)
         {
+            SpriteRenderer sp = PlayerController.Instance.GetComponent<SpriteRenderer>();
+            sp.color = new Color(sp.color.r, sp.color.g, sp.color.b, 1f);
             StartCoroutine(EndOperatePortal());
         }
     }

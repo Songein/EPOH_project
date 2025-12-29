@@ -38,6 +38,9 @@ public class BossThrowing : MonoBehaviour, BossSkillInterface
     private IEnumerator ThrowPlates()
     {
         float elapsedTime = 0f;
+        //BossData bossData = BossManagerNew.Current.bossData;
+        //Vector3 leftSpawnPoint = new Vector3(bossData._leftBottom.x, bossData._leftBottom.y + 3, 0);
+        //Vector3 rightSpawnPoint = new Vector3(bossData._rightTop.x, bossData._leftBottom.y + 3, 0);
 
         while (elapsedTime < attackDuration)
         {
@@ -103,6 +106,9 @@ public class BossThrowing : MonoBehaviour, BossSkillInterface
             elapsedTime += throwInterval;
         }
     }
+
+
+
 }
 
 // 접시 충돌 처리를 위한 스크립트

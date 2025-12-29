@@ -5,7 +5,7 @@ using UnityEngine;
 public class OfficeStairs : MonoBehaviour
 {
     public string moveSceneName;
-
+    public Vector3 destPos;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && PlayerInteract.Instance.canInteract)
@@ -17,7 +17,7 @@ public class OfficeStairs : MonoBehaviour
                     PlayerInteract.Instance.OnInteract += () =>
                     {
                         PlayerController.Instance.canMove = false;
-                        SceneChanger.Instance.ChangeScene(moveSceneName).Forget();
+                        SceneChanger.Instance.ChangeScene(moveSceneName, destPos).Forget();
                     };
                     return;
             }

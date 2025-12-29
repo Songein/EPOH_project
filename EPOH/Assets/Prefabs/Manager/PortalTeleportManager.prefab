@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4742413904534078622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4742413904534078620}
+  - component: {fileID: 4742413904534078621}
+  m_Layer: 0
+  m_Name: PortalTeleportManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4742413904534078620
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4742413904534078622}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4742413904534078621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4742413904534078622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6fd58dadf70e4a579c80e792c92e6f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainroomPortal: {x: 7.3, y: -3.5, z: -1}
+  officeroomLeftPortal: {x: -24.75, y: -2.4, z: -1}
+  officeroomRightPortal: {x: 24.9, y: -2.4, z: -1}
+  playerSpawnPos:
+  - {fileID: 6536746889341201507, guid: 5f072f805b0f1904ea77f82cf12df564, type: 3}
+  - {fileID: 5793876768877790723, guid: c31bcb6b2c7d35f45a2e34f301249047, type: 3}
+  - {fileID: 7987756612260304710, guid: 3f4678ea21367584389af02fb8a86338, type: 3}
+  - {fileID: 1612521508963532973, guid: 868e819be2ede3f46b7feae0785d1b9d, type: 3}
+  - {fileID: 4758847645110693165, guid: 2a5bd294f0317464199c04c6ce211857, type: 3}
+  portalState: 0

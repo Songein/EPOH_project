@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Hacking : MonoBehaviour
 {
     private BossManagerNew _bossManager;
-    [SerializeField] private float _hackingPoint = 0f;
+    [SerializeField] public float _hackingPoint = 0f; //private -> public 으로 바꿈
     [SerializeField] private TextMeshProUGUI _text;
     public void Start()
     {
@@ -39,7 +39,7 @@ public class Hacking : MonoBehaviour
         if (_hackingPoint + value >= 100)
         {
             _hackingPoint = 100f;
-            BossManagerNew.Current.EndBossRaid();
+            BossManagerNew.Current.ClearBossRaidAsync();
         }
         else
         {

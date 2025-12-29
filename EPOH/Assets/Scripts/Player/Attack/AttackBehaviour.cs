@@ -62,6 +62,7 @@ public class AttackBehaviour : StateMachineBehaviour
         if (isComboAttack)
         {
             //콤보 공격이 가능하다면
+            isComboAttack = false;
             animator.Play("Attack Two");
             SoundManager2.instance.PlaySFX((int)SoundManager2.SfXSound.Player_Attack);
         }

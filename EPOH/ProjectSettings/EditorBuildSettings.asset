@@ -18,8 +18,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Setting.unity
     guid: 55f80fb6953e8dd4298668c6b10efc87
   - enabled: 1
-    path: Assets/Scenes/MainRoom.unity
-    guid: 2dbc4e57308a01246872e4696186ea6c
+    path: Assets/Scenes/Beginning.unity
+    guid: 8e983858133984c9ba73164c742b5c1b
+  - enabled: 1
+    path: Assets/Editor/Test/MainRoomTest.unity
+    guid: 049aa7253eac44b6da5ef6ac146d02fb
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
@@ -27,44 +30,44 @@ EditorBuildSettings:
     path: Assets/Scenes/BossRoom/BossRoomDog.unity
     guid: d08cfd1e6cf61c04f87933598d8ca608
   - enabled: 1
-    path: Assets/Scenes/BossRoom/BossRoomForgetMeNot.unity
-    guid: 74eb43b338363e744afb0285c831f1bd
-  - enabled: 1
     path: Assets/Scenes/BossRoom/BossRoomPartTime.unity
     guid: 36c3ff87145a2d84e92381b45421525a
+  - enabled: 1
+    path: Assets/Scenes/BossRoom/BossRoomForgetMeNot.unity
+    guid: a36802d926c7e4d238f6aedc66fd7568
+  - enabled: 1
+    path: Assets/Scenes/BossRoom/BossRoomCriminal.unity
+    guid: ad79a4271ca04427598ac32c66660610
+  - enabled: 1
+    path: Assets/Scenes/BossRoom/BossRoomHoa.unity
+    guid: 2fc17c091c71aff4383290e7f483d937
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/OfficeRoom/OfficeRoom1.unity
     guid: 157b12eaa986d4722a3d2485fe379ed7
   - enabled: 1
     path: Assets/Scenes/OfficeRoom/OfficeRoom2.unity
     guid: 36d07c98e5dd14a0ebb44ebb96d3a092
-  - enabled: 1
-    path: Assets/Scenes/OfficeRoom/OfficeRoom3.unity
-    guid: bc5fea71ef3d14a08b908eebb4d897a7
-  - enabled: 1
-    path: Assets/Scenes/OfficeRoom/OfficeRoom4.unity
-    guid: 8c58909419feb4af69c0c559ea15e56f
-  - enabled: 1
-    path: Assets/Scenes/BossRoom/BossRoomCriminal.unity
-    guid: 3bf82df8a1a7941df9b65e632b0a3450
-  - enabled: 1
-    path: Assets/Scenes/BossRoom/ForWorking/BossRoomHoaRegacy.unity
-    guid: 3a56e9b5aee654171854d41cc7065155
-  - enabled: 1
-    path: Assets/Scenes/Ending/BadEnding.unity
-    guid: 098d6478e98d74403ac89415a818deb6
-  - enabled: 1
-    path: Assets/Scenes/Ending/NormalEnding.unity
-    guid: f0c0cdf9080ec45ac967573b6ec20631
-  - enabled: 1
-    path: Assets/Scenes/Ending/TrueEnding.unity
-    guid: 1457a2dfcd74e4543af3cb1970146338
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Beginning.unity
-    guid: 8e983858133984c9ba73164c742b5c1b
+    path: Assets/Scenes/Ending/Ending1.unity
+    guid: 098d6478e98d74403ac89415a818deb6
+  - enabled: 1
+    path: Assets/Scenes/Ending/Ending2-1.unity
+    guid: f0c0cdf9080ec45ac967573b6ec20631
+  - enabled: 1
+    path: Assets/Scenes/Ending/Ending2-2.unity
+    guid: 1457a2dfcd74e4543af3cb1970146338
+  - enabled: 1
+    path: Assets/Scenes/Ending/Ending3.unity
+    guid: 19bccde0dec1f497a8a6aaa68499bc5d
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/CutScene/CutScene1.unity
     guid: 821141504b9544e8a954d846550921f4
@@ -78,9 +81,6 @@ EditorBuildSettings:
     path: Assets/Scenes/CutScene/CutScene4.unity
     guid: f3d0c1e6505eb48b59c37a4b80be8810
   - enabled: 1
-    path: Assets/Editor/Test/MainRoomTest.unity
-    guid: 049aa7253eac44b6da5ef6ac146d02fb
-  - enabled: 1
-    path: Assets/Scenes/BossRoom/ForWorking/BossRoomTest.unity
-    guid: 8c80de3752efb46789754c507f3ca529
+    path: Assets/Scenes/CutScene/DarkScene.unity
+    guid: 7b0f94a6c4f9044be9f9f071eb3d0bd3
   m_configObjects: {}

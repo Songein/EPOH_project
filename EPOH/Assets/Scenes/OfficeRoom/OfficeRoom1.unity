@@ -1303,6 +1303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSceneName: OfficeRoom2
+  destPos: {x: 8.37, y: -2.4, z: -1}
 --- !u!1 &1753394277
 GameObject:
   m_ObjectHideFlags: 0

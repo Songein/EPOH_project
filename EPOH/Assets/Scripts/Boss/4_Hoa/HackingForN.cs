@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using TMPro;
 
@@ -8,22 +9,18 @@ public class HackingForN : MonoBehaviour
     private PlayerController pcontrol;
     private BossManagerNew _bossManager;
     public float _hackingPoint;
-    public int hackingGoal;
+    private float hackingGoal;
+
     [SerializeField] private TextMeshProUGUI _text;
     public void Start()
     {
+        BossData bossdata = BossManagerNew.Current.bossData;
         pcontrol = FindObjectOfType<PlayerController>();
         _bossManager = FindObjectOfType<BossManagerNew>();
-        _bossManager.OnDecreaseHackingPoint = DecreaseHackingPoint;
-        _bossManager.OnIncreaseHackingPoint = IncreaseHackingPoint;
-    }
-    private void Update()
-    {
-        if (Input.GetButtonDown("Teleport") && pcontrol.can_teleport == false) {
-            BossManagerNew.Current.OnDecreaseHackingPoint(10);
-          
-        }
-
+        _bossManager.OnDecreaseHackingPoint += DecreaseHackingPoint;
+        _bossManager.OnIncreaseHackingPoint += IncreaseHackingPoint;
+        hackingGoal = bossdata.hackingGoal;
+        Debug.Log("HackingNeuron시작");
     }
     public float GetHackingPoint()
     {
@@ -49,8 +46,9 @@ public class HackingForN : MonoBehaviour
         if (_hackingPoint + value >= hackingGoal)
         {
             _hackingPoint = hackingGoal;
-            BossManagerNew.Current.EndBossRaid();
-        
+            if(BossManagerNew.Current.isGeneralRaid)
+                BossManagerNew.Current.ClearBossRaidAsync().Forget();
+            else BossManagerNew.Current.ClearFinalBossRaidAsync().Forget();
         }
         else
         {
@@ -62,6 +60,11 @@ public class HackingForN : MonoBehaviour
 
     public void UpdateText()
     {
-        _text.text = $"{_hackingPoint/ hackingGoal * 100}" + "%";
+        _text.text = $"{(int)(_hackingPoint/ hackingGoal * 100)}" + "%";
+    }
+
+    public bool IsClear()
+    {
+        return _hackingPoint == hackingGoal;
     }
 }
